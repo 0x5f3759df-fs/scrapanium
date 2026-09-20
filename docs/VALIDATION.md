@@ -2,7 +2,8 @@
 
 Latest full local run: **324 tests passed**, 287.73 seconds, Ubuntu 26.04 under WSL2.
 The compiled implementation uses the Bend/source and backend pins in
-`dependencies.json`. CI is configured but has not run on a hosted runner.
+`dependencies.json`. Hosted CI uses the same Ubuntu 26.04/clang 21 target;
+its current result is linked from the README badge.
 
 ```sh
 python3 scripts/bootstrap.py --matched
@@ -41,6 +42,11 @@ Actual external HTTPS was exercised once through the compiled Bend example at
 local certificates. They do not depend on third-party fingerprint services.
 
 ## Findings resolved during development
+
+- A fresh hosted container passed 322 cases but could not build the Go reference
+  probe because VCS stamping failed under checkout ownership. Comparison builds
+  now use `-buildvcs=false`; profile source pins and benchmark source hashes remain
+  explicit. This changes build metadata, not network behavior.
 
 - libcurl accepted an incorrect WebSocket acceptance challenge. Scrapanium now
   validates it independently, requires exactly one acceptance field and rejects

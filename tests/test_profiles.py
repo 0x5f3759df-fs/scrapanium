@@ -30,7 +30,7 @@ def test_every_profile_connects_with_verification(profile, https):
 
 @pytest.fixture(scope="module")
 def go_probe():
-    subprocess.run(["go", "build", "-o", str(ROOT / "build/profile-go"), "."], cwd=ROOT / "benchmarks/tls-client", check=True)
+    subprocess.run(["go", "build", "-buildvcs=false", "-o", str(ROOT / "build/profile-go"), "."], cwd=ROOT / "benchmarks/tls-client", check=True)
     return ROOT / "build/profile-go"
 
 

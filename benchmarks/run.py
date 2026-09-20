@@ -35,7 +35,7 @@ def main():
         "-L" + str(curl), "-Wl,-rpath," + str(curl), "-lcurl-impersonate", "-lpthread",
         "-o", str(ROOT / "build/bench-native")], check=True)
     if args.tls_client:
-        subprocess.run(["go", "build", "-o", str(ROOT / "build/bench-tls-client"), "."], cwd=ROOT / "benchmarks/tls-client", check=True)
+        subprocess.run(["go", "build", "-buildvcs=false", "-o", str(ROOT / "build/bench-tls-client"), "."], cwd=ROOT / "benchmarks/tls-client", check=True)
     servers, rows = [], []
     rng = random.Random(20260919)
     try:

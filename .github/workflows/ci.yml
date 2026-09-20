@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-24.04
     container: ubuntu:26.04
     timeout-minutes: 30
+    env:
+      DEBIAN_FRONTEND: noninteractive
     permissions:
       contents: read
     steps:
