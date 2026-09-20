@@ -43,8 +43,10 @@ def sample(client, binary, url, ca, body, workload, run_id, env, expected_backen
             raise RuntimeError("stream clients loaded a different backend")
         status = Path(f"/proc/{process.pid}/status").read_text().splitlines()
         ready_rss_kib = int(next(line.split()[1] for line in status if line.startswith("VmRSS:")))
+        parent_gate_ms = time.monotonic_ns() / 1_000_000
         process.stdin.write("x"); process.stdin.flush()
         output, errors = process.communicate(timeout=120)
+        parent_finish_ms = time.monotonic_ns() / 1_000_000
         cpu_after = resource.getrusage(resource.RUSAGE_CHILDREN)
         if any(marker in errors for marker in ("AddressSanitizer", "UndefinedBehaviorSanitizer", "LeakSanitizer", "runtime error:")):
             raise RuntimeError("sanitizer failure: " + errors)
@@ -56,12 +58,19 @@ def sample(client, binary, url, ca, body, workload, run_id, env, expected_backen
         if process.returncode:
             raise RuntimeError(output + errors)
         start, end = map(float, output.splitlines())
+        if client == CLIENTS[0]:
+            start /= 1000; end /= 1000
+        # Independent parent-clock bounds detect unit errors or truncated Nats.
+        if start < parent_gate_ms - 1 or end > parent_finish_ms + 1:
+            raise RuntimeError("client timestamps are outside independent CLOCK_MONOTONIC bounds")
         elapsed = end - start
         if elapsed < 0:
             raise RuntimeError("invalid monotonic timing")
         return {"run_id": run_id, "elapsed_ms": elapsed, "start_ms": start, "end_ms": end,
             "messages_per_second": workload["count"] * 1000 / elapsed if elapsed else None,
             "mapped_backend": mapping, "setup_and_corpus_wall_ms": setup_ms,
+            "clock_sanity": {"parent_gate_ms": parent_gate_ms, "parent_finish_ms": parent_finish_ms,
+                             "client_interval_within_parent": True},
             "resident_kib_at_ready": ready_rss_kib,
             "expected_corpus_payload_bytes": workload["count"] * workload["bytes"],
             "client_cpu_including_preparation_setup_close": {
@@ -102,7 +111,8 @@ def main():
     sources = ["scrapanium.bend", "http.bend", "dependencies.json", "scripts/build.py", "tests/lab.py",
         *[str(p.relative_to(ROOT)) for p in (ROOT / "native").glob("*") if p.is_file()],
         "benchmarks/websocket.py", "benchmarks/websocket.bend", "benchmarks/websocket_streaming.py",
-        "benchmarks/websocket_stream.bend", "benchmarks/websocket_stream_python.py", "benchmarks/websocket_stream_server.go"]
+        "benchmarks/websocket_stream.bend", "benchmarks/websocket_clock.c",
+        "benchmarks/websocket_stream_python.py", "benchmarks/websocket_stream_server.go"]
     source_hashes = {p: shared.digest(ROOT / p) for p in sources}
     binary, peer = ROOT / "build/bench-ws-stream", ROOT / "build/bench-ws-stream-server"
     if not args.no_build:
@@ -187,15 +197,17 @@ def main():
         "profile": "chrome146", "verify": True, "operation_timeout_ms": 5000,
         "smoke_only": args.smoke, "sanitizers": args.sanitize, "bend_threads": args.threads,
         "metric": "inbound messages per second, never round trips per second",
+        "clock": "CLOCK_MONOTONIC; Bend benchmark-only checked48-bit Nat microseconds, Python nanoseconds; every interval checked against independent parent-clock bounds",
         "timing": "start signal plus ordered exact-byte-checked receives; excludes expected corpus preparation, startup, TLS upgrade, warmup and close",
         "payload": "8 ASCII decimal sequence digits, then bytes(j*31 %128); every message is unique and checked in order",
+        "validation_buffer_lifetime": "Both clients consume and release expected and received payload buffers immediately after each exact check, inside timing; including final message",
         "corpus_limit_per_connection_bytes": 64 * 1024 * 1024,
         "peer_batching": "1 or 64 distinct RFC6455 frames per TLS Write call; identical wire bytes and batching for both clients",
         "uncertainty": "95% repeat-level bootstrap intervals of medians (10,000 resamples); all samples and min/max retained",
         "caveats": ["Loopback WSL/Linux inbound streaming; does not establish WAN or request/response performance.",
             "Expected corpus payload memory is bounded equally; runtime/container overhead differs and RSS is recorded at readiness.",
             "CPU/context-switch accounting includes corpus preparation, setup and close; it is not timed-receive CPU.",
-            "Bend IO.now has millisecond resolution; Python uses CLOCK_MONOTONIC nanoseconds.",
+            "Bend uses benchmark-only microsecond timing; Python uses CLOCK_MONOTONIC nanoseconds.",
             "All frames use one verified TLS connection per sample; no compression, reconnect or TLS resumption in timing.",
             "Scrapanium additionally validates the acceptance challenge during untimed setup.",
             "WebSocket byte counts exclude TLS record overhead. Round-trip results remain in websocket.json."],

@@ -11,7 +11,7 @@ See [requests, headers, bytes and error handling](REQUESTS.md) and the
 | `Request.with_query`, `Request.form` | Ordered UTF-8 URL/form encoding; duplicates and fragments preserved. |
 | `http.bend: Headers` | Case-insensitive lookup, duplicate-preserving fields, validation and explicit empty values. |
 | `response_headers`, `response_trailers` | Final-response structured headers and separate HTTP/1 or HTTP/2 trailers. |
-| `Bytes.from_list/from_text/read_file`, `Request.binary` | Binary-safe uploads; bounded regular-file reads. |
+| `Bytes.from_list/from_text/read_file`, `Request.binary` | Binary-safe uploads; bounded regular-file reads. `from_text` preserves valid UTF-8 and embedded NUL, and rejects invalid Unicode scalars. |
 | `Bytes.equal(left, right)` | Exact length and byte comparison. Returns `((left, right), equal)` so both owned buffers remain usable; no text conversion or hashing. |
 | `into_bytes(response)` | Moves the native body buffer for reuse without copying it. |
 | `defaults()`, `browser(name)` | Secure configuration; explicit pinned `chrome150` default. |

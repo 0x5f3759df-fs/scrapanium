@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "utc": "2026-09-20T03:36:56.706936+00:00",
+  "utc": "2026-09-20T04:11:59.435381+00:00",
   "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
   "cpu_count": 12,
@@ -49,8 +49,10 @@
   "sanitizers": false,
   "bend_threads": 1,
   "metric": "inbound messages per second, never round trips per second",
+  "clock": "CLOCK_MONOTONIC; Bend benchmark-only checked48-bit Nat microseconds, Python nanoseconds; every interval checked against independent parent-clock bounds",
   "timing": "start signal plus ordered exact-byte-checked receives; excludes expected corpus preparation, startup, TLS upgrade, warmup and close",
   "payload": "8 ASCII decimal sequence digits, then bytes(j*31 %128); every message is unique and checked in order",
+  "validation_buffer_lifetime": "Both clients consume and release expected and received payload buffers immediately after each exact check, inside timing; including final message",
   "corpus_limit_per_connection_bytes": 67108864,
   "peer_batching": "1 or 64 distinct RFC6455 frames per TLS Write call; identical wire bytes and batching for both clients",
   "uncertainty": "95% repeat-level bootstrap intervals of medians (10,000 resamples); all samples and min/max retained",
@@ -58,7 +60,7 @@
     "Loopback WSL/Linux inbound streaming; does not establish WAN or request/response performance.",
     "Expected corpus payload memory is bounded equally; runtime/container overhead differs and RSS is recorded at readiness.",
     "CPU/context-switch accounting includes corpus preparation, setup and close; it is not timed-receive CPU.",
-    "Bend IO.now has millisecond resolution; Python uses CLOCK_MONOTONIC nanoseconds.",
+    "Bend uses benchmark-only microsecond timing; Python uses CLOCK_MONOTONIC nanoseconds.",
     "All frames use one verified TLS connection per sample; no compression, reconnect or TLS resumption in timing.",
     "Scrapanium additionally validates the acceptance challenge during untimed setup.",
     "WebSocket byte counts exclude TLS record overhead. Round-trip results remain in websocket.json."
@@ -211,22 +213,23 @@
     "scripts/build.py": "463170e3444413aaa0788da14eb7458b090c60c0217f78d490965afe19970813",
     "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
     "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
-    "native/websocket.inc.c": "b16c5089a36d7af755621d5393465bfa24ca47d9ac3e5e56da8887ca2d1a076b",
+    "native/websocket.inc.c": "3c9cb6f56072ae1b1447cfc6cef04a5ff63db3ce765f27c36654199f311ebd91",
     "native/profiles.inc.c": "07f034b52dc6928b39990c4e0e44273fb21db800e520469bb2642be78480259b",
-    "native/bend_websocket.inc.c": "eb1ddf94309bbfef28a537ede55a6dde38dcea31fdf2af8dc3d080b603855024",
+    "native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
     "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
     "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
     "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
-    "native/bend_bridge.c": "09ca3b9997bc33a9983a9cac59358423d584ae75a4a7c3b8d87f3bb59eb3dc95",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
     "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
     "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
-    "benchmarks/websocket_streaming.py": "908a0803f8cee832b707e56f6aef78d77a1f4130efba0d7473c42a0cf40940ca",
-    "benchmarks/websocket_stream.bend": "98f8cfbaf49aae3531246387af523757f3e362423ee8e618f1f04f55c9bcb7c5",
-    "benchmarks/websocket_stream_python.py": "b6f8fa83e360c5477bfc5efef9835a2a2d17ba685baba169b536a1edaec469ab",
+    "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
     "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a"
   },
   "binary_sha256": {
-    "bend": "09d0fc0be7fd2b6ec9fb92b3b3524f541d671521d09653751b7c43bde1ed5216",
+    "bend": "1d3b4230564e1f0b256789b11f7fc8277e97b9071daa66a42397858091d12366",
     "go_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
   },
   "source_hashes_checked_before_build_and_after_samples": true,
@@ -241,33 +244,38 @@
       "expected_corpus_payload_bytes": 1966080,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 143.0,
-          "messages_per_second": 458293.7062937063,
-          "mps_min": 310597.1563981043,
-          "mps_max": 601247.7064220184,
+          "median_ms": 117.18600000010338,
+          "messages_per_second": 559247.6917032938,
+          "mps_min": 335727.38542871695,
+          "mps_max": 583839.6436525612,
           "mps_median_bootstrap_95_ci": [
-            383251.4619883041,
-            524288.0
+            517948.31265301135,
+            575862.2204651601
           ],
           "samples": [
             {
               "run_id": "stream-30b-flush1-0-scrapanium-bend",
-              "elapsed_ms": 126.0,
-              "start_ms": 130324.0,
-              "end_ms": 130450.0,
-              "messages_per_second": 520126.98412698414,
+              "elapsed_ms": 126.53000000002794,
+              "start_ms": 821522.61,
+              "end_ms": 821649.14,
+              "messages_per_second": 517948.31265301135,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 123.40865299998427,
-              "resident_kib_at_ready": 18296,
+              "setup_and_corpus_wall_ms": 162.88861399993948,
+              "clock_sanity": {
+                "parent_gate_ms": 821522.480095,
+                "parent_finish_ms": 821655.033663,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18284,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.13533099999999987,
-                "system_seconds": 0.03980300000000003,
-                "voluntary_context_switches": 277,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.1492429999999998,
+                "system_seconds": 0.03534700000000002,
+                "voluntary_context_switches": 275,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -281,78 +289,25 @@
             },
             {
               "run_id": "stream-30b-flush1-1-scrapanium-bend",
-              "elapsed_ms": 109.0,
-              "start_ms": 132921.0,
-              "end_ms": 133030.0,
-              "messages_per_second": 601247.7064220184,
+              "elapsed_ms": 195.2060000000056,
+              "start_ms": 824230.29,
+              "end_ms": 824425.496,
+              "messages_per_second": 335727.38542871695,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 121.97501900001839,
-              "resident_kib_at_ready": 18260,
+              "setup_and_corpus_wall_ms": 122.21989399995437,
+              "clock_sanity": {
+                "parent_gate_ms": 824230.136577,
+                "parent_finish_ms": 824429.124244,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18340,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.13700599999999952,
-                "system_seconds": 0.024178000000000033,
-                "voluntary_context_switches": 278,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-30b-flush1-2-scrapanium-bend",
-              "elapsed_ms": 143.0,
-              "start_ms": 133478.0,
-              "end_ms": 133621.0,
-              "messages_per_second": 458293.7062937063,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 122.36091400001214,
-              "resident_kib_at_ready": 18280,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.15516600000000036,
-                "system_seconds": 0.0408329999999999,
-                "voluntary_context_switches": 274,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-30b-flush1-3-scrapanium-bend",
-              "elapsed_ms": 144.0,
-              "start_ms": 135401.0,
-              "end_ms": 135545.0,
-              "messages_per_second": 455111.1111111111,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 155.5867820000003,
-              "resident_kib_at_ready": 18252,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.1448109999999998,
-                "system_seconds": 0.06838199999999994,
+                "user_seconds": 0.2129550000000009,
+                "system_seconds": 0.03757999999999995,
                 "voluntary_context_switches": 279,
                 "involuntary_context_switches": 0
               },
@@ -367,21 +322,128 @@
               }
             },
             {
-              "run_id": "stream-30b-flush1-4-scrapanium-bend",
-              "elapsed_ms": 211.0,
-              "start_ms": 137214.0,
-              "end_ms": 137425.0,
-              "messages_per_second": 310597.1563981043,
+              "run_id": "stream-30b-flush1-2-scrapanium-bend",
+              "elapsed_ms": 115.9649999999674,
+              "start_ms": 824811.594,
+              "end_ms": 824927.559,
+              "messages_per_second": 565136.0324237349,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 124.3827099999919,
-              "resident_kib_at_ready": 18288,
+              "setup_and_corpus_wall_ms": 133.6289939999915,
+              "clock_sanity": {
+                "parent_gate_ms": 824811.436397,
+                "parent_finish_ms": 824934.19893,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18228,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.21667300000000012,
-                "system_seconds": 0.047273999999999816,
+                "user_seconds": 0.12014299999999967,
+                "system_seconds": 0.05813400000000002,
+                "voluntary_context_switches": 283,
+                "involuntary_context_switches": 2
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush1-3-scrapanium-bend",
+              "elapsed_ms": 112.25,
+              "start_ms": 826457.385,
+              "end_ms": 826569.635,
+              "messages_per_second": 583839.6436525612,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 136.56811700002436,
+              "clock_sanity": {
+                "parent_gate_ms": 826457.227462,
+                "parent_finish_ms": 826575.962053,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18276,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.13186799999999987,
+                "system_seconds": 0.03878499999999996,
+                "voluntary_context_switches": 278,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush1-4-scrapanium-bend",
+              "elapsed_ms": 113.80499999993481,
+              "start_ms": 828156.082,
+              "end_ms": 828269.887,
+              "messages_per_second": 575862.2204651601,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 128.16637600008107,
+              "clock_sanity": {
+                "parent_gate_ms": 828155.908925,
+                "parent_finish_ms": 828276.210227,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18292,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.1275529999999998,
+                "system_seconds": 0.04384599999999994,
+                "voluntary_context_switches": 280,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush1-5-scrapanium-bend",
+              "elapsed_ms": 117.18600000010338,
+              "start_ms": 830766.494,
+              "end_ms": 830883.68,
+              "messages_per_second": 559247.6917032938,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 126.01503300004424,
+              "clock_sanity": {
+                "parent_gate_ms": 830766.337435,
+                "parent_finish_ms": 830890.000586,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18328,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.13739599999999985,
+                "system_seconds": 0.03637000000000001,
                 "voluntary_context_switches": 277,
                 "involuntary_context_switches": 2
               },
@@ -396,52 +458,28 @@
               }
             },
             {
-              "run_id": "stream-30b-flush1-5-scrapanium-bend",
-              "elapsed_ms": 171.0,
-              "start_ms": 140518.0,
-              "end_ms": 140689.0,
-              "messages_per_second": 383251.4619883041,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 141.69928399999776,
-              "resident_kib_at_ready": 18284,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.18808899999999973,
-                "system_seconds": 0.04001900000000003,
-                "voluntary_context_switches": 277,
-                "involuntary_context_switches": 0
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
               "run_id": "stream-30b-flush1-6-scrapanium-bend",
-              "elapsed_ms": 125.0,
-              "start_ms": 141142.0,
-              "end_ms": 141267.0,
-              "messages_per_second": 524288.0,
+              "elapsed_ms": 119.56099999998696,
+              "start_ms": 831264.935,
+              "end_ms": 831384.496,
+              "messages_per_second": 548138.6070709274,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 142.24590499998158,
-              "resident_kib_at_ready": 18224,
+              "setup_and_corpus_wall_ms": 123.06468400004178,
+              "clock_sanity": {
+                "parent_gate_ms": 831264.785967,
+                "parent_finish_ms": 831390.979313,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18260,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.14977600000000013,
-                "system_seconds": 0.04048000000000007,
-                "voluntary_context_switches": 281,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.1279199999999996,
+                "system_seconds": 0.047969999999999846,
+                "voluntary_context_switches": 279,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -456,33 +494,38 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 166.22639599998365,
-          "messages_per_second": 394257.4800214428,
-          "mps_min": 295310.4634419344,
-          "mps_max": 436574.0001889926,
+          "median_ms": 174.51531199994497,
+          "messages_per_second": 375531.51783048507,
+          "mps_min": 356600.7505757025,
+          "mps_max": 388790.5564992954,
           "mps_median_bootstrap_95_ci": [
-            332875.9607338576,
-            436349.1753242772
+            360385.62625775684,
+            388710.8974502892
           ],
           "samples": [
             {
               "run_id": "stream-30b-flush1-0-curl_cffi-matched",
-              "elapsed_ms": 150.1916440000059,
-              "start_ms": 131344.476192,
-              "end_ms": 131494.667836,
-              "messages_per_second": 436349.1753242772,
+              "elapsed_ms": 168.56376500008628,
+              "start_ms": 822557.703548,
+              "end_ms": 822726.267313,
+              "messages_per_second": 388790.5564992954,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 601.5395149999847,
-              "resident_kib_at_ready": 39264,
+              "setup_and_corpus_wall_ms": 650.686978000067,
+              "clock_sanity": {
+                "parent_gate_ms": 822557.580864,
+                "parent_finish_ms": 822751.689334,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38644,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.239738,
-                "system_seconds": 0.09673600000000004,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.28615499999999994,
+                "system_seconds": 0.06756399999999996,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -496,20 +539,25 @@
             },
             {
               "run_id": "stream-30b-flush1-1-curl_cffi-matched",
-              "elapsed_ms": 150.11429900000803,
-              "start_ms": 132383.81605,
-              "end_ms": 132533.930349,
-              "messages_per_second": 436574.0001889926,
+              "elapsed_ms": 183.77975899993908,
+              "start_ms": 823662.642892,
+              "end_ms": 823846.422651,
+              "messages_per_second": 356600.7505757025,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 591.7678980000005,
-              "resident_kib_at_ready": 39076,
+              "setup_and_corpus_wall_ms": 621.5172039999288,
+              "clock_sanity": {
+                "parent_gate_ms": 823662.532224,
+                "parent_finish_ms": 823869.287804,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38776,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.23028400000000016,
-                "system_seconds": 0.09437899999999999,
+                "user_seconds": 0.3110999999999997,
+                "system_seconds": 0.057308000000000026,
                 "voluntary_context_switches": 1247,
                 "involuntary_context_switches": 1
               },
@@ -525,21 +573,26 @@
             },
             {
               "run_id": "stream-30b-flush1-2-curl_cffi-matched",
-              "elapsed_ms": 196.87814000001526,
-              "start_ms": 134685.509582,
-              "end_ms": 134882.387722,
-              "messages_per_second": 332875.9607338576,
+              "elapsed_ms": 171.02039299998432,
+              "start_ms": 825849.653318,
+              "end_ms": 826020.673711,
+              "messages_per_second": 383205.76190002094,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 704.8303570000201,
-              "resident_kib_at_ready": 39172,
+              "setup_and_corpus_wall_ms": 648.0686900000592,
+              "clock_sanity": {
+                "parent_gate_ms": 825849.539509,
+                "parent_finish_ms": 826045.156481,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38816,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.34732699999999994,
-                "system_seconds": 0.06615800000000016,
-                "voluntary_context_switches": 1247,
+                "user_seconds": 0.3083549999999997,
+                "system_seconds": 0.05755900000000003,
+                "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -554,22 +607,27 @@
             },
             {
               "run_id": "stream-30b-flush1-3-curl_cffi-matched",
-              "elapsed_ms": 166.22639599998365,
-              "start_ms": 136596.839692,
-              "end_ms": 136763.066088,
-              "messages_per_second": 394257.4800214428,
+              "elapsed_ms": 181.8496499999892,
+              "start_ms": 827562.902395,
+              "end_ms": 827744.752045,
+              "messages_per_second": 360385.62625775684,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 745.829915999991,
-              "resident_kib_at_ready": 39124,
+              "setup_and_corpus_wall_ms": 680.0629690000051,
+              "clock_sanity": {
+                "parent_gate_ms": 827562.787687,
+                "parent_finish_ms": 827769.501656,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38824,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.319458,
-                "system_seconds": 0.06815100000000007,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 4
+                "user_seconds": 0.34867700000000035,
+                "system_seconds": 0.05084900000000003,
+                "voluntary_context_switches": 1244,
+                "involuntary_context_switches": 5
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -583,22 +641,27 @@
             },
             {
               "run_id": "stream-30b-flush1-4-curl_cffi-matched",
-              "elapsed_ms": 187.65604000000167,
-              "start_ms": 138536.741627,
-              "end_ms": 138724.397667,
-              "messages_per_second": 349234.6955632199,
+              "elapsed_ms": 168.5983090000227,
+              "start_ms": 829157.205327,
+              "end_ms": 829325.803636,
+              "messages_per_second": 388710.8974502892,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 755.769545999982,
-              "resident_kib_at_ready": 39172,
+              "setup_and_corpus_wall_ms": 607.9761290000079,
+              "clock_sanity": {
+                "parent_gate_ms": 829157.10433,
+                "parent_finish_ms": 829355.230614,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38904,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.3456609999999998,
-                "system_seconds": 0.08946600000000005,
-                "voluntary_context_switches": 1247,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.2935410000000003,
+                "system_seconds": 0.060317000000000176,
+                "voluntary_context_switches": 1245,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -612,22 +675,27 @@
             },
             {
               "run_id": "stream-30b-flush1-5-curl_cffi-matched",
-              "elapsed_ms": 221.92237699998077,
-              "start_ms": 139825.560001,
-              "end_ms": 140047.482378,
-              "messages_per_second": 295310.4634419344,
+              "elapsed_ms": 174.51531199994497,
+              "start_ms": 830196.966855,
+              "end_ms": 830371.482167,
+              "messages_per_second": 375531.51783048507,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 722.199503000013,
-              "resident_kib_at_ready": 39192,
+              "setup_and_corpus_wall_ms": 585.113531999923,
+              "clock_sanity": {
+                "parent_gate_ms": 830196.855851,
+                "parent_finish_ms": 830401.14777,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38872,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.3771450000000005,
-                "system_seconds": 0.055579000000000045,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.2914110000000001,
+                "system_seconds": 0.057460999999999984,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -641,22 +709,27 @@
             },
             {
               "run_id": "stream-30b-flush1-6-curl_cffi-matched",
-              "elapsed_ms": 163.39019800000824,
-              "start_ms": 142302.64908,
-              "end_ms": 142466.039278,
-              "messages_per_second": 401101.1725440023,
+              "elapsed_ms": 177.23408299998846,
+              "start_ms": 832262.901698,
+              "end_ms": 832440.135781,
+              "messages_per_second": 369770.863993492,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 740.0727600000039,
-              "resident_kib_at_ready": 39128,
+              "setup_and_corpus_wall_ms": 588.8267740000401,
+              "clock_sanity": {
+                "parent_gate_ms": 832262.818779,
+                "parent_finish_ms": 832464.470389,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38864,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.33860199999999985,
-                "system_seconds": 0.05502299999999982,
-                "voluntary_context_switches": 1244,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.2850970000000004,
+                "system_seconds": 0.06248699999999996,
+                "voluntary_context_switches": 1247,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -672,19 +745,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 1.2977916783624606,
+        "median": 1.481466622732914,
         "bootstrap_95_ci": [
-          1.1543499722221087,
-          1.3767702097903165
+          1.3322039437291477,
+          1.4892163910346885
         ],
         "samples": [
-          1.1919971746032214,
-          1.3771954036697984,
-          1.3767702097903165,
-          1.1543499722221087,
-          0.8893651184834203,
-          1.2977916783624606,
-          1.3071215840000658
+          1.3322039437291477,
+          0.9414657285121042,
+          1.4747587030572362,
+          1.6200414253896587,
+          1.481466622732914,
+          1.4892163910346885,
+          1.4823737088181579
         ]
       }
     },
@@ -697,33 +770,38 @@
       "expected_corpus_payload_bytes": 16777216,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 51.0,
-          "messages_per_second": 321254.90196078434,
-          "mps_min": 212779.22077922078,
-          "mps_max": 431157.8947368421,
+          "median_ms": 35.76800000004005,
+          "messages_per_second": 458063.0731374876,
+          "mps_min": 431532.64677281084,
+          "mps_max": 473621.8310063622,
           "mps_median_bootstrap_95_ci": [
-            287438.5964912281,
-            381023.25581395347
+            440063.38803650974,
+            471400.62147472135
           ],
           "samples": [
             {
               "run_id": "stream-1024b-flush1-0-scrapanium-bend",
-              "elapsed_ms": 43.0,
-              "start_ms": 143270.0,
-              "end_ms": 143313.0,
-              "messages_per_second": 381023.25581395347,
+              "elapsed_ms": 34.59299999999348,
+              "start_ms": 833137.228,
+              "end_ms": 833171.821,
+              "messages_per_second": 473621.8310063622,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 435.20421499999884,
-              "resident_kib_at_ready": 40864,
+              "setup_and_corpus_wall_ms": 374.46134799995434,
+              "clock_sanity": {
+                "parent_gate_ms": 833137.057541,
+                "parent_finish_ms": 833177.283965,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24424,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.3617189999999999,
-                "system_seconds": 0.01219199999999998,
-                "voluntary_context_switches": 299,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.32533800000000035,
+                "system_seconds": 0.004118000000000066,
+                "voluntary_context_switches": 293,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -737,22 +815,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-1-scrapanium-bend",
-              "elapsed_ms": 51.0,
-              "start_ms": 146423.0,
-              "end_ms": 146474.0,
-              "messages_per_second": 321254.90196078434,
+              "elapsed_ms": 35.76800000004005,
+              "start_ms": 835656.08,
+              "end_ms": 835691.848,
+              "messages_per_second": 458063.0731374876,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 413.717953999992,
-              "resident_kib_at_ready": 40808,
+              "setup_and_corpus_wall_ms": 368.61381599999277,
+              "clock_sanity": {
+                "parent_gate_ms": 835655.908651,
+                "parent_finish_ms": 835698.224493,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24480,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.35030699999999904,
-                "system_seconds": 0.02415900000000004,
-                "voluntary_context_switches": 297,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.3089270000000006,
+                "system_seconds": 0.020059999999999967,
+                "voluntary_context_switches": 300,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -766,22 +849,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-2-scrapanium-bend",
-              "elapsed_ms": 52.0,
-              "start_ms": 148421.0,
-              "end_ms": 148473.0,
-              "messages_per_second": 315076.92307692306,
+              "elapsed_ms": 34.756000000052154,
+              "start_ms": 837325.928,
+              "end_ms": 837360.684,
+              "messages_per_second": 471400.62147472135,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 426.39816800001995,
-              "resident_kib_at_ready": 40852,
+              "setup_and_corpus_wall_ms": 392.9162820001011,
+              "clock_sanity": {
+                "parent_gate_ms": 837325.80058,
+                "parent_finish_ms": 837366.442164,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24396,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.31826299999999996,
-                "system_seconds": 0.05751799999999996,
-                "voluntary_context_switches": 296,
-                "involuntary_context_switches": 5
+                "user_seconds": 0.3273759999999992,
+                "system_seconds": 0.011977000000000126,
+                "voluntary_context_switches": 294,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -795,21 +883,26 @@
             },
             {
               "run_id": "stream-1024b-flush1-3-scrapanium-bend",
-              "elapsed_ms": 43.0,
-              "start_ms": 149256.0,
-              "end_ms": 149299.0,
-              "messages_per_second": 381023.25581395347,
+              "elapsed_ms": 37.23100000002887,
+              "start_ms": 837993.708,
+              "end_ms": 838030.939,
+              "messages_per_second": 440063.38803650974,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 438.11226099998635,
-              "resident_kib_at_ready": 40820,
+              "setup_and_corpus_wall_ms": 374.9204619999773,
+              "clock_sanity": {
+                "parent_gate_ms": 837993.562374,
+                "parent_finish_ms": 838037.890797,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24400,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.35425299999999993,
-                "system_seconds": 0.03295300000000001,
-                "voluntary_context_switches": 293,
+                "user_seconds": 0.317812,
+                "system_seconds": 0.020371999999999835,
+                "voluntary_context_switches": 301,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -824,22 +917,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-4-scrapanium-bend",
-              "elapsed_ms": 38.0,
-              "start_ms": 151290.0,
-              "end_ms": 151328.0,
-              "messages_per_second": 431157.8947368421,
+              "elapsed_ms": 35.48300000000745,
+              "start_ms": 839748.233,
+              "end_ms": 839783.716,
+              "messages_per_second": 461742.2427640436,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 410.75290099999506,
-              "resident_kib_at_ready": 40848,
+              "setup_and_corpus_wall_ms": 422.94549899997946,
+              "clock_sanity": {
+                "parent_gate_ms": 839748.13289,
+                "parent_finish_ms": 839787.202029,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24400,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.3289870000000015,
-                "system_seconds": 0.03916499999999967,
-                "voluntary_context_switches": 291,
-                "involuntary_context_switches": 4
+                "user_seconds": 0.3538709999999998,
+                "system_seconds": 0.01234500000000005,
+                "voluntary_context_switches": 294,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -853,22 +951,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-5-scrapanium-bend",
-              "elapsed_ms": 77.0,
-              "start_ms": 153658.0,
-              "end_ms": 153735.0,
-              "messages_per_second": 212779.22077922078,
+              "elapsed_ms": 37.96699999994598,
+              "start_ms": 841460.25,
+              "end_ms": 841498.217,
+              "messages_per_second": 431532.64677281084,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 622.3781239999937,
-              "resident_kib_at_ready": 40744,
+              "setup_and_corpus_wall_ms": 376.20049599991034,
+              "clock_sanity": {
+                "parent_gate_ms": 841460.161963,
+                "parent_finish_ms": 841504.913761,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24428,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.5306580000000007,
-                "system_seconds": 0.07524299999999995,
-                "voluntary_context_switches": 296,
-                "involuntary_context_switches": 4
+                "user_seconds": 0.3159710000000011,
+                "system_seconds": 0.0197480000000001,
+                "voluntary_context_switches": 294,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -882,20 +985,25 @@
             },
             {
               "run_id": "stream-1024b-flush1-6-scrapanium-bend",
-              "elapsed_ms": 57.0,
-              "start_ms": 156709.0,
-              "end_ms": 156766.0,
-              "messages_per_second": 287438.5964912281,
+              "elapsed_ms": 36.243999999947846,
+              "start_ms": 844383.243,
+              "end_ms": 844419.487,
+              "messages_per_second": 452047.23540513124,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 358.6099769999862,
-              "resident_kib_at_ready": 40820,
+              "setup_and_corpus_wall_ms": 393.7695280000071,
+              "clock_sanity": {
+                "parent_gate_ms": 844383.094007,
+                "parent_finish_ms": 844425.366873,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24436,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.26617400000000124,
-                "system_seconds": 0.046972000000000236,
+                "user_seconds": 0.3280989999999999,
+                "system_seconds": 0.01215199999999994,
                 "voluntary_context_switches": 296,
                 "involuntary_context_switches": 1
               },
@@ -912,90 +1020,37 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 73.15216500000679,
-          "messages_per_second": 223971.49831448568,
-          "mps_min": 160976.66460301136,
-          "mps_max": 343462.0394995496,
+          "median_ms": 53.14485899999272,
+          "messages_per_second": 308289.46220371465,
+          "mps_min": 141832.4219116797,
+          "mps_max": 327908.88696112746,
           "mps_median_bootstrap_95_ci": [
-            192294.17929723844,
-            281146.15103994985
+            254746.12365758338,
+            326575.3718676746
           ],
           "samples": [
             {
               "run_id": "stream-1024b-flush1-0-curl_cffi-matched",
-              "elapsed_ms": 47.70250600000145,
-              "start_ms": 144393.291719,
-              "end_ms": 144440.994225,
-              "messages_per_second": 343462.0394995496,
+              "elapsed_ms": 49.96509900002275,
+              "start_ms": 834038.784593,
+              "end_ms": 834088.749692,
+              "messages_per_second": 327908.88696112746,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 727.1874019999984,
-              "resident_kib_at_ready": 51520,
+              "setup_and_corpus_wall_ms": 585.1367010000104,
+              "clock_sanity": {
+                "parent_gate_ms": 834038.678381,
+                "parent_finish_ms": 834114.131598,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51528,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.18870699999999996,
-                "system_seconds": 0.070303,
+                "user_seconds": 0.16346799999999995,
+                "system_seconds": 0.05183099999999996,
                 "voluntary_context_switches": 1248,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 16384,
-                "data_payload_bytes": 16777216,
-                "data_frame_bytes": 16842752,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-1024b-flush1-1-curl_cffi-matched",
-              "elapsed_ms": 101.77872699999716,
-              "start_ms": 145529.796529,
-              "end_ms": 145631.575256,
-              "messages_per_second": 160976.66460301136,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 727.5839570000073,
-              "resident_kib_at_ready": 51420,
-              "expected_corpus_payload_bytes": 16777216,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.25471800000000044,
-                "system_seconds": 0.07805899999999988,
-                "voluntary_context_switches": 1253,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 16384,
-                "data_payload_bytes": 16777216,
-                "data_frame_bytes": 16842752,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-1024b-flush1-2-curl_cffi-matched",
-              "elapsed_ms": 58.27573999998276,
-              "start_ms": 147537.265962,
-              "end_ms": 147595.541702,
-              "messages_per_second": 281146.15103994985,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 723.6933599999986,
-              "resident_kib_at_ready": 51588,
-              "expected_corpus_payload_bytes": 16777216,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.21485400000000077,
-                "system_seconds": 0.0517240000000001,
-                "voluntary_context_switches": 1250,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -1009,23 +1064,96 @@
               }
             },
             {
-              "run_id": "stream-1024b-flush1-3-curl_cffi-matched",
-              "elapsed_ms": 73.15216500000679,
-              "start_ms": 150447.507326,
-              "end_ms": 150520.659491,
-              "messages_per_second": 223971.49831448568,
+              "run_id": "stream-1024b-flush1-1-curl_cffi-matched",
+              "elapsed_ms": 50.16912299999967,
+              "start_ms": 834934.415434,
+              "end_ms": 834984.584557,
+              "messages_per_second": 326575.3718676746,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 815.9277339999846,
-              "resident_kib_at_ready": 51592,
+              "setup_and_corpus_wall_ms": 559.818226999937,
+              "clock_sanity": {
+                "parent_gate_ms": 834934.311952,
+                "parent_finish_ms": 835016.998297,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51612,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.2786469999999994,
-                "system_seconds": 0.08397600000000027,
-                "voluntary_context_switches": 1248,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.18084199999999928,
+                "system_seconds": 0.04305800000000004,
+                "voluntary_context_switches": 1251,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 16384,
+                "data_payload_bytes": 16777216,
+                "data_frame_bytes": 16842752,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-1024b-flush1-2-curl_cffi-matched",
+              "elapsed_ms": 64.3150120000355,
+              "start_ms": 836559.637749,
+              "end_ms": 836623.952761,
+              "messages_per_second": 254746.12365758338,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 583.9142390000234,
+              "clock_sanity": {
+                "parent_gate_ms": 836559.543905,
+                "parent_finish_ms": 836653.449071,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51548,
+              "expected_corpus_payload_bytes": 16777216,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.18053000000000008,
+                "system_seconds": 0.04923600000000006,
+                "voluntary_context_switches": 1249,
+                "involuntary_context_switches": 3
+              },
+              "peer_observation": {
+                "data_frames": 16384,
+                "data_payload_bytes": 16777216,
+                "data_frame_bytes": 16842752,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-1024b-flush1-3-curl_cffi-matched",
+              "elapsed_ms": 59.28485900000669,
+              "start_ms": 838947.109126,
+              "end_ms": 839006.393985,
+              "messages_per_second": 276360.6134240473,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 636.077935000003,
+              "clock_sanity": {
+                "parent_gate_ms": 838946.965655,
+                "parent_finish_ms": 839033.291107,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51420,
+              "expected_corpus_payload_bytes": 16777216,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.21152700000000024,
+                "system_seconds": 0.04316900000000001,
+                "voluntary_context_switches": 1247,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -1039,22 +1167,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-4-curl_cffi-matched",
-              "elapsed_ms": 85.20278699998744,
-              "start_ms": 152563.139223,
-              "end_ms": 152648.34201,
-              "messages_per_second": 192294.17929723844,
+              "elapsed_ms": 53.14485899999272,
+              "start_ms": 840730.202822,
+              "end_ms": 840783.347681,
+              "messages_per_second": 308289.46220371465,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 836.5923069999894,
-              "resident_kib_at_ready": 51436,
+              "setup_and_corpus_wall_ms": 658.8648050000074,
+              "clock_sanity": {
+                "parent_gate_ms": 840730.082232,
+                "parent_finish_ms": 840811.897319,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51428,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.288136999999999,
-                "system_seconds": 0.06493200000000021,
-                "voluntary_context_switches": 1250,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.18885299999999994,
+                "system_seconds": 0.05036099999999988,
+                "voluntary_context_switches": 1244,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -1068,22 +1201,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-5-curl_cffi-matched",
-              "elapsed_ms": 69.34075999999186,
-              "start_ms": 154756.920537,
-              "end_ms": 154826.261297,
-              "messages_per_second": 236282.38282940543,
+              "elapsed_ms": 50.23152699996717,
+              "start_ms": 842437.153182,
+              "end_ms": 842487.384709,
+              "messages_per_second": 326169.65835043613,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 692.3931249999953,
-              "resident_kib_at_ready": 51468,
+              "setup_and_corpus_wall_ms": 654.8013999999966,
+              "clock_sanity": {
+                "parent_gate_ms": 842437.028174,
+                "parent_finish_ms": 842515.86307,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51416,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.23944599999999916,
-                "system_seconds": 0.07337900000000008,
-                "voluntary_context_switches": 1250,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.18806299999999965,
+                "system_seconds": 0.052482999999999835,
+                "voluntary_context_switches": 1247,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -1097,22 +1235,27 @@
             },
             {
               "run_id": "stream-1024b-flush1-6-curl_cffi-matched",
-              "elapsed_ms": 81.25898600000073,
-              "start_ms": 155902.324554,
-              "end_ms": 155983.58354,
-              "messages_per_second": 201626.93145100103,
+              "elapsed_ms": 115.51660600001924,
+              "start_ms": 843507.742061,
+              "end_ms": 843623.258667,
+              "messages_per_second": 141832.4219116797,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 740.35699800001,
-              "resident_kib_at_ready": 51544,
+              "setup_and_corpus_wall_ms": 666.8221270000458,
+              "clock_sanity": {
+                "parent_gate_ms": 843507.525893,
+                "parent_finish_ms": 843657.213452,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51404,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.27734799999999993,
-                "system_seconds": 0.04019499999999976,
+                "user_seconds": 0.20843799999999924,
+                "system_seconds": 0.1082270000000003,
                 "voluntary_context_switches": 1247,
-                "involuntary_context_switches": 1
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -1128,19 +1271,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 1.4255962456140479,
+        "median": 1.4977555167258,
         "bootstrap_95_ci": [
-          1.1093606046511966,
-          1.9956613137254344
+          1.40262589465286,
+          1.8504722062360164
         ],
         "samples": [
-          1.1093606046511966,
-          1.9956613137254344,
-          1.120687307691976,
-          1.7012131395350416,
-          2.2421786052628274,
-          0.9005293506492449,
-          1.4255962456140479
+          1.4443702194094805,
+          1.40262589465286,
+          1.8504722062360164,
+          1.5923520453375068,
+          1.4977555167258,
+          1.3230312376547697,
+          3.187192528423614
         ]
       }
     },
@@ -1153,33 +1296,38 @@
       "expected_corpus_payload_bytes": 67108864,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 51.0,
-          "messages_per_second": 20078.43137254902,
-          "mps_min": 10448.979591836734,
-          "mps_max": 24380.95238095238,
+          "median_ms": 26.684999999939464,
+          "messages_per_second": 38373.6181376175,
+          "mps_min": 26723.035569890606,
+          "mps_max": 40001.56256096623,
           "mps_median_bootstrap_95_ci": [
-            19320.754716981133,
-            24380.95238095238
+            31742.09547426238,
+            39220.19227078191
           ],
           "samples": [
             {
               "run_id": "stream-65536b-flush1-0-scrapanium-bend",
-              "elapsed_ms": 42.0,
-              "start_ms": 159632.0,
-              "end_ms": 159674.0,
-              "messages_per_second": 24380.95238095238,
+              "elapsed_ms": 38.31899999990128,
+              "start_ms": 846927.67,
+              "end_ms": 846965.989,
+              "messages_per_second": 26723.035569890606,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1129.8905200000036,
-              "resident_kib_at_ready": 77464,
+              "setup_and_corpus_wall_ms": 1320.5519939999704,
+              "clock_sanity": {
+                "parent_gate_ms": 846927.514066,
+                "parent_finish_ms": 846970.540691,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73404,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9477000000000011,
-                "system_seconds": 0.055982999999999894,
-                "voluntary_context_switches": 277,
-                "involuntary_context_switches": 4
+                "user_seconds": 1.1749880000000008,
+                "system_seconds": 0.052132999999999985,
+                "voluntary_context_switches": 285,
+                "involuntary_context_switches": 5
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -1193,22 +1341,27 @@
             },
             {
               "run_id": "stream-65536b-flush1-1-scrapanium-bend",
-              "elapsed_ms": 51.0,
-              "start_ms": 162467.0,
-              "end_ms": 162518.0,
-              "messages_per_second": 20078.43137254902,
+              "elapsed_ms": 26.163000000058673,
+              "start_ms": 849605.669,
+              "end_ms": 849631.832,
+              "messages_per_second": 39139.24244152825,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1220.4235019999885,
-              "resident_kib_at_ready": 77440,
+              "setup_and_corpus_wall_ms": 1295.3197199999522,
+              "clock_sanity": {
+                "parent_gate_ms": 849605.544742,
+                "parent_finish_ms": 849638.940983,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73292,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 1.117253999999999,
-                "system_seconds": 0.04788199999999998,
-                "voluntary_context_switches": 313,
-                "involuntary_context_switches": 4
+                "user_seconds": 1.1645179999999993,
+                "system_seconds": 0.048353999999999786,
+                "voluntary_context_switches": 293,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -1222,22 +1375,27 @@
             },
             {
               "run_id": "stream-65536b-flush1-2-scrapanium-bend",
-              "elapsed_ms": 98.0,
-              "start_ms": 164014.0,
-              "end_ms": 164112.0,
-              "messages_per_second": 10448.979591836734,
+              "elapsed_ms": 26.684999999939464,
+              "start_ms": 851272.101,
+              "end_ms": 851298.786,
+              "messages_per_second": 38373.6181376175,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1149.149843999993,
-              "resident_kib_at_ready": 77416,
+              "setup_and_corpus_wall_ms": 1352.1227710000403,
+              "clock_sanity": {
+                "parent_gate_ms": 851271.944271,
+                "parent_finish_ms": 851303.340589,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73292,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 1.0315130000000003,
-                "system_seconds": 0.06396999999999986,
-                "voluntary_context_switches": 375,
-                "involuntary_context_switches": 4
+                "user_seconds": 1.1697690000000005,
+                "system_seconds": 0.04406599999999994,
+                "voluntary_context_switches": 342,
+                "involuntary_context_switches": 5
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -1251,79 +1409,26 @@
             },
             {
               "run_id": "stream-65536b-flush1-3-scrapanium-bend",
-              "elapsed_ms": 51.0,
-              "start_ms": 167026.0,
-              "end_ms": 167077.0,
-              "messages_per_second": 20078.43137254902,
+              "elapsed_ms": 32.26000000000931,
+              "start_ms": 853841.002,
+              "end_ms": 853873.262,
+              "messages_per_second": 31742.09547426238,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1174.8910960000103,
-              "resident_kib_at_ready": 77460,
+              "setup_and_corpus_wall_ms": 1283.8523640000403,
+              "clock_sanity": {
+                "parent_gate_ms": 853840.866039,
+                "parent_finish_ms": 853880.115912,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73408,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 1.034374999999999,
-                "system_seconds": 0.052119999999999944,
-                "voluntary_context_switches": 359,
-                "involuntary_context_switches": 4
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush1-4-scrapanium-bend",
-              "elapsed_ms": 42.0,
-              "start_ms": 170472.0,
-              "end_ms": 170514.0,
-              "messages_per_second": 24380.95238095238,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 1041.3205639999887,
-              "resident_kib_at_ready": 77468,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9380740000000003,
-                "system_seconds": 0.044097000000000275,
-                "voluntary_context_switches": 353,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush1-5-scrapanium-bend",
-              "elapsed_ms": 52.0,
-              "start_ms": 171815.0,
-              "end_ms": 171867.0,
-              "messages_per_second": 19692.30769230769,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 1052.838286999986,
-              "resident_kib_at_ready": 77524,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9407159999999983,
-                "system_seconds": 0.06432299999999991,
-                "voluntary_context_switches": 284,
+                "user_seconds": 1.170795,
+                "system_seconds": 0.035718999999999834,
+                "voluntary_context_switches": 296,
                 "involuntary_context_switches": 3
               },
               "peer_observation": {
@@ -1337,23 +1442,96 @@
               }
             },
             {
-              "run_id": "stream-65536b-flush1-6-scrapanium-bend",
-              "elapsed_ms": 53.0,
-              "start_ms": 174144.0,
-              "end_ms": 174197.0,
-              "messages_per_second": 19320.754716981133,
+              "run_id": "stream-65536b-flush1-4-scrapanium-bend",
+              "elapsed_ms": 27.538999999989755,
+              "start_ms": 857648.241,
+              "end_ms": 857675.78,
+              "messages_per_second": 37183.63048768586,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1053.265414000009,
-              "resident_kib_at_ready": 77504,
+              "setup_and_corpus_wall_ms": 1430.9871460000068,
+              "clock_sanity": {
+                "parent_gate_ms": 857648.107386,
+                "parent_finish_ms": 857680.106144,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73292,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9679310000000001,
-                "system_seconds": 0.03226500000000021,
-                "voluntary_context_switches": 294,
-                "involuntary_context_switches": 1
+                "user_seconds": 1.3098720000000021,
+                "system_seconds": 0.04836499999999999,
+                "voluntary_context_switches": 329,
+                "involuntary_context_switches": 3
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush1-5-scrapanium-bend",
+              "elapsed_ms": 26.109000000054948,
+              "start_ms": 859249.021,
+              "end_ms": 859275.13,
+              "messages_per_second": 39220.19227078191,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 1311.2939940000388,
+              "clock_sanity": {
+                "parent_gate_ms": 859248.875529,
+                "parent_finish_ms": 859282.118294,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73364,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 1.170926999999999,
+                "system_seconds": 0.04410999999999987,
+                "voluntary_context_switches": 300,
+                "involuntary_context_switches": 2
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush1-6-scrapanium-bend",
+              "elapsed_ms": 25.599000000045635,
+              "start_ms": 862171.276,
+              "end_ms": 862196.875,
+              "messages_per_second": 40001.56256096623,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 1572.6125009999805,
+              "clock_sanity": {
+                "parent_gate_ms": 862171.156419,
+                "parent_finish_ms": 862201.574755,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73288,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 1.4421029999999995,
+                "system_seconds": 0.05178900000000031,
+                "voluntary_context_switches": 280,
+                "involuntary_context_switches": 6
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -1368,32 +1546,37 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 33.83680099999765,
-          "messages_per_second": 30262.908127753304,
-          "mps_min": 14924.22501662047,
-          "mps_max": 32872.635967137576,
+          "median_ms": 32.054581000003964,
+          "messages_per_second": 31945.511937899715,
+          "mps_min": 19185.93910491001,
+          "mps_max": 33129.40952360439,
           "mps_median_bootstrap_95_ci": [
-            20045.047721218587,
-            32287.539711879363
+            30342.35540361407,
+            32498.10351040313
           ],
           "samples": [
             {
               "run_id": "stream-65536b-flush1-0-curl_cffi-matched",
-              "elapsed_ms": 33.83680099999765,
-              "start_ms": 158118.157859,
-              "end_ms": 158151.99466,
-              "messages_per_second": 30262.908127753304,
+              "elapsed_ms": 33.74820399994496,
+              "start_ms": 845303.419875,
+              "end_ms": 845337.168079,
+              "messages_per_second": 30342.35540361407,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 951.3918930000216,
-              "resident_kib_at_ready": 99844,
+              "setup_and_corpus_wall_ms": 729.2636549999543,
+              "clock_sanity": {
+                "parent_gate_ms": 845303.308165,
+                "parent_finish_ms": 845364.373269,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99812,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.16520899999999905,
-                "system_seconds": 0.12115300000000007,
-                "voluntary_context_switches": 1249,
+                "user_seconds": 0.1369600000000002,
+                "system_seconds": 0.09891499999999986,
+                "voluntary_context_switches": 1250,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -1408,108 +1591,26 @@
             },
             {
               "run_id": "stream-65536b-flush1-1-curl_cffi-matched",
-              "elapsed_ms": 48.12437800000771,
-              "start_ms": 160916.282282,
-              "end_ms": 160964.40666,
-              "messages_per_second": 21278.197091707574,
+              "elapsed_ms": 33.74386599997524,
+              "start_ms": 847978.03886,
+              "end_ms": 848011.782726,
+              "messages_per_second": 30346.256116615426,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 815.063973000008,
-              "resident_kib_at_ready": 99872,
+              "setup_and_corpus_wall_ms": 748.2545469999877,
+              "clock_sanity": {
+                "parent_gate_ms": 847977.936578,
+                "parent_finish_ms": 848042.237193,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99744,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.2042509999999993,
-                "system_seconds": 0.11254600000000003,
+                "user_seconds": 0.154655,
+                "system_seconds": 0.10007100000000024,
                 "voluntary_context_switches": 1248,
-                "involuntary_context_switches": 4
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush1-2-curl_cffi-matched",
-              "elapsed_ms": 51.0849369999778,
-              "start_ms": 165503.726476,
-              "end_ms": 165554.811413,
-              "messages_per_second": 20045.047721218587,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 1009.4120999999916,
-              "resident_kib_at_ready": 99800,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24248799999999981,
-                "system_seconds": 0.17705500000000018,
-                "voluntary_context_switches": 1251,
-                "involuntary_context_switches": 4
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush1-3-curl_cffi-matched",
-              "elapsed_ms": 68.61327800000436,
-              "start_ms": 168086.554097,
-              "end_ms": 168155.167375,
-              "messages_per_second": 14924.22501662047,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 665.8080729999938,
-              "resident_kib_at_ready": 99844,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.19996800000000192,
-                "system_seconds": 0.1293899999999999,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 3
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush1-4-curl_cffi-matched",
-              "elapsed_ms": 32.044965999986744,
-              "start_ms": 169108.675576,
-              "end_ms": 169140.720542,
-              "messages_per_second": 31955.097097011232,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 651.6117759999815,
-              "resident_kib_at_ready": 99888,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.145582000000001,
-                "system_seconds": 0.08811599999999986,
-                "voluntary_context_switches": 1245,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -1523,23 +1624,130 @@
               }
             },
             {
-              "run_id": "stream-65536b-flush1-5-curl_cffi-matched",
-              "elapsed_ms": 31.71502099998179,
-              "start_ms": 172751.948585,
-              "end_ms": 172783.663606,
-              "messages_per_second": 32287.539711879363,
+              "run_id": "stream-65536b-flush1-2-curl_cffi-matched",
+              "elapsed_ms": 31.509530999930575,
+              "start_ms": 852248.855173,
+              "end_ms": 852280.364704,
+              "messages_per_second": 32498.10351040313,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 639.5742069999812,
-              "resident_kib_at_ready": 99836,
+              "setup_and_corpus_wall_ms": 675.3675699999349,
+              "clock_sanity": {
+                "parent_gate_ms": 852248.757613,
+                "parent_finish_ms": 852308.775921,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99832,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.16817299999999946,
-                "system_seconds": 0.061957999999999736,
-                "voluntary_context_switches": 1243,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.15220199999999906,
+                "system_seconds": 0.08538300000000021,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush1-3-curl_cffi-matched",
+              "elapsed_ms": 32.054581000003964,
+              "start_ms": 854846.366057,
+              "end_ms": 854878.420638,
+              "messages_per_second": 31945.511937899715,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 689.1841970000314,
+              "clock_sanity": {
+                "parent_gate_ms": 854846.2646,
+                "parent_finish_ms": 854909.239542,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99880,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.1758620000000004,
+                "system_seconds": 0.06543700000000019,
+                "voluntary_context_switches": 1247,
+                "involuntary_context_switches": 2
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush1-4-curl_cffi-matched",
+              "elapsed_ms": 30.909092999994755,
+              "start_ms": 855868.606905,
+              "end_ms": 855899.515998,
+              "messages_per_second": 33129.40952360439,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 691.5083479999566,
+              "clock_sanity": {
+                "parent_gate_ms": 855868.491423,
+                "parent_finish_ms": 855928.290836,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99904,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.17640699999999931,
+                "system_seconds": 0.07427599999999979,
+                "voluntary_context_switches": 1244,
+                "involuntary_context_switches": 6
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush1-5-curl_cffi-matched",
+              "elapsed_ms": 53.37241999991238,
+              "start_ms": 860254.673593,
+              "end_ms": 860308.046013,
+              "messages_per_second": 19185.93910491001,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 691.0252050000736,
+              "clock_sanity": {
+                "parent_gate_ms": 860254.524549,
+                "parent_finish_ms": 860351.298675,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99924,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.2010380000000005,
+                "system_seconds": 0.07883800000000019,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -1553,21 +1761,26 @@
             },
             {
               "run_id": "stream-65536b-flush1-6-curl_cffi-matched",
-              "elapsed_ms": 31.150528999976814,
-              "start_ms": 175237.00265,
-              "end_ms": 175268.153179,
-              "messages_per_second": 32872.635967137576,
+              "elapsed_ms": 31.944304000004195,
+              "start_ms": 863075.627978,
+              "end_ms": 863107.572282,
+              "messages_per_second": 32055.7931079001,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 785.4422789999944,
-              "resident_kib_at_ready": 99836,
+              "setup_and_corpus_wall_ms": 651.6012760000649,
+              "clock_sanity": {
+                "parent_gate_ms": 863075.496512,
+                "parent_finish_ms": 863131.60734,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 100000,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.17742099999999894,
-                "system_seconds": 0.07096800000000014,
-                "voluntary_context_switches": 1247,
+                "user_seconds": 0.1759050000000002,
+                "system_seconds": 0.0676549999999998,
+                "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -1584,19 +1797,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 0.7629753809520653,
+        "median": 1.180795615514411,
         "bootstrap_95_ci": [
-          0.5877458301882418,
-          0.943615254902112
+          0.9936323930562526,
+          1.2897552268432353
         ],
         "samples": [
-          0.8056381190475631,
-          0.943615254902112,
-          0.5212748673467122,
-          1.345358392156948,
-          0.7629753809520653,
-          0.6099042499996498,
-          0.5877458301882418
+          0.8807172421000524,
+          1.2897552268432353,
+          1.180795615514411,
+          0.9936323930562526,
+          1.122375285958323,
+          2.0442154046420797,
+          1.247873120041691
         ]
       }
     },
@@ -1609,32 +1822,37 @@
       "expected_corpus_payload_bytes": 1966080,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 41.0,
-          "messages_per_second": 1598439.024390244,
-          "mps_min": 762046.5116279069,
-          "mps_max": 1680410.2564102565,
+          "median_ms": 40.13699999998789,
+          "messages_per_second": 1632807.6338545424,
+          "mps_min": 1120043.7517092829,
+          "mps_max": 1701349.9480832391,
           "mps_median_bootstrap_95_ci": [
-            1456355.5555555555,
-            1638400.0
+            1603327.2171253823,
+            1677141.9797317646
           ],
           "samples": [
             {
               "run_id": "stream-30b-flush64-0-scrapanium-bend",
-              "elapsed_ms": 39.0,
-              "start_ms": 175707.0,
-              "end_ms": 175746.0,
-              "messages_per_second": 1680410.2564102565,
+              "elapsed_ms": 38.51999999990221,
+              "start_ms": 863543.621,
+              "end_ms": 863582.141,
+              "messages_per_second": 1701349.9480832391,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 131.6142839999941,
-              "resident_kib_at_ready": 18268,
+              "setup_and_corpus_wall_ms": 121.99449100000948,
+              "clock_sanity": {
+                "parent_gate_ms": 863543.483617,
+                "parent_finish_ms": 863585.814214,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18228,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.08248200000000239,
-                "system_seconds": 0.008248000000000033,
-                "voluntary_context_switches": 278,
+                "user_seconds": 0.083673000000001,
+                "system_seconds": 0.011953000000000102,
+                "voluntary_context_switches": 276,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -1649,50 +1867,26 @@
             },
             {
               "run_id": "stream-30b-flush64-1-scrapanium-bend",
-              "elapsed_ms": 41.0,
-              "start_ms": 178342.0,
-              "end_ms": 178383.0,
-              "messages_per_second": 1598439.024390244,
+              "elapsed_ms": 40.875,
+              "start_ms": 866065.956,
+              "end_ms": 866106.831,
+              "messages_per_second": 1603327.2171253823,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 180.25836299997877,
-              "resident_kib_at_ready": 18328,
+              "setup_and_corpus_wall_ms": 129.38368800007538,
+              "clock_sanity": {
+                "parent_gate_ms": 866065.813364,
+                "parent_finish_ms": 866113.38304,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18336,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.11620700000000284,
-                "system_seconds": 0.004150000000000098,
-                "voluntary_context_switches": 277,
-                "involuntary_context_switches": 0
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-30b-flush64-2-scrapanium-bend",
-              "elapsed_ms": 40.0,
-              "start_ms": 178777.0,
-              "end_ms": 178817.0,
-              "messages_per_second": 1638400.0,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 120.13748699999383,
-              "resident_kib_at_ready": 18296,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.0811320000000002,
-                "system_seconds": 0.007727000000000039,
-                "voluntary_context_switches": 280,
+                "user_seconds": 0.09180999999999884,
+                "system_seconds": 0.008744000000000085,
+                "voluntary_context_switches": 276,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -1706,22 +1900,61 @@
               }
             },
             {
-              "run_id": "stream-30b-flush64-3-scrapanium-bend",
-              "elapsed_ms": 86.0,
-              "start_ms": 180268.0,
-              "end_ms": 180354.0,
-              "messages_per_second": 762046.5116279069,
+              "run_id": "stream-30b-flush64-2-scrapanium-bend",
+              "elapsed_ms": 58.51199999998789,
+              "start_ms": 866541.457,
+              "end_ms": 866599.969,
+              "messages_per_second": 1120043.7517092829,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 132.78835700000968,
-              "resident_kib_at_ready": 18260,
+              "setup_and_corpus_wall_ms": 130.96895099999983,
+              "clock_sanity": {
+                "parent_gate_ms": 866541.313067,
+                "parent_finish_ms": 866602.724065,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18280,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.12994399999999828,
-                "system_seconds": 0.008382999999999807,
-                "voluntary_context_switches": 278,
+                "user_seconds": 0.10283199999999937,
+                "system_seconds": 0.012340000000000018,
+                "voluntary_context_switches": 275,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush64-3-scrapanium-bend",
+              "elapsed_ms": 40.62899999995716,
+              "start_ms": 867951.338,
+              "end_ms": 867991.967,
+              "messages_per_second": 1613035.0242454675,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 125.53261499999735,
+              "clock_sanity": {
+                "parent_gate_ms": 867951.191076,
+                "parent_finish_ms": 867998.108893,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18288,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.08500699999999739,
+                "system_seconds": 0.011087999999999987,
+                "voluntary_context_switches": 275,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -1736,22 +1969,27 @@
             },
             {
               "run_id": "stream-30b-flush64-4-scrapanium-bend",
-              "elapsed_ms": 45.0,
-              "start_ms": 181936.0,
-              "end_ms": 181981.0,
-              "messages_per_second": 1456355.5555555555,
+              "elapsed_ms": 40.13699999998789,
+              "start_ms": 869333.197,
+              "end_ms": 869373.334,
+              "messages_per_second": 1632807.6338545424,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 141.44483900000182,
-              "resident_kib_at_ready": 18256,
+              "setup_and_corpus_wall_ms": 128.27956799992535,
+              "clock_sanity": {
+                "parent_gate_ms": 869333.071052,
+                "parent_finish_ms": 869379.251775,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18252,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.06576199999999943,
-                "system_seconds": 0.03094700000000028,
-                "voluntary_context_switches": 273,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.09074099999999774,
+                "system_seconds": 0.008249000000000173,
+                "voluntary_context_switches": 277,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -1765,21 +2003,26 @@
             },
             {
               "run_id": "stream-30b-flush64-5-scrapanium-bend",
-              "elapsed_ms": 40.0,
-              "start_ms": 183337.0,
-              "end_ms": 183377.0,
-              "messages_per_second": 1638400.0,
+              "elapsed_ms": 39.07600000000093,
+              "start_ms": 870799.01,
+              "end_ms": 870838.086,
+              "messages_per_second": 1677141.9797317646,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 119.2664379999826,
+              "setup_and_corpus_wall_ms": 128.38860900001237,
+              "clock_sanity": {
+                "parent_gate_ms": 870798.856523,
+                "parent_finish_ms": 870844.726458,
+                "client_interval_within_parent": true
+              },
               "resident_kib_at_ready": 18256,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.0740470000000002,
-                "system_seconds": 0.015587999999999713,
-                "voluntary_context_switches": 276,
+                "user_seconds": 0.08265300000000053,
+                "system_seconds": 0.011808000000000263,
+                "voluntary_context_switches": 270,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -1794,21 +2037,26 @@
             },
             {
               "run_id": "stream-30b-flush64-6-scrapanium-bend",
-              "elapsed_ms": 42.0,
-              "start_ms": 185717.0,
-              "end_ms": 185759.0,
-              "messages_per_second": 1560380.9523809524,
+              "elapsed_ms": 39.92699999990873,
+              "start_ms": 873164.062,
+              "end_ms": 873203.989,
+              "messages_per_second": 1641395.5468767954,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 130.39536499999826,
-              "resident_kib_at_ready": 18340,
+              "setup_and_corpus_wall_ms": 123.12706199998047,
+              "clock_sanity": {
+                "parent_gate_ms": 873163.914944,
+                "parent_finish_ms": 873210.644893,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 18224,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.08368100000000211,
-                "system_seconds": 0.011410999999999838,
-                "voluntary_context_switches": 275,
+                "user_seconds": 0.09397899999999737,
+                "system_seconds": 0.0039159999999998085,
+                "voluntary_context_switches": 278,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -1824,61 +2072,37 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 77.7805899999803,
-          "messages_per_second": 842575.2491722755,
-          "mps_min": 799416.3245945962,
-          "mps_max": 851895.7370920022,
+          "median_ms": 94.43737800000235,
+          "messages_per_second": 693962.5113268008,
+          "mps_min": 667603.7458822797,
+          "mps_max": 719197.6679284715,
           "mps_median_bootstrap_95_ci": [
-            824931.5730111249,
-            849847.8175116015
+            684740.5317556374,
+            713404.9526473795
           ],
           "samples": [
             {
               "run_id": "stream-30b-flush64-0-curl_cffi-matched",
-              "elapsed_ms": 77.7805899999803,
-              "start_ms": 176753.621959,
-              "end_ms": 176831.402549,
-              "messages_per_second": 842575.2491722755,
+              "elapsed_ms": 91.12376599991694,
+              "start_ms": 864551.776564,
+              "end_ms": 864642.90033,
+              "messages_per_second": 719197.6679284715,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 694.4464170000231,
-              "resident_kib_at_ready": 39236,
+              "setup_and_corpus_wall_ms": 672.8074069999366,
+              "clock_sanity": {
+                "parent_gate_ms": 864551.653303,
+                "parent_finish_ms": 864672.164896,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38812,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24725899999999967,
-                "system_seconds": 0.0511569999999999,
+                "user_seconds": 0.2368459999999999,
+                "system_seconds": 0.05620099999999972,
                 "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-30b-flush64-1-curl_cffi-matched",
-              "elapsed_ms": 77.11498300000676,
-              "start_ms": 177785.129311,
-              "end_ms": 177862.244294,
-              "messages_per_second": 849847.8175116015,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 648.409791000006,
-              "resident_kib_at_ready": 39132,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.22484099999999785,
-                "system_seconds": 0.036792999999999854,
-                "voluntary_context_switches": 1247,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -1892,22 +2116,61 @@
               }
             },
             {
-              "run_id": "stream-30b-flush64-2-curl_cffi-matched",
-              "elapsed_ms": 81.97981200000504,
-              "start_ms": 179733.561045,
-              "end_ms": 179815.540857,
-              "messages_per_second": 799416.3245945962,
+              "run_id": "stream-30b-flush64-1-curl_cffi-matched",
+              "elapsed_ms": 94.43737800000235,
+              "start_ms": 865563.087773,
+              "end_ms": 865657.525151,
+              "messages_per_second": 693962.5113268008,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 634.0791620000061,
-              "resident_kib_at_ready": 39140,
+              "setup_and_corpus_wall_ms": 625.2452070000345,
+              "clock_sanity": {
+                "parent_gate_ms": 865562.974311,
+                "parent_finish_ms": 865686.114622,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38756,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.21662999999999855,
-                "system_seconds": 0.05908099999999994,
-                "voluntary_context_switches": 1243,
+                "user_seconds": 0.2498439999999995,
+                "system_seconds": 0.037290000000000045,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush64-2-curl_cffi-matched",
+              "elapsed_ms": 94.67306599998847,
+              "start_ms": 867482.666325,
+              "end_ms": 867577.339391,
+              "messages_per_second": 692234.8960369361,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 627.8802449999148,
+              "clock_sanity": {
+                "parent_gate_ms": 867482.573929,
+                "parent_finish_ms": 867607.461184,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38848,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.22394700000000256,
+                "system_seconds": 0.059155999999999764,
+                "voluntary_context_switches": 1245,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -1922,22 +2185,27 @@
             },
             {
               "run_id": "stream-30b-flush64-3-curl_cffi-matched",
-              "elapsed_ms": 79.44416499999352,
-              "start_ms": 181448.194025,
-              "end_ms": 181527.63819,
-              "messages_per_second": 824931.5730111249,
+              "elapsed_ms": 94.2721039999742,
+              "start_ms": 868842.955211,
+              "end_ms": 868937.227315,
+              "messages_per_second": 695179.138040856,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 795.8932010000126,
-              "resident_kib_at_ready": 39096,
+              "setup_and_corpus_wall_ms": 590.4314819999854,
+              "clock_sanity": {
+                "parent_gate_ms": 868842.841258,
+                "parent_finish_ms": 868965.847066,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38844,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.27987100000000353,
-                "system_seconds": 0.06084200000000006,
-                "voluntary_context_switches": 1243,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.2444790000000019,
+                "system_seconds": 0.027163999999999966,
+                "voluntary_context_switches": 1247,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 65536,
@@ -1951,49 +2219,25 @@
             },
             {
               "run_id": "stream-30b-flush64-4-curl_cffi-matched",
-              "elapsed_ms": 77.5675779999874,
-              "start_ms": 182855.234331,
-              "end_ms": 182932.801909,
-              "messages_per_second": 844889.0849732428,
+              "elapsed_ms": 95.70924600004219,
+              "start_ms": 870281.096438,
+              "end_ms": 870376.805684,
+              "messages_per_second": 684740.5317556374,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 611.6946369999994,
-              "resident_kib_at_ready": 39100,
+              "setup_and_corpus_wall_ms": 654.9150199999758,
+              "clock_sanity": {
+                "parent_gate_ms": 870280.99363,
+                "parent_finish_ms": 870404.992782,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38808,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.23724999999999952,
-                "system_seconds": 0.023336000000000023,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 2
-              },
-              "peer_observation": {
-                "data_frames": 65536,
-                "data_payload_bytes": 1966080,
-                "data_frame_bytes": 2097152,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-30b-flush64-5-curl_cffi-matched",
-              "elapsed_ms": 78.4117640000186,
-              "start_ms": 184247.132196,
-              "end_ms": 184325.54396,
-              "messages_per_second": 835792.9557608787,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 618.6360499999921,
-              "resident_kib_at_ready": 39116,
-              "expected_corpus_payload_bytes": 1966080,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.23311700000000002,
-                "system_seconds": 0.03453600000000012,
+                "user_seconds": 0.2680410000000002,
+                "system_seconds": 0.020002999999999993,
                 "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 0
               },
@@ -2008,22 +2252,61 @@
               }
             },
             {
-              "run_id": "stream-30b-flush64-6-curl_cffi-matched",
-              "elapsed_ms": 76.92960200001835,
-              "start_ms": 185218.463432,
-              "end_ms": 185295.393034,
-              "messages_per_second": 851895.7370920022,
+              "run_id": "stream-30b-flush64-5-curl_cffi-matched",
+              "elapsed_ms": 98.16601600009017,
+              "start_ms": 871697.512899,
+              "end_ms": 871795.678915,
+              "messages_per_second": 667603.7458822797,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 616.4083699999878,
-              "resident_kib_at_ready": 39192,
+              "setup_and_corpus_wall_ms": 598.4197149999773,
+              "clock_sanity": {
+                "parent_gate_ms": 871697.382475,
+                "parent_finish_ms": 871820.764224,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38864,
               "expected_corpus_payload_bytes": 1966080,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.22561499999999768,
-                "system_seconds": 0.045123000000000246,
-                "voluntary_context_switches": 1245,
+                "user_seconds": 0.2427640000000011,
+                "system_seconds": 0.03766999999999987,
+                "voluntary_context_switches": 1244,
+                "involuntary_context_switches": 4
+              },
+              "peer_observation": {
+                "data_frames": 65536,
+                "data_payload_bytes": 1966080,
+                "data_frame_bytes": 2097152,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-30b-flush64-6-curl_cffi-matched",
+              "elapsed_ms": 91.863674000022,
+              "start_ms": 872671.291388,
+              "end_ms": 872763.155062,
+              "messages_per_second": 713404.9526473795,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 598.1977600000619,
+              "clock_sanity": {
+                "parent_gate_ms": 872671.171588,
+                "parent_finish_ms": 872787.669644,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 38704,
+              "expected_corpus_payload_bytes": 1966080,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.2210940000000008,
+                "system_seconds": 0.05621000000000009,
+                "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -2040,19 +2323,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 1.880853243902604,
+        "median": 2.3203156366160527,
         "bootstrap_95_ci": [
-          1.7237239555552757,
-          1.9943741025635973
+          2.300790793203396,
+          2.3845640182393066
         ],
         "samples": [
-          1.9943741025635973,
-          1.880853243902604,
-          2.049495300000126,
-          0.9237693604650409,
-          1.7237239555552757,
-          1.9602941000004648,
-          1.8316571904766275
+          2.3656221703049916,
+          2.3103945688073972,
+          1.618011108832514,
+          2.3203156366160527,
+          2.3845640182393066,
+          2.5121817995723164,
+          2.300790793203396
         ]
       }
     },
@@ -2065,32 +2348,37 @@
       "expected_corpus_payload_bytes": 16777216,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 20.0,
-          "messages_per_second": 819200.0,
-          "mps_min": 341333.3333333333,
-          "mps_max": 862315.7894736842,
+          "median_ms": 16.82500000006985,
+          "messages_per_second": 973789.0044536096,
+          "mps_min": 415384.2253381431,
+          "mps_max": 986928.4982817965,
           "mps_median_bootstrap_95_ci": [
-            630153.8461538461,
-            862315.7894736842
+            917922.5726967881,
+            981489.2469915084
           ],
           "samples": [
             {
               "run_id": "stream-1024b-flush64-0-scrapanium-bend",
-              "elapsed_ms": 19.0,
-              "start_ms": 186337.0,
-              "end_ms": 186356.0,
-              "messages_per_second": 862315.7894736842,
+              "elapsed_ms": 39.4429999999702,
+              "start_ms": 873872.905,
+              "end_ms": 873912.348,
+              "messages_per_second": 415384.2253381431,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 327.20930399997883,
-              "resident_kib_at_ready": 40756,
+              "setup_and_corpus_wall_ms": 378.4512490000225,
+              "clock_sanity": {
+                "parent_gate_ms": 873872.619319,
+                "parent_finish_ms": 873921.612508,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24360,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.25358899999999807,
-                "system_seconds": 0.012075999999999532,
-                "voluntary_context_switches": 281,
+                "user_seconds": 0.3137740000000022,
+                "system_seconds": 0.02745500000000023,
+                "voluntary_context_switches": 279,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -2105,22 +2393,27 @@
             },
             {
               "run_id": "stream-1024b-flush64-1-scrapanium-bend",
-              "elapsed_ms": 20.0,
-              "start_ms": 188903.0,
-              "end_ms": 188923.0,
-              "messages_per_second": 819200.0,
+              "elapsed_ms": 16.92200000002049,
+              "start_ms": 876492.446,
+              "end_ms": 876509.368,
+              "messages_per_second": 968207.0677213192,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 320.50084699997683,
-              "resident_kib_at_ready": 40756,
+              "setup_and_corpus_wall_ms": 370.387691000019,
+              "clock_sanity": {
+                "parent_gate_ms": 876492.320709,
+                "parent_finish_ms": 876512.505878,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24420,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24646200000000107,
-                "system_seconds": 0.012121000000000492,
-                "voluntary_context_switches": 289,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.3101200000000013,
+                "system_seconds": 0.007951999999999959,
+                "voluntary_context_switches": 285,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -2134,22 +2427,27 @@
             },
             {
               "run_id": "stream-1024b-flush64-2-scrapanium-bend",
-              "elapsed_ms": 19.0,
-              "start_ms": 190389.0,
-              "end_ms": 190408.0,
-              "messages_per_second": 862315.7894736842,
+              "elapsed_ms": 17.84899999992922,
+              "start_ms": 878098.827,
+              "end_ms": 878116.676,
+              "messages_per_second": 917922.5726967881,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 335.0785490000021,
-              "resident_kib_at_ready": 40804,
+              "setup_and_corpus_wall_ms": 367.52046499998414,
+              "clock_sanity": {
+                "parent_gate_ms": 878098.696565,
+                "parent_finish_ms": 878120.350844,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24432,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.267713999999998,
-                "system_seconds": 0.012169000000000096,
-                "voluntary_context_switches": 275,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.2865140000000004,
+                "system_seconds": 0.027101999999999737,
+                "voluntary_context_switches": 277,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -2163,21 +2461,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-3-scrapanium-bend",
-              "elapsed_ms": 22.0,
-              "start_ms": 191827.0,
-              "end_ms": 191849.0,
-              "messages_per_second": 744727.2727272727,
+              "elapsed_ms": 16.82500000006985,
+              "start_ms": 879699.124,
+              "end_ms": 879715.949,
+              "messages_per_second": 973789.0044536096,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 314.41180699999904,
-              "resident_kib_at_ready": 40848,
+              "setup_and_corpus_wall_ms": 403.5589100000152,
+              "clock_sanity": {
+                "parent_gate_ms": 879698.995753,
+                "parent_finish_ms": 879719.212246,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24468,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24888400000000033,
-                "system_seconds": 0.011851000000000056,
-                "voluntary_context_switches": 280,
+                "user_seconds": 0.2927090000000021,
+                "system_seconds": 0.023733000000000004,
+                "voluntary_context_switches": 276,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -2192,22 +2495,27 @@
             },
             {
               "run_id": "stream-1024b-flush64-4-scrapanium-bend",
-              "elapsed_ms": 19.0,
-              "start_ms": 192412.0,
-              "end_ms": 192431.0,
-              "messages_per_second": 862315.7894736842,
+              "elapsed_ms": 16.692999999970198,
+              "start_ms": 880331.924,
+              "end_ms": 880348.617,
+              "messages_per_second": 981489.2469915084,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 317.3457629999916,
-              "resident_kib_at_ready": 40860,
+              "setup_and_corpus_wall_ms": 373.6444720000236,
+              "clock_sanity": {
+                "parent_gate_ms": 880331.792016,
+                "parent_finish_ms": 880351.973776,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24400,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.247676000000002,
-                "system_seconds": 0.01624099999999995,
-                "voluntary_context_switches": 278,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.3036149999999971,
+                "system_seconds": 0.015979000000000187,
+                "voluntary_context_switches": 277,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -2221,21 +2529,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-5-scrapanium-bend",
-              "elapsed_ms": 26.0,
-              "start_ms": 193950.0,
-              "end_ms": 193976.0,
-              "messages_per_second": 630153.8461538461,
+              "elapsed_ms": 16.765999999945052,
+              "start_ms": 881935.221,
+              "end_ms": 881951.987,
+              "messages_per_second": 977215.7938717462,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 316.2291209999921,
-              "resident_kib_at_ready": 40816,
+              "setup_and_corpus_wall_ms": 381.3294210000322,
+              "clock_sanity": {
+                "parent_gate_ms": 881935.059073,
+                "parent_finish_ms": 881957.99521,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24480,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24356300000000175,
-                "system_seconds": 0.024356000000000044,
-                "voluntary_context_switches": 280,
+                "user_seconds": 0.3170870000000008,
+                "system_seconds": 0.004118000000000066,
+                "voluntary_context_switches": 283,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -2250,21 +2563,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-6-scrapanium-bend",
-              "elapsed_ms": 48.0,
-              "start_ms": 196629.0,
-              "end_ms": 196677.0,
-              "messages_per_second": 341333.3333333333,
+              "elapsed_ms": 16.601000000024214,
+              "start_ms": 884539.519,
+              "end_ms": 884556.12,
+              "messages_per_second": 986928.4982817965,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 332.9596569999751,
-              "resident_kib_at_ready": 40848,
+              "setup_and_corpus_wall_ms": 384.01932399995076,
+              "clock_sanity": {
+                "parent_gate_ms": 884539.351943,
+                "parent_finish_ms": 884561.703152,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 24476,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.2708629999999985,
-                "system_seconds": 0.023900000000000254,
-                "voluntary_context_switches": 286,
+                "user_seconds": 0.28989899999999835,
+                "system_seconds": 0.027056999999999665,
+                "voluntary_context_switches": 277,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -2280,60 +2598,36 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 30.76609799999278,
-          "messages_per_second": 532534.2199717314,
-          "mps_min": 525189.5950785181,
-          "mps_max": 573771.6859363602,
+          "median_ms": 35.41453100007493,
+          "messages_per_second": 462634.9562546892,
+          "mps_min": 401722.3650245565,
+          "mps_max": 513430.0309932341,
           "mps_median_bootstrap_95_ci": [
-            525698.9423163767,
-            551703.1443776457
+            452865.33931391453,
+            490029.73138109053
           ],
           "samples": [
             {
               "run_id": "stream-1024b-flush64-0-curl_cffi-matched",
-              "elapsed_ms": 31.19635300000664,
-              "start_ms": 187200.727855,
-              "end_ms": 187231.924208,
-              "messages_per_second": 525189.5950785181,
+              "elapsed_ms": 40.78438600001391,
+              "start_ms": 874932.523817,
+              "end_ms": 874973.308203,
+              "messages_per_second": 401722.3650245565,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 600.5728900000236,
-              "resident_kib_at_ready": 51508,
+              "setup_and_corpus_wall_ms": 736.1927819999892,
+              "clock_sanity": {
+                "parent_gate_ms": 874932.342047,
+                "parent_finish_ms": 874997.702583,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51488,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.16013700000000242,
-                "system_seconds": 0.044482000000000355,
-                "voluntary_context_switches": 1247,
-                "involuntary_context_switches": 1
-              },
-              "peer_observation": {
-                "data_frames": 16384,
-                "data_payload_bytes": 16777216,
-                "data_frame_bytes": 16842752,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-1024b-flush64-1-curl_cffi-matched",
-              "elapsed_ms": 29.829685999982757,
-              "start_ms": 188169.708588,
-              "end_ms": 188199.538274,
-              "messages_per_second": 549251.5073745487,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 621.4746180000077,
-              "resident_kib_at_ready": 51500,
-              "expected_corpus_payload_bytes": 16777216,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.1860919999999986,
-                "system_seconds": 0.03383499999999984,
+                "user_seconds": 0.20906499999999895,
+                "system_seconds": 0.07788700000000004,
                 "voluntary_context_switches": 1244,
                 "involuntary_context_switches": 0
               },
@@ -2348,23 +2642,62 @@
               }
             },
             {
-              "run_id": "stream-1024b-flush64-2-curl_cffi-matched",
-              "elapsed_ms": 29.697130000015022,
-              "start_ms": 189772.72368,
-              "end_ms": 189802.42081,
-              "messages_per_second": 551703.1443776457,
+              "run_id": "stream-1024b-flush64-1-curl_cffi-matched",
+              "elapsed_ms": 35.41453100007493,
+              "start_ms": 875811.462585,
+              "end_ms": 875846.877116,
+              "messages_per_second": 462634.9562546892,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 614.5251750000114,
-              "resident_kib_at_ready": 51436,
+              "setup_and_corpus_wall_ms": 567.5808240000606,
+              "clock_sanity": {
+                "parent_gate_ms": 875811.347262,
+                "parent_finish_ms": 875870.558989,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51396,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.15538600000000002,
-                "system_seconds": 0.050500999999999685,
-                "voluntary_context_switches": 1247,
-                "involuntary_context_switches": 1
+                "user_seconds": 0.1573759999999993,
+                "system_seconds": 0.04496499999999992,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 16384,
+                "data_payload_bytes": 16777216,
+                "data_frame_bytes": 16842752,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-1024b-flush64-2-curl_cffi-matched",
+              "elapsed_ms": 33.987908000010066,
+              "start_ms": 877363.747584,
+              "end_ms": 877397.735492,
+              "messages_per_second": 482053.7939550486,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 610.8004180000535,
+              "clock_sanity": {
+                "parent_gate_ms": 877363.645096,
+                "parent_finish_ms": 877424.570117,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51472,
+              "expected_corpus_payload_bytes": 16777216,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.1672709999999995,
+                "system_seconds": 0.035214999999999996,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -2378,21 +2711,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-3-curl_cffi-matched",
-              "elapsed_ms": 30.76609799999278,
-              "start_ms": 191180.803583,
-              "end_ms": 191211.569681,
-              "messages_per_second": 532534.2199717314,
+              "elapsed_ms": 36.178524999995716,
+              "start_ms": 878943.620013,
+              "end_ms": 878979.798538,
+              "messages_per_second": 452865.33931391453,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 597.4252329999956,
-              "resident_kib_at_ready": 51464,
+              "setup_and_corpus_wall_ms": 587.6602339999408,
+              "clock_sanity": {
+                "parent_gate_ms": 878943.505617,
+                "parent_finish_ms": 879008.325602,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51432,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.18443399999999954,
-                "system_seconds": 0.019414000000000264,
-                "voluntary_context_switches": 1249,
+                "user_seconds": 0.17024999999999935,
+                "system_seconds": 0.038694000000000006,
+                "voluntary_context_switches": 1247,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -2407,21 +2745,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-4-curl_cffi-matched",
-              "elapsed_ms": 28.554911999992328,
-              "start_ms": 193302.414297,
-              "end_ms": 193330.969209,
-              "messages_per_second": 573771.6859363602,
+              "elapsed_ms": 31.91087200003676,
+              "start_ms": 881226.049499,
+              "end_ms": 881257.960371,
+              "messages_per_second": 513430.0309932341,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 622.6003030000129,
-              "resident_kib_at_ready": 51436,
+              "setup_and_corpus_wall_ms": 604.4579419999536,
+              "clock_sanity": {
+                "parent_gate_ms": 881225.902705,
+                "parent_finish_ms": 881282.056214,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51456,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.15940699999999808,
-                "system_seconds": 0.060726999999999975,
-                "voluntary_context_switches": 1243,
+                "user_seconds": 0.16609300000000005,
+                "system_seconds": 0.03954600000000008,
+                "voluntary_context_switches": 1249,
                 "involuntary_context_switches": 0
               },
               "peer_observation": {
@@ -2436,22 +2779,27 @@
             },
             {
               "run_id": "stream-1024b-flush64-5-curl_cffi-matched",
-              "elapsed_ms": 30.83275100000901,
-              "start_ms": 194971.288775,
-              "end_ms": 195002.121526,
-              "messages_per_second": 531383.0089308349,
+              "elapsed_ms": 33.43470600002911,
+              "start_ms": 882839.256361,
+              "end_ms": 882872.691067,
+              "messages_per_second": 490029.73138109053,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 659.1791849999993,
-              "resident_kib_at_ready": 51600,
+              "setup_and_corpus_wall_ms": 628.8268320000725,
+              "clock_sanity": {
+                "parent_gate_ms": 882839.133746,
+                "parent_finish_ms": 882902.73376,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51468,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.17504399999999976,
-                "system_seconds": 0.051717999999999265,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.16583600000000231,
+                "system_seconds": 0.045604999999999674,
+                "voluntary_context_switches": 1249,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 16384,
@@ -2465,21 +2813,26 @@
             },
             {
               "run_id": "stream-1024b-flush64-6-curl_cffi-matched",
-              "elapsed_ms": 31.166127000004053,
-              "start_ms": 195949.579091,
-              "end_ms": 195980.745218,
-              "messages_per_second": 525698.9423163767,
+              "elapsed_ms": 35.78488599997945,
+              "start_ms": 883794.384088,
+              "end_ms": 883830.168974,
+              "messages_per_second": 457846.92453706317,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 665.4005280000206,
-              "resident_kib_at_ready": 51560,
+              "setup_and_corpus_wall_ms": 651.4438629999404,
+              "clock_sanity": {
+                "parent_gate_ms": 883794.256425,
+                "parent_finish_ms": 883859.310873,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 51484,
               "expected_corpus_payload_bytes": 16777216,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.17101800000000011,
-                "system_seconds": 0.057006000000000334,
-                "voluntary_context_switches": 1247,
+                "user_seconds": 0.15505699999999933,
+                "system_seconds": 0.06705200000000033,
+                "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 2
               },
               "peer_observation": {
@@ -2496,19 +2849,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 1.4914842999991378,
+        "median": 1.994196946208916,
         "bootstrap_95_ci": [
-          1.185875038461885,
-          1.563006842106054
+          1.904191159176696,
+          2.150283803854117
         ],
         "samples": [
-          1.6419133157898231,
-          1.4914842999991378,
-          1.563006842106054,
-          1.398458999999672,
-          1.5028901052627541,
-          1.185875038461885,
-          0.6492943125000844
+          1.0340082143864495,
+          2.0928100106389347,
+          1.904191159176696,
+          2.150283803854117,
+          1.9116319415379939,
+          1.994196946208916,
+          2.155586169503479
         ]
       }
     },
@@ -2521,90 +2874,37 @@
       "expected_corpus_payload_bytes": 67108864,
       "clients": {
         "scrapanium-bend": {
-          "median_ms": 40.0,
-          "messages_per_second": 25600.0,
-          "mps_min": 19320.754716981133,
-          "mps_max": 27675.675675675677,
+          "median_ms": 26.10999999998603,
+          "messages_per_second": 39218.69015704894,
+          "mps_min": 26659.724030177844,
+          "mps_max": 43041.48627638027,
           "mps_median_bootstrap_95_ci": [
-            23813.95348837209,
-            26947.36842105263
+            28510.1762396511,
+            42039.57631988204
           ],
           "samples": [
             {
               "run_id": "stream-65536b-flush64-0-scrapanium-bend",
-              "elapsed_ms": 41.0,
-              "start_ms": 198087.0,
-              "end_ms": 198128.0,
-              "messages_per_second": 24975.60975609756,
+              "elapsed_ms": 38.410000000032596,
+              "start_ms": 886306.598,
+              "end_ms": 886345.008,
+              "messages_per_second": 26659.724030177844,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1075.083439999986,
-              "resident_kib_at_ready": 77408,
+              "setup_and_corpus_wall_ms": 1424.4924179999998,
+              "clock_sanity": {
+                "parent_gate_ms": 886306.422882,
+                "parent_finish_ms": 886349.994234,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73324,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.925962000000002,
-                "system_seconds": 0.0601269999999996,
-                "voluntary_context_switches": 349,
-                "involuntary_context_switches": 2
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush64-1-scrapanium-bend",
-              "elapsed_ms": 39.0,
-              "start_ms": 200560.0,
-              "end_ms": 200599.0,
-              "messages_per_second": 26256.410256410258,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 1048.2852680000008,
-              "resident_kib_at_ready": 77444,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9381209999999989,
-                "system_seconds": 0.04009100000000032,
-                "voluntary_context_switches": 316,
-                "involuntary_context_switches": 2
-              },
-              "peer_observation": {
-                "data_frames": 1024,
-                "data_payload_bytes": 67108864,
-                "data_frame_bytes": 67119104,
-                "warmups": 1,
-                "starts": 1,
-                "tls_version": 772,
-                "tls_cipher": 4865
-              }
-            },
-            {
-              "run_id": "stream-65536b-flush64-2-scrapanium-bend",
-              "elapsed_ms": 53.0,
-              "start_ms": 203806.0,
-              "end_ms": 203859.0,
-              "messages_per_second": 19320.754716981133,
-              "mapped_backend": {
-                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
-                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
-              },
-              "setup_and_corpus_wall_ms": 1052.3849680000126,
-              "resident_kib_at_ready": 77464,
-              "expected_corpus_payload_bytes": 67108864,
-              "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.915619999999997,
-                "system_seconds": 0.08433299999999999,
-                "voluntary_context_switches": 336,
+                "user_seconds": 1.2011070000000004,
+                "system_seconds": 0.048205000000000275,
+                "voluntary_context_switches": 302,
                 "involuntary_context_switches": 4
               },
               "peer_observation": {
@@ -2618,22 +2918,95 @@
               }
             },
             {
-              "run_id": "stream-65536b-flush64-3-scrapanium-bend",
-              "elapsed_ms": 40.0,
-              "start_ms": 206146.0,
-              "end_ms": 206186.0,
-              "messages_per_second": 25600.0,
+              "run_id": "stream-65536b-flush64-1-scrapanium-bend",
+              "elapsed_ms": 24.35800000000745,
+              "start_ms": 889039.664,
+              "end_ms": 889064.022,
+              "messages_per_second": 42039.57631988204,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1059.0691339999978,
-              "resident_kib_at_ready": 77508,
+              "setup_and_corpus_wall_ms": 1361.9914910000261,
+              "clock_sanity": {
+                "parent_gate_ms": 889039.524153,
+                "parent_finish_ms": 889071.760194,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73392,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9510150000000017,
-                "system_seconds": 0.0477489999999996,
-                "voluntary_context_switches": 323,
+                "user_seconds": 1.2202210000000022,
+                "system_seconds": 0.05582699999999985,
+                "voluntary_context_switches": 278,
+                "involuntary_context_switches": 8
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush64-2-scrapanium-bend",
+              "elapsed_ms": 23.790999999968335,
+              "start_ms": 892694.513,
+              "end_ms": 892718.304,
+              "messages_per_second": 43041.48627638027,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 1298.8771680001037,
+              "clock_sanity": {
+                "parent_gate_ms": 892694.37526,
+                "parent_finish_ms": 892723.185001,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73392,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 1.1923150000000007,
+                "system_seconds": 0.024005999999999972,
+                "voluntary_context_switches": 278,
+                "involuntary_context_switches": 6
+              },
+              "peer_observation": {
+                "data_frames": 1024,
+                "data_payload_bytes": 67108864,
+                "data_frame_bytes": 67119104,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            },
+            {
+              "run_id": "stream-65536b-flush64-3-scrapanium-bend",
+              "elapsed_ms": 35.91700000001583,
+              "start_ms": 895261.907,
+              "end_ms": 895297.824,
+              "messages_per_second": 28510.1762396511,
+              "mapped_backend": {
+                "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+                "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+              },
+              "setup_and_corpus_wall_ms": 1309.4230670000115,
+              "clock_sanity": {
+                "parent_gate_ms": 895261.747185,
+                "parent_finish_ms": 895305.318176,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73328,
+              "expected_corpus_payload_bytes": 67108864,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 1.1916469999999997,
+                "system_seconds": 0.03998799999999969,
+                "voluntary_context_switches": 289,
                 "involuntary_context_switches": 3
               },
               "peer_observation": {
@@ -2648,22 +3021,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-4-scrapanium-bend",
-              "elapsed_ms": 37.0,
-              "start_ms": 208498.0,
-              "end_ms": 208535.0,
-              "messages_per_second": 27675.675675675677,
+              "elapsed_ms": 24.861000000033528,
+              "start_ms": 898015.416,
+              "end_ms": 898040.277,
+              "messages_per_second": 41189.01090055183,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1060.4348689999767,
-              "resident_kib_at_ready": 77508,
+              "setup_and_corpus_wall_ms": 1356.388471999935,
+              "clock_sanity": {
+                "parent_gate_ms": 898015.279454,
+                "parent_finish_ms": 898048.250249,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73400,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.9338799999999985,
-                "system_seconds": 0.0556359999999998,
-                "voluntary_context_switches": 277,
-                "involuntary_context_switches": 5
+                "user_seconds": 1.241769999999999,
+                "system_seconds": 0.03173899999999996,
+                "voluntary_context_switches": 281,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2677,22 +3055,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-5-scrapanium-bend",
-              "elapsed_ms": 43.0,
-              "start_ms": 209907.0,
-              "end_ms": 209950.0,
-              "messages_per_second": 23813.95348837209,
+              "elapsed_ms": 26.10999999998603,
+              "start_ms": 899619.316,
+              "end_ms": 899645.426,
+              "messages_per_second": 39218.69015704894,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1115.0577430000226,
-              "resident_kib_at_ready": 77464,
+              "setup_and_corpus_wall_ms": 1298.1912649999003,
+              "clock_sanity": {
+                "parent_gate_ms": 899619.217634,
+                "parent_finish_ms": 899650.357501,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73348,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 1.017163,
-                "system_seconds": 0.04036300000000015,
-                "voluntary_context_switches": 283,
-                "involuntary_context_switches": 4
+                "user_seconds": 1.1757690000000025,
+                "system_seconds": 0.0438420000000006,
+                "voluntary_context_switches": 347,
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2706,22 +3089,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-6-scrapanium-bend",
-              "elapsed_ms": 38.0,
-              "start_ms": 214098.0,
-              "end_ms": 214136.0,
-              "messages_per_second": 26947.36842105263,
+              "elapsed_ms": 26.22900000005029,
+              "start_ms": 903191.377,
+              "end_ms": 903217.606,
+              "messages_per_second": 39040.756414580675,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 1167.0610650000128,
-              "resident_kib_at_ready": 77476,
+              "setup_and_corpus_wall_ms": 1286.786662000054,
+              "clock_sanity": {
+                "parent_gate_ms": 903191.253202,
+                "parent_finish_ms": 903222.289152,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 73324,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 1.0154809999999976,
-                "system_seconds": 0.04397800000000007,
-                "voluntary_context_switches": 279,
-                "involuntary_context_switches": 3
+                "user_seconds": 1.1801109999999966,
+                "system_seconds": 0.03200299999999956,
+                "voluntary_context_switches": 312,
+                "involuntary_context_switches": 5
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2736,33 +3124,38 @@
           ]
         },
         "curl_cffi-matched": {
-          "median_ms": 33.92041199997766,
-          "messages_per_second": 30188.312571223323,
-          "mps_min": 14935.381938778952,
-          "mps_max": 33557.34059780004,
+          "median_ms": 31.982205000007525,
+          "messages_per_second": 32017.80490118674,
+          "mps_min": 29448.36455031099,
+          "mps_max": 34157.80854174849,
           "mps_median_bootstrap_95_ci": [
-            15371.636790198512,
-            33399.85797882824
+            30402.081782552494,
+            33457.92052232802
           ],
           "samples": [
             {
               "run_id": "stream-65536b-flush64-0-curl_cffi-matched",
-              "elapsed_ms": 57.706764999980805,
-              "start_ms": 199156.128778,
-              "end_ms": 199213.835543,
-              "messages_per_second": 17744.886583060765,
+              "elapsed_ms": 30.741201000055298,
+              "start_ms": 887329.298555,
+              "end_ms": 887360.039756,
+              "messages_per_second": 33310.344641322175,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 750.8138389999885,
-              "resident_kib_at_ready": 99840,
+              "setup_and_corpus_wall_ms": 712.4734979998948,
+              "clock_sanity": {
+                "parent_gate_ms": 887329.196941,
+                "parent_finish_ms": 887389.108206,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99932,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.22398899999999955,
-                "system_seconds": 0.08295899999999978,
-                "voluntary_context_switches": 1257,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.17627399999999938,
+                "system_seconds": 0.07442700000000002,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 0
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2776,22 +3169,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-1-curl_cffi-matched",
-              "elapsed_ms": 30.65881300001638,
-              "start_ms": 201492.214441,
-              "end_ms": 201522.873254,
-              "messages_per_second": 33399.85797882824,
+              "elapsed_ms": 33.6819039999973,
+              "start_ms": 890052.179088,
+              "end_ms": 890085.860992,
+              "messages_per_second": 30402.081782552494,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 670.0485060000005,
-              "resident_kib_at_ready": 99900,
+              "setup_and_corpus_wall_ms": 706.349060999969,
+              "clock_sanity": {
+                "parent_gate_ms": 890052.115515,
+                "parent_finish_ms": 890117.465608,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99744,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.15478799999999993,
-                "system_seconds": 0.07352399999999992,
-                "voluntary_context_switches": 1246,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.16801199999999739,
+                "system_seconds": 0.07423800000000025,
+                "voluntary_context_switches": 1245,
+                "involuntary_context_switches": 1
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2805,22 +3203,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-2-curl_cffi-matched",
-              "elapsed_ms": 30.514932999998564,
-              "start_ms": 202459.211977,
-              "end_ms": 202489.72691,
-              "messages_per_second": 33557.34059780004,
+              "elapsed_ms": 32.278693000087515,
+              "start_ms": 891076.972183,
+              "end_ms": 891109.250876,
+              "messages_per_second": 31723.71322460992,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 688.0367690000071,
-              "resident_kib_at_ready": 99744,
+              "setup_and_corpus_wall_ms": 668.208183000047,
+              "clock_sanity": {
+                "parent_gate_ms": 891076.787931,
+                "parent_finish_ms": 891133.371476,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99884,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.1668590000000023,
-                "system_seconds": 0.061046000000000156,
+                "user_seconds": 0.15902499999999975,
+                "system_seconds": 0.060580999999999996,
                 "voluntary_context_switches": 1247,
-                "involuntary_context_switches": 3
+                "involuntary_context_switches": 2
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2834,21 +3237,26 @@
             },
             {
               "run_id": "stream-65536b-flush64-3-curl_cffi-matched",
-              "elapsed_ms": 33.92041199997766,
-              "start_ms": 204784.692845,
-              "end_ms": 204818.613257,
-              "messages_per_second": 30188.312571223323,
+              "elapsed_ms": 30.605607999954373,
+              "start_ms": 893643.29061,
+              "end_ms": 893673.896218,
+              "messages_per_second": 33457.92052232802,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 665.5306209999878,
-              "resident_kib_at_ready": 99764,
+              "setup_and_corpus_wall_ms": 609.7854650000727,
+              "clock_sanity": {
+                "parent_gate_ms": 893643.180088,
+                "parent_finish_ms": 893703.902887,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99836,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.18136000000000152,
-                "system_seconds": 0.06594999999999995,
-                "voluntary_context_switches": 1275,
+                "user_seconds": 0.13044200000000217,
+                "system_seconds": 0.08415699999999982,
+                "voluntary_context_switches": 1248,
                 "involuntary_context_switches": 3
               },
               "peer_observation": {
@@ -2863,21 +3271,26 @@
             },
             {
               "run_id": "stream-65536b-flush64-4-curl_cffi-matched",
-              "elapsed_ms": 30.788953000010224,
-              "start_ms": 207123.19764,
-              "end_ms": 207153.986593,
-              "messages_per_second": 33258.68209937701,
+              "elapsed_ms": 31.982205000007525,
+              "start_ms": 896293.5564,
+              "end_ms": 896325.538605,
+              "messages_per_second": 32017.80490118674,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 657.1797820000143,
-              "resident_kib_at_ready": 99832,
+              "setup_and_corpus_wall_ms": 732.5935640000125,
+              "clock_sanity": {
+                "parent_gate_ms": 896293.437074,
+                "parent_finish_ms": 896370.510447,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99980,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.1483889999999981,
-                "system_seconds": 0.07609700000000075,
-                "voluntary_context_switches": 1249,
+                "user_seconds": 0.15581699999999898,
+                "system_seconds": 0.11985899999999994,
+                "voluntary_context_switches": 1246,
                 "involuntary_context_switches": 1
               },
               "peer_observation": {
@@ -2892,22 +3305,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-5-curl_cffi-matched",
-              "elapsed_ms": 68.56202299997676,
-              "start_ms": 211052.206085,
-              "end_ms": 211120.768108,
-              "messages_per_second": 14935.381938778952,
+              "elapsed_ms": 29.978503999998793,
+              "start_ms": 900586.99323,
+              "end_ms": 900616.971734,
+              "messages_per_second": 34157.80854174849,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 781.7194339999958,
-              "resident_kib_at_ready": 99920,
+              "setup_and_corpus_wall_ms": 687.1978730000592,
+              "clock_sanity": {
+                "parent_gate_ms": 900586.877626,
+                "parent_finish_ms": 900647.567174,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99740,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.23781900000000178,
-                "system_seconds": 0.1088319999999996,
-                "voluntary_context_switches": 1248,
-                "involuntary_context_switches": 2
+                "user_seconds": 0.18507599999999513,
+                "system_seconds": 0.07554099999999941,
+                "voluntary_context_switches": 1244,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2921,22 +3339,27 @@
             },
             {
               "run_id": "stream-65536b-flush64-6-curl_cffi-matched",
-              "elapsed_ms": 66.61619800000335,
-              "start_ms": 212510.024755,
-              "end_ms": 212576.640953,
-              "messages_per_second": 15371.636790198512,
+              "elapsed_ms": 34.772728999960236,
+              "start_ms": 901580.489408,
+              "end_ms": 901615.262137,
+              "messages_per_second": 29448.36455031099,
               "mapped_backend": {
                 "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
                 "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
               },
-              "setup_and_corpus_wall_ms": 944.8944049999852,
-              "resident_kib_at_ready": 99652,
+              "setup_and_corpus_wall_ms": 642.6250560000426,
+              "clock_sanity": {
+                "parent_gate_ms": 901580.325629,
+                "parent_finish_ms": 901644.134743,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 99828,
               "expected_corpus_payload_bytes": 67108864,
               "client_cpu_including_preparation_setup_close": {
-                "user_seconds": 0.24590800000000002,
-                "system_seconds": 0.12497000000000025,
-                "voluntary_context_switches": 1245,
-                "involuntary_context_switches": 0
+                "user_seconds": 0.15674600000000538,
+                "system_seconds": 0.07012400000000074,
+                "voluntary_context_switches": 1246,
+                "involuntary_context_switches": 3
               },
               "peer_observation": {
                 "data_frames": 1024,
@@ -2952,19 +3375,19 @@
         }
       },
       "paired_bend_speed_ratio": {
-        "median": 0.8480102999994414,
+        "median": 1.2864408109072198,
         "bootstrap_95_ci": [
-          0.7861234102568303,
-          1.5944656511622504
+          0.852120388672241,
+          1.3567606658034752
         ],
         "samples": [
-          1.4074820731702635,
-          0.7861234102568303,
-          0.5757534528301615,
-          0.8480102999994414,
-          0.8321338648651412,
-          1.5944656511622504,
-          1.7530578421053513
+          0.8003436865407241,
+          1.3827861072332293,
+          1.3567606658034752,
+          0.852120388672241,
+          1.2864408109072198,
+          1.148161777097466,
+          1.32573597925554
         ]
       }
     }

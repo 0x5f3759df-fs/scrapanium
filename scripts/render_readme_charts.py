@@ -13,6 +13,7 @@ No benchmarks are run and no input measurements are modified.
 
 import argparse
 import json
+import math
 from pathlib import Path
 from statistics import median
 import tempfile
@@ -212,6 +213,104 @@ def compact_chart(stem, title, subtitle, rows, maximum, ticks, notes, descriptio
     save(fig, stem + ("-mobile" if mobile else ""), description)
 
 
+def wss_chart(data, mobile=False, streaming=False):
+    """Show every measured workload, including the retained Python-peer case."""
+    if data.get("smoke_only"):
+        raise ValueError("Smoke runs are correctness checks, not chart data")
+    workloads = data["workloads"]
+    keys = ("scrapanium-bend", "curl_cffi-matched")
+    rate_key = "messages_per_second" if streaming else "round_trips_per_second"
+    low_key, high_key = ("mps_min", "mps_max") if streaming else ("rps_min", "rps_max")
+    peak = max(w["clients"][key][high_key] for w in workloads for key in keys)
+    scale = 10 ** math.floor(math.log10(peak))
+    step = next(x * scale for x in (.2, .5, 1, 2) if peak / (x * scale) <= 5)
+    maximum = math.ceil(peak * 1.25 / step) * step
+    ticks = list(range(0, int(maximum + 1), int(step)))
+    count = len(workloads)
+    has_inconclusive = any(
+        w.get("paired_bend_speed_ratio", {}).get("bootstrap_95_ci", [2, 2])[0] <= 1
+        <= w.get("paired_bend_speed_ratio", {}).get("bootstrap_95_ci", [2, 2])[1]
+        for w in workloads
+    )
+    fig = canvas(480 if mobile else 1000, 390 + count * 132 if mobile else 330 + count * 89)
+    title = "TLS WebSocket streaming" if streaming else "TLS WebSocket round trips"
+    units = "Inbound messages/s" if streaming else "Round trips/s"
+    label(fig, .06, .95 if mobile else .932, title, 21 if mobile else 27, True)
+    label(fig, .06, .925 if mobile else .891, f"{units} · higher is better", 12.5 if mobile else 15, color=MUTED)
+    legend(fig, .886 if mobile else .838, mobile, mobile_step=.031)
+    if not mobile:
+        label(fig, .94, .838, "Bend / curl_cffi", 12, color=MUTED, ha="right")
+    for i, workload in enumerate(workloads):
+        peer = "Python peer" if workload.get("peer") == "python" else "Go peer"
+        size = workload["bytes"]
+        size_label = f"{size // 1024} KiB" if size >= 1024 else f"{size} B"
+        connections = workload["connections"]
+        detail = "1 connection" if connections == 1 else f"{connections} processes / connections"
+        row_title = f"{peer} · {size_label}"
+        if streaming:
+            batch = workload["peer_flush_frames"]
+            detail = f'{batch} frame{"s" if batch != 1 else ""} / server write'
+            row_title = f"{size_label} messages"
+        clients = [workload["clients"][key] for key in keys]
+        values = [client[rate_key] for client in clients]
+        ratio_interval = workload.get("paired_bend_speed_ratio", {}).get("bootstrap_95_ci")
+        inconclusive = ratio_interval is not None and ratio_interval[0] <= 1 <= ratio_interval[1]
+        ratio_label = f"{values[0] / values[1]:.2f}×" + ("*" if inconclusive else "")
+        if mobile:
+            top = .810 - i * (.700 / count)
+            label(fig, .06, top, row_title, 14.2, True)
+            label(fig, .06, top - .019, detail, 11.8, color=MUTED)
+            label(fig, .94, top, ratio_label, 15, True, ha="right")
+            ax = axes(fig, [.06, top - .080, .88, .049], maximum, ticks, 10.5)
+        else:
+            top = .765 - i * (.634 / count)
+            label(fig, .06, top - .014, row_title, 14.2, True)
+            label(fig, .06, top - .041, detail, 11.8, color=MUTED)
+            label(fig, .94, top - .026, ratio_label, 15, True, ha="right")
+            ax = axes(fig, [.30, top - .059, .57, .062], maximum, ticks, 12)
+        if streaming:
+            ax.set_xticks(ticks, [f"{tick / 1_000_000:g}M" if tick >= 1_000_000 else
+                                 f"{tick / 1000:g}k" if tick >= 1000 else str(tick)
+                                 for tick in ticks])
+        # Edge ticks stay within the image even in GitHub's narrow mobile column.
+        ax.get_xticklabels()[0].set_ha("left")
+        ax.get_xticklabels()[-1].set_ha("right")
+        ax.set_ylim(-.5, 1.5)
+        ax.barh([1, 0], values, color=[ORANGE, LAVENDER], height=.60)
+        for row, value, client in zip([1, 0], values, clients):
+            low, high = client[low_key], client[high_key]
+            ax.errorbar(value, row, xerr=[[value - low], [high - value]],
+                        fmt="none", ecolor=INK, elinewidth=1.0, capsize=2.5)
+            ax.text(high + maximum * .015, row, f"{value:,.0f}", va="center",
+                    color=INK, fontsize=12 if mobile else 12.5, fontproperties=FONTS[1])
+        if i != count - 1:
+            ax.set_xticklabels([])
+            ax.tick_params(axis="x", pad=0)
+    label(fig, .06, .074, f'{data["runs"]} shuffled runs · bars: medians · lines: min–max', 10.9 if mobile else 12.2, color=MUTED)
+    label(fig, .06, .055,
+          "* Inconclusive: paired ratio interval crosses 1×." if has_inconclusive else
+          ("Go peer · 1 connection · every sequence checked" if streaming else
+           "Multipliers compare Bend with curl_cffi."), 10.9 if mobile else 12.2, color=MUTED)
+    label(fig, .06, .036, "Both clients check every byte and opcode in timing.", 10.9 if mobile else 12.2, color=MUTED)
+    label(fig, .06, .017, "Verified loopback TLS · same backend · setup excluded", 10.9 if mobile else 12.2, color=MUTED)
+    description = (
+        f"TLS WebSocket {units.lower()}. Orange: Scrapanium Bend; purple: "
+        "matched curl_cffi Python. Bars are medians; whiskers span every run. "
+        + "; ".join(f'{w.get("peer", "go")} peer, {w["bytes"]} bytes, '
+                    + (f'{w["peer_flush_frames"]} frames per server write: ' if streaming else
+                       f'{w["connections"]} connections: ')
+                    + f'{w["clients"][keys[0]][rate_key]:,.0f} versus '
+                    f'{w["clients"][keys[1]][rate_key]:,.0f}' for w in workloads)
+        + f'. {data["runs"]} shuffled repeats. Both clients check every byte and opcode '
+        "inside timing. Verified loopback TLS, matched backend, Chrome 146. Multiple "
+        "connections use independent client processes. Startup, upgrade, warmup and "
+        "close excluded. Source: benchmarks/results/"
+        + ("websocket-streaming.json." if streaming else "websocket.json.")
+    )
+    stem = "performance-wss-streaming" if streaming else "performance-wss"
+    save(fig, stem + ("-mobile" if mobile else ""), description)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--font", type=Path, help="Optional local Archivo TTF")
@@ -230,7 +329,12 @@ def main():
                   for mode in ("download", "buffer")}
         for mobile in (False, True):
             http_chart(local, mobile)
-            compact_chart(
+            if (ROOT / "benchmarks/results/websocket-streaming.json").exists():
+                wss_chart(read("websocket-streaming.json"), mobile, streaming=True)
+            if websocket.get("schema") == 2:
+                wss_chart(websocket, mobile)
+            else:
+                compact_chart(
                 "performance-wss", "TLS WebSocket throughput", "Round trips/s · higher is better",
                 [("Scrapanium (Bend)", bend, f"{bend:,.0f}", ORANGE),
                  ("curl_cffi (Python)", baseline, f"{baseline:,.0f}", LAVENDER)],

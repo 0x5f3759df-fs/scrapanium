@@ -131,8 +131,8 @@ static Term sp_bend_ws_receive(Env e, Term *f, IoWork *work) {
 static Term sp_bend_ws_close(Env e, Term *f, IoWork *work) {
   SpWsJob *j = io_mem(calloc(1, sizeof *j)); work->data = (char *)j;
   j->operation = 3; j->socket = sp_bend_ws_take(e, f[0]); j->code = f[1]; j->timeout = f[3];
-  j->bytes = io_mem(calloc(1, sizeof *j->bytes)); int invalid = 0;
-  j->bytes->data = (unsigned char *)sp_bend_string(e, f[2], &invalid, 0, &j->bytes->size);
+  j->bytes = io_mem(calloc(1, sizeof *j->bytes));
+  j->bytes->data = sp_bend_checked_text(e, f[2], &j->error, &j->bytes->size);
   j->cancel = sp_bend_ws_token(e, f[4], &j->error);
   return sp_bend_ws_start(e, work);
 }

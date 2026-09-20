@@ -24,6 +24,8 @@
 
 Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately.
 
+Batched 30-byte WSS streaming: **1.63M messages/s versus 694k — 2.35× throughput.** Both clients receive 64 frames per server write on one connection and check every byte. Round-trip gains are smaller; three 64 KiB comparisons remain inconclusive.
+
 <p>
   <picture>
     <source media="(max-width: 600px)" srcset="docs/assets/performance-http-mobile.png">
@@ -34,7 +36,14 @@ Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple
 <p>
   <picture>
     <source media="(max-width: 600px)" srcset="docs/assets/performance-wss-mobile.png">
-    <img src="docs/assets/performance-wss.png" alt="Warm TLS WebSocket throughput: Scrapanium at 5,988 round trips per second and matched curl_cffi at 6,045, using 30-byte binary messages over verified loopback TLS." width="1280">
+    <img src="docs/assets/performance-wss.png" alt="Seven verified TLS WebSocket round-trip workloads. Scrapanium medians range from 5,769 to 38,685 round trips per second; matched curl_cffi from 4,445 to 31,078. The single-connection Go 64 KiB comparison is inconclusive. Bars show medians; lines show the observed range." width="1280">
+  </picture>
+</p>
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/performance-wss-streaming-mobile.png">
+    <img src="docs/assets/performance-wss-streaming.png" alt="TLS WebSocket inbound streaming across six workloads: 30-byte, 1 KiB and 64 KiB messages, with one or 64 frames per server write. Orange is Scrapanium; purple is curl_cffi. Both clients check every byte, opcode and message sequence. Bars show medians and lines show the full observed range." width="1280">
   </picture>
 </p>
 
@@ -85,7 +94,7 @@ python3 scripts/build.py hello.bend -o build/hello
 | :--- | :--- |
 | **Release** | Working alpha. The API can still change. |
 | **Platform** | Linux x86_64 / WSL2 · Bend 2.0.17 · native C target. |
-| **Tests** | **324 passing locally**, including **53 WS/WSS cases** and sanitizer checks. [Test details](docs/VALIDATION.md) · [CI](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml). |
+| **Tests** | **403 passing locally**, including **129 WS/WSS cases** and sanitizer checks. [Test details](docs/VALIDATION.md) · [CI](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml). |
 | **Profiles** | Default: Chrome 150. Firefox 148 available; Chrome 152 is a preview. **Latest-browser coverage is incomplete.** [Exact coverage](docs/PROFILES.md). |
 | **Still missing** | Easy binary installs, macOS/ARM support, automatic retries, multipart uploads and WebSocket compression. |
 

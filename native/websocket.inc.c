@@ -142,6 +142,44 @@ static void sp_ws_io_send(sp_ws_io *io, unsigned kind, const unsigned char *data
   io->out = data; io->out_size = size; io->offset = 0;
   io->send_flags = sp_ws_flags(kind); io->sending = 1; io->after_send = after_send;
 }
+
+/* WS bodies are length-delimited bytes, not C strings. The HTTP writer's NUL
+ * sentinel doubles a power-of-two frame's allocation and can grow repeatedly
+ * while a frame arrives. Reserve the validated announced remainder once, bounded
+ * to 256 KiB so a peer cannot force a large allocation by advertising a frame
+ * and stalling. Larger or open-ended fragmented messages grow geometrically
+ * as their bytes arrive. Control payloads use this same length-only ownership. */
+static int sp_ws_append(sp_buffer *message, const unsigned char *data, size_t size,
+                         size_t frame_left, int final, int stored) {
+  if (size > message->limit - message->size || frame_left > message->limit - message->size - size)
+    return message->limit_error;
+  size_t need = message->size + size, announced = need + frame_left, target = need;
+  if (!message->cap || final) {
+    size_t hint = announced < 262144 ? announced : 262144;
+    if (hint > target) target = hint;
+  }
+  if (target > message->cap) {
+    size_t cap;
+    if (final && announced <= 262144) cap = announced;
+    else {
+      cap = message->cap ? message->cap : target > 256 ? target : 256;
+      while (cap < target) {
+        if (cap > SIZE_MAX / 2) { cap = target; break; }
+        cap *= 2;
+      }
+    }
+    if (cap > message->limit) cap = message->limit;
+    unsigned char *buffer = realloc(message->data, cap);
+    if (!buffer) return SP_NOMEM;
+    message->data = buffer; message->cap = cap;
+  }
+  /* A direct receive already filled this tail. realloc preserves those bytes;
+   * its old input pointer must never be dereferenced after possible growth. */
+  if (size && !stored) memcpy(message->data + message->size, data, size);
+  message->size = need;
+  return SP_OK;
+}
+
 sp_ws_io *sp_ws_io_start(sp_ws *w, unsigned operation, unsigned kind,
                          const unsigned char *data, size_t size, uint32_t timeout,
                          sp_cancel *cancel, int *error) {
@@ -178,9 +216,10 @@ fail:
 static int sp_ws_io_close_message(sp_ws_io *io) {
   io->socket->closed = 1;
   free(io->message.data); io->message = (sp_buffer){.limit = 125, .limit_error = SP_BODY_LIMIT};
-  if (io->operation == SP_WS_RECEIVE &&
-      (sp_write((char *)io->control, 1, io->control_size, &io->message) != io->control_size || io->message.error))
-    return sp_ws_io_end(io, io->message.error);
+  if (io->operation == SP_WS_RECEIVE) {
+    int error = sp_ws_append(&io->message, io->control, io->control_size, 0, 1, 0);
+    if (error) return sp_ws_io_end(io, error);
+  }
   io->kind = 8;
   return sp_ws_io_end(io, SP_OK);
 }
@@ -207,8 +246,11 @@ static int sp_ws_io_advance(sp_ws_io *io) {
       if (io->operation == SP_WS_CLOSE) w->closing = 1;
       continue;
     }
-    unsigned char chunk[16384]; size_t got = 0; const struct curl_ws_frame *meta = NULL;
-    CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, sizeof chunk, &got, &meta);
+    unsigned char scratch[16384]; size_t got = 0; const struct curl_ws_frame *meta = NULL;
+    sp_buffer *message = &io->message;
+    int direct = message->cap - message->size >= sizeof scratch;
+    unsigned char *chunk = direct ? message->data + message->size : scratch;
+    CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, sizeof scratch, &got, &meta);
     if (code == CURLE_AGAIN) { io->events = POLLIN; return SP_WS_PENDING; }
     if (code || !meta) return sp_ws_io_end(io, code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT);
     unsigned flags = meta->flags;
@@ -231,10 +273,10 @@ static int sp_ws_io_advance(sp_ws_io *io) {
     }
     if (io->message_kind && io->message_kind != frame_kind) return sp_ws_io_end(io, SP_PROTOCOL);
     io->message_kind = frame_kind;
-    sp_buffer *message = &io->message;
     if (got > message->limit - message->size || (uint64_t)meta->bytesleft > message->limit - message->size - got)
       return sp_ws_io_end(io, SP_BODY_LIMIT);
-    if (sp_write((char *)chunk, 1, got, message) != got || message->error) return sp_ws_io_end(io, message->error);
+    error = sp_ws_append(message, chunk, got, (size_t)meta->bytesleft, !(flags & CURLWS_CONT), direct);
+    if (error) return sp_ws_io_end(io, error);
     if (!meta->bytesleft && !(flags & CURLWS_CONT)) {
       if (frame_kind == 1 && !sp_ws_utf8(message->data, message->size)) return sp_ws_io_end(io, SP_PROTOCOL);
       if (io->operation == SP_WS_CLOSE) {

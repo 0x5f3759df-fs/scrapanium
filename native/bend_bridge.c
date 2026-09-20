@@ -113,6 +113,33 @@ static char *sp_bend_string(Env e, Term t, int *invalid, int cstring, size_t *le
   return s;
 }
 
+#if defined(CID_SCRAPANIUM_BYTES_FROM_TEXT) || defined(CID_SCRAPANIUM_WS_CLOSE)
+/* io_cstr in the pinned runtime encodes arbitrary U32s without scalar checks.
+ * These length-delimited payload paths must reject invalid scalars before that
+ * encoding can truncate them into different, apparently valid UTF-8 bytes. */
+static unsigned char *sp_bend_checked_text(Env e, Term text, int *error, size_t *length) {
+  unsigned char *data = NULL; size_t size = 0, cap = 0;
+  while (term_aux(text) == CID_SCON) {
+    Term fields[2]; sp_bend_take(e, text, 2, fields); text = fields[1];
+    u64 scalar = fields[0];
+    if (*error) continue; /* Still consume the complete affine String on failure. */
+    if (scalar > 0x10ffff || (scalar >= 0xd800 && scalar <= 0xdfff)) {
+      *error = SP_INVALID; continue;
+    }
+    size_t encoded = scalar < 0x80 ? 1 : scalar < 0x800 ? 2 : scalar < 0x10000 ? 3 : 4;
+    if (size > UINT32_MAX - encoded) { *error = SP_INPUT_LIMIT; continue; }
+    if (size + encoded > cap) {
+      size_t next = cap ? (cap > UINT32_MAX / 2 ? UINT32_MAX : cap * 2) : 64;
+      unsigned char *grown = realloc(data, next);
+      if (!grown) { *error = SP_NOMEM; continue; }
+      data = grown; cap = next;
+    }
+    size += io_utf8((char *)data + size, scalar);
+  }
+  *length = size; return data;
+}
+#endif
+
 #if defined(CID_SCRAPANIUM_BYTES_FROM_LIST) || defined(CID_SCRAPANIUM_BYTES_FROM_TEXT) || defined(CID_SCRAPANIUM_BYTES_READ_FILE) || defined(CID_SCRAPANIUM_BYTES_AT) || defined(CID_SCRAPANIUM_BYTES_TEXT) || defined(CID_SCRAPANIUM_BYTES_EQUAL) || defined(CID_SCRAPANIUM_INTO_BYTES) || defined(CID_SCRAPANIUM_WS_RECEIVE)
 static Term sp_bend_bytes_term(Env e, SpBendBytes *b) {
   Term f[] = {sp_bend_handle_new(b, 4), (Term)b->size};
@@ -150,10 +177,10 @@ static Term sp_bend_bytes_from_list(Env e, Term *f, IoWork *w) {
 #endif
 #ifdef CID_SCRAPANIUM_BYTES_FROM_TEXT
 static Term sp_bend_bytes_from_text(Env e, Term *f, IoWork *w) {
-  (void)w; int invalid = 0;
+  (void)w; int error = 0;
   SpBendBytes *b = io_mem(calloc(1, sizeof *b));
-  b->data = (unsigned char *)sp_bend_string(e, f[0], &invalid, 0, &b->size);
-  if (b->size > UINT32_MAX) { sp_bend_bytes_free(b); return io_fail(e, SP_INPUT_LIMIT, sp_error_message(SP_INPUT_LIMIT)); }
+  b->data = sp_bend_checked_text(e, f[0], &error, &b->size);
+  if (error) { sp_bend_bytes_free(b); return io_fail(e, error, sp_error_message(error)); }
   return io_done(e, sp_bend_bytes_term(e, b));
 }
 #endif

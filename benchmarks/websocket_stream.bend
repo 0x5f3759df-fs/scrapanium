@@ -2,6 +2,9 @@ import Base
 import ../scrapanium.bend as S
 import ./websocket.bend as B
 
+def WsBench.now_us() -> IO(Nat):
+  import "./websocket_clock.c"
+
 def tag(+sequence: String) -> String:
   String.take("00000000", Nat.sub(8n, String.length(sequence))) ++ sequence
 
@@ -72,11 +75,11 @@ def timed(socket: S.WebSocket, expected: List<S.Bytes>) -> IO(Unit):
   do IO<Unit>:
     signal : S.Bytes <- IO.try(S.Bytes, S.Bytes.from_text("start"))
     B.gate()
-    start : Nat <- IO.now()
+    start : Nat <- WsBench.now_us()
     pair : S.WebSocket & Result<&1, &1, U32 & String, Unit> <- S.Ws.send(socket, 2, signal, 5000)
     socket : S.WebSocket <- sent(pair)
     socket : S.WebSocket <- receive_all(expected, socket)
-    end : Nat <- IO.now()
+    end : Nat <- WsBench.now_us()
     S.Ws.discard(socket)
     IO.print(Nat.show(start))
     IO.print(Nat.show(end))

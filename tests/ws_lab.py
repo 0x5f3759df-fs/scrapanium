@@ -71,6 +71,24 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
                     self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == len(cuts) - 2))
                     if i != len(cuts) - 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path in ("/fragmented-large-binary", "/fragmented-large-text"):
+                text = self.path.endswith("-text")
+                payload = ("a🌍\0é" * 65537).encode() if text else bytes(range(256)) * 2305
+                # Cross the bounded reservation and geometric-growth thresholds,
+                # including UTF-8 code points split across continuation frames.
+                cuts = [0, 1, 3, 127, 16383, 262141, 262145, 393221, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame((1 if text else 2) if i == 0 else 0,
+                                           payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path == "/fragmented-tail-growth":
+                # After 40000 + 5000 bytes, the geometric capacity leaves room
+                # for a direct read, but the final frame requires a new reserve.
+                payload = bytes(range(256)) * 768 + b"\0"
+                cuts = [0, 40000, 45000, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == 2))
+                    if i != 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
             elif self.path == "/bytewise-frame":
                 for byte in frame(2, b"\x00\xff\x80\xc0boundary\x00"):
                     self.wfile.write(bytes([byte])); self.wfile.flush(); time.sleep(.001)

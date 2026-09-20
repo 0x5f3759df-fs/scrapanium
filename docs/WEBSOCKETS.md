@@ -23,7 +23,7 @@ UTF-8 conversion and graceful close.
 | `Ws.send(socket, kind, bytes, timeout_ms)` | Consumes bytes; sends text (1), binary (2), ping (9), or pong (10). |
 | `Ws.receive(socket, timeout_ms)` | Complete reassembled text (1), binary (2), or close (8) message. |
 | `Ws.send_cancel`, `Ws.receive_cancel` | Same ownership with an additional shared cancellation token. |
-| `Ws.close(socket, code, reason, timeout_ms)` | Sends close, waits for the peer, releases the socket on success or failure. |
+| `Ws.close(socket, code, reason, timeout_ms)` | Sends close, waits for the peer, releases the socket on success or failure. Invalid Unicode scalars in the reason return an error before sending. |
 | `Ws.close_cancel` | Cancellable close with the same cleanup guarantee. |
 | `Ws.discard(socket)` | Immediate release without a closing handshake. |
 

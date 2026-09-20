@@ -42,9 +42,12 @@ def invoke(binary, url, ca, mode, payload, kind, threads):
 @pytest.mark.parametrize("path,kind,payload", [
     ("fragments", 1, "hello 🌍".encode()),
     ("fragmented-binary", 2, bytes(range(256)) * 257),
+    ("fragmented-large-binary", 2, bytes(range(256)) * 2305),
+    ("fragmented-large-text", 1, ("a🌍\0é" * 65537).encode()),
+    ("fragmented-tail-growth", 2, bytes(range(256)) * 768 + b"\0"),
     ("bytewise-frame", 2, b"\x00\xff\x80\xc0boundary\x00"),
     ("close", 8, b"\x03\xe8bye"),
-], ids=["fragmented-text", "fragmented-binary", "bytewise", "remote-close"])
+], ids=["fragmented-text", "fragmented-binary", "large-binary", "large-text", "tail-growth", "bytewise", "remote-close"])
 def test_bend_fragment_control_and_close(readiness_binary, readiness_server, tmp_path, threads, path, kind, payload):
     server, url, ca = readiness_server
     expected = tmp_path / "expected.bin"
@@ -56,6 +59,10 @@ def test_bend_fragment_control_and_close(readiness_binary, readiness_server, tmp
         assert (10, b"heartbeat", True) in frames
     elif path == "fragmented-binary":
         assert [frame for frame in frames if frame[0] == 10] == [(10, bytes([i, 0, 255]), True) for i in range(6)]
+    elif path.startswith("fragmented-large-"):
+        assert [frame for frame in frames if frame[0] == 10] == [(10, bytes([i, 0, 255]), True) for i in range(7)]
+    elif path == "fragmented-tail-growth":
+        assert [frame for frame in frames if frame[0] == 10] == [(10, bytes([i, 0, 255]), True) for i in range(2)]
     assert any(frame[0] == 8 for frame in frames)
 
 

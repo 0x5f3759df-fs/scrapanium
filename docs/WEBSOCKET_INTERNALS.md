@@ -23,6 +23,22 @@ Bend compiler (`b2791abbfaba463ed67e81ca904523e31546682b`), `io_loop` invokes
 workers do not run these effects. Compiler upgrades must recheck that contract;
 the bridge records the dependency next to its callbacks.
 
+Receive buffers contain length-delimited bytes; they do not need a trailing NUL.
+An announced frame remainder is checked against the message limit before it can
+influence allocation. Read-ahead reservation is capped at 256 KiB. Larger or
+fragmented messages grow geometrically as bytes arrive, and never beyond the
+configured message limit. Control replies keep their own storage throughout
+partial sends. This avoids excess allocation without trusting a peer's announced
+length or returning incomplete messages.
+
+When at least 16 KiB of owned capacity remains, the next receive writes directly
+into that unused tail. The message length advances only after the frame metadata
+passes validation. Interleaved control bytes move into separate control storage
+without extending the message. If the announced remainder requires growth,
+`realloc` preserves the bytes already received; the old pointer is never read
+after growth. A fragmented-message sanitizer regression exercises that exact
+transition with interleaved pings.
+
 The test suite exercises native operations and compiled Bend programs with
 AddressSanitizer and UndefinedBehaviorSanitizer. See
 [validation coverage](VALIDATION.md) and [the public API semantics](WEBSOCKETS.md).
