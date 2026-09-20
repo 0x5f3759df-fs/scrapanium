@@ -9,16 +9,18 @@ from fingerprint import capture, normalized
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = json.loads((ROOT / "profiles/catalog.json").read_text())
+AVAILABLE = [p for p in CATALOG['profiles'] if not p.get('requires_backend') or
+             p['requires_backend'].encode() in lib.sp_backend_version()]
 declare("sp_profile_count", C.c_size_t)
 declare("sp_profile_name", C.c_char_p, C.c_size_t)
 
 
 def test_profile_catalog_matches_runtime():
-    assert [lib.sp_profile_name(i).decode() for i in range(lib.sp_profile_count())] == [p["id"] for p in CATALOG["profiles"]]
+    assert [lib.sp_profile_name(i).decode() for i in range(lib.sp_profile_count())] == [p["id"] for p in AVAILABLE]
     assert lib.sp_profile_name(lib.sp_profile_count()) is None
 
 
-@pytest.mark.parametrize("profile", [p["id"] for p in CATALOG["profiles"]])
+@pytest.mark.parametrize("profile", [p["id"] for p in AVAILABLE])
 def test_every_profile_connects_with_verification(profile, https):
     url, ca = https
     with Session(profile=profile, ca_bundle=ca, concurrency=1) as s, s.send(url + "/echo") as r:
@@ -53,3 +55,10 @@ def test_new_profile_wire_against_independent_go(go_probe, profile, reference):
 def test_unknown_current_browser_names_do_not_fall_back():
     for profile in ("chrome152", "chrome999", "safari999"):
         with pytest.raises(ValueError): Session(profile=profile)
+
+
+@pytest.mark.skipif(b'2.2.3-scrapanium.1' in lib.sp_backend_version(), reason='stock-only rejection check')
+def test_optional_profiles_require_the_browser_backend():
+    for profile in ('chrome153', 'chrome153_headless', 'firefox156'):
+        with pytest.raises(ValueError):
+            Session(profile=profile)

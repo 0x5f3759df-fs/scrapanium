@@ -4,14 +4,18 @@ jobs:
   linux:
     runs-on: ubuntu-24.04
     container: ubuntu:26.04
-    timeout-minutes: 30
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [stock, browser]
     env:
       DEBIAN_FRONTEND: noninteractive
     permissions:
       contents: read
     steps:
       - name: Install compiler and build dependencies
-        run: apt-get update && apt-get install -y clang git nodejs npm python3 python3-venv python3-dev libffi-dev ca-certificates time
+        run: apt-get update && apt-get install -y clang build-essential cmake ninja-build patch perl git nodejs npm python3 python3-venv python3-dev libffi-dev ca-certificates time
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
@@ -19,6 +23,12 @@ jobs:
           cache-dependency-path: benchmarks/tls-client/go.sum
       - run: clang --version && python3 --version && go version
       - run: python3 scripts/bootstrap.py --matched
+      - name: Build browser controls from pinned sources
+        if: matrix.backend == 'browser'
+        run: |
+          python3 scripts/build_backend.py
+          echo "SCRAPANIUM_CURL_DIR=$GITHUB_WORKSPACE/.deps/curl-browser" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=$GITHUB_WORKSPACE/.deps/curl-browser/lib" >> "$GITHUB_ENV"
       - run: python3 scripts/build.py
       - run: .deps/venv-matched/bin/pytest -q tests --junitxml=build/results.xml
       - name: Check streamed WebSocket bytes and ordering under sanitizers
@@ -28,7 +38,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results
+          name: test-results-${{ matrix.backend }}
+          include-hidden-files: true
           path: |
             build/results.xml
             build/ws-stream-smoke-*.json
+            .deps/curl-browser/manifest.json

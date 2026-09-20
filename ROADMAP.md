@@ -16,8 +16,10 @@ The goal remains active; this repository is an initial working implementation.
 - Shared retained-response allocation/count limits, thread-safe cancellation,
   native push sinks and atomic streaming file downloads from Bend.
 - Browser TLS/HTTP/2 profile selection and explicit custom fingerprint overrides.
-- Catalog of 41 profiles, Firefox 148 reference comparison, and an explicitly
-  limited Chrome 152 preview with trust-anchor support.
+- 41 stock profiles plus optional Chrome 153, Chrome for Testing 153 headless,
+  and Firefox 156 profiles with retained Linux browser captures; source-built
+  TLS controls and HTTP/2 stream-window/stream-ID controls.
+- Firefox 148 reference comparison and an explicitly limited Chrome 152 preview.
 - Affine wrappers with generation-checked native handles and exit cleanup.
 - Pure API laws, loopback tests, fingerprint parity tests, sanitizer integration.
 - Reproducible comparisons with curl_cffi release, the same-backend source build,
@@ -34,10 +36,11 @@ The goal remains active; this repository is an initial working implementation.
 3. Capture actual versioned browsers on multiple OSes. Track provenance and
    retirement dates per profile. Test resumed TLS, extension permutation, GREASE,
    ECH, HTTP/2 stream behavior; evaluate HTTP/3 without claiming untested fidelity.
-   Expose signature GREASE in a reproducibly built backend before graduating
-   Chrome 152 from preview. Validate current Safari/Android captures and WS-specific
+   The optional backend now exposes signature GREASE; Chrome 152 remains a
+   separately limited mixed-source preview. Validate current Safari/Android captures and WS-specific
    handshakes. Add WebSocket compression and broader RFC conformance/fuzz coverage.
-   The immediate current-browser targets are Chrome 153, Firefox 156 and Safari 27;
+   Chrome 153 and Firefox 156 now have scoped Linux evidence. Safari 27 and
+   current browsers on other platforms remain immediate targets;
    see the dated primary sources and coverage gap in `docs/PROFILES.md`.
 4. Expand the initial comparison with curl_cffi and tls-client: latency distributions,
    throughput/concurrency curves, memory/CPU scaling, cold TLS, large bodies,

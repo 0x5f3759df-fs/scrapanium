@@ -16,6 +16,11 @@ relicensed by this project. Dependencies are stored under ignored `.deps/`.
   license alternatives and Unicode data notices; do not assume the complete
   dependency graph is covered by Scrapanium's MIT license.
 - curl_cffi: MIT; used as a testing/benchmarking reference, not at runtime.
+- The optional browser backend retains dependency notices under
+  `.deps/curl-browser/licenses` and libidn2 source under `sources`. Its patches
+  and exact upstream revision are in [backend](backend/README.md). Downloaded
+  Google Chrome, Chrome for Testing and Firefox executables are capture tools,
+  remain under ignored `.deps/browsers`, and are not redistributed by this repo.
 - Profile header data is adapted from curl-impersonate. Its MIT notice is retained
   in [notices/curl-impersonate.LICENSE](notices/curl-impersonate.LICENSE).
 - Firefox 148 wire parameters and Chrome 152 trust-anchor data are derived from

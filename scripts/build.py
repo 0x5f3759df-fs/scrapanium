@@ -19,11 +19,12 @@ def compiler():
 
 def build(entry=None, output=None, sanitize=False):
     (ROOT / "build").mkdir(exist_ok=True)
-    curl = ROOT / ".deps/curl"
+    curl = Path(os.environ.get("SCRAPANIUM_CURL_DIR", ROOT / ".deps/curl")).resolve()
+    curl_lib = curl / "lib" if (curl / "lib/libcurl-impersonate.so").exists() else curl
     # O2 avoids an LLVM 21 preserve_none + ASan register-allocation failure at O1.
     flags = ["-std=c11", "-O2" if sanitize else "-O3", "-g", "-I" + str(curl / "include"),
-             "-I" + str(ROOT / "native"), "-lpthread", "-lm", "-L" + str(curl),
-             "-Wl,-rpath," + str(curl), "-lcurl-impersonate"]
+             "-I" + str(ROOT / "native"), "-lpthread", "-lm", "-L" + str(curl_lib),
+             "-Wl,-rpath," + str(curl_lib), "-lcurl-impersonate"]
     if sanitize:
         flags += ["-fsanitize=address,undefined"]
         # Retain frame pointers for the standalone native library diagnostics.

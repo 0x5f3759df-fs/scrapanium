@@ -1,25 +1,30 @@
 # Browser profile coverage
 
-The versioned [catalog](../profiles/catalog.json) records **41 named profiles**:
-39 upstream curl-impersonate targets plus Firefox 148 and a Chrome 152 preview.
-Use `S.profiles()` to enumerate them. Unknown names fail; `chrome152` does not
-silently select the preview. The default remains the pinned `chrome150`.
+The versioned [catalog](../profiles/catalog.json) records **44 named profiles**.
+The normal install exposes 41. The optional [browser backend](../backend/README.md)
+adds `chrome153`, `chrome153_headless`, and `firefox156`, tested against actual
+Linux browser captures. Use `S.profiles()` to enumerate the profiles in your build.
+Unknown names fail; `chrome152` does not silently select the preview. The default
+remains the pinned `chrome150`.
 
 | Family | Newest included target | Evidence / limitation |
 | --- | --- | --- |
-| Chrome desktop | `chrome150` | Stock backend, curl_cffi ClientHello and HTTP/2 parity. |
+| Chrome desktop | `chrome153` (optional) | Google Chrome 153.0.8010.52, Linux headed capture: initial TCP ClientHello and HTTP/2 navigation. Stock default: `chrome150`. |
+| Chrome for Testing | `chrome153_headless` (optional) | CfT 153.0.8010.52, Linux headless capture. Its TLS padding extension and headers differ from Google Chrome. |
 | Chrome 152 preview | `chrome152_preview` | Chrome 150 plus 28 source-derived trust anchors and versioned headers. Known signature GREASE gap. |
 | Chrome Android | `chrome131_android` | Newest Android-specific stock target in this backend. |
-| Firefox | `firefox148` | Cipher updates over 147; normalized ClientHello matches independent Go tls-client 148. |
+| Firefox | `firefox156` (optional) | Firefox 156.0, Linux headed/headless captures: initial TCP ClientHello and HTTP/2 navigation. Stock newest: `firefox148`. |
 | Safari macOS | `safari2601` | Stock Safari 26.0.1; curl_cffi ClientHello parity. |
 | Safari iOS | `safari260_ios` | Stock Safari 26.0; curl_cffi ClientHello parity. |
 | Tor | `tor145` | Stock Tor 14.5; curl_cffi ClientHello parity. |
 
 Older profiles and Edge/OkHttp targets remain available for reproducible clients.
 The catalog is a transport inventory, not a list of currently released browsers.
-**No profile has yet passed our own real-browser capture gate.** Reference-library
-parity and a successful TLS connection do not prove indistinguishability from a
-browser across platforms, resumption, HTTP/3, cookies or application behavior.
+The three optional profiles pass our scoped [real-browser capture gate](../profiles/browsers/README.md).
+Each retains three raw samples per tested mode. Their coverage is fresh TCP TLS
+and HTTP/2 navigation on the specified Linux builds. Reference-library parity
+and capture agreement do not prove indistinguishability across platforms,
+resumption, HTTP/3, WebSocket handshakes, field trials or application behavior.
 
 ## Freshness gap, checked 2026-09-20
 
@@ -27,10 +32,10 @@ The browser releases have advanced beyond these reference libraries:
 [Chrome 153](https://chromereleases.googleblog.com/2026/09/stable-channel-update-for-desktop_0808145027.html),
 [Firefox 156](https://www.firefox.com/en-US/firefox/156.0/releasenotes/) and
 [Safari 27](https://webkit.org/blog/18325/webkit-features-for-safari-27-0/) are
-released. Their matching profiles are still required. The current catalog does
-**not** satisfy the project's latest-browser coverage goal. Next work is actual
-browser captures and backend changes, followed by reviewed regression evidence;
-changing a User-Agent or copying an older profile name would not close this gap.
+released. Chrome and Firefox now have capture-tested Linux targets in the
+optional backend. Safari 27, current Android/iOS and macOS captures remain
+outstanding. The catalog does **not** yet satisfy the complete latest-browser
+coverage goal.
 
 ## Chrome 152 preview
 

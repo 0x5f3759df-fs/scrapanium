@@ -1,0 +1,291 @@
+--- a/include/curl/curl.h
++++ b/include/curl/curl.h
+@@ -2457,6 +2457,16 @@
+   /* curl-impersonate: QUIC initial packet number. -1 selects the Firefox
+    * randomized distribution; non-negative values select a fixed number. */
+   CURLOPT(CURLOPT_QUIC_INITIAL_PACKET_NUMBER, CURLOPTTYPE_LONG, 1041),
++
++  /* Scrapanium TCP TLS controls. Kept in SSL connection/session cache keys. */
++#define CURL_SCRAPANIUM_BROWSER_CONTROLS 1
++  CURLOPT(CURLOPT_SCRAPANIUM_TLS_GREASE_SIGALGS, CURLOPTTYPE_LONG, 1042),
++  /* -1 disables the extension; 0..65535 requests that many server bytes. */
++  CURLOPT(CURLOPT_SCRAPANIUM_TLS_SERVER_PADDING, CURLOPTTYPE_LONG, 1043),
++  /* Target receive window per HTTP/2 stream; 0 keeps upstream behavior. */
++  CURLOPT(CURLOPT_SCRAPANIUM_HTTP2_STREAM_WINDOW, CURLOPTTYPE_LONG, 1044),
++  /* First request stream on a new HTTP/2 connection; 0 inherits upstream. */
++  CURLOPT(CURLOPT_SCRAPANIUM_HTTP2_INITIAL_STREAM_ID, CURLOPTTYPE_LONG, 1045),
+ 
+   CURLOPT_LASTENTRY /* the last unused */
+ } CURLoption;
+--- a/lib/vtls/vtls_config.h
++++ b/lib/vtls/vtls_config.h
+@@ -54,6 +54,8 @@
+   char *http3_signature_algorithms; /* HTTP/3 signature algorithms */
+   char *http3_tls_extension_order; /* HTTP/3 TLS extension order */
+   char *trust_anchors;    /* comma-separated trust anchor relative OIDs */
++  int server_padding_request; /* TCP TLS extension; -1 means absent */
++  BIT(grease_sigalgs); /* TCP TLS signature-algorithm GREASE */
+   uint32_t version_max; /* max supported version the client wants to use */
+   uint8_t ssl_options;  /* the CURLOPT_SSL_OPTIONS bitmask */
+   uint8_t version;    /* what version the client wants to use */
+--- a/lib/vtls/vtls_config.c
++++ b/lib/vtls/vtls_config.c
+@@ -106,6 +106,7 @@
+   sslc->verifypeer = TRUE;
+   sslc->verifyhost = TRUE;
+   sslc->cache_session = TRUE; /* caching by default */
++  sslc->server_padding_request = -1;
+ }
+ 
+ static const char *ssl_config_get_transport_value(const char *value,
+@@ -197,6 +198,8 @@
+      (c1->verifyhost == c2->verifyhost) &&
+      (c1->verifystatus == c2->verifystatus) &&
+      (c1->enable_ticket == c2->enable_ticket) &&
++     (c1->grease_sigalgs == c2->grease_sigalgs) &&
++     (c1->server_padding_request == c2->server_padding_request) &&
+      (c1->http3_ssl_permute_extensions ==
+       c2->http3_ssl_permute_extensions) &&
+      blobcmp(c1->cert_blob, c2->cert_blob) &&
+@@ -258,6 +261,8 @@
+   dest->native_ca_store = source->native_ca_store;
+   dest->cache_session = source->cache_session;
+   dest->enable_ticket = source->enable_ticket;
++  dest->grease_sigalgs = source->grease_sigalgs;
++  dest->server_padding_request = source->server_padding_request;
+   dest->http3_ssl_permute_extensions =
+     source->http3_ssl_permute_extensions;
+   dest->ssl_options = source->ssl_options;
+--- a/lib/urldata.h
++++ b/lib/urldata.h
+@@ -1191,6 +1191,8 @@
+   BIT(ws_no_auto_pong);
+ #endif
+   int http2_window_update;
++  int http2_stream_window; /* Scrapanium per-stream receive window target */
++  int http2_initial_stream_id; /* 0 inherits upstream */
+   int tls_record_size_limit;
+   int tls_key_shares_limit;
+   long quic_initial_packet_number;
+--- a/lib/setopt.c
++++ b/lib/setopt.c
+@@ -40,6 +40,9 @@
+ #include "strcase.h"
+ #include "curl_share.h"
+ #include "vtls/vtls.h"
++#ifdef USE_OPENSSL
++#include <openssl/opensslv.h>
++#endif
+ #include "curl_trc.h"
+ #include "setopt.h"
+ #include "altsvc.h"
+@@ -1042,6 +1045,24 @@
+   CURLcode result = CURLE_OK;
+   struct UserDefined *s = &data->set;
+   switch(option) {
++  case CURLOPT_SCRAPANIUM_TLS_GREASE_SIGALGS:
++#ifdef OPENSSL_IS_BORINGSSL
++    if(arg < 0 || arg > 1)
++      return CURLE_BAD_FUNCTION_ARGUMENT;
++    s->ssl.primary.grease_sigalgs = !!arg;
++    break;
++#else
++    return CURLE_NOT_BUILT_IN;
++#endif
++  case CURLOPT_SCRAPANIUM_TLS_SERVER_PADDING:
++#ifdef OPENSSL_IS_BORINGSSL
++    if(arg < -1 || arg > 65535)
++      return CURLE_BAD_FUNCTION_ARGUMENT;
++    s->ssl.primary.server_padding_request = (int)arg;
++    break;
++#else
++    return CURLE_NOT_BUILT_IN;
++#endif
+   case CURLOPT_CA_CACHE_TIMEOUT:
+     if(Curl_ssl_supports(data, SSLSUPP_CA_CACHE)) {
+       result = value_range(&arg, -1, -1, INT_MAX);
+@@ -1190,6 +1211,24 @@
+   case CURLOPT_STREAM_EXCLUSIVE:
+ #ifdef USE_HTTP2
+     s->stream_exclusive = !!arg;
++    break;
++#else
++    return CURLE_NOT_BUILT_IN;
++#endif
++  case CURLOPT_SCRAPANIUM_HTTP2_STREAM_WINDOW:
++#ifdef USE_HTTP2
++    if(arg < 0 || arg > INT32_MAX)
++      return CURLE_BAD_FUNCTION_ARGUMENT;
++    s->http2_stream_window = (int)arg;
++    break;
++#else
++    return CURLE_NOT_BUILT_IN;
++#endif
++  case CURLOPT_SCRAPANIUM_HTTP2_INITIAL_STREAM_ID:
++#ifdef USE_HTTP2
++    if(arg < 0 || arg > INT32_MAX || (arg && !(arg & 1)))
++      return CURLE_BAD_FUNCTION_ARGUMENT;
++    s->http2_initial_stream_id = (int)arg;
+     break;
+ #else
+     return CURLE_NOT_BUILT_IN;
+--- a/lib/vtls/openssl.c
++++ b/lib/vtls/openssl.c
+@@ -3934,6 +3934,7 @@
+ {
+ #ifdef OPENSSL_IS_BORINGSSL
+   struct ssl_connect_data *connssl = cf->ctx;
++  struct ssl_primary_config *conn_config = Curl_ssl_cf_get_primary_config(cf);
+   const struct alpn_spec *alps = NULL;
+ #endif
+ 
+@@ -3945,6 +3946,13 @@
+     failf(data, "SSL: could not create a context (handle)");
+     return CURLE_OUT_OF_MEMORY;
+   }
++
++#ifdef OPENSSL_IS_BORINGSSL
++  if(peer->transport != TRNSPRT_QUIC &&
++     conn_config->server_padding_request >= 0)
++    SSL_set_server_padding_request(octx->ssl,
++      (uint16_t)conn_config->server_padding_request);
++#endif
+ 
+   SSL_set_app_data(octx->ssl, ssl_user_data);
+ 
+@@ -4473,6 +4481,9 @@
+     SSL_CTX_set_grease_enabled(octx->ssl_ctx, 0);
+   else if(data->set.tls_grease)
+     SSL_CTX_set_grease_enabled(octx->ssl_ctx, 1);
++
++  SSL_CTX_set_grease_sigalgs_enabled(octx->ssl_ctx,
++    peer->transport != TRNSPRT_QUIC && conn_config->grease_sigalgs);
+ 
+   if(conn_config->trust_anchors) {
+     CURLcode result = set_trust_anchors(data, octx->ssl_ctx,
+--- a/lib/vtls/vtls_scache.c
++++ b/lib/vtls/vtls_scache.c
+@@ -267,6 +267,12 @@
+   }
+   if(!ssl->enable_ticket) {
+     result = curlx_dyn_add(&buf, ":NOTICKET");
++    if(result)
++      goto out;
++  }
++  if(peer->transport != TRNSPRT_QUIC) {
++    result = curlx_dyn_addf(&buf, ":SCRAPTLS-%d-%d",
++      (int)ssl->grease_sigalgs, ssl->server_padding_request);
+     if(result)
+       goto out;
+   }
+--- a/lib/http2.c
++++ b/lib/http2.c
+@@ -448,7 +448,8 @@
+     else if(avail < INT32_MAX)
+       return (int32_t)avail;
+   }
+-  return H2_STREAM_WINDOW_SIZE_MAX;
++  return data->set.http2_stream_window ? data->set.http2_stream_window :
++    H2_STREAM_WINDOW_SIZE_MAX;
+ }
+ 
+ static CURLcode cf_h2_update_local_win(struct Curl_cfilter *cf,
+@@ -1304,6 +1305,38 @@
+   return 0;
+ }
+ #endif /* CURLVERBOSE */
++
++/* nghttp2 opens a client stream when its request HEADERS are sent. Queue the
++ * advertised per-stream increment here, after HEADERS, including on multiplexed
++ * streams. The connection's currently active easy handle may be a different
++ * request: always get the stream owner from nghttp2. */
++static int on_profile_frame_send(nghttp2_session *session,
++                                 const nghttp2_frame *frame, void *userp)
++{
++  struct Curl_cfilter *cf = userp;
++  struct cf_h2_ctx *ctx = cf->ctx;
++  if(frame->hd.type == NGHTTP2_HEADERS &&
++     frame->headers.cat == NGHTTP2_HCAT_REQUEST) {
++    struct Curl_easy *owner =
++      nghttp2_session_get_stream_user_data(session, frame->hd.stream_id);
++    if(owner && owner->set.http2_stream_window) {
++      int32_t target = owner->set.http2_stream_window;
++      struct h2_stream_ctx *stream = H2_STREAM_CTX(ctx, owner);
++      if((uint32_t)target < ctx->initial_win_size || !stream)
++        return NGHTTP2_ERR_CALLBACK_FAILURE;
++      if((uint32_t)target > ctx->initial_win_size &&
++         nghttp2_submit_window_update(session, NGHTTP2_FLAG_NONE,
++           frame->hd.stream_id, target - (int32_t)ctx->initial_win_size))
++        return NGHTTP2_ERR_CALLBACK_FAILURE;
++      stream->local_window_size = target;
++    }
++  }
++#ifdef CURLVERBOSE
++  return on_frame_send(session, frame, userp);
++#else
++  return 0;
++#endif
++}
+ 
+ static int on_frame_recv(nghttp2_session *session, const nghttp2_frame *frame,
+                          void *userp)
+@@ -2303,6 +2336,14 @@
+       goto out;
+   }
+ 
++  /* Reject impossible profile windows before putting request headers on wire. */
++  if(data->set.http2_stream_window &&
++     (uint32_t)data->set.http2_stream_window < ctx->initial_win_size) {
++    failf(data, "HTTP/2 stream target is below SETTINGS_INITIAL_WINDOW_SIZE");
++    result = CURLE_BAD_FUNCTION_ARGUMENT;
++    goto out;
++  }
++
+   switch(data->state.httpreq) {
+   case HTTPREQ_POST:
+   case HTTPREQ_POST_FORM:
+@@ -2574,9 +2615,7 @@
+   nghttp2_session_callbacks_set_on_frame_recv_callback(cbs, on_frame_recv);
+   nghttp2_session_callbacks_set_on_invalid_frame_recv_callback(cbs,
+     cf_h2_on_invalid_frame_recv);
+-#ifdef CURLVERBOSE
+-  nghttp2_session_callbacks_set_on_frame_send_callback(cbs, on_frame_send);
+-#endif
++  nghttp2_session_callbacks_set_on_frame_send_callback(cbs, on_profile_frame_send);
+   nghttp2_session_callbacks_set_on_data_chunk_recv_callback(
+     cbs, on_data_chunk_recv);
+   nghttp2_session_callbacks_set_on_stream_close_callback(cbs, on_stream_close);
+@@ -2682,6 +2721,16 @@
+    * nghttp2_session_set_next_stream_id(ctx->h2,
+    *                                    FIREFOX_DEFAULT_STREAM_ID);
+    */
++
++  if(data->set.http2_initial_stream_id) {
++    rc = nghttp2_session_set_next_stream_id(ctx->h2,
++      data->set.http2_initial_stream_id);
++    if(rc) {
++      failf(data, "Invalid HTTP/2 initial stream id: %s", nghttp2_strerror(rc));
++      result = CURLE_BAD_FUNCTION_ARGUMENT;
++      goto out;
++    }
++  }
+ 
+   /* all set, traffic will be send on connect */
+   result = CURLE_OK;
+--- a/lib/easyoptions.c
++++ b/lib/easyoptions.c
+@@ -308,6 +308,14 @@
+   { "RTSP_TRANSPORT", CURLOPT_RTSP_TRANSPORT, CURLOT_STRING, 0 },
+   { "SASL_AUTHZID", CURLOPT_SASL_AUTHZID, CURLOT_STRING, 0 },
+   { "SASL_IR", CURLOPT_SASL_IR, CURLOT_LONG, 0 },
++  { "SCRAPANIUM_HTTP2_INITIAL_STREAM_ID", CURLOPT_SCRAPANIUM_HTTP2_INITIAL_STREAM_ID,
++    CURLOT_LONG, 0 },
++  { "SCRAPANIUM_HTTP2_STREAM_WINDOW", CURLOPT_SCRAPANIUM_HTTP2_STREAM_WINDOW,
++    CURLOT_LONG, 0 },
++  { "SCRAPANIUM_TLS_GREASE_SIGALGS", CURLOPT_SCRAPANIUM_TLS_GREASE_SIGALGS,
++    CURLOT_LONG, 0 },
++  { "SCRAPANIUM_TLS_SERVER_PADDING", CURLOPT_SCRAPANIUM_TLS_SERVER_PADDING,
++    CURLOT_LONG, 0 },
+   { "SEEKDATA", CURLOPT_SEEKDATA, CURLOT_CBPTR, 0 },
+   { "SEEKFUNCTION", CURLOPT_SEEKFUNCTION, CURLOT_FUNCTION, 0 },
+   { "SERVER_RESPONSE_TIMEOUT", CURLOPT_SERVER_RESPONSE_TIMEOUT,

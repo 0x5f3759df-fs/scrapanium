@@ -1,0 +1,14 @@
+{
+  "version": "2.2.3-scrapanium.1",
+  "platform": "linux-x86_64-glibc",
+  "upstream": {
+    "repository": "https://github.com/lexiforest/curl-impersonate.git",
+    "commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243"
+  },
+  "libidn2": {
+    "version": "2.3.7",
+    "url": "https://ftp.gnu.org/gnu/libidn/libidn2-2.3.7.tar.gz",
+    "sha256": "4c21a791b610b9519b9d0e12b8097bf2f359b12f8dd92647611a929e6bfd7d64"
+  },
+  "dependency_pins": "The pinned upstream CMakeLists.txt specifies SHA-256 for every other source archive."
+}

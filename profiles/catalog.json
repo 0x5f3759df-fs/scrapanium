@@ -216,6 +216,49 @@
         "Platform-dependent trust anchors need real desktop browser captures.",
         "HTTP/3 has not been validated."
       ]
+    },
+    {
+      "id": "firefox156",
+      "origin": "scrapanium-browser-capture",
+      "base": "firefox147",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "capture": "profiles/browsers/linux-headed-2026-09-20.json",
+      "browser": "firefox",
+      "known_gaps": [
+        "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
+        "Other platforms and browser field-trial configurations are not covered."
+      ]
+    },
+    {
+      "id": "chrome153_headless",
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "capture": "profiles/browsers/linux-headless-2026-09-20.json",
+      "browser": "chrome",
+      "known_gaps": [
+        "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
+        "Other platforms and browser field-trial configurations are not covered."
+      ]
+    },
+    {
+      "id": "chrome153",
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "capture": "profiles/browsers/linux-headed-2026-09-20.json",
+      "browser": "google_chrome",
+      "known_gaps": [
+        "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
+        "Other platforms and browser field-trial configurations are not covered."
+      ]
     }
-  ]
+  ],
+  "optional_backend": "2.2.3-scrapanium.1"
 }

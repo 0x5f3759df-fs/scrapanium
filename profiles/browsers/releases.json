@@ -1,0 +1,31 @@
+{
+  "checked_utc": "2026-09-20",
+  "platform": "linux-x86_64",
+  "google_chrome": {
+    "version": "153.0.8010.52",
+    "release_source": "https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz",
+    "url": "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_153.0.8010.52-1_amd64.deb",
+    "archive": "google-chrome-stable_153.0.8010.52-1_amd64.deb",
+    "sha256": "29e0e4b5af01213915ffdb7f4e49a11956dc5fc591165c85af8688dcdff907ac",
+    "executable": "google-chrome/opt/google/chrome/chrome"
+  },
+  "chrome": {
+    "version": "153.0.8010.52",
+    "release_source": "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json",
+    "url": "https://storage.googleapis.com/chrome-for-testing-public/153.0.8010.52/linux64/chrome-linux64.zip",
+    "archive": "chrome153.zip",
+    "sha256": "e66f66d4802a46d4a022667e668aa950e277cadbfbed4b3777915b47413a0ef9",
+    "executable": "chrome-linux64/chrome"
+  },
+  "firefox": {
+    "version": "156.0",
+    "release_source": "https://product-details.mozilla.org/1.0/firefox_versions.json",
+    "url": "https://archive.mozilla.org/pub/firefox/releases/156.0/linux-x86_64/en-US/firefox-156.0.tar.xz",
+    "archive": "firefox156.tar.xz",
+    "sha256": "1d44cd02351c307c3e19061ea2a4d18a30f236e6be862b94f2282564afdb0167",
+    "upstream_checksums": "https://archive.mozilla.org/pub/firefox/releases/156.0/SHA512SUMS",
+    "executable": "firefox/firefox",
+    "build_id": "20260909172920",
+    "source_revision": "a80bd15ddee3b4bf3679aeba340e9d2db933c467"
+  }
+}

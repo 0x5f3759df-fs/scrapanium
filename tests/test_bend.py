@@ -47,12 +47,13 @@ def test_invalid_host_handle_is_rejected():
 
 @pytest.mark.parametrize("source,message", [("stress", "stress: passed"), ("resource_stress", "resources: passed")])
 def test_native_sanitizer_stress(http, source, message):
-    curl = ROOT / ".deps/curl"
+    curl = Path(os.environ.get('SCRAPANIUM_CURL_DIR', ROOT / '.deps/curl')).resolve()
+    curl_lib = curl / 'lib' if (curl / 'lib/libcurl-impersonate.so').exists() else curl
     binary = ROOT / "build" / source
     subprocess.run(["clang", "-std=c11", "-O2", "-g", "-Wall", "-Wextra", "-Werror",
         "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "-I" + str(ROOT / "native"),
         "-I" + str(curl / "include"), str(ROOT / "tests" / (source + ".c")), str(ROOT / "native/scrapanium.c"),
-        "-L" + str(curl), "-Wl,-rpath," + str(curl), "-lcurl-impersonate", "-lpthread", "-o", str(binary)], check=True)
+        "-L" + str(curl_lib), "-Wl,-rpath," + str(curl_lib), "-lcurl-impersonate", "-lpthread", "-o", str(binary)], check=True)
     out = subprocess.run([str(binary), http], capture_output=True, text=True, timeout=30,
         env={**os.environ, "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1", "UBSAN_OPTIONS": "halt_on_error=1"})
     assert out.returncode == 0, out.stdout + out.stderr

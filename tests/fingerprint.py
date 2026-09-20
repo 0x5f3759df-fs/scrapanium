@@ -57,7 +57,42 @@ def parse_hello(data):
     if grease_signatures: result["grease_signature_algorithms"] = grease_signatures
     return result
 
-def capture(call):
+def detailed_hello(data):
+    """Retain static payloads missing from the older regression schema.
+
+    Do not discard an unfamiliar extension's payload just because it is absent
+    from our parser's list. Only explicitly ephemeral fields are excluded.
+    """
+    result = normalized(parse_hello(data))
+    body, pos = data[4:], 34
+    pos += 1 + body[pos]
+    cipher_size = int.from_bytes(body[pos:pos + 2], 'big'); pos += 2 + cipher_size
+    pos += 1 + body[pos]
+    extension_size = int.from_bytes(body[pos:pos + 2], 'big'); pos += 2
+    end = pos + extension_size
+    payloads, grease_positions, key_sizes = {}, {}, []
+    while pos < end:
+        kind, size = struct.unpack('>HH', body[pos:pos + 4]); pos += 4
+        payload = body[pos:pos + size]; pos += size
+        if grease(kind):
+            continue
+        if kind in (10, 13, 50, 43):
+            values = words(payload[1:] if kind == 43 else payload[2:])
+            grease_positions[str(kind)] = [i for i, value in enumerate(values) if grease(value)]
+        elif kind == 51:
+            at = 2
+            while at < len(payload):
+                group, key_size = struct.unpack('>HH', payload[at:at + 4]); at += 4 + key_size
+                key_sizes.append(['GREASE' if grease(group) else group, key_size])
+        elif kind not in (0, 21, 51764, 65037):
+            payloads[str(kind)] = payload.hex()
+    result['static_extension_payloads'] = payloads
+    result['grease_vector_positions'] = grease_positions
+    result['key_share_sizes'] = key_sizes
+    return result
+
+
+def capture(call, *, detailed=False):
     listener = socket.socket()
     listener.bind(("127.0.0.1", 0)); listener.listen(); listener.settimeout(10)
     out, failures = [], []
@@ -77,7 +112,7 @@ def capture(call):
                     header = exact(5)
                     assert header[0] == 22
                     data.extend(exact(int.from_bytes(header[3:], "big")))
-                out.append(parse_hello(bytes(data)))
+                out.append(detailed_hello(bytes(data)) if detailed else parse_hello(bytes(data)))
         except BaseException as error: failures.append(error)
     thread = threading.Thread(target=receive, daemon=True); thread.start()
     try:

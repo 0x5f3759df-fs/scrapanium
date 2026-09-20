@@ -1,10 +1,19 @@
 # Implementation validation
 
-Latest local validation: **403 tests passed**, Ubuntu 26.04 under WSL2.
-The published-backend checkout passed 271 existing non-WebSocket tests in
-87.76 seconds and 132 WebSocket/readiness/byte-comparison/scalar tests in 68.39 seconds.
-The compiled implementation uses the Bend/source and backend pins in
-`dependencies.json`. Hosted CI uses the same Ubuntu 26.04/clang 21 target;
+Latest local validation on Ubuntu 26.04 under WSL2:
+
+- **Stock backend: 406 passed, 22 skipped**, in 336.17 seconds. The skipped
+  cases require the optional backend.
+- **Browser backend: 430 distinct passing cases**: a 426-case full run in
+  367.09 seconds, plus four installation and mixed-window checks added afterward.
+  Both native sanitizer stress cases were also rerun with the optional headers.
+- **WSS streaming sanitizers:** all six positive workloads and all four deliberate
+  corruption/reordering controls passed with both one and four Bend threads on
+  the source-built backend. These are correctness runs, not performance results.
+
+The compiler and default backend pins are in `dependencies.json`; the optional
+source build uses [backend/lock.json](../backend/lock.json). Hosted CI runs both
+backend variants on the same Ubuntu 26.04/clang 21 target;
 the [current workflow results](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml)
 report hosted validation separately.
 
@@ -18,6 +27,9 @@ Bootstrap completed locally using verified curl archive bytes, exact Git commits
 Bun 1.3.11 and a curl_cffi source build linked to the same shared backend. Local
 JUnit detail is generated at `build/test-results.xml` (ignored as a build artifact).
 
+Counts shown as stock/browser differ by backend; a single count applies to both.
+The optional build skips the one stock-only unsupported-profile check.
+
 | Group | Tests | Evidence |
 | --- | ---: | --- |
 | Transport | 98 | Methods/binary uploads, pooling, cookie persistence, HTTP status handling, UTF-8/binary downloads, compression, chunking, duplicate headers, redirects, secret-header stripping, proxies, invalid inputs, size limits, timeout/truncation recovery, certificate trust/hostname/expiry, HTTP/2. |
@@ -27,7 +39,11 @@ JUnit detail is generated at `build/test-results.xml` (ignored as a build artifa
 | Request builders | 44 | Differential UTF-8 query/form encoding, invalid scalars, duplicate/query/fragment handling, header validation and compiled wire requests. |
 | Binary buffers | 15 | Exact file uploads, input limits, regular-file checks, byte access, zero-copy response transfer/reupload, affine rejection, exact length/byte equality with retained ownership, and checked Unicode conversion. |
 | Structured response headers | 7 | Final blocks after redirects/CONNECT/103, case/order/duplicates/empty values, OWS trimming, unfolded fields and separate HTTP/1 and HTTP/2 trailers. |
-| Profile catalog | 45 | Runtime catalog agreement, all 41 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure. |
+| Profile catalog | 46 / 48 | Runtime catalog agreement, all 41 / 44 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure and rejection of optional profiles on stock builds. |
+| Actual browser captures | 2 / 13 | Reparse raw browser TLS and HTTP/2 artifacts; compare Chrome 153, CfT headless 153 and Firefox 156; verify binary/UTF-8 WSS round trips and certificate rejection for all three profiles. |
+| Backend controls | 0 / 7 | Option bounds, TLS handle duplication/reset, cache-safe connection reuse, and rejection of a stream window below the advertised initial setting before request headers. |
+| Browser flow control | 0 / 2 | Three simultaneous 13 MiB+17-byte streams on one connection, exact contents and stream IDs, repeated with different per-request windows to check stream ownership. |
+| Backend installation | 0 / 2 | Input/output manifest hashes and retained notices/source; load the moved installation in a fresh process with its original search path removed. |
 | WS/WSS | 129 | Text/binary/empty/large frames, masking, ordered changing payloads and frame-length boundaries, fragmented UTF-8/binary with interleaved pings, bytewise network input, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, TLS trust/hostname/expiry and proxies. Compiled Bend runs under sanitizers with 1/4 threads, including idle cancellation, 8 MiB blocked sends, exact payloads through 1 MiB, direct receive followed by allocation growth, checked close-reason scalars and fairness to timers. |
 
 The native stress harness makes 3,828 request attempts across repeated sessions,
@@ -37,8 +53,8 @@ program repeatedly cancels shared tokens across two worker threads, releases
 ownership while operations finish, cancels inside body sinks, reuses sessions,
 and exhausts batch budgets. It runs with
 AddressSanitizer, UndefinedBehaviorSanitizer and leak detection enabled. Bend
-batch/save/download/cancellation/configuration programs also execute under the sanitizers. The prebuilt transport
-itself is not instrumented by those builds.
+batch/save/download/cancellation/configuration programs also execute under the sanitizers. The transport
+backends themselves are not instrumented by those builds.
 
 The WebSocket readiness checks exercise compiled Bend callbacks as well as the
 native API. A negative control with the completion yield removed makes the

@@ -1,0 +1,11 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -615,6 +615,8 @@
+       -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+       ${_curl_staged_dependency_args}
+       ${_curl_use_pkgconfig_flag}
++      # FindOpenSSL bypasses CURL_USE_PKGCONFIG; disable its system lookup too.
++      -DCMAKE_DISABLE_FIND_PACKAGE_PkgConfig=ON
+       -DCURL_USE_OPENSSL=ON
+       -DCURL_ENABLE_SSL=ON
+       -DCURL_IMPERSONATE_VERSION=${_curl_impersonate_version}
