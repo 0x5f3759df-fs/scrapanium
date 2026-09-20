@@ -5,6 +5,10 @@ relicensed by this project. Dependencies are stored under ignored `.deps/`.
 
 - Bend compiler/runtime: Apache-2.0; source and license in `.deps/bend`.
 - Bun: MIT; distribution includes its own notices.
+- README artwork uses Archivo, copyright The Archivo Project Authors, under the
+  SIL Open Font License. Its notice is retained in
+  [notices/Archivo.OFL.txt](notices/Archivo.OFL.txt). The rendered artwork embeds
+  outlined lettering; the font is not a runtime dependency.
 - curl-impersonate and curl: upstream MIT/curl licenses plus bundled libraries.
 - BoringSSL, zlib, Brotli, zstd, c-ares, libidn2, nghttp2, nghttp3 and ngtcp2:
   consult every `LICENSE*` in `.deps/curl`. Keep these notices when distributing

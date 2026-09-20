@@ -46,6 +46,19 @@ Chrome Root Store 39. Root-store/platform variation still needs desktop captures
 The preview uses desktop request headers. It is an experimental mixed-source
 profile and must not be represented as an exact desktop or Android browser.
 
+## Custom TLS and HTTP/2 settings
+
+`Config.fingerprint` accepts `Fingerprint{ciphers, curves, signature_algorithms,
+extension_order, http2_settings, pseudo_header_order, cert_compression, grease,
+permute_extensions, window_update}`. Empty strings and window 0 inherit the
+named profile. Bend toggle values are 0 = inherit, 1 = disabled, 2 = enabled;
+the C API uses -1/0/1. Use `Fingerprint.inherit()` for stock profiles.
+
+The string formats follow curl-impersonate: colon-separated cipher/curve names,
+dash-separated TLS extension IDs, semicolon-separated HTTP/2 `id:value`
+settings, and pseudo-header order such as `masp`. Overrides create a custom
+fingerprint; matching a named browser is no longer implied.
+
 ## Updating profiles
 
 1. Inspect primary upstream sources, browser release data and captures. Record

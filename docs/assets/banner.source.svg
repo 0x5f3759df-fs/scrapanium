@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-labelledby="title desc">
+  <title id="title">Scrapanium — HTTP and WebSockets for Bend2</title>
+  <desc id="desc">Bend2 code connects through Scrapanium's native transport to browser TLS profiles, HTTP/1.1 and HTTP/2, and WS/WSS.</desc>
+  <rect width="1280" height="480" rx="20" fill="#211b30"/>
+  <path d="M20 0H1260Q1280 0 1280 20V268H0V20Q0 0 20 0Z" fill="#fff4e9"/>
+  <g font-family="Archivo, sans-serif" fill="#211b30">
+    <text x="62" y="132" font-size="100" font-weight="750" letter-spacing="-4">scrapanium</text>
+    <text x="68" y="199" font-size="34" font-weight="450">HTTP &amp; WebSockets for Bend2.</text>
+  </g>
+  <!-- Two interlocking signal paths form the project's S mark. -->
+  <g transform="translate(996 53)" fill="none" stroke="#e98649" stroke-width="21" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M145 28H63C15 28 15 93 63 93H103"/>
+    <path d="M30 157H112C160 157 160 93 112 93H73"/>
+  </g>
+  <g font-family="Archivo, sans-serif" fill="#fff4e9">
+    <text x="68" y="369" font-size="38" font-weight="650">Bend2</text>
+    <text x="70" y="405" font-size="23" fill="#cbbcd5">your code</text>
+    <text x="352" y="369" font-size="38" font-weight="650">scrapanium</text>
+    <text x="354" y="405" font-size="23" fill="#cbbcd5">native transport</text>
+    <text x="850" y="326" font-size="28" font-weight="550">Browser TLS profiles</text>
+    <text x="850" y="384" font-size="28" font-weight="550">HTTP/1.1 + HTTP/2</text>
+    <text x="850" y="442" font-size="28" font-weight="550">WS + WSS</text>
+  </g>
+  <g fill="none" stroke="#ffb86b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M226 358H309m-11-9 11 9-11 9"/>
+    <path d="M602 358H729Q750 358 750 337V326Q750 315 771 315H816"/>
+    <path d="M750 347V410Q750 431 771 431H816"/>
+    <path d="M750 373H816"/>
+    <path d="m807 307 9 8-9 8m0 42 9 8-9 8m0 42 9 8-9 8"/>
+  </g>
+  <circle cx="669" cy="358" r="7" fill="#ffb86b"/>
+</svg>

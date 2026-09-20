@@ -3,7 +3,8 @@
 Latest full local run: **324 tests passed**, 287.73 seconds, Ubuntu 26.04 under WSL2.
 The compiled implementation uses the Bend/source and backend pins in
 `dependencies.json`. Hosted CI uses the same Ubuntu 26.04/clang 21 target;
-its current result is linked from the README badge.
+the [hosted run for 4921dab passed](https://github.com/0x5f3759df-fs/scrapanium/actions/runs/35482390784).
+The README links to the current workflow results.
 
 ```sh
 python3 scripts/bootstrap.py --matched
