@@ -7,21 +7,53 @@
 
 <p align="center">
   <a href="docs/GETTING_STARTED.md"><b>Get started →</b></a> &nbsp; · &nbsp;
-  <a href="docs/PROFILES.md">Browser profiles</a> &nbsp; · &nbsp;
-  <a href="docs/WEBSOCKETS.md">WebSockets</a> &nbsp; · &nbsp;
-  <a href="benchmarks/RESULTS.md">Benchmarks</a>
+  <a href="docs/API.md">API reference</a> &nbsp; · &nbsp;
+  <a href="#performance">Benchmarks</a>
 </p>
 
-**Scrapanium is an HTTP and WebSocket library for Bend2.** Make requests, choose a browser TLS profile, and keep connections open for fast batches or real-time messages. It runs directly on curl-impersonate and BoringSSL.
+**HTTP and TLS WebSockets for Bend2.** Choose a browser TLS profile, reuse connections, and send requests or real-time messages through curl-impersonate and BoringSSL.
 
-### What you get
+*Working alpha · Linux x86_64 / WSL2 · Bend 2.0.17 · [Current status](#current-status)*
 
-- **Browser profiles** — 41 versioned targets across Chrome, Firefox, Safari and more, plus custom TLS and HTTP/2 settings.
-- **HTTP that reuses connections** — pooled sessions, concurrent batches, cookies, redirects and proxies.
-- **TLS WebSockets** — text and binary messages over WS/WSS, with certificate checks, timeouts and cancellation.
-- **Binary data and downloads** — uploads, response buffers and streaming to files with memory limits.
+## What you get
 
-### Make a request
+- **[41 browser profiles](docs/PROFILES.md)** across Chrome, Firefox, Safari and more, with custom TLS and HTTP/2 settings.
+- **[HTTP/1.1 and HTTP/2](docs/REQUESTS.md)** with pooled sessions, concurrent batches, cookies, redirects and proxies.
+- **[WS and WSS](docs/WEBSOCKETS.md)** for text and binary messages, with certificate verification, timeouts and cancellation.
+- **[Binary data and downloads](examples/download.bend)** with uploads, response buffers and streaming to files.
+
+## Performance
+
+Measured through the Bend API on Linux/WSL2. HTTP and WSS use warm connections and the same curl-impersonate backend as matched curl_cffi.
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/performance-http-mobile.png">
+    <img src="docs/assets/performance-http.png" alt="HTTP throughput across six warm local workloads. Scrapanium's Bend API delivers 1.10 to 1.78 times the requests per second of curl_cffi using the same backend." width="1280">
+  </picture>
+</p>
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/performance-wss-mobile.png">
+    <img src="docs/assets/performance-wss.png" alt="Warm TLS WebSocket throughput: Scrapanium at 5,988 round trips per second and matched curl_cffi at 6,045, using 30-byte binary messages over verified loopback TLS." width="1280">
+  </picture>
+</p>
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/performance-memory-mobile.png">
+    <img src="docs/assets/performance-memory.png" alt="Whole-process peak memory for a 64 MiB response: buffering uses 68.0 MiB; downloading to a file uses 4.2 MiB." width="1280">
+  </picture>
+</p>
+
+Local loopback medians, with startup and handshakes excluded from throughput. Memory is whole-process peak RSS. These measurements do not establish Internet performance or a process-wide memory bound.
+
+[HTTP results](benchmarks/RESULTS.md) · [WSS results](benchmarks/WEBSOCKET.md) · [Memory results](benchmarks/MEMORY.md) — methodology, raw data and reproduction commands.
+
+## Make your first request
+
+After [installing the prerequisites and bootstrapping](docs/GETTING_STARTED.md), save this as `hello.bend` in the repository root:
 
 ```bend
 import Base
@@ -40,10 +72,16 @@ def main() -> IO(Unit):
     print_body(pair)
 ```
 
-**[Install and run your first request →](docs/GETTING_STARTED.md)**
-More examples: [pooled requests](examples/get.bend) · [file downloads](examples/download.bend) · [WebSockets](docs/WEBSOCKETS.md) · [API reference](docs/API.md).
+```sh
+python3 scripts/build.py hello.bend -o build/hello
+./build/hello --threads 1
+```
 
-### Where it stands
+`get` closes its session automatically; `discard` releases the response buffer. For repeated requests, keep a session open and reuse its connections.
+
+[Pooled requests](examples/get.bend) · [File downloads](examples/download.bend) · [WebSockets](docs/WEBSOCKETS.md) · [API reference](docs/API.md)
+
+## Current status
 
 | | Today |
 | :--- | :--- |
@@ -52,12 +90,6 @@ More examples: [pooled requests](examples/get.bend) · [file downloads](examples
 | **Tests** | **324 passing locally**, including **53 WS/WSS cases** and sanitizer checks. [Test details](docs/VALIDATION.md) · [CI](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml). |
 | **Profiles** | Default: Chrome 150. Firefox 148 available; Chrome 152 is a preview. **Latest-browser coverage is incomplete.** [Exact coverage](docs/PROFILES.md). |
 | **Still missing** | Easy binary installs, macOS/ARM support, automatic retries, multipart uploads and WebSocket compression. |
-
-### How fast?
-
-In six warm, local HTTP workloads, Scrapanium measured **1.10–1.78× the throughput of curl_cffi** using the same backend. Small-message WSS was roughly equal: **5,988 vs 6,045 round trips/s**. These are loopback results, not Internet speed guarantees.
-
-[HTTP results & methodology](benchmarks/RESULTS.md) · [WSS results](benchmarks/WEBSOCKET.md) · [Memory usage](benchmarks/MEMORY.md)
 
 ---
 
