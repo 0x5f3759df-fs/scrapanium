@@ -8,7 +8,7 @@
   },
   "original_helper_sha256": "ea4c7564d771ecaec1909fbee8d87ee4adee8d709bfba6c85f38d6f3e741a4ec",
   "portable_source_sha256": {
-    "benchmarks/websocket_receive_capacity.py": "a7b436f66de577a939fc6ec21c22cba4e3b25eb6bc69d04804d4d399fc2d5815",
+    "benchmarks/websocket_receive_capacity.py": "2280851bad4da4a0737eb8758f7c798f1a5e9e4025abce2fba1d5ee44784812c",
     "benchmarks/websocket_receive_probe.c": "436715a02caff32e64ccf1d5fb3c5622c11ef1a7106cb42d3bac85fb568be731"
   },
   "validation": {
@@ -22,8 +22,42 @@
       "baseline equals candidate"
     ],
     "candidate_source_sha256": "a7006f7d1f604177c67313338cf421ca5fac460e1c5001f2f6b854cf1405aa20",
-    "report_sha256": "3be7b21740d83c1c810d1ec224a0413f54bf0826c97113cf9d8c312a34bcd730",
-    "manifest_sha256": "138ef75adc89148e1a05d4e3514700f40d09c94ae557cb97f5f910c7f514cc86",
-    "note": "Instrumentation smoke validates reconstruction, byte/opcode/order checks and probe symbol resolution; its timings are not performance evidence."
-  }
+    "report_sha256": "a72a8783679c1cd5c71f9dcb8c7337f13ab421e647cbf412414108a0cac7ee42",
+    "manifest_sha256": "f4d25a9adcb4c41ed82dd042bb9f8ebd7c53853f8806f4fde6bc1b027309bcb8",
+    "note": "Instrumentation smoke validates reconstruction, byte/opcode/order checks and probe symbol resolution; its timings are not performance evidence.",
+    "compiler_override_rejections_checked": [
+      "CC empty",
+      "CC nonempty",
+      "BEND_SOURCE empty",
+      "BEND_SOURCE nonempty",
+      "BUN empty",
+      "BUN nonempty"
+    ]
+  },
+  "compiler_environment_policy": "Reject presence of CC, BEND_SOURCE or BUN, including empty values, before project imports or mutations.",
+  "previous_portable_versions": [
+    {
+      "source_ref": "0f5176cab3e2c86244e019bc0d8a7075b7250029",
+      "portable_source_sha256": {
+        "benchmarks/websocket_receive_capacity.py": "a7b436f66de577a939fc6ec21c22cba4e3b25eb6bc69d04804d4d399fc2d5815",
+        "benchmarks/websocket_receive_probe.c": "436715a02caff32e64ccf1d5fb3c5622c11ef1a7106cb42d3bac85fb568be731"
+      },
+      "validation": {
+        "action": "prepare from retained report patch, then probe-smoke in new detached worktrees",
+        "status": "passed",
+        "positive_samples": 18,
+        "corruption_and_swap_controls": 6,
+        "root_safety_rejections_checked": [
+          "baseline equals main checkout",
+          "candidate equals main checkout",
+          "baseline equals candidate"
+        ],
+        "candidate_source_sha256": "a7006f7d1f604177c67313338cf421ca5fac460e1c5001f2f6b854cf1405aa20",
+        "report_sha256": "3be7b21740d83c1c810d1ec224a0413f54bf0826c97113cf9d8c312a34bcd730",
+        "manifest_sha256": "138ef75adc89148e1a05d4e3514700f40d09c94ae557cb97f5f910c7f514cc86",
+        "note": "Instrumentation smoke validates reconstruction, byte/opcode/order checks and probe symbol resolution; its timings are not performance evidence."
+      },
+      "note": "Prior published reproducer and its smoke are retained explicitly; that run did not execute the later compiler-override guard."
+    }
+  ]
 }

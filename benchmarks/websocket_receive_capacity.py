@@ -279,6 +279,9 @@ if __name__ == '__main__':
                         help='Explicit reviewed native/path=/source/file; otherwise reconstruct retained report diff')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
+    overrides = [name for name in ('CC', 'BEND_SOURCE', 'BUN') if name in os.environ]
+    if overrides:
+        parser.error('unset compiler overrides before this experiment (including empty values): ' + ', '.join(overrides))
     BASE = args.baseline_root.resolve()
     CANDIDATE = args.candidate_root.resolve()
     ARTIFACTS = args.artifact_dir.resolve()
