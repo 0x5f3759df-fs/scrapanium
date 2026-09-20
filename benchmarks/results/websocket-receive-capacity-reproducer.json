@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "purpose": "Link the unchanged historical reports to the subsequently published portable reproducer; the original reports retain their original helper provenance.",
+  "baseline_ref": "0704d51c2275f26cd2580c95d7bb67f0655b1554",
+  "historical_reports_sha256": {
+    "benchmarks/results/websocket-receive-capacity.json": "8f1790bab0d199c977cff699600e7a26292d8a05196939f02af18e324283a0ee",
+    "benchmarks/results/websocket-receive-capacity-probe.json": "6e38f941396e011d6d50aa51ee288762a4dbd292359c4c4cd9ddda2a4d5cdf27"
+  },
+  "original_helper_sha256": "ea4c7564d771ecaec1909fbee8d87ee4adee8d709bfba6c85f38d6f3e741a4ec",
+  "portable_source_sha256": {
+    "benchmarks/websocket_receive_capacity.py": "a7b436f66de577a939fc6ec21c22cba4e3b25eb6bc69d04804d4d399fc2d5815",
+    "benchmarks/websocket_receive_probe.c": "436715a02caff32e64ccf1d5fb3c5622c11ef1a7106cb42d3bac85fb568be731"
+  },
+  "validation": {
+    "action": "prepare from retained report patch, then probe-smoke in new detached worktrees",
+    "status": "passed",
+    "positive_samples": 18,
+    "corruption_and_swap_controls": 6,
+    "root_safety_rejections_checked": [
+      "baseline equals main checkout",
+      "candidate equals main checkout",
+      "baseline equals candidate"
+    ],
+    "candidate_source_sha256": "a7006f7d1f604177c67313338cf421ca5fac460e1c5001f2f6b854cf1405aa20",
+    "report_sha256": "3be7b21740d83c1c810d1ec224a0413f54bf0826c97113cf9d8c312a34bcd730",
+    "manifest_sha256": "138ef75adc89148e1a05d4e3514700f40d09c94ae557cb97f5f910c7f514cc86",
+    "note": "Instrumentation smoke validates reconstruction, byte/opcode/order checks and probe symbol resolution; its timings are not performance evidence."
+  }
+}

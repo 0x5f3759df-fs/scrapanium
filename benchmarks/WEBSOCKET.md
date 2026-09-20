@@ -138,3 +138,61 @@ This compares Scrapanium revisions, not Scrapanium against curl_cffi.
 
 The reproducer pins its before and after revisions, so subsequent receive-buffer
 optimizations do not silently change that historical comparison.
+
+## Receive-capacity experiment: rejected
+
+A candidate increased direct reads from 16 KiB to at most 128 KiB of already
+owned capacity, retaining the 64-step and 1 MiB dispatch limits. The
+[complete three-client experiment](results/websocket-receive-capacity.json)
+retains all 216 samples: 12 repetitions of six workloads for published
+Scrapanium (`0704d51`), the candidate, and matched-backend curl_cffi. Each
+client ordering occurs twice per workload; workload order is also shuffled.
+All three clients rejected deliberate corruption and reordering before timing.
+
+| Payload | Frames / server write | Candidate / published, paired median | 95% bootstrap interval |
+| --- | ---: | ---: | ---: |
+| 30 B | 1 | 1.019× | 0.978–1.201× |
+| 1 KiB | 1 | 0.993× | 0.892–1.055× |
+| 64 KiB | 1 | 1.087× | 0.971–1.287× |
+| 30 B | 64 | 1.009× | 0.924–1.075× |
+| 1 KiB | 64 | 0.973× | 0.761–1.021× |
+| 64 KiB | 64 | 0.947× | 0.761–1.344× |
+
+Every before/after interval includes 1×, so the patch was rejected as an
+unproven throughput optimization. These nominal intervals describe this run;
+they do not establish equivalence or rule out smaller effects. Duration
+coefficients of variation were 17–44% across client/workload combinations,
+which limits the experiment's ability to distinguish small changes.
+
+The separate [instrumented mechanism pass](results/websocket-receive-capacity-probe.json)
+explains why larger caller buffers did not reduce receive calls here. On each
+64 KiB workload, all three clients made exactly **5,125 successful reads** for
+1,024 messages plus the six-byte warmup. Every successful return was at most
+16 KiB, even though curl_cffi offered 128 KiB and the candidate offered up to
+61,988 bytes. Calls returning `CURLE_AGAIN` varied and are retained separately.
+Instrumented timings are not used for speed claims. The proposed diff, source,
+binary, compiler, and actual mapped-backend hashes remain in the reports.
+
+The portable [experiment helper](websocket_receive_capacity.py) reproduces the
+comparison from isolated baseline and candidate checkouts. This diagnostic
+does not replace the README's independently published streaming matrix.
+
+After the normal matched-backend bootstrap, run from the repository root:
+
+```sh
+ws_base=$(mktemp -d)
+ws_candidate=$(mktemp -d)
+git worktree add --detach "$ws_base" 0704d51c2275f26cd2580c95d7bb67f0655b1554
+git worktree add --detach "$ws_candidate" 0704d51c2275f26cd2580c95d7bb67f0655b1554
+ln -s "$PWD/.deps" "$ws_base/.deps"
+ln -s "$PWD/.deps" "$ws_candidate/.deps"
+for phase in prepare measure probe; do
+  .deps/venv-matched/bin/python benchmarks/websocket_receive_capacity.py "$phase" \
+    --baseline-root "$ws_base" --candidate-root "$ws_candidate" \
+    --artifact-dir build/receive-capacity-reproduction
+done
+```
+
+`prepare` reconstructs the rejected patch from the retained report and checks
+every candidate source hash before compiling. A pre-existing manifest or output
+is rejected to preserve earlier samples; use a fresh artifact directory to rerun.
