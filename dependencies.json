@@ -1,0 +1,20 @@
+{
+  "bend": {
+    "repository": "https://github.com/bendlang/bend.git",
+    "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "version": "2.0.17"
+  },
+  "curl_impersonate": {
+    "version": "2.2.3",
+    "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+    "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+  },
+  "curl_cffi_matched": {
+    "repository": "https://github.com/lexiforest/curl_cffi.git",
+    "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+    "version": "0.16.4b1"
+  },
+  "curl_cffi_release": "0.16.0",
+  "bun": "1.3.11",
+  "platform": "linux-x86_64-glibc"
+}

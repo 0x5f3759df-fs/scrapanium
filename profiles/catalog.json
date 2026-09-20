@@ -1,0 +1,221 @@
+{
+  "checked_utc": "2026-09-20",
+  "backend": "curl-impersonate 2.2.3",
+  "source": "https://github.com/lexiforest/curl-impersonate/tree/6e8f87760a4dd96771e96fc9d55440dcd8845243",
+  "profiles": [
+    {
+      "id": "chrome100",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome101",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome104",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome107",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome110",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome116",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome119",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome120",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome123",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome124",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome131",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome131_android",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome133a",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome136",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome142",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome145",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome146",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome150",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome99",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome99_android",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "edge101",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "edge99",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "firefox133",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "firefox135",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "firefox144",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "firefox147",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "okhttp4_android",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari153",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari155",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari170",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari172_ios",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari180",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari180_ios",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari184",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari184_ios",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari260",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari2601",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "safari260_ios",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "tor145",
+      "origin": "backend",
+      "real_browser_verified": false
+    },
+    {
+      "id": "firefox148",
+      "origin": "scrapanium",
+      "base": "firefox147",
+      "source": "https://github.com/bogdanfinn/tls-client/blob/34718e1b514b446b95bc68dc4f096247e69c7939/profiles/contributed_browser_profiles.go",
+      "real_browser_verified": false
+    },
+    {
+      "id": "chrome152_preview",
+      "origin": "scrapanium-preview",
+      "base": "chrome150",
+      "source": "https://github.com/bogdanfinn/tls-client/blob/34718e1b514b446b95bc68dc4f096247e69c7939/profiles/extension_data.go",
+      "real_browser_verified": false,
+      "known_gaps": [
+        "Signature-algorithm GREASE is not exposed by the pinned backend API.",
+        "Platform-dependent trust anchors need real desktop browser captures.",
+        "HTTP/3 has not been validated."
+      ]
+    }
+  ]
+}

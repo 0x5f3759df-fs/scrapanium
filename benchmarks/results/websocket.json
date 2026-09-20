@@ -1,0 +1,75 @@
+{
+  "utc": "2026-09-20T01:35:22.977773+00:00",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "dependencies": {
+    "bend": {
+      "repository": "https://github.com/bendlang/bend.git",
+      "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+      "version": "2.0.17"
+    },
+    "curl_impersonate": {
+      "version": "2.2.3",
+      "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+      "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+    },
+    "curl_cffi_matched": {
+      "repository": "https://github.com/lexiforest/curl_cffi.git",
+      "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+      "version": "0.16.4b1"
+    },
+    "curl_cffi_release": "0.16.0",
+    "bun": "1.3.11",
+    "platform": "linux-x86_64-glibc"
+  },
+  "count": 1000,
+  "runs": 5,
+  "profile": "chrome146",
+  "payload_bytes": 30,
+  "verify": true,
+  "timing": "warm round trips, excluding handshake, startup and close",
+  "caveats": [
+    "Loopback Python peer; not Internet performance.",
+    "Bend IO.now has millisecond resolution.",
+    "Bend buffers/discards each received message; Python also compares payload bytes.",
+    "Only Scrapanium additionally verifies the WebSocket acceptance challenge; setup is untimed."
+  ],
+  "source_sha256": {
+    "scrapanium.bend": "00f0bf4fd7c200e83bbff86db6f1cbeb301bd7d3a39f3f154d779e3d2995cf8b",
+    "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "native/bend_bridge.c": "ae974996c3be635add7ea705dcf5aae0f2c34325765be7b3f21c8952bf86c3cc",
+    "native/bend_websocket.inc.c": "074647889ff583970bb9a18136bbaeb27a09949eec2a227f0d4c8fb241435cef",
+    "native/profiles.inc.c": "07f034b52dc6928b39990c4e0e44273fb21db800e520469bb2642be78480259b",
+    "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "native/websocket.inc.c": "0688afeb247058e5268fa0964eb731d5391278f8b5f865699073c1ff12b495e5",
+    "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "benchmarks/websocket.bend": "2ba3d0a5664d1d4b87b207063f630a1ed5d9ff845012d15209df71089a7d0621",
+    "benchmarks/websocket.py": "bebd6ff90a2d1ce91afbec898f1fbce58e6e135313f000fe409e692d62389c8e",
+    "benchmarks/websocket_python.py": "1777c00b04fe286a9d159c9a64edaac7a0606dd223b2835cf5d34e705e3c485c",
+    "tests/ws_lab.py": "845e651f692870a93bc96dde8802c8c3bf20b79777ac88069ab140ca53c2d942"
+  },
+  "clients": {
+    "scrapanium-bend": {
+      "times_ms": [
+        189.0,
+        137.0,
+        154.0,
+        167.0,
+        194.0
+      ],
+      "median_ms": 167.0,
+      "round_trips_per_second": 5988.023952095808
+    },
+    "curl_cffi-matched": {
+      "times_ms": [
+        268.48620999999184,
+        165.42549099995085,
+        99.03385500001605,
+        196.8330299999934,
+        153.05403900003967
+      ],
+      "median_ms": 165.42549099995085,
+      "round_trips_per_second": 6045.017572293602
+    }
+  }
+}

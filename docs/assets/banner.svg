@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="280" viewBox="0 0 1120 280" role="img" aria-labelledby="title desc">
+  <title id="title">Scrapanium</title>
+  <desc id="desc">Native requests and TLS WebSockets for Bend2</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#18132b"/><stop offset="1" stop-color="#292040"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#ffb86b"/><stop offset="1" stop-color="#ee7d84"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#c6b0f3" stroke-opacity=".045"/></pattern>
+  </defs>
+  <rect width="1120" height="280" rx="18" fill="url(#bg)"/>
+  <rect width="1120" height="280" rx="18" fill="url(#grid)"/>
+  <g fill="none" stroke="#a78bfa" stroke-opacity=".3" stroke-width="1.4">
+    <path d="M835 66h80l36 61h104M808 145h67l49 75h131M888 145l39-68h128"/>
+    <circle cx="835" cy="66" r="4"/><circle cx="808" cy="145" r="4"/><circle cx="1055" cy="127" r="4"/><circle cx="1055" cy="220" r="4"/>
+  </g>
+  <rect x="55" y="62" width="142" height="154" rx="12" fill="#ffb86b" fill-opacity=".05" stroke="url(#accent)" stroke-width="1.5"/>
+  <text x="72" y="91" font-family="monospace" font-size="13" fill="#ffc183">BEND / NATIVE</text>
+  <text x="73" y="163" font-family="Arial, sans-serif" font-size="65" font-weight="700" fill="#fff4e9">Sc</text>
+  <text x="74" y="197" font-family="monospace" font-size="13" fill="#d2badb">HTTP · WSS</text>
+  <text x="236" y="125" font-family="Arial, sans-serif" font-size="61" font-weight="700" letter-spacing="-2" fill="#fff4e9">scrapanium</text>
+  <text x="239" y="164" font-family="Arial, sans-serif" font-size="22" fill="#c7bed9">Native requests. Browser TLS. Bend2.</text>
+  <path d="M240 196h42" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+  <text x="298" y="201" font-family="monospace" font-size="12" letter-spacing="1.2" fill="#ffbc8a">MEASURED, TESTED, OPEN SOURCE</text>
+</svg>
