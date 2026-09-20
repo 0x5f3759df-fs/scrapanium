@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="docs/assets/banner.png" alt="Scrapanium — HTTP and WebSockets for Bend2. Your Bend code connects through a native transport to browser TLS profiles, HTTP/1.1 and HTTP/2, and WS/WSS." width="1280">
+  <picture>
+    <source media="(max-width: 640px)" srcset="docs/assets/banner-mobile.png">
+    <img src="docs/assets/banner.png" alt="Scrapanium — HTTP and WebSockets for Bend2. Your Bend code connects through a native transport to browser TLS profiles, HTTP/1.1 and HTTP/2, and WS/WSS." width="1280">
+  </picture>
 </p>
 
 <p align="center">

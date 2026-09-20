@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="430" viewBox="0 0 640 430" role="img" aria-labelledby="title desc">
+  <title id="title">Scrapanium — HTTP and WebSockets for Bend2</title>
+  <desc id="desc">Bend2 connects through Scrapanium's native transport to browser TLS, HTTP and WebSockets.</desc>
+  <rect width="640" height="430" rx="16" fill="#211b30"/>
+  <path d="M16 0H624Q640 0 640 16V204H0V16Q0 0 16 0Z" fill="#fff4e9"/>
+  <g font-family="Archivo, sans-serif" fill="#211b30">
+    <text x="33" y="105" font-size="74" font-weight="750" letter-spacing="-3">scrapanium</text>
+    <text x="39" y="162" font-size="28" font-weight="450">HTTP &amp; WebSockets for Bend2.</text>
+  </g>
+  <g transform="translate(506 38) scale(.56)" fill="none" stroke="#e98649" stroke-width="21" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M145 28H63C15 28 15 93 63 93H103"/>
+    <path d="M30 157H112C160 157 160 93 112 93H73"/>
+  </g>
+  <g font-family="Archivo, sans-serif" fill="#fff4e9">
+    <text x="39" y="282" font-size="34" font-weight="650">Bend2</text>
+    <text x="238" y="282" font-size="34" font-weight="650">scrapanium</text>
+    <text x="240" y="318" font-size="24" fill="#cbbcd5">native transport</text>
+    <text x="38" y="393" font-size="26" font-weight="550">Browser TLS</text>
+    <text x="291" y="393" font-size="26" font-weight="550">HTTP</text>
+    <text x="465" y="393" font-size="26" font-weight="550">WS/WSS</text>
+  </g>
+  <g fill="none" stroke="#ffb86b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M157 271H213m-9-8 9 8-9 8"/>
+    <path d="M326 333V348H113V360m213-12H517V360m-191-12V360"/>
+  </g>
+</svg>
