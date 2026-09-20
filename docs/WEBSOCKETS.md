@@ -6,7 +6,7 @@ as HTTP. The upgrade uses HTTP/1.1. HTTP/2 extended CONNECT and permessage-defla
 are not implemented. WebSocket-specific backend TLS settings are retained;
 an HTTPS fingerprint is not assumed to be identical to a WSS fingerprint.
 
-```python
+```bend
 socket : S.WebSocket <- IO.try(S.WebSocket, S.Ws.connect(S.defaults(), url))
 data : S.Bytes <- IO.try(S.Bytes, S.Bytes.from_text("hello"))
 pair : S.WebSocket & Result<&1, &1, U32 & String, Unit> <- S.Ws.send(socket, 1, data, 5000)
@@ -34,6 +34,12 @@ messages and interleaved controls. Receive answers pings and discards pongs;
 there is no background heartbeat while the application is idle. Cancellation
 is checked between chunks and at most every 50 ms during socket waits.
 
+Send, receive and close wait for socket readiness on Bend's I/O loop. Pending
+operations retain partial writes, message fragments and control replies until
+completion, cancellation or timeout. The upgrade runs on an I/O helper;
+individual messages do not require a helper-thread handoff. Other Bend tasks
+can progress while a WebSocket waits or handles continuously available messages.
+
 Text messages must be valid UTF-8; fragmentation may split a code point. Control
 frames have the RFC 6455 125-byte limit. Close codes and reasons are checked.
 The acceptance challenge is verified independently of libcurl; duplicate/missing
@@ -52,3 +58,4 @@ UTF-8 reason (or an empty payload). `Ws.close` accepts these as separate argumen
 See [RFC 6455](https://www.rfc-editor.org/rfc/rfc6455),
 [libcurl's frame API](https://curl.se/libcurl/c/curl_ws_recv.html), and the
 [repeatable WSS benchmark](../benchmarks/WEBSOCKET.md).
+Implementation review criteria are recorded in [operation invariants](WEBSOCKET_INTERNALS.md).

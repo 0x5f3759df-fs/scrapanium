@@ -21,8 +21,14 @@ jobs:
       - run: python3 scripts/bootstrap.py --matched
       - run: python3 scripts/build.py
       - run: .deps/venv-matched/bin/pytest -q tests --junitxml=build/results.xml
+      - name: Check streamed WebSocket bytes and ordering under sanitizers
+        run: |
+          .deps/venv-matched/bin/python benchmarks/websocket_streaming.py --smoke --sanitize --runs 1 --threads 1 --output build/ws-stream-smoke-1.json
+          .deps/venv-matched/bin/python benchmarks/websocket_streaming.py --smoke --sanitize --no-build --runs 1 --threads 4 --output build/ws-stream-smoke-4.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results
-          path: build/results.xml
+          path: |
+            build/results.xml
+            build/ws-stream-smoke-*.json

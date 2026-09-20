@@ -167,11 +167,120 @@ def bend_ws():
     return build(root / "tests/websocket.bend", root / "build/ws-bend", True)
 
 
-def test_bend_wss_with_sanitizers(bend_ws, ws):
+@pytest.mark.parametrize("threads", [1, 4])
+def test_bend_wss_with_sanitizers(bend_ws, ws, threads):
     import os
     import subprocess
     _, url, ca = ws
-    out = subprocess.run([str(bend_ws), "--threads", "1"], env={**os.environ,
+    out = subprocess.run([str(bend_ws), "--threads", str(threads)], env={**os.environ,
         "SCRAPANIUM_TEST_URL": url + "/echo", "SCRAPANIUM_TEST_CA": ca}, capture_output=True, text=True, timeout=10)
     assert out.returncode == 0, out.stdout + out.stderr
     assert out.stdout.splitlines() == ["1", "Bend 🌍\0"]
+
+
+def test_sequence_and_frame_length_boundaries(ws):
+    """Every returned byte and ordering at both RFC6455 length transitions."""
+    import random
+    server, url, ca = ws
+    rng = random.Random(20260920)
+    expected = [i.to_bytes(4, "big") + rng.randbytes(size) for i, size in enumerate(
+        [0, 1, 121, 122, 123, 65531, 65532, 65533, 262140] * 3)]
+    before = len(server.frames)
+    with WebSocket(url + "/echo", ca_bundle=ca) as w:
+        for payload in expected:
+            assert w.send(payload, timeout=5000) == 0
+            assert w.recv(timeout=5000) == (0, 2, payload)
+    assert server.frames[before:] == [(2, payload, True) for payload in expected]
+
+
+def test_fragmented_binary_and_partial_network_reads(ws):
+    server, url, ca = ws
+    before = len(server.frames)
+    with WebSocket(url + "/fragmented-binary", ca_bundle=ca) as w:
+        assert w.recv() == (0, 2, bytes(range(256)) * 257)
+        assert w.send(b"next\x00\xff") == 0
+        assert w.recv() == (0, 2, b"next\x00\xff")
+    assert server.frames[before:before + 6] == [(10, bytes([i, 0, 255]), True) for i in range(6)]
+    with WebSocket(url + "/bytewise-frame", ca_bundle=ca) as w:
+        assert w.recv() == (0, 2, b"\x00\xff\x80\xc0boundary\x00")
+
+
+def test_deadline_spans_fragment_progress(ws):
+    _, url, ca = ws
+    with WebSocket(url + "/slow-fragments", ca_bundle=ca) as w:
+        start = time.monotonic()
+        assert w.recv(timeout=100)[0] == 14
+        assert time.monotonic() - start < .5
+        assert w.send(b"closed-after-incomplete-frame") == 16
+
+
+@pytest.fixture(scope="module")
+def bend_ws_async():
+    import sys
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "scripts"))
+    from build import build
+    return build(root / "tests/websocket_async.bend", root / "build/ws-async-bend", True)
+
+
+@pytest.mark.parametrize("threads", [1, 4])
+def test_bend_pending_cancel_and_timeout_with_sanitizers(bend_ws_async, ws, threads):
+    import os
+    import subprocess
+    _, url, ca = ws
+    out = subprocess.run([str(bend_ws_async), "--threads", str(threads)], env={**os.environ,
+        "SCRAPANIUM_TEST_URL": url + "/echo", "SCRAPANIUM_TEST_CA": ca},
+        capture_output=True, text=True, timeout=10)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert sorted(out.stdout.splitlines()) == ["cancelled", "timeout", "timer"]
+
+
+@pytest.fixture(scope="module")
+def bend_ws_checked():
+    import sys
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "scripts"))
+    from build import build
+    return build(root / "benchmarks/websocket.bend", root / "build/ws-checked-bend", True)
+
+
+@pytest.mark.parametrize("threads", [1, 4])
+@pytest.mark.parametrize("size", [0, 125, 126, 65535, 65536, 1048576])
+def test_bend_exact_binary_roundtrips_with_sanitizers(bend_ws_checked, ws, tmp_path, threads, size):
+    import os
+    import subprocess
+    _, url, ca = ws
+    payload = tmp_path / "payload.bin"
+    payload.write_bytes(bytes((i * 131 + 17) % 256 for i in range(size)))
+    out = subprocess.run([str(bend_ws_checked), "--threads", str(threads)], input="x", env={**os.environ,
+        "SCRAPANIUM_BENCH_URL": url + "/slow-send", "SCRAPANIUM_BENCH_CA": ca,
+        "SCRAPANIUM_BENCH_COUNT": "8", "SCRAPANIUM_BENCH_PAYLOAD": str(payload)},
+        capture_output=True, text=True, timeout=20)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert out.stdout.splitlines()[0] == "ready"
+
+
+@pytest.fixture(scope="module")
+def bend_ws_blocked():
+    import sys
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "scripts"))
+    from build import build
+    return build(root / "tests/websocket_blocked_send.bend", root / "build/ws-blocked-send", True)
+
+
+@pytest.mark.parametrize("threads", [1, 4])
+def test_bend_partial_send_cancellation_and_timeout(bend_ws_blocked, ws, tmp_path, threads):
+    import os
+    import subprocess
+    _, url, ca = ws
+    payload = tmp_path / "blocked.bin"
+    payload.write_bytes(bytes(range(256)) * 32768)
+    out = subprocess.run([str(bend_ws_blocked), "--threads", str(threads)], env={**os.environ,
+        "SCRAPANIUM_TEST_URL": url + "/stall-read", "SCRAPANIUM_TEST_CA": ca,
+        "SCRAPANIUM_TEST_PAYLOAD": str(payload)}, capture_output=True, text=True, timeout=15)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert sorted(out.stdout.splitlines()) == ["cancelled-send", "timeout-send"]

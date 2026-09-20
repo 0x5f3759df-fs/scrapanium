@@ -1,12 +1,14 @@
 /* Included in scrapanium.c to share the profile and cancellation machinery. */
 #include <poll.h>
 #include <time.h>
+#include "ws_async.h"
 #include "ws_handshake.inc.c"
 
 struct sp_ws {
   sp_session *session;
   sp_response *handshake;
   pthread_mutex_t gate;
+  curl_socket_t fd;
   int broken, closing, closed;
 };
 
@@ -17,20 +19,6 @@ static uint64_t sp_ws_clock(void) {
 static int sp_ws_check(uint64_t deadline, sp_cancel *cancel) {
   if (sp_cancel_is_triggered(cancel)) return SP_CANCELLED;
   return sp_ws_clock() >= deadline ? SP_TIMEOUT : SP_OK;
-}
-static int sp_ws_wait(sp_ws *w, short events, uint64_t deadline, sp_cancel *cancel) {
-  int error = sp_ws_check(deadline, cancel);
-  if (error) return error;
-  curl_socket_t socket = CURL_SOCKET_BAD;
-  if (curl_easy_getinfo(w->session->slots[0].easy, CURLINFO_ACTIVESOCKET, &socket) || socket == CURL_SOCKET_BAD)
-    return SP_CLOSED;
-  uint64_t now = sp_ws_clock();
-  if (now >= deadline) return SP_TIMEOUT;
-  uint64_t remaining = deadline - now;
-  int wait = remaining > 50 ? 50 : (int)remaining;
-  struct pollfd fd = {.fd = socket, .events = events};
-  if (poll(&fd, 1, wait) < 0 && errno != EINTR) return SP_TRANSPORT;
-  return sp_ws_check(deadline, cancel);
 }
 static int sp_ws_utf8(const unsigned char *s, size_t n) {
   for (size_t i = 0; i < n;) {
@@ -111,6 +99,7 @@ sp_ws *sp_ws_upgrade(sp_session *s, const sp_request *q, sp_cancel *cancel, int 
   long status = 0; curl_easy_getinfo(s->slots[0].easy, CURLINFO_RESPONSE_CODE, &status);
   if (!err && status != 101) err = SP_PROTOCOL;
   if (!err) err = sp_ws_verify_handshake(q, &r->headers, expected);
+  if (!err && (curl_easy_getinfo(s->slots[0].easy, CURLINFO_ACTIVESOCKET, &w->fd) || w->fd == CURL_SOCKET_BAD)) err = SP_CLOSED;
   if (err) goto fail;
   /* CONNECT_ONLY handles stay attached to their multi for their entire life. */
   if (error) *error = SP_OK;
@@ -121,99 +110,192 @@ fail:
   return NULL;
 }
 
-static int sp_ws_send_inner(sp_ws *w, unsigned kind, const unsigned char *data, size_t size,
-                            uint64_t deadline, sp_cancel *cancel) {
-  unsigned flags = kind == 1 ? CURLWS_TEXT : kind == 2 ? CURLWS_BINARY : kind == 8 ? CURLWS_CLOSE :
+/* The blocking C API and Bend's event loop drive this same state machine.
+ * A step never waits for a descriptor: libcurl owns framing, masking and TLS,
+ * and CURLE_AGAIN hands readiness back to the caller without losing offsets,
+ * fragments or an in-flight control reply. */
+struct sp_ws_io {
+  sp_ws *socket;
+  sp_cancel *cancel;
+  uint64_t deadline;
+  unsigned operation, kind, message_kind, send_flags;
+  const unsigned char *out;
+  size_t out_size, offset, control_size;
+  unsigned char control[125];
+  sp_buffer message;
+  short events;
+  int sending, after_send, done, error;
+};
+
+static unsigned sp_ws_flags(unsigned kind) {
+  return kind == 1 ? CURLWS_TEXT : kind == 2 ? CURLWS_BINARY : kind == 8 ? CURLWS_CLOSE :
     kind == 9 ? CURLWS_PING : CURLWS_PONG;
-  size_t offset = 0;
-  do {
-    int error = sp_ws_check(deadline, cancel); if (error) return error;
-    size_t sent = 0;
-    CURLcode code = curl_ws_send(w->session->slots[0].easy, data ? data + offset : (const unsigned char *)"",
-      size - offset, &sent, 0, flags);
-    offset += sent;
-    if (code == CURLE_OK && offset == size) return SP_OK;
-    if (code && code != CURLE_AGAIN) return SP_TRANSPORT;
-    error = sp_ws_wait(w, POLLOUT, deadline, cancel); if (error) return error;
-  } while (1);
 }
-int sp_ws_send(sp_ws *w, unsigned kind, const unsigned char *data, size_t size, uint32_t timeout, sp_cancel *cancel) {
-  if (!w || !timeout || (size && !data) || (kind != 1 && kind != 2 && kind != 9 && kind != 10) ||
-      (kind >= 9 && size > 125) || (kind == 1 && !sp_ws_utf8(data, size))) return SP_INVALID;
-  if (size > w->session->config.max_body_bytes) return SP_INPUT_LIMIT;
-  if (pthread_mutex_trylock(&w->gate)) return SP_BUSY;
-  sp_cancel_retain(cancel);
-  int error = w->broken || w->closed || w->closing ? SP_CLOSED : sp_ws_send_inner(w, kind, data, size, sp_ws_clock() + timeout, cancel);
-  if (error) w->broken = 1;
-  sp_cancel_free(cancel); pthread_mutex_unlock(&w->gate);
+static int sp_ws_io_end(sp_ws_io *io, int error) {
+  io->done = 1; io->error = error;
+  if (error) io->socket->broken = 1;
+  if (io->operation == SP_WS_CLOSE) io->socket->closing = 1;
   return error;
 }
+static void sp_ws_io_send(sp_ws_io *io, unsigned kind, const unsigned char *data,
+                          size_t size, int after_send) {
+  io->out = data; io->out_size = size; io->offset = 0;
+  io->send_flags = sp_ws_flags(kind); io->sending = 1; io->after_send = after_send;
+}
+sp_ws_io *sp_ws_io_start(sp_ws *w, unsigned operation, unsigned kind,
+                         const unsigned char *data, size_t size, uint32_t timeout,
+                         sp_cancel *cancel, int *error) {
+  int err = SP_INVALID;
+  if (!w || !timeout || (size && !data)) goto fail;
+  if (operation == SP_WS_SEND) {
+    if ((kind != 1 && kind != 2 && kind != 9 && kind != 10) ||
+        (kind >= 9 && size > 125) || (kind == 1 && !sp_ws_utf8(data, size))) goto fail;
+    if (size > w->session->config.max_body_bytes) { err = SP_INPUT_LIMIT; goto fail; }
+  } else if (operation == SP_WS_CLOSE) {
+    if (size > 123 || !sp_ws_code(kind) || !sp_ws_utf8(data, size)) goto fail;
+  } else if (operation != SP_WS_RECEIVE) goto fail;
+  if (pthread_mutex_trylock(&w->gate)) { err = SP_BUSY; goto fail; }
+  sp_ws_io *io = calloc(1, sizeof *io);
+  if (!io) { pthread_mutex_unlock(&w->gate); err = SP_NOMEM; goto fail; }
+  io->socket = w; io->operation = operation; io->deadline = sp_ws_clock() + timeout;
+  io->message.limit = w->session->config.max_body_bytes; io->message.limit_error = SP_BODY_LIMIT;
+  io->cancel = cancel; sp_cancel_retain(cancel);
+  if (operation == SP_WS_CLOSE && w->closed) sp_ws_io_end(io, SP_OK);
+  else if (w->broken || w->closed || (operation == SP_WS_SEND && w->closing)) sp_ws_io_end(io, SP_CLOSED);
+  else if (operation == SP_WS_SEND) sp_ws_io_send(io, kind, data, size, 0);
+  else if (operation == SP_WS_CLOSE) {
+    io->control[0] = (unsigned char)(kind >> 8); io->control[1] = (unsigned char)kind;
+    if (size) memcpy(io->control + 2, data, size);
+    sp_ws_io_send(io, 8, io->control, size + 2, 1);
+  }
+  if (error) *error = SP_OK;
+  return io;
+fail:
+  if (error) *error = err;
+  return NULL;
+}
 
-static int sp_ws_receive_inner(sp_ws *w, unsigned *kind, unsigned char **data, size_t *size,
-                               uint64_t deadline, sp_cancel *cancel) {
-  sp_buffer message = {.limit = w->session->config.max_body_bytes, .limit_error = SP_BODY_LIMIT};
-  unsigned char control[125]; size_t control_size = 0;
-  unsigned message_kind = 0; int error = 0;
-  for (;;) {
-    error = sp_ws_check(deadline, cancel); if (error) break;
+static int sp_ws_io_close_message(sp_ws_io *io) {
+  io->socket->closed = 1;
+  free(io->message.data); io->message = (sp_buffer){.limit = 125, .limit_error = SP_BODY_LIMIT};
+  if (io->operation == SP_WS_RECEIVE &&
+      (sp_write((char *)io->control, 1, io->control_size, &io->message) != io->control_size || io->message.error))
+    return sp_ws_io_end(io, io->message.error);
+  io->kind = 8;
+  return sp_ws_io_end(io, SP_OK);
+}
+
+static int sp_ws_io_advance(sp_ws_io *io) {
+  sp_ws *w = io->socket;
+  /* Bound work per dispatch even with a peer that continuously supplies data.
+   * The immediate wake below yields to other Bend activations; no helper is
+   * needed and buffered TLS data is retried without requiring a fresh edge. */
+  for (unsigned steps = 0; steps < 64; steps++) {
+    int error = sp_ws_check(io->deadline, io->cancel);
+    if (error) return sp_ws_io_end(io, error);
+    if (io->sending) {
+      size_t sent = 0;
+      CURLcode code = curl_ws_send(w->session->slots[0].easy,
+        io->out ? io->out + io->offset : (const unsigned char *)"",
+        io->out_size - io->offset, &sent, 0, io->send_flags);
+      io->offset += sent;
+      if (code && code != CURLE_AGAIN) return sp_ws_io_end(io, SP_TRANSPORT);
+      if (code == CURLE_AGAIN || io->offset != io->out_size) { io->events = POLLOUT; return SP_WS_PENDING; }
+      io->sending = 0;
+      if (!io->after_send) return sp_ws_io_end(io, SP_OK);
+      if (io->after_send == 2) return sp_ws_io_close_message(io);
+      if (io->operation == SP_WS_CLOSE) w->closing = 1;
+      continue;
+    }
     unsigned char chunk[16384]; size_t got = 0; const struct curl_ws_frame *meta = NULL;
     CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, sizeof chunk, &got, &meta);
-    if (code == CURLE_AGAIN) { error = sp_ws_wait(w, POLLIN, deadline, cancel); if (error) break; continue; }
-    if (code || !meta) { error = code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT; break; }
+    if (code == CURLE_AGAIN) { io->events = POLLIN; return SP_WS_PENDING; }
+    if (code || !meta) return sp_ws_io_end(io, code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT);
     unsigned flags = meta->flags;
     unsigned frame_kind = flags & CURLWS_CLOSE ? 8 : flags & CURLWS_PING ? 9 : flags & CURLWS_PONG ? 10 :
       flags & CURLWS_TEXT ? 1 : flags & CURLWS_BINARY ? 2 : 0;
-    if (!frame_kind || meta->offset < 0 || meta->bytesleft < 0) { error = SP_PROTOCOL; break; }
+    if (!frame_kind || meta->offset < 0 || meta->bytesleft < 0) return sp_ws_io_end(io, SP_PROTOCOL);
     if (frame_kind >= 8) {
-      if (!meta->offset) control_size = 0;
-      if ((flags & CURLWS_CONT) || got > sizeof control - control_size ||
-          (uint64_t)meta->bytesleft > sizeof control - control_size - got) { error = SP_PROTOCOL; break; }
-      memcpy(control + control_size, chunk, got); control_size += got;
+      if (!meta->offset) io->control_size = 0;
+      if ((flags & CURLWS_CONT) || got > sizeof io->control - io->control_size ||
+          (uint64_t)meta->bytesleft > sizeof io->control - io->control_size - got) return sp_ws_io_end(io, SP_PROTOCOL);
+      memcpy(io->control + io->control_size, chunk, got); io->control_size += got;
       if (meta->bytesleft) continue;
-      if (frame_kind == 9) { error = sp_ws_send_inner(w, 10, control, control_size, deadline, cancel); if (error) break; }
+      if (frame_kind == 9) sp_ws_io_send(io, 10, io->control, io->control_size, 1);
       else if (frame_kind == 8) {
-        if (!sp_ws_close_valid(control, control_size)) { error = SP_PROTOCOL; break; }
-        if (!w->closing) { error = sp_ws_send_inner(w, 8, control, control_size, deadline, cancel); if (error) break; }
-        w->closed = 1;
-        free(message.data); message = (sp_buffer){.limit = 125, .limit_error = SP_BODY_LIMIT};
-        if (sp_write((char *)control, 1, control_size, &message) != control_size || message.error) { error = message.error; break; }
-        *kind = 8; *data = message.data; *size = message.size; return SP_OK;
+        if (!sp_ws_close_valid(io->control, io->control_size)) return sp_ws_io_end(io, SP_PROTOCOL);
+        if (!w->closing) sp_ws_io_send(io, 8, io->control, io->control_size, 2);
+        else return sp_ws_io_close_message(io);
       }
       continue;
     }
-    if (message_kind && message_kind != frame_kind) { error = SP_PROTOCOL; break; }
-    message_kind = frame_kind;
-    if (got > message.limit - message.size || (uint64_t)meta->bytesleft > message.limit - message.size - got) { error = SP_BODY_LIMIT; break; }
-    if (sp_write((char *)chunk, 1, got, &message) != got || message.error) { error = message.error; break; }
+    if (io->message_kind && io->message_kind != frame_kind) return sp_ws_io_end(io, SP_PROTOCOL);
+    io->message_kind = frame_kind;
+    sp_buffer *message = &io->message;
+    if (got > message->limit - message->size || (uint64_t)meta->bytesleft > message->limit - message->size - got)
+      return sp_ws_io_end(io, SP_BODY_LIMIT);
+    if (sp_write((char *)chunk, 1, got, message) != got || message->error) return sp_ws_io_end(io, message->error);
     if (!meta->bytesleft && !(flags & CURLWS_CONT)) {
-      if (message_kind == 1 && !sp_ws_utf8(message.data, message.size)) { error = SP_PROTOCOL; break; }
-      *kind = message_kind; *data = message.data; *size = message.size; return SP_OK;
+      if (frame_kind == 1 && !sp_ws_utf8(message->data, message->size)) return sp_ws_io_end(io, SP_PROTOCOL);
+      if (io->operation == SP_WS_CLOSE) {
+        /* A close handshake may pass complete data messages before its ack. */
+        free(message->data); *message = (sp_buffer){.limit = w->session->config.max_body_bytes, .limit_error = SP_BODY_LIMIT};
+        io->message_kind = 0;
+      } else { io->kind = frame_kind; return sp_ws_io_end(io, SP_OK); }
     }
   }
-  free(message.data); return error;
+  io->events = 0;
+  return SP_WS_PENDING;
+}
+
+int sp_ws_io_step(sp_ws_io *io, unsigned *kind, unsigned char **data, size_t *size) {
+  int error = io->done ? io->error : sp_ws_io_advance(io);
+  if (!error && io->operation == SP_WS_RECEIVE) {
+    *kind = io->kind; *data = io->message.data; *size = io->message.size;
+    io->message.data = NULL; io->message.size = io->message.cap = 0;
+  }
+  return error;
+}
+int sp_ws_io_poll(sp_ws_io *io, int *fd, short *events, uint64_t *wake_ms) {
+  int error = sp_ws_check(io->deadline, io->cancel);
+  if (error) return sp_ws_io_end(io, error);
+  *fd = io->socket->fd; *events = io->events;
+  uint64_t now = sp_ws_clock();
+  *wake_ms = !io->events ? now : io->deadline;
+  /* Cancellation can originate outside Bend, so poll it even with no traffic.
+   * This preserves the blocking API's maximum 50 ms cancellation latency. */
+  if (io->cancel && *wake_ms > now + 50) *wake_ms = now + 50;
+  return SP_OK;
+}
+void sp_ws_io_free(sp_ws_io *io) {
+  if (!io) return;
+  free(io->message.data); sp_cancel_free(io->cancel);
+  pthread_mutex_unlock(&io->socket->gate); free(io);
+}
+static int sp_ws_io_block(sp_ws_io *io, unsigned *kind, unsigned char **data, size_t *size) {
+  int error;
+  while ((error = sp_ws_io_step(io, kind, data, size)) == SP_WS_PENDING) {
+    int socket; short events; uint64_t wake;
+    error = sp_ws_io_poll(io, &socket, &events, &wake); if (error) break;
+    uint64_t now = sp_ws_clock(), gap = wake > now ? wake - now : 0;
+    struct pollfd fd = {.fd = socket, .events = events};
+    if (poll(&fd, events ? 1 : 0, gap > INT_MAX ? INT_MAX : (int)gap) < 0 && errno != EINTR) {
+      error = sp_ws_io_end(io, SP_TRANSPORT); break;
+    }
+  }
+  sp_ws_io_free(io); return error;
+}
+int sp_ws_send(sp_ws *w, unsigned kind, const unsigned char *data, size_t size, uint32_t timeout, sp_cancel *cancel) {
+  int error; sp_ws_io *io = sp_ws_io_start(w, SP_WS_SEND, kind, data, size, timeout, cancel, &error);
+  return io ? sp_ws_io_block(io, NULL, NULL, NULL) : error;
 }
 int sp_ws_receive(sp_ws *w, unsigned *kind, unsigned char **data, size_t *size, uint32_t timeout, sp_cancel *cancel) {
   if (!w || !kind || !data || !size || !timeout) return SP_INVALID;
   *kind = 0; *data = NULL; *size = 0;
-  if (pthread_mutex_trylock(&w->gate)) return SP_BUSY;
-  sp_cancel_retain(cancel);
-  int error = w->broken || w->closed ? SP_CLOSED : sp_ws_receive_inner(w, kind, data, size, sp_ws_clock() + timeout, cancel);
-  if (error) w->broken = 1;
-  sp_cancel_free(cancel); pthread_mutex_unlock(&w->gate); return error;
+  int error; sp_ws_io *io = sp_ws_io_start(w, SP_WS_RECEIVE, 0, NULL, 0, timeout, cancel, &error);
+  return io ? sp_ws_io_block(io, kind, data, size) : error;
 }
 int sp_ws_close(sp_ws *w, unsigned code, const unsigned char *reason, size_t size, uint32_t timeout, sp_cancel *cancel) {
-  if (!w || !timeout || size > 123 || (size && !reason) || !sp_ws_code(code) || !sp_ws_utf8(reason, size)) return SP_INVALID;
-  if (pthread_mutex_trylock(&w->gate)) return SP_BUSY;
-  sp_cancel_retain(cancel);
-  uint64_t deadline = sp_ws_clock() + timeout;
-  unsigned char payload[125] = {(unsigned char)(code >> 8), (unsigned char)code};
-  if (size) memcpy(payload + 2, reason, size);
-  int error = w->closed ? SP_OK : w->broken ? SP_CLOSED : sp_ws_send_inner(w, 8, payload, size + 2, deadline, cancel);
-  w->closing = 1;
-  while (!error && !w->closed) {
-    unsigned kind; unsigned char *data = NULL; size_t length;
-    error = sp_ws_receive_inner(w, &kind, &data, &length, deadline, cancel); free(data);
-  }
-  if (error) w->broken = 1;
-  sp_cancel_free(cancel); pthread_mutex_unlock(&w->gate); return error;
+  int error; sp_ws_io *io = sp_ws_io_start(w, SP_WS_CLOSE, code, reason, size, timeout, cancel, &error);
+  return io ? sp_ws_io_block(io, NULL, NULL, NULL) : error;
 }

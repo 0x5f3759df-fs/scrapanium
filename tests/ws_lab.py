@@ -64,6 +64,19 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 for _ in range(100): self.wfile.write(frame(9, b"tick")); time.sleep(.01)
                 return
             elif self.path == "/slow-send": time.sleep(.25)
+            elif self.path == "/stall-read": time.sleep(1)
+            elif self.path == "/fragmented-binary":
+                payload = bytes(range(256)) * 257
+                cuts = [0, 1, 125, 126, 127, 16384, 65535, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path == "/bytewise-frame":
+                for byte in frame(2, b"\x00\xff\x80\xc0boundary\x00"):
+                    self.wfile.write(bytes([byte])); self.wfile.flush(); time.sleep(.001)
+            elif self.path == "/slow-fragments":
+                for i in range(30):
+                    self.wfile.write(frame(2 if i == 0 else 0, bytes([i]), False)); self.wfile.flush(); time.sleep(.02)
             while True:
                 kind, data, final = read_frame(self.rfile)
                 self.server.frames.append((kind, data, final))

@@ -12,6 +12,7 @@ See [requests, headers, bytes and error handling](REQUESTS.md) and the
 | `http.bend: Headers` | Case-insensitive lookup, duplicate-preserving fields, validation and explicit empty values. |
 | `response_headers`, `response_trailers` | Final-response structured headers and separate HTTP/1 or HTTP/2 trailers. |
 | `Bytes.from_list/from_text/read_file`, `Request.binary` | Binary-safe uploads; bounded regular-file reads. |
+| `Bytes.equal(left, right)` | Exact length and byte comparison. Returns `((left, right), equal)` so both owned buffers remain usable; no text conversion or hashing. |
 | `into_bytes(response)` | Moves the native body buffer for reuse without copying it. |
 | `defaults()`, `browser(name)` | Secure configuration; explicit pinned `chrome150` default. |
 | `open(config)` | Returns `Result<..., Session>`. Unknown profile fails explicitly. |
@@ -59,4 +60,3 @@ Bend result/text copies, previously returned responses, allocator overhead,
 temporary realloc copies and backend internals; it is not a process RSS cap.
 Streaming downloads keep no body buffer but retain bounded headers. See
 [resource semantics](RESOURCES.md) and [the download example](../examples/download.bend).
-

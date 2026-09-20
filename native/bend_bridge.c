@@ -113,13 +113,13 @@ static char *sp_bend_string(Env e, Term t, int *invalid, int cstring, size_t *le
   return s;
 }
 
-#if defined(CID_SCRAPANIUM_BYTES_FROM_LIST) || defined(CID_SCRAPANIUM_BYTES_FROM_TEXT) || defined(CID_SCRAPANIUM_BYTES_READ_FILE) || defined(CID_SCRAPANIUM_BYTES_AT) || defined(CID_SCRAPANIUM_BYTES_TEXT) || defined(CID_SCRAPANIUM_INTO_BYTES) || defined(CID_SCRAPANIUM_WS_RECEIVE)
+#if defined(CID_SCRAPANIUM_BYTES_FROM_LIST) || defined(CID_SCRAPANIUM_BYTES_FROM_TEXT) || defined(CID_SCRAPANIUM_BYTES_READ_FILE) || defined(CID_SCRAPANIUM_BYTES_AT) || defined(CID_SCRAPANIUM_BYTES_TEXT) || defined(CID_SCRAPANIUM_BYTES_EQUAL) || defined(CID_SCRAPANIUM_INTO_BYTES) || defined(CID_SCRAPANIUM_WS_RECEIVE)
 static Term sp_bend_bytes_term(Env e, SpBendBytes *b) {
   Term f[] = {sp_bend_handle_new(b, 4), (Term)b->size};
   return sp_bend_node(e, CID_BYTES, 2, f);
 }
 #endif
-#if defined(CID_SCRAPANIUM_BYTES_AT) || defined(CID_SCRAPANIUM_BYTES_TEXT) || defined(CID_SCRAPANIUM_BYTES_DISCARD) || defined(CID_SCRAPANIUM_WS_SEND)
+#if defined(CID_SCRAPANIUM_BYTES_AT) || defined(CID_SCRAPANIUM_BYTES_TEXT) || defined(CID_SCRAPANIUM_BYTES_EQUAL) || defined(CID_SCRAPANIUM_BYTES_DISCARD) || defined(CID_SCRAPANIUM_WS_SEND)
 static SpBendBytes *sp_bend_bytes(Env e, Term value) {
   Term f[2]; sp_bend_take(e, value, 2, f);
   return sp_bend_handle_take(f[0], 4);
@@ -168,6 +168,15 @@ static Term sp_bend_bytes_at(Env e, Term *f, IoWork *w) {
 static Term sp_bend_bytes_text(Env e, Term *f, IoWork *w) {
   (void)w; SpBendBytes *b = sp_bend_bytes(e, f[0]);
   return io_tup(e, sp_bend_bytes_term(e, b), io_str(e, (const char *)(b->data ? b->data : (unsigned char *)""), b->size));
+}
+#endif
+#ifdef CID_SCRAPANIUM_BYTES_EQUAL
+static Term sp_bend_bytes_equal(Env e, Term *f, IoWork *w) {
+  (void)w;
+  SpBendBytes *left = sp_bend_bytes(e, f[0]), *right = sp_bend_bytes(e, f[1]);
+  int equal = left->size == right->size && (!left->size || !memcmp(left->data, right->data, left->size));
+  Term pair = io_tup(e, sp_bend_bytes_term(e, left), sp_bend_bytes_term(e, right));
+  return io_tup(e, pair, term_pak(equal ? CID_TRUE : CID_FALSE, 0));
 }
 #endif
 #ifdef CID_SCRAPANIUM_BYTES_DISCARD
@@ -645,6 +654,9 @@ static void __attribute__((constructor)) sp_bend_register(void) {
 #endif
 #ifdef CID_SCRAPANIUM_BYTES_TEXT
   io_eff(CID_SCRAPANIUM_BYTES_TEXT, sp_bend_bytes_text, 0);
+#endif
+#ifdef CID_SCRAPANIUM_BYTES_EQUAL
+  io_eff(CID_SCRAPANIUM_BYTES_EQUAL, sp_bend_bytes_equal, 0);
 #endif
 #ifdef CID_SCRAPANIUM_BYTES_DISCARD
   io_eff(CID_SCRAPANIUM_BYTES_DISCARD, sp_bend_bytes_discard, 0);

@@ -141,6 +141,13 @@ def Scrapanium.bytes_text(bytes: Bytes) -> IO(Bytes & String):
 def Bytes.text(bytes: Bytes) -> IO(Bytes & String):
   Scrapanium.bytes_text(bytes)
 
+# Compares length and every byte without text decoding; returns both buffers.
+def Scrapanium.bytes_equal(left: Bytes, right: Bytes) -> IO((Bytes & Bytes) & Bool):
+  import "./native/bend_bridge.c"
+
+def Bytes.equal(left: Bytes, right: Bytes) -> IO((Bytes & Bytes) & Bool):
+  Scrapanium.bytes_equal(left, right)
+
 def Scrapanium.bytes_discard(bytes: Bytes) -> IO(Unit):
   import "./native/bend_bridge.c"
 

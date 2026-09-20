@@ -1,10 +1,12 @@
 # Implementation validation
 
-Latest full local run: **324 tests passed**, 287.73 seconds, Ubuntu 26.04 under WSL2.
+Latest local validation: **385 tests passed**, Ubuntu 26.04 under WSL2.
+The published-backend checkout passed 271 existing non-WebSocket tests in
+150.95 seconds and 114 WebSocket/readiness/byte-comparison tests in 84.57 seconds.
 The compiled implementation uses the Bend/source and backend pins in
 `dependencies.json`. Hosted CI uses the same Ubuntu 26.04/clang 21 target;
-the [hosted run for 4921dab passed](https://github.com/0x5f3759df-fs/scrapanium/actions/runs/35482390784).
-The README links to the current workflow results.
+the [current workflow results](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml)
+report hosted validation separately.
 
 ```sh
 python3 scripts/bootstrap.py --matched
@@ -23,10 +25,10 @@ JUnit detail is generated at `build/test-results.xml` (ignored as a build artifa
 | Resource control | 30 | Retained allocation/count limits, decoded gzip limits, concurrent cancellation, wakeup while waiting for headers, session reuse, synchronous chunk sinks, atomic downloads and destination preservation on TLS/status/timeout/truncation/cancellation/filesystem failure. |
 | Bend/native integration | 16 | Five pure laws, compiled batches with/without sanitizers, exact binary IO, affine/invalid-handle rejection, two native sanitizer stress programs, compiled TLS trust/hostname/expiry checks, nested config/boolean conversion, custom TLS wire capture, timer-driven cancellation, token lifetime/release, batch/download cancellation and a download-only effect subset. |
 | Request builders | 44 | Differential UTF-8 query/form encoding, invalid scalars, duplicate/query/fragment handling, header validation and compiled wire requests. |
-| Binary buffers | 12 | Exact file uploads, input limits, regular-file checks, byte access, zero-copy response transfer/reupload and affine rejection. |
+| Binary buffers | 13 | Exact file uploads, input limits, regular-file checks, byte access, zero-copy response transfer/reupload, affine rejection, and exact length/byte equality with retained ownership. |
 | Structured response headers | 7 | Final blocks after redirects/CONNECT/103, case/order/duplicates/empty values, OWS trimming, unfolded fields and separate HTTP/1 and HTTP/2 trailers. |
 | Profile catalog | 45 | Runtime catalog agreement, all 41 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure. |
-| WS/WSS | 53 | Text/binary/empty/large frames, client masking, fragmented UTF-8 with interleaved pings, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, certificate trust/hostname/expiry, proxy tunneling and compiled Bend under sanitizers. |
+| WS/WSS | 113 | Text/binary/empty/large frames, masking, ordered changing payloads and frame-length boundaries, fragmented UTF-8/binary with interleaved pings, bytewise network input, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, TLS trust/hostname/expiry and proxies. Compiled Bend runs under sanitizers with 1/4 threads, including idle cancellation, 8 MiB blocked sends, exact payloads through 1 MiB and fairness to timers. |
 
 The native stress harness makes 3,828 request attempts across repeated sessions,
 including malformed header bytes and mixed-success batches, then 100 unsupported
@@ -37,6 +39,13 @@ and exhausts batch budgets. It runs with
 AddressSanitizer, UndefinedBehaviorSanitizer and leak detection enabled. Bend
 batch/save/download/cancellation/configuration programs also execute under the sanitizers. The prebuilt transport
 itself is not instrumented by those builds.
+
+The WebSocket readiness checks exercise compiled Bend callbacks as well as the
+native API. A negative control with the completion yield removed makes the
+always-ready send loop finish before its forked timer; the production path
+dispatches the timer first with both one and four worker threads. Review the
+[operation invariants](WEBSOCKET_INTERNALS.md) when changing that path. This is
+test and review evidence, not a formal proof of every possible network state.
 
 Actual external HTTPS was exercised once through the compiled Bend example at
 `https://example.com`. Automated tests use only loopback fixtures and generated
@@ -110,8 +119,9 @@ path stayed around 4.1–4.2 MiB across the four tested body sizes. These are ob
 measurements on this machine, not fixed resource guarantees; see
 `benchmarks/MEMORY.md` and the raw sample/source-hash files.
 
-Five shuffled WSS runs measured 5,988 Bend round trips/second versus 6,045 for
-matched curl_cffi with a 30-byte binary payload. That is approximately equal
-throughput for this loopback workload, not a general WebSocket speed claim.
-Handshake/close are excluded; detailed caveats and raw samples are in
-`benchmarks/WEBSOCKET.md`.
+Seven shuffled WSS repetitions across seven workloads retain all 98 samples.
+Both clients now check every byte and opcode inside timing. The retained Python
+peer case measures 5,952 Bend round trips/second versus 3,918 for matched curl_cffi.
+The single-connection Go / 30 B case remains inconclusive: its paired ratio
+interval crosses 1×. All cases, uncertainty and reproduction details appear in
+[`benchmarks/WEBSOCKET.md`](../benchmarks/WEBSOCKET.md).
