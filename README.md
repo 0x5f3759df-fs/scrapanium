@@ -13,8 +13,6 @@
 
 **HTTP and TLS WebSockets for Bend2.** Choose a browser TLS profile, reuse connections, and send requests or real-time messages through curl-impersonate and BoringSSL.
 
-*Working alpha · Linux x86_64 / WSL2 · Bend 2.0.17 · [Current status](#current-status)*
-
 ## What you get
 
 - **[41 browser profiles](docs/PROFILES.md)** across Chrome, Firefox, Safari and more, with custom TLS and HTTP/2 settings.
@@ -24,7 +22,7 @@
 
 ## Performance
 
-Measured through the Bend API on Linux/WSL2. HTTP and WSS use warm connections and the same curl-impersonate backend as matched curl_cffi.
+Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately.
 
 <p>
   <picture>

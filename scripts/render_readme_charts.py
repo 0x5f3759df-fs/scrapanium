@@ -30,8 +30,9 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs" / "assets"
 INK = "#211b2f"
 PAPER = "#fff4e9"
-ORANGE = "#ef8446"
-LAVENDER = "#b5a5c3"
+ORANGE = "#d96528"
+LAVENDER = "#776187"
+BUFFER = "#393243"
 MUTED = "#63586b"
 RULE = "#ded2cf"
 WORKLOADS = [
@@ -98,13 +99,14 @@ def axes(fig, bounds, maximum, ticks, tick_size=12):
     return ax
 
 
-def legend(fig, y, mobile=False):
-    positions = [(0.06, "Scrapanium · Bend", ORANGE),
-                 (0.51 if mobile else 0.35, "curl_cffi · matched", LAVENDER)]
-    for x, text, color in positions:
-        fig.add_artist(Rectangle((x, y - .007), .022, .013,
+def legend(fig, y, mobile=False, items=None, mobile_step=.036):
+    items = items or [("Scrapanium (Bend)", ORANGE), ("curl_cffi (Python)", LAVENDER)]
+    for i, (text, color) in enumerate(items):
+        x = .06 if mobile else .06 + i * .39
+        row = y - i * mobile_step if mobile else y
+        fig.add_artist(Rectangle((x, row - .009), .026, .018,
                                  transform=fig.transFigure, color=color, linewidth=0))
-        label(fig, x + .035, y, text, size=11.4 if mobile else 13, va="center")
+        label(fig, x + .043, row, text, size=15 if mobile else 16.5, bold=True, va="center")
 
 
 def save(fig, stem, description):
@@ -148,7 +150,7 @@ def http_chart(data, mobile=False):
         label(fig, .06, .928, "Requests/s · higher is better", 13.2, color=MUTED)
         legend(fig, .890, mobile=True)
         for i, ((_, title, detail), (bend, baseline)) in enumerate(zip(WORKLOADS, values)):
-            top = .833 - i * .119
+            top = .805 - i * .116
             label(fig, .06, top, title, 14.2, True)
             label(fig, .06, top - .021, detail, 12, color=MUTED)
             label(fig, .93, top, f"{bend / baseline:.2f}×", 15, True, ha="right")
@@ -191,10 +193,11 @@ def http_chart(data, mobile=False):
 
 
 def compact_chart(stem, title, subtitle, rows, maximum, ticks, notes, description, mobile=False):
-    fig = canvas(480 if mobile else 1000, 495 if mobile else 440)
-    label(fig, .06, .892, title, 21 if mobile else 27, True)
-    label(fig, .06, .828, subtitle, 12.5 if mobile else 15, color=MUTED)
-    ax = axes(fig, [.06, .288, .87 if mobile else .88, .413], maximum, ticks, 11.5 if mobile else 13)
+    fig = canvas(480 if mobile else 1000, 610 if mobile else 510)
+    label(fig, .06, .916, title, 21 if mobile else 27, True)
+    label(fig, .06, .852, subtitle, 12.5 if mobile else 15, color=MUTED)
+    legend(fig, .784, mobile, [(name, color) for name, _, _, color in rows], mobile_step=.052)
+    ax = axes(fig, [.06, .268, .87 if mobile else .88, .347], maximum, ticks, 11.5 if mobile else 13)
     ax.set_ylim(-.23, 2.45)
     for row, (name, value, formatted, color) in zip([1.6, .15], rows):
         ax.barh(row, value, height=.52, color=color)
@@ -228,9 +231,9 @@ def main():
         for mobile in (False, True):
             http_chart(local, mobile)
             compact_chart(
-                "performance-wss", "WSS: a near tie", "Round trips/s · higher is better",
-                [("Scrapanium · Bend", bend, f"{bend:,.0f}", ORANGE),
-                 ("curl_cffi · matched", baseline, f"{baseline:,.0f}", LAVENDER)],
+                "performance-wss", "TLS WebSocket throughput", "Round trips/s · higher is better",
+                [("Scrapanium (Bend)", bend, f"{bend:,.0f}", ORANGE),
+                 ("curl_cffi (Python)", baseline, f"{baseline:,.0f}", LAVENDER)],
                 7400, [0, 2000, 4000, 6000],
                 (["30-byte payload · 1,000 warm round trips",
                   "5 runs · same backend · setup excluded",
@@ -243,11 +246,11 @@ def main():
                 "Python also compares returned payloads. Linux/WSL2 loopback only; startup, "
                 "TLS/HTTP upgrade and close excluded. Source: benchmarks/results/websocket.json.", mobile)
             compact_chart(
-                "performance-memory", "Stream a 64 MiB body to file", "Whole-process peak RSS (MiB) · lower is better",
-                [("Download to file", memory["download"], f'{memory["download"]:.1f} MiB', ORANGE),
-                 ("Buffer in memory", memory["buffer"], f'{memory["buffer"]:.1f} MiB', LAVENDER)],
+                "performance-memory", "Memory: stream vs buffer", "Peak process RSS · MiB · lower is better",
+                [("Stream to file", memory["download"], f'{memory["download"]:.1f} MiB', ORANGE),
+                 ("Buffer response", memory["buffer"], f'{memory["buffer"]:.1f} MiB', BUFFER)],
                 89, [0, 20, 40, 60, 80],
-                (["Same 64 MiB HTTP/1 response · Bend",
+                (["Both modes: Scrapanium (Bend) · 64 MiB",
                   "Median of 3 runs · Linux temporary file",
                   "Observed RSS, not a process memory cap."] if mobile else
                  ["Same 64 MiB HTTP/1 response · Scrapanium Bend · median of 3 runs",
