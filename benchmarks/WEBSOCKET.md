@@ -196,3 +196,104 @@ done
 `prepare` reconstructs the rejected patch from the retained report and checks
 every candidate source hash before compiling. A pre-existing manifest or output
 is rejected to preserve earlier samples; use a fresh artifact directory to rerun.
+
+## Per-operation state reuse comparison
+
+This separate comparison measures the candidate that embeds WebSocket operation
+state in its socket, removing the per-operation state-object `calloc` and
+`free`. The measured candidate changes only `native/websocket.inc.c`; its SHA-256
+is `0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5`. The
+baseline is `0704d51c2275f26cd2580c95d7bb67f0655b1554`. The matched `curl_cffi`
+client is version `0.16.4b1`; every timed process mapped the same
+`libcurl-impersonate` backend with SHA-256
+`bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3`.
+
+The [216-sample measurement](results/websocket-operation-reuse.json) contains
+12 balanced repeats for each of six payload and frame-batching workloads across
+baseline, candidate and `curl_cffi`; the separate
+[18-sample instrumented probe](results/websocket-operation-reuse-probe.json)
+retains one sample per client and workload. Both reference the same frozen
+[provenance manifest](results/websocket-operation-reuse-manifest.json), SHA-256
+`0522652351871bc9984c5bce9726782dfaf65c767c25baa5c6ad5c970a79f561`. The
+measure and probe file hashes are `4518c543f45339607a5868d94585ff62236031e76eb40ec540c7b492b5f62ce4`
+and `cfcbcf953fab1668ae5dd60bdfcca064635b459ba5e6025deb86702c62e07834`.
+
+Each client compares every sequence-tagged message's bytes and binary opcode
+inside the timed interval, then releases expected and actual buffers. A Go TLS
+peer independently verifies frame and payload byte totals. The six corruption
+and frame-swap controls failed in all three clients before measurement. Setup,
+payload preparation, TLS upgrade, warmup and close are excluded from the timed
+interval; source and binary hashes, mapped backend, clock bounds and peer totals
+are retained in the reports. The probe report is instrumented and its timings
+are not used in the table below.
+
+Each cell is a paired throughput ratio: `A / B` is `B elapsed / A elapsed`, so
+values above 1 mean A completed more messages per second. Intervals are the
+2.5th and 97.5th percentiles of 10,000 repeat-level bootstrap medians (seed
+`20260923`). The `baseline / curl_cffi` column is computed from the same retained
+repeat-paired raw samples, separately from both candidate comparisons.
+
+| Payload | Frames / server write | Candidate / baseline | Candidate / curl_cffi | Baseline / curl_cffi |
+| --- | ---: | ---: | ---: | ---: |
+| 30 B | 1 | 1.017× (0.979–1.170×) | 1.495× (1.415–1.625×) | 1.499× (1.383–1.592×) |
+| 1 KiB | 1 | 0.981× (0.952–1.068×) | 1.425× (1.328–1.564×) | 1.402× (1.325–1.584×) |
+| 64 KiB | 1 | 0.926× (0.832–1.038×) | 1.222× (0.959–1.524×) | 1.175× (1.125–1.501×) |
+| 30 B | 64 | 1.003× (0.983–1.059×) | 2.350× (2.252–2.453×) | 2.351× (2.216–2.531×) |
+| 1 KiB | 64 | 1.018× (0.982–1.100×) | 2.011× (1.832–2.196×) | 1.972× (1.569–2.088×) |
+| 64 KiB | 64 | 1.115× (1.021–1.257×) | 1.267× (1.247–1.623×) | 1.136× (1.031–1.316×) |
+
+Five of the six candidate/baseline intervals include 1×; the 64 KiB / one-frame
+case has a median of 0.926× and interval 0.832–1.038×. Only the 64 KiB / 64-frame
+candidate/baseline interval excludes 1× in this matrix. These are nominal
+per-workload intervals without a multiple-comparison adjustment, so this single
+result does not establish a broad throughput change. Intervals that include 1×
+are inconclusive and do not establish equivalence. The existing README streaming
+headline is based on its separate report, not this comparison.
+
+To audit the retained reports without rebuilding or timing clients, run from
+the repository root in WSL/Linux:
+
+```sh
+.deps/venv-matched/bin/python benchmarks/audit_websocket_operation_reuse.py
+```
+
+This checks report-internal schedule completeness and balance, paired sample
+counts, finite timing/rate values, peer totals and errors, backend identities,
+negative controls, receive histograms, source-hash differences and saved
+bootstrap math. It does not reopen absolute source or binary paths from the
+manifest; use the recorded hashes when those original local artifacts are
+available.
+
+To reconstruct and rerun the experiment, first bootstrap the matched backend as
+for the other streaming benchmark, then use a new artifact directory. The
+portable helper reconstructs the candidate from the published candidate
+report, rather than from the current checkout:
+
+```sh
+unset CC BEND_SOURCE BUN
+ws_base=$(mktemp -d)
+ws_candidate=$(mktemp -d)
+git worktree add --detach "$ws_base" 0704d51c2275f26cd2580c95d7bb67f0655b1554
+git worktree add --detach "$ws_candidate" 0704d51c2275f26cd2580c95d7bb67f0655b1554
+ln -s "$PWD/.deps" "$ws_base/.deps"
+ln -s "$PWD/.deps" "$ws_candidate/.deps"
+artifact_dir="build/wss-operation-reuse-$(date -u +%Y%m%dT%H%M%SZ)"
+python=./.deps/venv-matched/bin/python
+
+$python benchmarks/websocket_receive_capacity.py prepare \
+  --baseline-root "$ws_base" --candidate-root "$ws_candidate" \
+  --candidate-report benchmarks/results/websocket-operation-reuse.json \
+  --artifact-dir "$artifact_dir"
+$python benchmarks/websocket_receive_capacity.py measure \
+  --baseline-root "$ws_base" --candidate-root "$ws_candidate" \
+  --artifact-dir "$artifact_dir"
+$python benchmarks/websocket_receive_capacity.py probe \
+  --baseline-root "$ws_base" --candidate-root "$ws_candidate" \
+  --artifact-dir "$artifact_dir"
+$python benchmarks/audit_websocket_operation_reuse.py \
+  --measure "$artifact_dir/measure.json" --probe "$artifact_dir/probe.json" \
+  --manifest "$artifact_dir/manifest.json"
+```
+
+The audit helper validates report semantics and arithmetic; it does not rerun
+the timed benchmark or treat the instrumented probe as performance evidence.
