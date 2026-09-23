@@ -4,12 +4,28 @@
 #include "ws_async.h"
 #include "ws_handshake.inc.c"
 
+/* One operation owns the socket gate. Its state stays at a stable address in
+ * that socket while parked, and is reset only after acquiring the gate. */
+struct sp_ws_io {
+  sp_ws *socket;
+  sp_cancel *cancel;
+  uint64_t deadline;
+  unsigned operation, kind, message_kind, send_flags;
+  const unsigned char *out;
+  size_t out_size, offset, control_size;
+  unsigned char control[125];
+  sp_buffer message;
+  short events;
+  int sending, after_send, done, error;
+};
+
 struct sp_ws {
   sp_session *session;
   sp_response *handshake;
   pthread_mutex_t gate;
   curl_socket_t fd;
   int broken, closing, closed;
+  sp_ws_io operation;
 };
 
 static uint64_t sp_ws_clock(void) {
@@ -114,19 +130,6 @@ fail:
  * A step never waits for a descriptor: libcurl owns framing, masking and TLS,
  * and CURLE_AGAIN hands readiness back to the caller without losing offsets,
  * fragments or an in-flight control reply. */
-struct sp_ws_io {
-  sp_ws *socket;
-  sp_cancel *cancel;
-  uint64_t deadline;
-  unsigned operation, kind, message_kind, send_flags;
-  const unsigned char *out;
-  size_t out_size, offset, control_size;
-  unsigned char control[125];
-  sp_buffer message;
-  short events;
-  int sending, after_send, done, error;
-};
-
 static unsigned sp_ws_flags(unsigned kind) {
   return kind == 1 ? CURLWS_TEXT : kind == 2 ? CURLWS_BINARY : kind == 8 ? CURLWS_CLOSE :
     kind == 9 ? CURLWS_PING : CURLWS_PONG;
@@ -193,8 +196,8 @@ sp_ws_io *sp_ws_io_start(sp_ws *w, unsigned operation, unsigned kind,
     if (size > 123 || !sp_ws_code(kind) || !sp_ws_utf8(data, size)) goto fail;
   } else if (operation != SP_WS_RECEIVE) goto fail;
   if (pthread_mutex_trylock(&w->gate)) { err = SP_BUSY; goto fail; }
-  sp_ws_io *io = calloc(1, sizeof *io);
-  if (!io) { pthread_mutex_unlock(&w->gate); err = SP_NOMEM; goto fail; }
+  sp_ws_io *io = &w->operation;
+  memset(io, 0, sizeof *io);
   io->socket = w; io->operation = operation; io->deadline = sp_ws_clock() + timeout;
   io->message.limit = w->session->config.max_body_bytes; io->message.limit_error = SP_BODY_LIMIT;
   io->cancel = cancel; sp_cancel_retain(cancel);
@@ -311,8 +314,11 @@ int sp_ws_io_poll(sp_ws_io *io, int *fd, short *events, uint64_t *wake_ms) {
 }
 void sp_ws_io_free(sp_ws_io *io) {
   if (!io) return;
+  sp_ws *socket = io->socket;
   free(io->message.data); sp_cancel_free(io->cancel);
-  pthread_mutex_unlock(&io->socket->gate); free(io);
+  io->message.data = NULL; io->cancel = NULL; io->out = NULL; io->socket = NULL;
+  /* Do not access embedded state after releasing its owner's gate. */
+  pthread_mutex_unlock(&socket->gate);
 }
 static int sp_ws_io_block(sp_ws_io *io, unsigned *kind, unsigned char **data, size_t *size) {
   int error;

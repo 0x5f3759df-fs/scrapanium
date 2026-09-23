@@ -1,6 +1,23 @@
 # Implementation validation
 
-Latest local validation on Ubuntu 26.04 under WSL2:
+WebSocket operation-state reuse targeted validation on Ubuntu 26.04 under WSL2
+(working tree based on local `48f4602`; this is not a full-suite run): the
+optional browser backend passed 134 tests in 111.79 seconds across the
+operation-state reuse sanitizer harness, native WebSocket API tests, generated
+WS/WSS sequences and Bend readiness tests.
+The run includes AddressSanitizer/UndefinedBehaviorSanitizer lifecycle checks
+and compiled Bend checks with one and four threads.
+
+The published hosted full-suite run at [`0f5176c`](https://github.com/0x5f3759df-fs/scrapanium/actions/runs/35492009948)
+completed successfully for both stock and browser jobs. Its stock job reported
+414 passed and 22 skipped. The browser job and its test-results artifact both
+completed successfully, but its exact JUnit count has not been verified here.
+Those hosted results predate WebSocket operation-state reuse. For the new
+commit's full-matrix result, see the
+[current CI workflow](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml).
+
+Previous complete local validation on Ubuntu 26.04 under WSL2 (historical run
+before WebSocket operation-state reuse):
 
 - **Stock backend: 406 passed, 22 skipped**, in 336.17 seconds. The skipped
   cases require the optional backend.
@@ -28,7 +45,12 @@ Bun 1.3.11 and a curl_cffi source build linked to the same shared backend. Local
 JUnit detail is generated at `build/test-results.xml` (ignored as a build artifact).
 
 Counts shown as stock/browser differ by backend; a single count applies to both.
-The optional build skips the one stock-only unsupported-profile check.
+The optional build skips the one stock-only unsupported-profile check. Except
+for the updated WS/WSS collection count, these group counts describe the
+historical full-suite validation above. The current WebSocket collection has
+138 cases: 134 from the four targeted files above plus four close-reason scalar
+cases. This count includes eight generated WS/WSS sequences and the WebSocket
+operation-state reuse lifecycle regression.
 
 | Group | Tests | Evidence |
 | --- | ---: | --- |
@@ -44,7 +66,13 @@ The optional build skips the one stock-only unsupported-profile check.
 | Backend controls | 0 / 7 | Option bounds, TLS handle duplication/reset, cache-safe connection reuse, and rejection of a stream window below the advertised initial setting before request headers. |
 | Browser flow control | 0 / 2 | Three simultaneous 13 MiB+17-byte streams on one connection, exact contents and stream IDs, repeated with different per-request windows to check stream ownership. |
 | Backend installation | 0 / 2 | Input/output manifest hashes and retained notices/source; load the moved installation in a fresh process with its original search path removed. |
-| WS/WSS | 129 | Text/binary/empty/large frames, masking, ordered changing payloads and frame-length boundaries, fragmented UTF-8/binary with interleaved pings, bytewise network input, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, TLS trust/hostname/expiry and proxies. Compiled Bend runs under sanitizers with 1/4 threads, including idle cancellation, 8 MiB blocked sends, exact payloads through 1 MiB, direct receive followed by allocation growth, checked close-reason scalars and fairness to timers. |
+| WS/WSS | 138 | Text/binary/empty/large frames, masking, ordered changing payloads and frame-length boundaries, fragmented UTF-8/binary with interleaved pings, bytewise network input, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, TLS trust/hostname/expiry and proxies. Eight generated sequences (four deterministic seeds over each of WS and WSS) check 18 messages apiece, arbitrary frame/write cuts and ping/pong ordering. Compiled Bend runs under sanitizers with 1/4 threads, including idle cancellation, 8 MiB blocked sends, exact payloads through 1 MiB, direct receive followed by allocation growth, checked close-reason scalars and fairness to timers. |
+
+The change adds a native lifecycle sanitizer regression for the embedded state.
+It checks parked-state stability, busy-gate preservation, transferred-buffer
+ownership, and timeout/cancellation cleanup. This separate test passed in the
+targeted 134-case run above; it is not included in the historical full-suite
+totals.
 
 The native stress harness makes 3,828 request attempts across repeated sessions,
 including malformed header bytes and mixed-success batches, then 100 unsupported

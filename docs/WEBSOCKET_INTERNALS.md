@@ -17,6 +17,15 @@ review criteria backed by tests, not a formal verification claim.
 | Scheduling | Socket waits park the Bend activation. Bounded dispatches and completion yields let other live activations, including timers, progress. |
 | Disposal | Completion releases the operation's cancellation reference and gate. Received bytes move to the caller only on success. Bend's `Ws.close` releases the socket on either outcome; native callers release it with `sp_ws_free`. |
 
+Each socket contains one fixed operation-state structure. Start resets it only
+after acquiring the gate, so a busy attempt cannot disturb a parked operation.
+This eliminates one state allocation and free per operation; idle sockets retain
+that fixed storage until the socket is freed. The address stays stable while parked.
+Operation disposal frees any untransferred message, releases its cancellation
+reference and clears ownership pointers before unlocking. It never accesses the
+state after unlock. Returned message buffers have independent ownership: reusing
+the operation cannot overwrite or free bytes already transferred to a caller.
+
 The mutex requires start, step and disposal on the same OS thread. In the pinned
 Bend compiler (`b2791abbfaba463ed67e81ca904523e31546682b`), `io_loop` invokes
 `io_step`, `io_wait` and their callbacks on its own thread. Numeric reduction
