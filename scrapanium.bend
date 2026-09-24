@@ -1,7 +1,7 @@
 import Base
 import ./http.bend as H
 
-# The File field is an opaque host handle, as required by Bend 2.0.17.
+# The File field is an opaque host handle, as required by Bend 2.0.27.
 # Only Scrapanium effects may operate on it. Close sessions/responses explicitly.
 type Session is Type:
   Session{handle: File}

@@ -1,13 +1,15 @@
 # Architecture evidence
 
-Research date: 2026-09-19. Source commits are recorded below because default
-branches and documentation change. Scrapanium does not claim that any upstream
-library's marketing claims have been independently verified.
+Research date: 2026-09-24. Source commits are recorded below because default
+branches and documentation change. The Bend row was rechecked for the current
+compatibility pin; other rows preserve their inspected revisions. Scrapanium does
+not claim that any upstream library's marketing claims have been independently
+verified.
 
 | Source | Inspected revision | Relevant finding |
 | --- | --- | --- |
-| [Bend2](https://github.com/bendlang/bend) | `b2791abbfaba463ed67e81ca904523e31546682b` | Native C effects, one IO event loop, helper workers; no stable foreign ABI. |
-| [Bend effects guide](https://github.com/bendlang/bend/blob/b2791abbfaba463ed67e81ca904523e31546682b/guide/EFFECTS.md) | same | User-defined opaque handles unavailable; custom effects must wrap a Base handle. |
+| [Bend2](https://github.com/bendlang/bend) | `63bee70b55a71024d6bdcb49a745111bc54b114e` (2.0.27) | Native C effects, one IO event loop, helper workers; Linux `io_wait` uses dynamically sized `select` descriptor sets; no stable foreign ABI. |
+| [Bend effects guide](https://github.com/bendlang/bend/blob/63bee70b55a71024d6bdcb49a745111bc54b114e/guide/EFFECTS.md) | same | User-defined opaque handles unavailable; custom effects must wrap a Base handle. |
 | [curl_cffi](https://github.com/lexiforest/curl_cffi) | `8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7` | Direct curl-impersonate binding; sessions, async multi transport, browser profiles and detailed overrides. |
 | [curl-impersonate](https://github.com/lexiforest/curl-impersonate) | `6e8f87760a4dd96771e96fc9d55440dcd8845243` | BoringSSL and HTTP/2 fingerprint patches; prebuilt v2.2.3 is pinned by archive digest. |
 | [tls-client](https://github.com/bogdanfinn/tls-client) | `34718e1b514b446b95bc68dc4f096247e69c7939` | Go/uTLS and fhttp approach, explicit HTTP/2 settings/order, Chrome 152 and Firefox 148 entries present in source. |
@@ -32,7 +34,7 @@ Bend effects marshal request metadata and text, or transfer native byte buffers.
 Bend helper workers, not its event-loop thread. A batch uses libcurl multi on one
 worker. This avoids a process or JSON bridge per request, but the worker wakeup
 still adds measurable cost to sequential calls. This is not yet a direct
-multi-socket integration into Bend's poll loop.
+multi-socket integration into Bend's IO readiness loop.
 
 Response bodies remain native byte buffers until `text`, `byte_at`, or `save`.
 Bend String is a linked list of Unicode characters: returning every body as

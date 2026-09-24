@@ -1,5 +1,25 @@
 # Implementation validation
 
+## Bend 2.0.27 compatibility check
+
+Bend 2.0.27 (`63bee70b55a71024d6bdcb49a745111bc54b114e`) passed an isolated
+stock-backend compatibility check on Ubuntu 26.04 under WSL2. The full local
+pytest invocation reported **469 passed, 32 skipped** (501 collected, including
+eight benchmark-plan unit tests) after the native library was built. The optional
+browser/source-build cases account for skips. The detailed report records the
+isolated worktree, compiler, build commands and artifact hashes.
+
+Additional correctness-only gates were run separately: two post-pin streaming
+sanitizer smokes used one and four threads, one repeat, six workloads and four
+corruption/reordering controls per run; the phase and attribution sanitizer smokes
+completed 24 rows each (16 negative controls and eight positive cases); and six
+high-FD WSS sanitizer cases passed for exact fragmented receive, async
+cancel/timeout and blocked-send cancel/timeout, each at one and four threads.
+The high-FD test observed actual client sockets at FDs 1104–1106 before releasing
+the test server's HTTP 101 gate. These smokes are correctness checks, not
+performance measurements. Detailed compiler/build provenance and retained logs
+are in the [Bend 2.0.27 compatibility report](compatibility/bend-2.0.27/README.md).
+
 WebSocket operation-state reuse targeted validation on Ubuntu 26.04 under WSL2
 (working tree based on local `48f4602`; this is not a full-suite run): the
 optional browser backend passed 134 tests in 111.79 seconds across the
@@ -171,8 +191,9 @@ documented in [RESOURCES.md](RESOURCES.md).
 Benchmark throughput, whole-process CPU and peak RSS evidence is documented
 separately in `benchmarks/RESULTS.md`; it is not a general Internet speed claim.
 
-The current five-client run measured 1.10–1.78x Bend throughput relative to
-same-backend curl_cffi across six warmed loopback workloads. A separate three-run
+The historical five-client run measured 1.10–1.78x Bend throughput relative to
+same-backend curl_cffi across six warmed loopback workloads using Bend 2.0.17.
+The Bend 2.0.27 compatibility check did not rerun performance measurements. A separate three-run
 memory probe measured 4.2 MiB median whole-process peak RSS for a 64 MiB streamed
 file download, versus 68.0 MiB for buffering the same body in Bend. The download
 path stayed around 4.1–4.2 MiB across the four tested body sizes. These are observed

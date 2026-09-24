@@ -53,9 +53,10 @@ static Term sp_bend_ws_pack(Env e, IoWork *work) {
   free((void *)j->request.headers); free(j); return result;
 }
 
-/* These callbacks run on Bend's single IO loop. Audited against the compiler
- * pin b2791abbfaba463ed67e81ca904523e31546682b: bend2/comp.ts io_loop calls
- * io_step/io_wait; reduction workers never execute these effects or callbacks.
+/* These callbacks run on Bend's single IO loop. Audited against compiler pin
+ * 63bee70b55a71024d6bdcb49a745111bc54b114e: bend2/comp.ts io_loop calls
+ * io_step/io_wait; io_wait uses dynamically sized select sets, and reduction
+ * workers never execute these effects or callbacks.
  * In particular, sp_ws_io_start/step/free stay on the mutex owner's thread even
  * with --threads > 1. Park on readiness instead of handing every frame to a
  * worker and waking the IO loop again through its completion pipe. */

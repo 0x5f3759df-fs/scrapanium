@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="11" failures="0" skipped="0" tests="11" time="1.251" timestamp="2026-09-24T03:48:51.731150-07:00" hostname="DESKTOP-QFHVKL9"><testcase classname="" name="tests.test_backend_controls" time="0.000"><error message="collection failure">tests/test_backend_controls.py:6: in &lt;module&gt;
+    from binding import lib
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_backend_install" time="0.000"><error message="collection failure">tests/test_backend_install.py:10: in &lt;module&gt;
+    from binding import ROOT, lib
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_browser_flow_control" time="0.000"><error message="collection failure">tests/test_browser_flow_control.py:5: in &lt;module&gt;
+    from binding import Session, lib, request
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_browser_profiles" time="0.000"><error message="collection failure">tests/test_browser_profiles.py:6: in &lt;module&gt;
+    from binding import Session, lib
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_builders" time="0.000"><error message="collection failure">tests/test_builders.py:13: in &lt;module&gt;
+    from binding import Session
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_fingerprint" time="0.000"><error message="collection failure">tests/test_fingerprint.py:5: in &lt;module&gt;
+    from binding import Session
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_profiles" time="0.000"><error message="collection failure">tests/test_profiles.py:7: in &lt;module&gt;
+    from binding import Session, declare, lib
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_resources" time="0.000"><error message="collection failure">tests/test_resources.py:7: in &lt;module&gt;
+    from binding import Cancel, Session, Response, Request, lib, request
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_transport" time="0.000"><error message="collection failure">tests/test_transport.py:4: in &lt;module&gt;
+    from binding import Session, request, lib
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_websocket" time="0.000"><error message="collection failure">tests/test_websocket.py:5: in &lt;module&gt;
+    from binding import lib, declare, request, Session, Cancel
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase><testcase classname="" name="tests.test_websocket_generated" time="0.000"><error message="collection failure">tests/test_websocket_generated.py:13: in &lt;module&gt;
+    from test_websocket import WebSocket
+&lt;frozen importlib._bootstrap&gt;:1371: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1342: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:938: in _load_unlocked
+    ???
+/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/test_websocket.py:5: in &lt;module&gt;
+    from binding import lib, declare, request, Session, Cancel
+tests/binding.py:6: in &lt;module&gt;
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory</error></testcase></testsuite></testsuites>

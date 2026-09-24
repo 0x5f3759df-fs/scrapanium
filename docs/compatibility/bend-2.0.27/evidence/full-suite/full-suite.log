@@ -1,0 +1,20 @@
+........sssssssss.....................ss....sssssssssssssssssssss....... [ 14%]
+........................................................................ [ 28%]
+........................................................................ [ 43%]
+........................................................................ [ 57%]
+........................................................................ [ 71%]
+........................................................................ [ 86%]
+.....................................................................    [100%]
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_backend_controls.py:14: requires the optional browser backend
+SKIPPED [1] tests/test_backend_controls.py:39: requires the optional browser backend
+SKIPPED [1] tests/test_backend_controls.py:58: requires the optional browser backend
+SKIPPED [1] tests/test_backend_controls.py:80: requires the optional browser backend
+SKIPPED [1] tests/test_backend_install.py:16: requires the optional source build
+SKIPPED [1] tests/test_backend_install.py:29: requires the optional source build
+SKIPPED [1] tests/test_browser_flow_control.py:78: requires the optional browser backend
+SKIPPED [1] tests/test_browser_flow_control.py:115: requires the optional browser backend
+SKIPPED [8] tests/test_browser_profiles.py:91: requires the optional source-built browser backend
+SKIPPED [8] tests/test_browser_profiles.py:102: requires the optional source-built browser backend
+SKIPPED [5] tests/test_browser_profiles.py:119: requires the optional source-built browser backend
+469 passed, 32 skipped in 129.60s (0:02:09)

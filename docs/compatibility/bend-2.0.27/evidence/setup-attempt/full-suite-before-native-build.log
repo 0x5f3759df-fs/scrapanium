@@ -1,0 +1,169 @@
+
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_backend_controls.py ________________
+tests/test_backend_controls.py:6: in <module>
+    from binding import lib
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+________________ ERROR collecting tests/test_backend_install.py ________________
+tests/test_backend_install.py:10: in <module>
+    from binding import ROOT, lib
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+_____________ ERROR collecting tests/test_browser_flow_control.py ______________
+tests/test_browser_flow_control.py:5: in <module>
+    from binding import Session, lib, request
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+_______________ ERROR collecting tests/test_browser_profiles.py ________________
+tests/test_browser_profiles.py:6: in <module>
+    from binding import Session, lib
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+___________________ ERROR collecting tests/test_builders.py ____________________
+tests/test_builders.py:13: in <module>
+    from binding import Session
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+__________________ ERROR collecting tests/test_fingerprint.py __________________
+tests/test_fingerprint.py:5: in <module>
+    from binding import Session
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+___________________ ERROR collecting tests/test_profiles.py ____________________
+tests/test_profiles.py:7: in <module>
+    from binding import Session, declare, lib
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+___________________ ERROR collecting tests/test_resources.py ___________________
+tests/test_resources.py:7: in <module>
+    from binding import Cancel, Session, Response, Request, lib, request
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+___________________ ERROR collecting tests/test_transport.py ___________________
+tests/test_transport.py:4: in <module>
+    from binding import Session, request, lib
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+___________________ ERROR collecting tests/test_websocket.py ___________________
+tests/test_websocket.py:5: in <module>
+    from binding import lib, declare, request, Session, Cancel
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+______________ ERROR collecting tests/test_websocket_generated.py ______________
+tests/test_websocket_generated.py:13: in <module>
+    from test_websocket import WebSocket
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/test_websocket.py:5: in <module>
+    from binding import lib, declare, request, Session, Cancel
+tests/binding.py:6: in <module>
+    lib = C.CDLL(str(ROOT / "build/libscrapanium.so"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:433: in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/ctypes/__init__.py:475: in _load_library
+    return _dlopen(name, mode)
+           ^^^^^^^^^^^^^^^^^^^
+E   OSError: /home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so: cannot open shared object file: No such file or directory
+=========================== short test summary info ============================
+ERROR tests/test_backend_controls.py - OSError: /home/baidu/scrapanium-experi...
+ERROR tests/test_backend_install.py - OSError: /home/baidu/scrapanium-experim...
+ERROR tests/test_browser_flow_control.py - OSError: /home/baidu/scrapanium-ex...
+ERROR tests/test_browser_profiles.py - OSError: /home/baidu/scrapanium-experi...
+ERROR tests/test_builders.py - OSError: /home/baidu/scrapanium-experiments/be...
+ERROR tests/test_fingerprint.py - OSError: /home/baidu/scrapanium-experiments...
+ERROR tests/test_profiles.py - OSError: /home/baidu/scrapanium-experiments/be...
+ERROR tests/test_resources.py - OSError: /home/baidu/scrapanium-experiments/b...
+ERROR tests/test_transport.py - OSError: /home/baidu/scrapanium-experiments/b...
+ERROR tests/test_websocket.py - OSError: /home/baidu/scrapanium-experiments/b...
+ERROR tests/test_websocket_generated.py - OSError: /home/baidu/scrapanium-exp...
+!!!!!!!!!!!!!!!!!!! Interrupted: 11 errors during collection !!!!!!!!!!!!!!!!!!!
+11 errors in 1.25s

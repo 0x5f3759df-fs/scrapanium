@@ -22,7 +22,7 @@
 
 ## Performance
 
-Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same stock curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately.
+Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same stock curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately. The existing performance charts use Bend 2.0.17. Bend 2.0.27 has passed correctness compatibility checks; its performance is not measured here.
 
 Batched 30-byte WSS streaming: **1.63M messages/s versus 694k — 2.35× throughput.** Both clients receive 64 frames per server write on one connection and check every byte. Round-trip gains are smaller; three 64 KiB comparisons remain inconclusive.
 
@@ -93,7 +93,7 @@ python3 scripts/build.py hello.bend -o build/hello
 | | Today |
 | :--- | :--- |
 | **Release** | Working alpha. The API can still change. |
-| **Platform** | Linux x86_64 / WSL2 · Bend 2.0.17 · native C target. |
+| **Platform** | Linux x86_64 / WSL2 · Bend 2.0.27 · native C target. |
 | **Tests** | **400+ passing tests**, including WS/WSS and sanitizer checks. [Test details](docs/VALIDATION.md) · [CI](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml). |
 | **Profiles** | Default: Chrome 150. Optional Chrome 153/154 and Firefox 156 profiles have scoped Linux capture evidence. Safari 27 and wider platform coverage remain pending. [Exact coverage](docs/PROFILES.md). |
 | **Still missing** | Easy binary installs, macOS/ARM support, automatic retries, multipart uploads and WebSocket compression. |

@@ -1,0 +1,23 @@
+All terms check, but 13 defs rely on unsafe or foreign code:
+- WsPhase.event
+- prepare
+- prepared_body
+- mark
+- check_equality
+- check_message
+- received
+- receive_one
+- receive_all
+- timed
+- warmed_received
+- warmed
+- main
+Traceback (most recent call last):
+  File "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_phase_diagnostic.py", line 864, in <module>
+    main()
+    ~~~~^^
+  File "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_phase_diagnostic.py", line 713, in main
+    compiler_info = compiler_provenance()
+  File "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_phase_diagnostic.py", line 123, in compiler_provenance
+    raise RuntimeError(f"Bend compiler revision {bend_revision!r} does not match pin {expected_revision}")
+RuntimeError: Bend compiler revision '63bee70b55a71024d6bdcb49a745111bc54b114e' does not match pin b2791abbfaba463ed67e81ca904523e31546682b

@@ -1,7 +1,7 @@
 # Getting started
 
 Scrapanium currently supports **Linux x86_64**, including WSL2. It uses Bend
-2.0.17's native C target. The JavaScript target is not supported.
+2.0.27's native C target. The JavaScript target is not supported.
 
 ## Install
 
@@ -20,6 +20,10 @@ python3 scripts/bootstrap.py
 Bootstrap downloads the pinned compiler and transport into `.deps/`. It verifies
 the transport archive's SHA-256 and checks out Bend at an exact commit.
 The versions and hashes are in [dependencies.json](../dependencies.json).
+
+If an existing checkout already has a different compiler in `.deps/bend`, bootstrap
+refuses to replace it. Use a fresh checkout with its own `.deps` for the upgrade,
+and retain the older compiler tree when you need to reproduce earlier results.
 
 For the additional Chrome 153/154 and Firefox 156 profiles, follow the optional
 [browser-backend build](../backend/README.md). It compiles a separate transport

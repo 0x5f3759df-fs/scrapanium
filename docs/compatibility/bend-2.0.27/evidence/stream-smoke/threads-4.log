@@ -1,0 +1,8 @@
+Both clients rejected byte corruption and reordered sequence tags
+stream-30b-flush1: repeat 1/1
+stream-1024b-flush1: repeat 1/1
+stream-65536b-flush1: repeat 1/1
+stream-30b-flush64: repeat 1/1
+stream-1024b-flush64: repeat 1/1
+stream-65536b-flush64: repeat 1/1
+/home/baidu/scrapanium-experiments/bend2-027-compat/logs/stream-smoke-pin-027-4.json

@@ -1,0 +1,400 @@
+{
+  "schema": 1,
+  "status": "complete",
+  "created_utc": "2026-09-24T11:00:44.422479+00:00",
+  "diagnostic_kind": "correctness_smoke",
+  "smoke_only": true,
+  "repeat_count": 1,
+  "seed": 20260923,
+  "count_per_workload": 8,
+  "message_bytes": 65536,
+  "profile": {
+    "bend": "chrome146",
+    "curl_cffi": "chrome146"
+  },
+  "conditions": [
+    "scrapanium-bend/control",
+    "scrapanium-bend/phase",
+    "curl_cffi-matched/control",
+    "curl_cffi-matched/phase"
+  ],
+  "timing_definitions": {
+    "total_elapsed_ns": "client monotonic interval starts immediately before sending the start control and ends after the final message check and release; setup, corpus preparation, TLS upgrade, warmup, and close are outside",
+    "receive_assembly_ns": "sum of intervals around each WebSocket receive API call; Bend includes result unwrapping, and both include blocking, TLS/socket work, parser/reassembly, and any library assembly/copy",
+    "validation_release_ns": "sum of opcode validation, ordered expected-byte equality over the full message, and immediate release of actual and expected buffers; the 8-byte decimal sequence prefix is part of exact equality",
+    "residual_ns": "total minus receive/assembly and validation/release; includes start-control send, loop/control work, and gaps between phase samples; not pure overhead or network time",
+    "control_mode": "same client validation/release code and common total timer, but no per-message phase clock calls",
+    "observer_effect": "paired phase/control total differences estimate the additional per-message phase clock calls within this diagnostic client skeleton, not against the historical client",
+    "peer_send_interval": "peer monotonic interval starts after decoding the start control and ends after the final TLS plaintext Write; client total includes sending the start control, so these intervals are not aligned or additive",
+    "peer_tls_write_wall": "sum of wall intervals around TLS Conn.Write calls; includes TLS work, blocking, and scheduling, and does not measure wire bytes",
+    "peer_process_cpu": "whole peer-process user/system CPU deltas sampled around the peer send interval; not thread-only CPU",
+    "peer_observer_effect": "peer timing instrumentation is held constant in all four client conditions; its observer effect is not separately isolated"
+  },
+  "corpus": {
+    "messages": "ordered binary messages of exactly 65,536 bytes",
+    "sequence": "zero-padded 8-digit decimal index at bytes 0..7",
+    "body": "remaining bytes use (index * 31) mod 128",
+    "flush_batches": [
+      1,
+      64
+    ],
+    "warmup": "one binary warmup echo, exact byte and opcode checked before total timer",
+    "body_sha256": "ba375692b65c6968b2730fe1fdff7b794b0110536c1c650b470a7a0709e189e4"
+  },
+  "negative_controls": "corrupt final byte in first payload and swap sequence messages 1 and 2; both clients must reject for both flush batches",
+  "execution_order": [
+    "negative-1-scrapanium-bend-control-corrupt-flush1",
+    "negative-2-scrapanium-bend-control-swap-flush1",
+    "negative-3-scrapanium-bend-phase-corrupt-flush1",
+    "negative-4-scrapanium-bend-phase-swap-flush1",
+    "negative-5-curl_cffi-matched-control-corrupt-flush1",
+    "negative-6-curl_cffi-matched-control-swap-flush1",
+    "negative-7-curl_cffi-matched-phase-corrupt-flush1",
+    "negative-8-curl_cffi-matched-phase-swap-flush1",
+    "negative-9-scrapanium-bend-control-corrupt-flush64",
+    "negative-10-scrapanium-bend-control-swap-flush64",
+    "negative-11-scrapanium-bend-phase-corrupt-flush64",
+    "negative-12-scrapanium-bend-phase-swap-flush64",
+    "negative-13-curl_cffi-matched-control-corrupt-flush64",
+    "negative-14-curl_cffi-matched-control-swap-flush64",
+    "negative-15-curl_cffi-matched-phase-corrupt-flush64",
+    "negative-16-curl_cffi-matched-phase-swap-flush64",
+    "phase-smoke-sanitized-02-flush1-r1-scrapanium-bend-control",
+    "phase-smoke-sanitized-02-flush1-r1-scrapanium-bend-phase",
+    "phase-smoke-sanitized-02-flush1-r1-curl_cffi-matched-phase",
+    "phase-smoke-sanitized-02-flush1-r1-curl_cffi-matched-control",
+    "phase-smoke-sanitized-02-flush64-r1-scrapanium-bend-control",
+    "phase-smoke-sanitized-02-flush64-r1-scrapanium-bend-phase",
+    "phase-smoke-sanitized-02-flush64-r1-curl_cffi-matched-phase",
+    "phase-smoke-sanitized-02-flush64-r1-curl_cffi-matched-control"
+  ],
+  "source_sha256": {
+    "scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "dependencies.json": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+    "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "benchmarks/websocket_phase_diagnostic.py": "bb5d6649d8d33b2cb75ba9869cd45b5aa6af65378c89b5594aa740b951e60f0c",
+    "benchmarks/websocket_phase_diagnostic.bend": "2c20a1cf50b823412e7722910ef0afa775d0e8dada7d573f21b724a14921321a",
+    "benchmarks/websocket_phase_diagnostic_python.py": "cce95e7d34d413bf9e44d7e7a3e8eda7ab135146e056438a8571ef5d960c3630",
+    "benchmarks/websocket_phase_clock.c": "f3abe6a54505005753e59c918320c72adf0bfed779f788b472b4dcb655446219",
+    "benchmarks/websocket_phase_server.go": "6dde9be2fa4a32c6fc12890fc713771f2034181d939044b567a894bf699fb068",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+    "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a"
+  },
+  "binary_sha256": {
+    "bend": "713859b884cf879900889a64d0f88ae6d365752c0ca01492e0b09325483131eb",
+    "phase_peer": "0124894516b58ee0308cc8f2b1f572b98388112d19a40995ff0ee80224f5026c"
+  },
+  "samples_file": "samples.jsonl",
+  "sample_count": 24,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "cpu_count": 12,
+  "cpu_model": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "compiler": {
+    "command": [
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/bend/bend2/main.ts"
+    ],
+    "bun_version": "1.3.11",
+    "bun_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "compiler_script": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+    "compiler_script_sha256": "0984154bb5f8bfb0718e4ad60d58f5098af0f01812dc8ef75b6e793e800552f8",
+    "compiler_git_revision": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+    "compiler_tracked_status": "clean"
+  },
+  "cc_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+  "go_version": "go version go1.26.0 linux/amd64",
+  "dependencies": {
+    "bend": {
+      "repository": "https://github.com/bendlang/bend.git",
+      "commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+      "version": "2.0.27"
+    },
+    "curl_impersonate": {
+      "version": "2.2.3",
+      "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+      "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+    },
+    "curl_cffi_matched": {
+      "repository": "https://github.com/lexiforest/curl_cffi.git",
+      "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+      "version": "0.16.4b1"
+    },
+    "curl_cffi_release": "0.16.0",
+    "bun": "1.3.11",
+    "platform": "linux-x86_64-glibc"
+  },
+  "curl_cffi_binding": {
+    "version": "0.16.4b1",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "python_executable": "/usr/bin/python3.14",
+    "python_executable_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "files": {
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/__init__.py": "e9827081dfedf066ee1e4da6a9eecf58daa69185538e15fd802571cd323261d7",
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60",
+      "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46"
+    }
+  },
+  "backend": {
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "library_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "built_by_this_run": true,
+  "sanitize_build": true,
+  "source_and_binary_hashes_frozen_before_first_control": true,
+  "source_hashes_checked_after_samples": true,
+  "planned_schedule": [
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-1-scrapanium-bend-control-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-2-scrapanium-bend-control-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-3-scrapanium-bend-phase-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-4-scrapanium-bend-phase-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-5-curl_cffi-matched-control-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-6-curl_cffi-matched-control-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-7-curl_cffi-matched-phase-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-8-curl_cffi-matched-phase-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-9-scrapanium-bend-control-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-10-scrapanium-bend-control-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-11-scrapanium-bend-phase-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-12-scrapanium-bend-phase-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-13-curl_cffi-matched-control-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-14-curl_cffi-matched-control-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-15-curl_cffi-matched-phase-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-16-curl_cffi-matched-phase-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush1-r1-scrapanium-bend-control",
+      "batch": 1,
+      "count": 8,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush1-r1-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 8,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush1-r1-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 8,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush1-r1-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 8,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush64-r1-scrapanium-bend-control",
+      "batch": 64,
+      "count": 8,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush64-r1-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 8,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush64-r1-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 8,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "phase-smoke-sanitized-02-flush64-r1-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 8,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    }
+  ],
+  "schedule_method": "16 negative controls first (8 messages); then four-condition Williams orders with every condition once per repeat and each condition in every position once per four-repeat block",
+  "negative_control_count": 16,
+  "compiler_inputs_checked_after_samples": true,
+  "binding_inputs_checked_after_samples": true,
+  "completed_sample_count": 24,
+  "performance_sample_count": 0,
+  "correctness_smoke_positive_count": 8,
+  "smoke_timing_warning": "smoke timings are not performance evidence",
+  "completed_utc": "2026-09-24T11:01:03.062438+00:00"
+}

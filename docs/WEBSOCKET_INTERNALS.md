@@ -26,11 +26,15 @@ reference and clears ownership pointers before unlocking. It never accesses the
 state after unlock. Returned message buffers have independent ownership: reusing
 the operation cannot overwrite or free bytes already transferred to a caller.
 
-The mutex requires start, step and disposal on the same OS thread. In the pinned
-Bend compiler (`b2791abbfaba463ed67e81ca904523e31546682b`), `io_loop` invokes
-`io_step`, `io_wait` and their callbacks on its own thread. Numeric reduction
-workers do not run these effects. Compiler upgrades must recheck that contract;
-the bridge records the dependency next to its callbacks.
+The mutex requires start, step and disposal on the same OS thread. In Bend 2.0.27
+(`63bee70b55a71024d6bdcb49a745111bc54b114e`), `io_loop` invokes `io_step`,
+`io_wait` and their callbacks on its own thread; numeric reduction workers do
+not run these effects. The runtime's `io_wait` uses `select` with descriptor sets
+sized for the highest watched descriptor. Compiler upgrades must recheck
+thread affinity, state ownership, and effect-handle lifetime contracts. The compatibility check exercised WSS receive,
+cancellation and blocked-send paths with actual client sockets at FDs 1104–1106,
+under one and four threads. See the
+[compatibility report](compatibility/bend-2.0.27/README.md).
 
 Receive buffers contain length-delimited bytes; they do not need a trailing NUL.
 An announced frame remainder is checked against the message limit before it can

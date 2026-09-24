@@ -1,0 +1,342 @@
+{
+  "backend": {
+    "browser_backend_used": false,
+    "identity": "pinned stock curl-impersonate 2.2.3 release",
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "base_application_revision": "d234c88c1c3500223b838b90c34b784d1a041f1d",
+  "candidate_dependency_lock_sha256": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+  "compiler": {
+    "basic_bend_binary_sha256": "e32efde269dbdebfd3bb0ad9c9dc0050a0b7b391b7d1f4f9efb733b6c4939d2d",
+    "basic_generated_c_sha256": "82ca1209523f649a6af6a339d2ebdaaa7d1c547018295ee6864f6a521611d5ab",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "clang": "Ubuntu clang version 21.1.8 (6ubuntu1), target x86_64-pc-linux-gnu",
+    "commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+    "comp_ts_sha256": "10afb08dd55a52bfbb88fdf84534cebdc000bdf7820c69cee1d6bb3fcfaf7d7b",
+    "high_fd_clients_sha256": {
+      "async": "14099f01fe847a0d08b84aa73a7f7f57a3703d89f71b225382eca80649a34d62",
+      "blocked_send": "6494b18a8635231c43e08e48c1a9dd6dfe54d6a5d7497d2a69d3280d03340f77",
+      "receive": "2fcae38e163448c6ddbbecd90afa4826d797fcddbe67347d4cc5b8f4ec37a86d"
+    },
+    "high_fd_test_source_sha256": {
+      "tests/high_fd_exec.py": "381aa4ac94890f4cb305e055b286e9bab3b0152b50860af7475fd430e789d63d",
+      "tests/test_websocket_high_fd.py": "8d60b74de903a9334488aae6e0c697147c3ec5de927917d94bc2dbf6a4600d4a"
+    },
+    "main_ts_sha256": "0984154bb5f8bfb0718e4ad60d58f5098af0f01812dc8ef75b6e793e800552f8",
+    "native_build_command": "python3 scripts/build.py",
+    "native_shared_library_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/libscrapanium.so",
+    "native_shared_library_sha256": "c353a2563603abfe3f89a7e43c00ff525401e9dd742833e4dc800b27e7f07692",
+    "phase_attribution_manifest_binding": {
+      "attribution_manifest_sha256": "195295da1a213d2c63854762ee9e7ffe7a84e036a1163ba81a37bbcdcdbe2fe7",
+      "compiler_command": "Bun 1.3.11 at the recorded SHA running clean compiler clone bend2/main.ts",
+      "compiler_commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+      "main_ts_sha256": "0984154bb5f8bfb0718e4ad60d58f5098af0f01812dc8ef75b6e793e800552f8",
+      "phase_manifest_sha256": "be34027b87d9c101196d79486aa7556a809cd454889c9edbd99b3ec24c29f865"
+    },
+    "preserved_previous_compiler_commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "release_tag": "v2.0.27",
+    "repository": "https://github.com/bendlang/bend.git",
+    "stream_smoke_build_record": {
+      "builder": "scripts/build.py build()",
+      "compiler_argv_selection": "reconstructed from the runner and scripts/build.py; the script itself records the compiler source commit in phase/attribution manifests, not in stream JSON",
+      "entrypoint": "benchmarks/websocket_streaming.py",
+      "first_smoke_built_client": true,
+      "four_thread_smoke_reused_client": true,
+      "normalized_clang_recipe_reconstructed_from_scripts_build_py": [
+        "clang",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/bench-ws-stream.generated.c",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native/scrapanium.c",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-I/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/include",
+        "-I/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native",
+        "-lpthread",
+        "-lm",
+        "-L/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+        "-Wl,-rpath,/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+        "-lcurl-impersonate",
+        "-fsanitize=address,undefined",
+        "-o",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/bench-ws-stream"
+      ],
+      "normalized_compiler_recipe": [
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/.deps/bend/bend2/main.ts",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_stream.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/bench-ws-stream.generated.c"
+      ],
+      "selection_record": "BEND_SOURCE and BUN unset; build.py resolves Bend source through the worktree .deps/bend symlink to the clean 2.0.27 clone and resolves Bun from the worktree .deps/bun directory",
+      "stream_manifest_bend_binary_sha256": "a9b36f97bbf64bdcf65aedfa1e554180d44615f3c25514068e833475113f564a",
+      "stream_manifest_go_peer_binary_sha256": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d",
+      "supplemental_generated_c": {
+        "not_present_in_stream_manifest": true,
+        "path_at_post_run_inspection": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/build/bench-ws-stream.generated.c",
+        "sha256": "32bc29693f218e6ce2ba5ba4f9c834959fbc428fcfc01fa02165715e2bc3ceef"
+      }
+    },
+    "tracked_status": "clean"
+  },
+  "environment": {
+    "guest": "Ubuntu 26.04 under WSL2",
+    "isolation": "compatibility worktree used its own .deps/bend symlink to clean 2.0.27 compiler clone; other pinned dependencies were symlinked to existing inputs and were not modified",
+    "main_checkout_bend_commit_preserved": "b2791abbfaba463ed67e81ca904523e31546682b"
+  },
+  "full_pytest_junit_archive_sha256": "13e5b9f450334f3ef50370808615d70966920c5084ffcc4ac8e0dcc41a2e9528",
+  "not_packaged": [
+    "compiled binaries",
+    "generated private TLS keys/certificates",
+    "cpu.prof and Go trace binary",
+    "attribution corpus-body.bin",
+    "dependency/toolchain directories"
+  ],
+  "results": {
+    "attribution_smoke": {
+      "negative": 16,
+      "positive": 8,
+      "rows": 24
+    },
+    "full_pytest": {
+      "argv": [
+        "env",
+        "-u",
+        "BEND_SOURCE",
+        "-u",
+        "SCRAPANIUM_CURL_DIR",
+        "-u",
+        "BUN",
+        "-u",
+        "CC",
+        "-u",
+        "LD_LIBRARY_PATH",
+        "-u",
+        "LD_PRELOAD",
+        ".deps/venv-matched/bin/pytest",
+        "-q",
+        "-ra",
+        "--junitxml=/home/baidu/scrapanium-experiments/bend2-027-compat/logs/full-suite-after-native-build.xml"
+      ],
+      "collected": 501,
+      "invocation_record_source": "retrospective orchestration command record; not embedded in pytest JUnit XML",
+      "isolated_dotdeps_bend_target_at_run_time": "clean compiler clone at 63bee70b55a71024d6bdcb49a745111bc54b114e",
+      "junit_uncompressed_sha256": "5e5ebdb0f58d53231d6af35121608a8784b52fe6d16dbf519792f42778fb74aa",
+      "lock_at_run_time": {
+        "bend_version": "2.0.17",
+        "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+        "sha256": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747"
+      },
+      "lock_changed_to_candidate_after_this_run": true,
+      "native_build_preceded_test": true,
+      "passed": 469,
+      "scope": "includes eight benchmark-plan tests; all skips were optional browser/source-build cases",
+      "skipped": 32
+    },
+    "high_fd_sanitizer": {
+      "observed_socket_fds": [
+        1104,
+        1105,
+        1106
+      ],
+      "passed": 6,
+      "threads": [
+        1,
+        4
+      ]
+    },
+    "performance_comparison_with_bend_2_0_27": false,
+    "phase_smoke": {
+      "negative": 16,
+      "performance_samples": 0,
+      "positive": 8,
+      "rows": 24
+    },
+    "stream_sanitizer": {
+      "four_negative_controls_each": true,
+      "one_repeat_each": true,
+      "six_workloads_each": true,
+      "threads": [
+        1,
+        4
+      ]
+    }
+  },
+  "retained_evidence": {
+    "evidence/attribution-smoke/attribution-smoke.log": {
+      "bytes": 321,
+      "sha256": "895f9ad5c66c48f910c7fa2ccbce55c409a7186bdffde536f6ddaf8bb4bff226"
+    },
+    "evidence/attribution-smoke/manifest.json": {
+      "bytes": 24587,
+      "sha256": "195295da1a213d2c63854762ee9e7ffe7a84e036a1163ba81a37bbcdcdbe2fe7"
+    },
+    "evidence/attribution-smoke/samples.jsonl": {
+      "bytes": 97608,
+      "sha256": "48f50c626cf25ef45992ed75d132f7aa9bafb98d4de40274c625c383b248de45"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-curl_cffi-matched-attribution-flush1.json": {
+      "bytes": 1803,
+      "sha256": "76de1d03a453d7202325a43a66823dbb2b2a8d748d5b67f5545c1974f850385f"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-curl_cffi-matched-attribution-flush64.json": {
+      "bytes": 1803,
+      "sha256": "43890310f496d0adab2d720246f2120de8276ac564cc94261db73debfd491992"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-curl_cffi-matched-control-flush1.json": {
+      "bytes": 1766,
+      "sha256": "c019814a268b47ecbb30b5107ca634c7882a49bd41354d83084bf4b286112868"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-curl_cffi-matched-control-flush64.json": {
+      "bytes": 1766,
+      "sha256": "f52f24e134fe409b969aa242d62c56eacc01bf9fc34b1db45e780f5f99497586"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-01-scrapanium-bend-control-corrupt-flush1.json": {
+      "bytes": 1766,
+      "sha256": "56fbc3d17fdaacdd412580ce5d0f45d3e2a248666474481f3bb25ab9d8e9a42c"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-02-scrapanium-bend-control-swap-flush1.json": {
+      "bytes": 1770,
+      "sha256": "000fc815e9dc3adbec20cd3c15c13b8cb384f7d39373a9df7da850adb7496dd2"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-03-scrapanium-bend-attribution-corrupt-flush1.json": {
+      "bytes": 1807,
+      "sha256": "aeb1e8e3ac3bd1f70160bebd766fa2b2d39e631410185d0a6dd566f263ea3e9b"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-04-scrapanium-bend-attribution-swap-flush1.json": {
+      "bytes": 1807,
+      "sha256": "5a77470433e4fa61de1daa1fac146ec13bbead4efa19022e4b18144632e56dcb"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-05-curl_cffi-matched-control-corrupt-flush1.json": {
+      "bytes": 1769,
+      "sha256": "65f3d3707643f937d1294157e8d41ec789334e7b857988be0d9b62c610a05726"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-06-curl_cffi-matched-control-swap-flush1.json": {
+      "bytes": 1773,
+      "sha256": "3becd7591ec0a9cf593b9988c538a9ee911107c7b22bff0176f6a6eb5c624897"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-07-curl_cffi-matched-attribution-corrupt-flush1.json": {
+      "bytes": 1802,
+      "sha256": "55086aa4231d65f14237cc8a58b43df9d4dbef854e6d0b4f8aa074a128b48770"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-08-curl_cffi-matched-attribution-swap-flush1.json": {
+      "bytes": 1806,
+      "sha256": "8020ecf6ac7a5de307c7d59921b29ca63e09ea9bdbaa07e4f7a484572002b739"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-09-scrapanium-bend-control-corrupt-flush64.json": {
+      "bytes": 1766,
+      "sha256": "d5aa496e20bfb2c7d3d8529ebc92bf471612edab32fcd0acc0e17cb1c014d6ad"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-10-scrapanium-bend-control-swap-flush64.json": {
+      "bytes": 1770,
+      "sha256": "f2d010382de9b9d9c151eb56503b4680183b607e3176ef6ec8e4371d3f235842"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-11-scrapanium-bend-attribution-corrupt-flush64.json": {
+      "bytes": 1801,
+      "sha256": "03c56bbedec3383a14535b04f388368586594593dcc7610c75a1db5177421df1"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-12-scrapanium-bend-attribution-swap-flush64.json": {
+      "bytes": 1793,
+      "sha256": "0492e57e767fe5edd3e060529c3ced8387e75e4b5a421406c5ff073d6fc67732"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-13-curl_cffi-matched-control-corrupt-flush64.json": {
+      "bytes": 1769,
+      "sha256": "18202cc588cb2a471163af5c21c3c1559722fc9868ba43f7860149f971058b92"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-14-curl_cffi-matched-control-swap-flush64.json": {
+      "bytes": 1773,
+      "sha256": "70616518c91c7ea20b80483dc92c87ebcbcd1d68dc85a02305009fac0a5ba379"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-15-curl_cffi-matched-attribution-corrupt-flush64.json": {
+      "bytes": 1802,
+      "sha256": "f837e4fa481501da972b478dec4ea305e9bdf90be4bbcd4054e96c2a3381d693"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-negative-16-curl_cffi-matched-attribution-swap-flush64.json": {
+      "bytes": 1804,
+      "sha256": "1000a4ab1c22f98de851d354974c5dedd118543f8f2e5cef326977e8d4bd8862"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-scrapanium-bend-attribution-flush1.json": {
+      "bytes": 1812,
+      "sha256": "4adc7e93031d5b36986345712855942c30a53de55e2065b3a3be6d7932615e32"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-scrapanium-bend-attribution-flush64.json": {
+      "bytes": 1808,
+      "sha256": "ffa28d7b45dc3c73d898bb00444ddf61380f0dc65b7b70e4bb65d18ce0090955"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-scrapanium-bend-control-flush1.json": {
+      "bytes": 1769,
+      "sha256": "b9f8f95677fa0a753845e9df52adb0ebf703958471fe4160caabeef44d566711"
+    },
+    "evidence/attribution-smoke/shim/attribution-smoke-sanitized-02-scrapanium-bend-control-flush64.json": {
+      "bytes": 1769,
+      "sha256": "dcee90e4667b50a74865b34db6267cfdd790ae161a535d2cb4a73650d6798101"
+    },
+    "evidence/full-suite/dependencies-lock-at-full-suite.json": {
+      "bytes": 698,
+      "sha256": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747"
+    },
+    "evidence/full-suite/full-suite.log": {
+      "bytes": 1662,
+      "sha256": "887f68eb0fc1f841dcad77dd4a723084b0da77d3513a4e6b4aa12d2e60479b9a"
+    },
+    "evidence/full-suite/full-suite.xml.gz": {
+      "bytes": 41023,
+      "sha256": "13e5b9f450334f3ef50370808615d70966920c5084ffcc4ac8e0dcc41a2e9528"
+    },
+    "evidence/high-fd/high-fd-tests.log": {
+      "bytes": 99,
+      "sha256": "cc1d1d93a22b891265106d01f19ea983d12181e2451325593ee086543e1de50b"
+    },
+    "evidence/high-fd/high-fd-tests.xml": {
+      "bytes": 1677,
+      "sha256": "dee693b214dad6a6af1a10346f015b3785951fa544168cb78f797e31bea1b954"
+    },
+    "evidence/native-build/native-library-build.log": {
+      "bytes": 84,
+      "sha256": "e7ae898c3e62134955f6ad5969afe6493eedaff0bc7ee69b61f0189c58143627"
+    },
+    "evidence/phase-smoke/manifest.json": {
+      "bytes": 16811,
+      "sha256": "be34027b87d9c101196d79486aa7556a809cd454889c9edbd99b3ec24c29f865"
+    },
+    "evidence/phase-smoke/phase-smoke.log": {
+      "bytes": 306,
+      "sha256": "2779dd4e1625ea26e759f2bfe5009492ad4a667d83917c4ff51774f36c06d97d"
+    },
+    "evidence/phase-smoke/samples.jsonl": {
+      "bytes": 29629,
+      "sha256": "02253456b8ca39d01cb749660cb5860932ccd17577cddac837267f6598a1f5df"
+    },
+    "evidence/setup-attempt/full-suite-before-native-build.log": {
+      "bytes": 10178,
+      "sha256": "501c70adb0b6d4fd0f7dc9b9fba8d5c820c20840dc1a709d24a2eebd2b595ca6"
+    },
+    "evidence/setup-attempt/full-suite-before-native-build.xml": {
+      "bytes": 9881,
+      "sha256": "8611fbfe1c1d1a72f40e0cb8c9c122800433b413982c6d057379b1fb79ab52c2"
+    },
+    "evidence/setup-attempt/phase-smoke-old-lock-guard.log": {
+      "bytes": 979,
+      "sha256": "441e9c9271692b9ec7c6ccd9d504f84659f487da68ee665b36569728b1eff1ce"
+    },
+    "evidence/stream-smoke/threads-1.json": {
+      "bytes": 28491,
+      "sha256": "8927aefaca09e190944a4f75298b1a2e3e6a1a760d781a4dcb520bf303c37e58"
+    },
+    "evidence/stream-smoke/threads-1.log": {
+      "bytes": 523,
+      "sha256": "37f473a4ee637b7e329cf7f1062bb110aca3b1d183537d6757ab3d36d1cf0f0a"
+    },
+    "evidence/stream-smoke/threads-4.json": {
+      "bytes": 28502,
+      "sha256": "d686684700ab2d96f609ad246eb4acd5f2153c64e81be316eb937b92c37103f3"
+    },
+    "evidence/stream-smoke/threads-4.log": {
+      "bytes": 344,
+      "sha256": "d0d5a8982a962378658b4124844e65d98160400def46c689f64ac1bc49dd5fd8"
+    }
+  },
+  "schema": "scrapanium-bend-compatibility-evidence-v1",
+  "worktree_path_at_test_time": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree"
+}
