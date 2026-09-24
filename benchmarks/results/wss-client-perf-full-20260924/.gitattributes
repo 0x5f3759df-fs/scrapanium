@@ -1,0 +1,10 @@
+# Preserve copied collection bytes exactly across Git checkouts.
+/manifest.json -text
+/plan.json -text
+/samples.jsonl -text
+/attempt-members.sha256 -text
+/attempts.tar.gz -text
+/summary.json -text
+/SHA256SUMS.txt text eol=lf
+/*.md text eol=lf
+/audit.py text eol=lf

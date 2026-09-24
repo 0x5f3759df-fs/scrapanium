@@ -1,0 +1,996 @@
+{
+  "attempt_archive_sha256": "a6e1d64cb3c5aac3d49fdfb6ba62da4c1c6b81b7c2f0aa304e47d3f4b42bb8c5",
+  "attempt_archive_uncompressed_bytes": 58314577,
+  "attempt_file_count": 9408,
+  "attempt_member_inventory_sha256": "456caee28c06726ba7289a3f45cc788f5acc27113cfd6cbbddd02f8e903c4acd",
+  "git_blob_source_hashes_match": true,
+  "integrity_flags_all_true": true,
+  "manifest_sha256": "5cbcba72c13346e7c8baa48ef7b5c3357f2b83f78cc3d4e73c7c514f7a1f4a3e",
+  "paired_observer_interval_ratios": {
+    "curl_cffi-matched/flush1": {
+      "bootstrap_draws": 20000,
+      "bootstrap_seed": 20260924,
+      "disabled_median_ms": 34.259896999999995,
+      "interval_definition": "paired ratio = profiled client interval ns / disabled client interval ns; resample repeat IDs within this client/batch cell",
+      "median_paired_profiled_over_disabled": 1.006326116716937,
+      "nominal_95_percentile_ci": [
+        0.9734059965878172,
+        1.0237361179142155
+      ],
+      "paired_repeats": 96,
+      "profiled_median_ms": 34.530686
+    },
+    "curl_cffi-matched/flush64": {
+      "bootstrap_draws": 20000,
+      "bootstrap_seed": 20260924,
+      "disabled_median_ms": 33.340262499999994,
+      "interval_definition": "paired ratio = profiled client interval ns / disabled client interval ns; resample repeat IDs within this client/batch cell",
+      "median_paired_profiled_over_disabled": 1.0087879466593113,
+      "nominal_95_percentile_ci": [
+        0.9955705070605382,
+        1.0250115601545047
+      ],
+      "paired_repeats": 96,
+      "profiled_median_ms": 33.523676
+    },
+    "scrapanium-bend/flush1": {
+      "bootstrap_draws": 20000,
+      "bootstrap_seed": 20260924,
+      "disabled_median_ms": 28.3071125,
+      "interval_definition": "paired ratio = profiled client interval ns / disabled client interval ns; resample repeat IDs within this client/batch cell",
+      "median_paired_profiled_over_disabled": 0.9996416938288681,
+      "nominal_95_percentile_ci": [
+        0.970913660671737,
+        1.0232576814350223
+      ],
+      "paired_repeats": 96,
+      "profiled_median_ms": 28.377533999999997
+    },
+    "scrapanium-bend/flush64": {
+      "bootstrap_draws": 20000,
+      "bootstrap_seed": 20260924,
+      "disabled_median_ms": 27.4086405,
+      "interval_definition": "paired ratio = profiled client interval ns / disabled client interval ns; resample repeat IDs within this client/batch cell",
+      "median_paired_profiled_over_disabled": 1.002973244799343,
+      "nominal_95_percentile_ci": [
+        0.9744278302483029,
+        1.0226172518971757
+      ],
+      "paired_repeats": 96,
+      "profiled_median_ms": 26.875388
+    }
+  },
+  "perf_header_contract_rows": {
+    "cpu-clock:u|99|16384": 784
+  },
+  "plan_sha256": "b00f2de7aeecefc863ae5eb2e4d6ebd786596a1da341d783b1c23e8caafde587",
+  "profile_cells_recomputed_from_raw_perf_script": {
+    "curl_cffi-matched/flush1": {
+      "excluded_sample_counts": {
+        "at_or_after_end": 182,
+        "before_window": 0,
+        "wrong_event": 0,
+        "wrong_pid": 0,
+        "wrong_tid": 0
+      },
+      "missing_stack_samples": 0,
+      "observed_inclusive_stack_memberships_overlap": {
+        "curl_websocket_receive": 113,
+        "observed_copy_path": 8,
+        "tls_aead_crypto": 50,
+        "tls_record_read": 84
+      },
+      "profiled_rows": 96,
+      "raw_script_samples_including_excluded": 397,
+      "resolved_stack_samples": 2,
+      "selected_samples": 215,
+      "stack_status_counts": {
+        "resolved": 2,
+        "unresolved": 213
+      },
+      "stack_truncation": "unobservable from perf-script text; not treated as zero",
+      "top_flat_leaf_groups_dso_symbol": [
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 62,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 50,
+          "symbol": "aes_gcm_dec_update_vaes_avx2"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 24,
+          "symbol": "_PyEval_EvalFrameDefault"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 9,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 8,
+          "symbol": "copyBlocks"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 4,
+          "symbol": "tls_open_record"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 3,
+          "symbol": "convert_from_object"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 2,
+          "symbol": "PyEval_SaveThread"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "ossl_recv"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "tls_open_app_data"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "size"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "BIO_read"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 2,
+          "symbol": "PyTime_AsSecondsDouble"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "Curl_hash_pick"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "ssl_handle_open_record"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "curl_ws_recv"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "ssl_cf_recv"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "Curl_hash_str"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "SSL_in_init"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 1,
+          "symbol": "mb_dealloc"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "_PySuper_Lookup"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ssl_max_handshake_message_len"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "free@plt"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "pthread_getspecific"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "SSL_read"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "tls_read_buffer_extend_to"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "CBS_get_u16"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ssl_read_impl"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "cfree"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "_PyTuple_FromStackRefStealOnSuccess"
+        }
+      ],
+      "unknown_frame_count": 1323,
+      "unknown_leaf_immediate_parent_groups": [
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "[unknown]",
+          "samples": 50
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyBytes_FromStringAndSize",
+          "samples": 5
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "[unknown]",
+          "samples": 4
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "recv",
+          "samples": 3
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyArg_ParseTupleAndKeywords",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "[unknown]",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyEval_RestoreThread",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "_PyEval_EvalFrameDefault",
+          "samples": 1
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "parent_symbol": "lib_getattr",
+          "samples": 1
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyObject_Vectorcall",
+          "samples": 1
+        }
+      ],
+      "unknown_leaf_samples": 71,
+      "unresolved_stack_samples": 213
+    },
+    "curl_cffi-matched/flush64": {
+      "excluded_sample_counts": {
+        "at_or_after_end": 188,
+        "before_window": 0,
+        "wrong_event": 0,
+        "wrong_pid": 0,
+        "wrong_tid": 0
+      },
+      "missing_stack_samples": 0,
+      "observed_inclusive_stack_memberships_overlap": {
+        "curl_websocket_receive": 100,
+        "observed_copy_path": 20,
+        "tls_aead_crypto": 46,
+        "tls_record_read": 71
+      },
+      "profiled_rows": 96,
+      "raw_script_samples_including_excluded": 408,
+      "resolved_stack_samples": 0,
+      "selected_samples": 220,
+      "stack_status_counts": {
+        "unresolved": 220
+      },
+      "stack_truncation": "unobservable from perf-script text; not treated as zero",
+      "top_flat_leaf_groups_dso_symbol": [
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 67,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 41,
+          "symbol": "aes_gcm_dec_update_vaes_avx2"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 20,
+          "symbol": "copyBlocks"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 18,
+          "symbol": "_PyEval_EvalFrameDefault"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 12,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 4,
+          "symbol": "PyBytes_FromStringAndSize"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 3,
+          "symbol": "_PyObject_MakeTpCall"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 3,
+          "symbol": "malloc"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "Curl_llist_head"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "BIO_clear_retry_flags"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "Curl_easy_recv"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "Clear"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "gcm_gmult_vpclmulqdq_avx2"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 2,
+          "symbol": "_PyTuple_FromStackRefStealOnSuccess"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 2,
+          "symbol": "lib_getattr"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 2,
+          "symbol": "PyTime_AsSecondsDouble"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 2,
+          "symbol": "_Py_TYPE"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "_Py_Dealloc"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 1,
+          "symbol": "Py_XDECREF"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "ossl_recv"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "tls_read_buffer_extend_to"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "OPENSSL_memset"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "cf_socket_recv"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ssl_handle_open_record"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "_PyLong_Sign"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/_cffi_backend.cpython-314-x86_64-linux-gnu.so",
+          "samples": 1,
+          "symbol": "cdataowning_subscript"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "PyObject_GetAttr"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "PySlice_Unpack"
+        },
+        {
+          "dso": "/usr/bin/python3.14",
+          "samples": 1,
+          "symbol": "PyObject_Vectorcall"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ws_dec_pass_payload"
+        }
+      ],
+      "unknown_frame_count": 1345,
+      "unknown_leaf_immediate_parent_groups": [
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "[unknown]",
+          "samples": 53
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "recv",
+          "samples": 6
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "[unknown]",
+          "samples": 5
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyBytes_FromStringAndSize",
+          "samples": 5
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "[unknown]",
+          "samples": 3
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "_PyObject_MakeTpCall",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "_Py_Dealloc",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "_PyEval_EvalFrameDefault",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/bin/python3.14",
+          "parent_dso": "/usr/bin/python3.14",
+          "parent_symbol": "PyArg_ParseTupleAndKeywords",
+          "samples": 1
+        }
+      ],
+      "unknown_leaf_samples": 79,
+      "unresolved_stack_samples": 220
+    },
+    "scrapanium-bend/flush1": {
+      "excluded_sample_counts": {
+        "at_or_after_end": 0,
+        "before_window": 0,
+        "wrong_event": 0,
+        "wrong_pid": 0,
+        "wrong_tid": 0
+      },
+      "missing_stack_samples": 0,
+      "observed_inclusive_stack_memberships_overlap": {
+        "bend_equality_helper": 36,
+        "curl_websocket_receive": 84,
+        "observed_copy_path": 26,
+        "tls_aead_crypto": 29,
+        "tls_record_read": 59
+      },
+      "profiled_rows": 96,
+      "raw_script_samples_including_excluded": 134,
+      "resolved_stack_samples": 78,
+      "selected_samples": 134,
+      "stack_status_counts": {
+        "resolved": 78,
+        "unresolved": 56
+      },
+      "stack_truncation": "unobservable from perf-script text; not treated as zero",
+      "top_flat_leaf_groups_dso_symbol": [
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 48,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 29,
+          "symbol": "aes_gcm_dec_update_vaes_avx2"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 26,
+          "symbol": "copyBlocks"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 3,
+          "symbol": "Curl_hash_next_element"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "sp_ws_io_advance"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "free@plt"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "ws_dec_pass"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "cf_socket_recv"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "malloc"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "err_clear"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "ossl_recv"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "bcmp"
+        },
+        {
+          "dso": "[vdso]",
+          "samples": 1,
+          "symbol": "__vdso_clock_gettime"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "__libc_calloc"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "ossl_bio_cf_in_read"
+        },
+        {
+          "dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "samples": 1,
+          "symbol": "sp_bend_bytes_equal"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "chunk_slurpn"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ssl_read_impl"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "sp_bend_handle_take"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "heap_alloc"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "Curl_eapi_leave"
+        },
+        {
+          "dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "samples": 1,
+          "symbol": "WL_FID_CHECK_EQUALITY_C50"
+        },
+        {
+          "dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "samples": 1,
+          "symbol": "WL_FID_CLO_APPLY"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "pthread_mutex_trylock"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "BIO_read"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "OPENSSL_memset"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "Curl_bufq_skip"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "heap_free"
+        }
+      ],
+      "unknown_frame_count": 98,
+      "unknown_leaf_immediate_parent_groups": [
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "parent_symbol": "sp_bend_bytes_equal",
+          "samples": 34
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "[unknown]",
+          "samples": 8
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "parent_symbol": "sp_ws_append",
+          "samples": 3
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "recv",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "parent_symbol": "Curl_conn_meta_get",
+          "samples": 1
+        }
+      ],
+      "unknown_leaf_samples": 48,
+      "unresolved_stack_samples": 56
+    },
+    "scrapanium-bend/flush64": {
+      "excluded_sample_counts": {
+        "at_or_after_end": 0,
+        "before_window": 0,
+        "wrong_event": 0,
+        "wrong_pid": 0,
+        "wrong_tid": 0
+      },
+      "missing_stack_samples": 0,
+      "observed_inclusive_stack_memberships_overlap": {
+        "bend_equality_helper": 30,
+        "curl_websocket_receive": 90,
+        "observed_copy_path": 28,
+        "tls_aead_crypto": 34,
+        "tls_record_read": 72
+      },
+      "profiled_rows": 96,
+      "raw_script_samples_including_excluded": 130,
+      "resolved_stack_samples": 88,
+      "selected_samples": 130,
+      "stack_status_counts": {
+        "resolved": 88,
+        "unresolved": 42
+      },
+      "stack_truncation": "unobservable from perf-script text; not treated as zero",
+      "top_flat_leaf_groups_dso_symbol": [
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 36,
+          "symbol": "[unknown]"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 30,
+          "symbol": "aes_gcm_dec_update_vaes_avx2"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 27,
+          "symbol": "copyBlocks"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 3,
+          "symbol": "ssl_read_impl"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "heap_alloc"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 2,
+          "symbol": "curl_ws_recv"
+        },
+        {
+          "dso": "[vdso]",
+          "samples": 2,
+          "symbol": "__vdso_clock_gettime"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "tls_open_app_data"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 2,
+          "symbol": "ssl_handle_open_record"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "cbs_get"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "gcm_gmult_vpclmulqdq_avx2"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "clock_gettime"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "ossl_bio_cf_in_read"
+        },
+        {
+          "dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "samples": 1,
+          "symbol": "WL_FID_IO_BIND_C271"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "heap_free"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "ctr_take"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "Curl_hash_pick"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "cf_socket_recv"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "bufq_slurpn"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "hw_gcm_decrypt"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "CRYPTO_gcm128_decrypt"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "tls_open_record"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "copyRange4"
+        },
+        {
+          "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "samples": 1,
+          "symbol": "recv"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "Curl_hash_str"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "BIO_read"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "aes_hw_encrypt"
+        },
+        {
+          "dso": "[DSO not reported for inline frame]",
+          "samples": 1,
+          "symbol": "size"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "Curl_multi_knows_easy"
+        },
+        {
+          "dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "samples": 1,
+          "symbol": "bcmp"
+        }
+      ],
+      "unknown_frame_count": 75,
+      "unknown_leaf_immediate_parent_groups": [
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "parent_symbol": "sp_bend_bytes_equal",
+          "samples": 30
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "[unknown]",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_symbol": "recv",
+          "samples": 2
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+          "parent_symbol": "Curl_conn_meta_get",
+          "samples": 1
+        },
+        {
+          "leaf_dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "parent_dso": "/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924/build/bench-ws-client-perf-bend",
+          "parent_symbol": "sp_ws_append",
+          "samples": 1
+        }
+      ],
+      "unknown_leaf_samples": 36,
+      "unresolved_stack_samples": 42
+    }
+  },
+  "record_diagnostics": {
+    "explanation": "perf-script text is not a complete raw perf-record dump; unavailable counters remain unknown, not zero",
+    "lost_record_count": null,
+    "lost_record_raw_dump_observed": false,
+    "perf_report_lost_sample_values": [
+      0,
+      null
+    ],
+    "stack_truncation_observable": false,
+    "throttle_record_count": null,
+    "truncated_stack_count": null,
+    "unthrottle_record_count": null
+  },
+  "rows": {
+    "all_status_passed": true,
+    "failed": 0,
+    "negative_controls": 16,
+    "plan_order_exact": true,
+    "positive": 768,
+    "total": 784
+  },
+  "samples_jsonl_sha256": "b78e6f89b823143275eb40147b8323d2e42dc3ef60c128b640dfd1a9e1c436bd",
+  "schema": 1,
+  "source_commit": "061950a8041e6fdf9cbb9602b07bbab5291b6d24",
+  "stock_backend": {
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "tls_identity_set": [
+    [
+      772,
+      4865
+    ]
+  ]
+}

@@ -312,3 +312,8 @@ all six workloads, matched-client comparisons, and retained provenance.
 The [WSS client CPU profile diagnostic](WSS_CLIENT_PERF.md) records the fixed
 profiled/disabled schedule, timer and sample-filter boundaries, backend identity,
 and limits on interpreting incomplete stacks or profiler observer cost.
+
+The [retained full CPU-profile report](results/wss-client-perf-full-20260924/REPORT.md)
+contains the independently re-parsed 784-row evidence, DSO-aware flat samples,
+stack-resolution limits, and profiler observer intervals. It is attribution
+evidence only and makes no throughput claim.

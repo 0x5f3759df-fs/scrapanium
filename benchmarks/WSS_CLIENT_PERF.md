@@ -50,8 +50,16 @@ The correctness smoke passed all 48 rows: 16 expected corruption/swap
 rejections and 32 exact-check positives. Its eight-message profiled rows yielded
 zero selected in-window samples, as expected for a short correctness gate; the
 80-sample floor applies only to the fixed full schedule. This is not performance
-evidence, and no full CPU profile is included. See the
-[retained smoke report](results/wss-client-perf-smoke-20260924/REPORT.md).
+evidence. See the [retained smoke report](results/wss-client-perf-smoke-20260924/REPORT.md).
+
+The fixed full run completed all 784 attempts (768 positives and 16 expected
+corruption/swap rejections), and all four profiled client/flush cells exceeded
+the 80-sample floor. The [full-run report](results/wss-client-perf-full-20260924/REPORT.md)
+recomputes selected samples from retained perf-script text, separates flat
+DSO/symbol leaves from overlapping incomplete-stack memberships, and reports
+the enabled/disabled interval comparison only as a profiler observer check.
+This remains an attribution diagnostic; it does not measure unprofiled
+throughput or establish a production performance gain.
 Neither this diagnostic nor the older phase/profile reports support a
 throughput claim without a separate matched, unprofiled benchmark. Results from
 a different backend build must not be compared as if only the client changed.
@@ -88,3 +96,6 @@ the fixed full schedule is considered ready.
 For the retained smoke, the machine-specific perf executable and output root
 were /home/baidu/wss-perf-feasibility-20260923/extracted/usr/bin/perf and
 /home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final.
+The retained full collection used persistent ext4 storage at
+/home/baidu/scrapanium-experiments/wss-client-perf-full-20260924; this path is
+provenance only, and the published report audit runs from the repository tree.
