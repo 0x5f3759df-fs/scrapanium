@@ -17,8 +17,9 @@ The goal remains active; this repository is an initial working implementation.
   native push sinks and atomic streaming file downloads from Bend.
 - Browser TLS/HTTP/2 profile selection and explicit custom fingerprint overrides.
 - 41 stock profiles plus optional Chrome 153, Chrome for Testing 153 headless,
-  and Firefox 156 profiles with retained Linux browser captures; source-built
-  TLS controls and HTTP/2 stream-window/stream-ID controls.
+  Google Chrome 154, Chrome for Testing 154 headless, and Firefox 156 profiles
+  with retained Linux browser captures; source-built TLS controls and HTTP/2
+  stream-window/stream-ID controls.
 - Firefox 148 reference comparison and an explicitly limited Chrome 152 preview.
 - Affine wrappers with generation-checked native handles and exit cleanup.
 - Pure API laws, loopback tests, fingerprint parity tests, sanitizer integration.
@@ -39,7 +40,7 @@ The goal remains active; this repository is an initial working implementation.
    The optional backend now exposes signature GREASE; Chrome 152 remains a
    separately limited mixed-source preview. Validate current Safari/Android captures and WS-specific
    handshakes. Add WebSocket compression and broader RFC conformance/fuzz coverage.
-   Chrome 153 and Firefox 156 now have scoped Linux evidence. Safari 27 and
+   Chrome 154 and Firefox 156.0.1 now have scoped Linux evidence. Safari 27 and
    current browsers on other platforms remain immediate targets;
    see the dated primary sources and coverage gap in `docs/PROFILES.md`.
 4. Expand the initial comparison with curl_cffi and tls-client: latency distributions,

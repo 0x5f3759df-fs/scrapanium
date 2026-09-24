@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-09-20",
+  "checked_utc": "2026-09-24",
   "backend": "curl-impersonate 2.2.3",
   "source": "https://github.com/lexiforest/curl-impersonate/tree/6e8f87760a4dd96771e96fc9d55440dcd8845243",
   "profiles": [
@@ -225,6 +225,9 @@
       "real_browser_verified": true,
       "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
       "capture": "profiles/browsers/linux-headed-2026-09-20.json",
+      "current_capture": "profiles/browsers/captures-2026-09-24/linux-headed.json",
+      "current_headless_capture": "profiles/browsers/captures-2026-09-24/linux-headless.json",
+      "current_browser_version": "156.0.1",
       "browser": "firefox",
       "known_gaps": [
         "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
@@ -257,6 +260,38 @@
       "known_gaps": [
         "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
         "Other platforms and browser field-trial configurations are not covered."
+      ]
+    },
+    {
+      "id": "chrome154_headless",
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "capture": "profiles/browsers/captures-2026-09-24/linux-headless.json",
+      "browser": "chrome",
+      "browser_version": "154.0.8037.57",
+      "known_gaps": [
+        "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
+        "Other platforms and browser field-trial configurations are not covered.",
+        "Three samples do not establish the distribution of ECH GREASE payload lengths."
+      ]
+    },
+    {
+      "id": "chrome154",
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "capture": "profiles/browsers/captures-2026-09-24/linux-headed.json",
+      "browser": "google_chrome",
+      "browser_version": "154.0.8037.57",
+      "known_gaps": [
+        "Resumption, ECH acceptance, HTTP/3 and WebSocket browser-handshake parity are not validated.",
+        "Other platforms and browser field-trial configurations are not covered.",
+        "Three samples do not establish the distribution of ECH GREASE payload lengths."
       ]
     }
   ],

@@ -15,7 +15,7 @@
 
 ## What you get
 
-- **[41 browser profiles + 3 optional targets](docs/PROFILES.md)**, including capture-tested Chrome 153 and Firefox 156 on Linux.
+- **[41 browser profiles + 5 optional targets](docs/PROFILES.md)**, including capture-tested Chrome 153/154 and Firefox 156 on Linux.
 - **[HTTP/1.1 and HTTP/2](docs/REQUESTS.md)** with pooled sessions, concurrent batches, cookies, redirects and proxies.
 - **[WS and WSS](docs/WEBSOCKETS.md)** for text and binary messages, with certificate verification, timeouts and cancellation.
 - **[Binary data and downloads](examples/download.bend)** with uploads, response buffers and streaming to files.
@@ -95,7 +95,7 @@ python3 scripts/build.py hello.bend -o build/hello
 | **Release** | Working alpha. The API can still change. |
 | **Platform** | Linux x86_64 / WSL2 · Bend 2.0.17 · native C target. |
 | **Tests** | **400+ passing tests**, including WS/WSS and sanitizer checks. [Test details](docs/VALIDATION.md) · [CI](https://github.com/0x5f3759df-fs/scrapanium/actions/workflows/ci.yml). |
-| **Profiles** | Default: Chrome 150. Optional Chrome 153 and Firefox 156 profiles match scoped Linux captures. Safari 27 and wider platform coverage remain pending. [Exact coverage](docs/PROFILES.md). |
+| **Profiles** | Default: Chrome 150. Optional Chrome 153/154 and Firefox 156 profiles have scoped Linux capture evidence. Safari 27 and wider platform coverage remain pending. [Exact coverage](docs/PROFILES.md). |
 | **Still missing** | Easy binary installs, macOS/ARM support, automatic retries, multipart uploads and WebSocket compression. |
 
 ---

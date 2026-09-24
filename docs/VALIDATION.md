@@ -45,9 +45,11 @@ Bun 1.3.11 and a curl_cffi source build linked to the same shared backend. Local
 JUnit detail is generated at `build/test-results.xml` (ignored as a build artifact).
 
 Counts shown as stock/browser differ by backend; a single count applies to both.
-The optional build skips the one stock-only unsupported-profile check. Except
-for the updated WS/WSS collection count, these group counts describe the
-historical full-suite validation above. The current WebSocket collection has
+The optional build skips the one stock-only unsupported-profile check. The
+full-suite results above and unchanged group counts below are historical and
+predate the Chrome 154 profiles. The Profile catalog and Actual browser captures
+rows report the focused current run (47/51 and 4/25, stock/browser); the current
+WebSocket collection has
 138 cases: 134 from the four targeted files above plus four close-reason scalar
 cases. This count includes eight generated WS/WSS sequences and the WebSocket
 operation-state reuse lifecycle regression.
@@ -61,8 +63,8 @@ operation-state reuse lifecycle regression.
 | Request builders | 44 | Differential UTF-8 query/form encoding, invalid scalars, duplicate/query/fragment handling, header validation and compiled wire requests. |
 | Binary buffers | 15 | Exact file uploads, input limits, regular-file checks, byte access, zero-copy response transfer/reupload, affine rejection, exact length/byte equality with retained ownership, and checked Unicode conversion. |
 | Structured response headers | 7 | Final blocks after redirects/CONNECT/103, case/order/duplicates/empty values, OWS trimming, unfolded fields and separate HTTP/1 and HTTP/2 trailers. |
-| Profile catalog | 46 / 48 | Runtime catalog agreement, all 41 / 44 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure and rejection of optional profiles on stock builds. |
-| Actual browser captures | 2 / 13 | Reparse raw browser TLS and HTTP/2 artifacts; compare Chrome 153, CfT headless 153 and Firefox 156; verify binary/UTF-8 WSS round trips and certificate rejection for all three profiles. |
+| Profile catalog | 47 / 51 | Runtime catalog agreement, all 41 / 46 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure and rejection of optional profiles on stock builds. |
+| Actual browser captures | 4 / 25 | Reparse historical and dated browser TLS/HTTP/2 artifacts; compare Chrome 153, CfT headless 153, Google Chrome 154, CfT headless 154, and Firefox 156 against both 156.0 and 156.0.1 captures; verify binary/UTF-8 WSS round trips and certificate rejection for all five profiles. |
 | Backend controls | 0 / 7 | Option bounds, TLS handle duplication/reset, cache-safe connection reuse, and rejection of a stream window below the advertised initial setting before request headers. |
 | Browser flow control | 0 / 2 | Three simultaneous 13 MiB+17-byte streams on one connection, exact contents and stream IDs, repeated with different per-request windows to check stream ownership. |
 | Backend installation | 0 / 2 | Input/output manifest hashes and retained notices/source; load the moved installation in a fresh process with its original search path removed. |

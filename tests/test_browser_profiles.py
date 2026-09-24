@@ -8,14 +8,31 @@ from browser_lab import browser_certificate, start_browser_h2
 from fingerprint import capture, detailed_hello
 
 ROOT = Path(__file__).resolve().parents[1]
+CAPTURE_DATES = ('2026-09-20', '2026-09-24')
 REPORTS = {
-    mode: json.loads((ROOT / f'profiles/browsers/linux-{mode}-2026-09-20.json').read_text())
-    for mode in ('headed', 'headless')
+    (date, mode): json.loads((ROOT / path).read_text())
+    for date, paths in {
+        '2026-09-20': {
+            'headed': 'profiles/browsers/linux-headed-2026-09-20.json',
+            'headless': 'profiles/browsers/linux-headless-2026-09-20.json',
+        },
+        '2026-09-24': {
+            'headed': 'profiles/browsers/captures-2026-09-24/linux-headed.json',
+            'headless': 'profiles/browsers/captures-2026-09-24/linux-headless.json',
+        },
+    }.items()
+    for mode, path in paths.items()
 }
-TARGETS = [('chrome153', 'google_chrome', 'headed'),
-           ('firefox156', 'firefox', 'headed'),
-           ('firefox156', 'firefox', 'headless'),
-           ('chrome153_headless', 'chrome', 'headless')]
+TARGETS = [
+    ('chrome153', 'google_chrome', 'headed', '2026-09-20'),
+    ('firefox156', 'firefox', 'headed', '2026-09-20'),
+    ('firefox156', 'firefox', 'headless', '2026-09-20'),
+    ('chrome153_headless', 'chrome', 'headless', '2026-09-20'),
+    ('chrome154', 'google_chrome', 'headed', '2026-09-24'),
+    ('firefox156', 'firefox', 'headed', '2026-09-24'),
+    ('firefox156', 'firefox', 'headless', '2026-09-24'),
+    ('chrome154_headless', 'chrome', 'headless', '2026-09-24'),
+]
 BROWSER_BACKEND = b'2.2.3-scrapanium.1' in lib.sp_backend_version()
 
 
@@ -51,9 +68,10 @@ def h2_fingerprint(record):
                         for headers in record['headers']], 'frames': frames}
 
 
-@pytest.mark.parametrize('mode', ['headed', 'headless'])
-def test_browser_artifacts_reparse_and_agree(mode):
-    report = REPORTS[mode]
+@pytest.mark.parametrize('date,mode', [(date, mode) for date in CAPTURE_DATES
+                                      for mode in ('headed', 'headless')])
+def test_browser_artifacts_reparse_and_agree(date, mode):
+    report = REPORTS[(date, mode)]
     assert report['browser_mode'] == mode
     for browser in report['browsers'].values():
         assert len(browser['samples']) == len(browser['http2_samples']) == 3
@@ -71,19 +89,19 @@ def test_browser_artifacts_reparse_and_agree(mode):
 
 
 @pytest.mark.skipif(not BROWSER_BACKEND, reason='requires the optional source-built browser backend')
-@pytest.mark.parametrize('profile,browser,mode', TARGETS)
-def test_profile_clienthello_matches_real_browser(profile, browser, mode):
+@pytest.mark.parametrize('profile,browser,mode,date', TARGETS)
+def test_profile_clienthello_matches_real_browser(profile, browser, mode, date):
     def send(url):
         with Session(profile=profile, timeout_ms=5000) as session, session.send(url) as response:
             assert response.error == 4
-    expected = REPORTS[mode]['browsers'][browser]['samples'][0]['detailed_clienthello']
+    expected = REPORTS[(date, mode)]['browsers'][browser]['samples'][0]['detailed_clienthello']
     for _ in range(3):
         assert capture(send, detailed=True) == expected
 
 
 @pytest.mark.skipif(not BROWSER_BACKEND, reason='requires the optional source-built browser backend')
-@pytest.mark.parametrize('profile,browser,mode', TARGETS)
-def test_profile_http2_matches_real_browser(profile, browser, mode, tmp_path):
+@pytest.mark.parametrize('profile,browser,mode,date', TARGETS)
+def test_profile_http2_matches_real_browser(profile, browser, mode, date, tmp_path):
     context, ca, _ = browser_certificate(tmp_path)
     server, url = start_browser_h2(context)
     try:
@@ -91,7 +109,7 @@ def test_profile_http2_matches_real_browser(profile, browser, mode, tmp_path):
             assert response.error == 0, response.message
             assert b'capture complete' in response.body
         assert server.received.wait(2), server.errors
-        expected = REPORTS[mode]['browsers'][browser]['http2_samples'][0]['connection']
+        expected = REPORTS[(date, mode)]['browsers'][browser]['http2_samples'][0]['connection']
         assert h2_fingerprint(server.result) == h2_fingerprint(expected)
     finally:
         server.shutdown()
@@ -99,7 +117,7 @@ def test_profile_http2_matches_real_browser(profile, browser, mode, tmp_path):
 
 
 @pytest.mark.skipif(not BROWSER_BACKEND, reason='requires the optional source-built browser backend')
-@pytest.mark.parametrize('profile', ['chrome153', 'chrome153_headless', 'firefox156'])
+@pytest.mark.parametrize('profile', ['chrome153', 'chrome153_headless', 'chrome154', 'chrome154_headless', 'firefox156'])
 def test_profile_verified_wss_preserves_binary_and_utf8(profile, tmp_path):
     from test_websocket import WebSocket
     from ws_lab import start_ws

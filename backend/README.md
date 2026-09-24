@@ -1,9 +1,10 @@
 # Browser backend
 
-An optional source build adds three capture-tested Linux profiles:
-`chrome153`, `chrome153_headless` (Chrome for Testing), and `firefox156`.
+An optional source build adds five capture-tested Linux profiles:
+`chrome153`, `chrome153_headless`, `chrome154`, `chrome154_headless`, and
+`firefox156`.
 The normal install keeps the stock transport and its 41 profiles. The browser
-build exposes 44 profiles; unknown names fail on either build.
+build exposes 46 profiles; unknown names fail on either build.
 
 ## Build and use
 
@@ -38,8 +39,7 @@ a repeatable source recipe, not a claim of bit-identical builds across toolchain
 
 | Control | Purpose |
 | --- | --- |
-| Signature-algorithm GREASE | Chrome 153's extra GREASE signature entry. |
-| Server-padding request | Extension 4832 in the captured Chrome for Testing build; absent in captured Google Chrome. |
+| TLS ClientHello controls | Captured Chrome 153 and 154 include signature GREASE in headed and headless modes. CfT headless sends a two-byte server-padding request with value 0; extension 4832 appears in CfT captures and is absent in Google Chrome captures. |
 | HTTP/2 stream receive window | Firefox 156 grows each stream from 128 KiB to 12 MiB after HEADERS. |
 | HTTP/2 initial stream ID | Firefox 156 starts navigation on stream 3. |
 

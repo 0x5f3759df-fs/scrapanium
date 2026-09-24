@@ -1,8 +1,8 @@
 # Actual browser captures
 
-These fixtures capture **Google Chrome 153.0.8010.52**, **Chrome for Testing
-153.0.8010.52**, and **Firefox 156.0** on Linux x86_64. Each browser runs in a
-new temporary profile for every sample. The headed samples use an Xvfb display.
+These historical fixtures capture **Google Chrome 153.0.8010.52**, **Chrome for
+Testing 153.0.8010.52**, and **Firefox 156.0** on Linux x86_64. Each browser
+runs in a new temporary profile for every sample. Headed samples use Xvfb.
 
 | Profile | Browser build | Mode | Compared behavior |
 | --- | --- | --- | --- |
@@ -10,10 +10,19 @@ new temporary profile for every sample. The headed samples use an Xvfb display.
 | `chrome153_headless` | Chrome for Testing | Headless | Initial TCP ClientHello and HTTP/2 navigation. |
 | `firefox156` | Mozilla Firefox | Headed and headless | Initial TCP ClientHello and HTTP/2 navigation. |
 
-Three samples per browser/mode are retained. The headed fixture additionally
-records Chrome for Testing to expose the difference between testing and branded
-Chrome. Google Chrome and Chrome for Testing have different client-hint brands,
-header order, and server-padding extension behavior in these captures.
+The current optional profiles also have separate 2026-09-24 capture evidence:
+
+| Profile | Browser build | Mode | Compared behavior |
+| --- | --- | --- | --- |
+| `chrome154` | Google Chrome 154.0.8037.57 | Headed | Initial TCP ClientHello and HTTP/2 navigation. |
+| `chrome154_headless` | Chrome for Testing 154.0.8037.57 | Headless | Initial TCP ClientHello and HTTP/2 navigation. |
+| `firefox156` | Mozilla Firefox 156.0.1 | Headed and headless | Current release confirmation for the existing profile. |
+
+Three samples per browser/mode are retained in each dated set. The historical
+headed fixture additionally records Chrome for Testing to expose the difference
+between testing and branded Chrome. Google Chrome and Chrome for Testing have
+different client-hint brands, header order, and extension behavior in these
+captures.
 
 ## Reproduce
 
@@ -72,4 +81,12 @@ Separate three-sample headed and headless captures of Chrome for Testing
 [`releases-2026-09-24.json`](releases-2026-09-24.json). The comparison report
 lists every normalized TLS and HTTP/2 difference against the 2026-09-20 captures
 and calls out raw ECH payload-length variation. These observations do not
-replace the historical capture inputs or update native profile data.
+replace the historical capture inputs. The native `chrome154` and
+`chrome154_headless` profiles use these captures' exact HTTP/2 headers and the
+established Chrome TLS controls: signature GREASE for both modes and the
+headless server-padding setting for Chrome for Testing. Their normalized TLS
+structures match the 153 captures, but this does not establish raw-byte parity.
+The `firefox156` TLS and HTTP/2 structures and observed `rv:156.0` headers also
+match the earlier capture, so Firefox 156.0.1 confirms the existing profile
+rather than requiring a new ID. Three samples do not estimate an ECH payload
+length distribution or prove version-wide equivalence.

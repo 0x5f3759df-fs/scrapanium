@@ -21,7 +21,7 @@ Bootstrap downloads the pinned compiler and transport into `.deps/`. It verifies
 the transport archive's SHA-256 and checks out Bend at an exact commit.
 The versions and hashes are in [dependencies.json](../dependencies.json).
 
-For the additional Chrome 153 and Firefox 156 profiles, follow the optional
+For the additional Chrome 153/154 and Firefox 156 profiles, follow the optional
 [browser-backend build](../backend/README.md). It compiles a separate transport
 from pinned sources; the normal install and benchmark defaults remain stock.
 

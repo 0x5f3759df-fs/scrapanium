@@ -28,6 +28,12 @@ def test_every_profile_connects_with_verification(profile, https):
         headers = dict((k.lower(), v) for k, v in json.loads(r.body)["headers"])
         if profile == "firefox148": assert "Firefox/148.0" in headers["user-agent"]
         if profile == "chrome152_preview": assert 'v="152"' in headers["sec-ch-ua"]
+        if profile == "chrome154":
+            assert headers["sec-ch-ua"] == '"Chromium";v="154", "Google Chrome";v="154", "Not A(Brand";v="99"'
+            assert "Chrome/154.0.0.0" in headers["user-agent"]
+        if profile == "chrome154_headless":
+            assert headers["sec-ch-ua"] == '"Not A(Brand";v="99", "Chromium";v="154"'
+            assert "HeadlessChrome/154.0.0.0" in headers["user-agent"]
 
 
 @pytest.fixture(scope="module")
@@ -53,12 +59,42 @@ def test_new_profile_wire_against_independent_go(go_probe, profile, reference):
 
 
 def test_unknown_current_browser_names_do_not_fall_back():
-    for profile in ("chrome152", "chrome999", "safari999"):
+    for profile in ("chrome152", "chrome155", "chrome999", "safari999"):
         with pytest.raises(ValueError): Session(profile=profile)
 
 
 @pytest.mark.skipif(b'2.2.3-scrapanium.1' in lib.sp_backend_version(), reason='stock-only rejection check')
 def test_optional_profiles_require_the_browser_backend():
-    for profile in ('chrome153', 'chrome153_headless', 'firefox156'):
+    for profile in ('chrome153', 'chrome153_headless', 'chrome154', 'chrome154_headless', 'firefox156'):
         with pytest.raises(ValueError):
             Session(profile=profile)
+
+
+def test_current_capture_catalog_metadata():
+    profiles = {entry['id']: entry for entry in CATALOG['profiles']}
+    targets = [
+        ('chrome154', 'headed', 'google_chrome', '154.0.8037.57'),
+        ('chrome154_headless', 'headless', 'chrome', '154.0.8037.57'),
+    ]
+    for profile, mode, browser, version in targets:
+        entry = profiles[profile]
+        report = json.loads((ROOT / entry['capture']).read_text())
+        assert report['browser_mode'] == mode
+        actual = report['browsers'][browser]
+        assert entry['browser_version'] == actual['download']['version'] == version
+        assert actual['version_output'].endswith(version)
+        assert len(actual['samples']) == len(actual['http2_samples']) == 3
+
+    firefox = profiles['firefox156']
+    assert firefox['current_browser_version'] == '156.0.1'
+    firefox_capture_paths = {
+        'headed': firefox['current_capture'],
+        'headless': firefox['current_headless_capture'],
+    }
+    for mode, relative_path in firefox_capture_paths.items():
+        path = ROOT / relative_path
+        report = json.loads(path.read_text())
+        actual = report['browsers']['firefox']
+        assert report['browser_mode'] == mode
+        assert actual['download']['version'] == firefox['current_browser_version']
+        assert actual['version_output'].endswith(firefox['current_browser_version'])
