@@ -1,0 +1,78 @@
+{
+  "backend_library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+  "baseline_snapshot_file_count": 76,
+  "baseline_snapshot_manifest_sha256": "86ea0f8eef1de36eacafb14ca394724ac72558228161f87bb6c056d92a54250a",
+  "candidate_snapshot_file_count": 78,
+  "candidate_snapshot_manifest_sha256": "ed018e18f987f8e31995ae6c569702ab8c46b96775bf99ec3ce410c366c49d7a",
+  "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+  "schema": 1,
+  "source": {
+    "backend_build_manifest": {
+      "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+      "compiler": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+      "configure": [
+        "cmake",
+        "-S",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/source",
+        "-B",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/build",
+        "-GNinja",
+        "-DCMAKE_INSTALL_PREFIX=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-live",
+        "-DCMAKE_INSTALL_LIBDIR=lib",
+        "-DCMAKE_C_COMPILER=/usr/bin/clang",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+        "-DSUBJOBS=4",
+        "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+        "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+        "-DUSE_LIBIDN2=ON"
+      ],
+      "input_sha256": {
+        "backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+        "backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+        "backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+        "scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed"
+      },
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+    },
+    "baseline_library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+    "baseline_ws_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+    "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+    "candidate_library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+    "candidate_patch_sha256": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+    "candidate_ws_sha256": "9e67cfc98bd2e08de253fd9a09f57b06f1d6c5f5ab97780ac7e1da135946c058",
+    "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+    "curl_upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+    "dependency_static_libraries_unchanged": true,
+    "dependency_static_library_hashes_after_candidate": {
+      "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+      "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+      "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+      "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+      "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+      "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+      "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+      "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+      "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+      "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+      "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+      "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+      "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+    },
+    "dependency_static_library_hashes_before_candidate": {
+      "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+      "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+      "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+      "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+      "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+      "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+      "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+      "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+      "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+      "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+      "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+      "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+      "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+    }
+  },
+  "variant": "baseline"
+}

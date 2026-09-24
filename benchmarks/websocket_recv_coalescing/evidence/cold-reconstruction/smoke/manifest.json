@@ -1,0 +1,1599 @@
+{
+  "adoption_gate": {
+    "primary_64k_bend": "both 65,536-byte flush modes require median ratio >= 1.05 and paired 95% CI lower bound > 1.0",
+    "receive_call_counts": "candidate must reduce native curl_ws_recv calls in the separate fixed 8-run probe; not measured by this uninstrumented runner",
+    "small_and_medium_bend": "all four 30-byte/1,024-byte \u00d7 flush1/flush64 cells require paired 95% CI lower bound >= 0.95; curl_cffi cells are retained and reported separately",
+    "speed_ratio": "baseline elapsed / candidate elapsed; values greater than 1 favor candidate"
+  },
+  "attempts_completed": 32,
+  "attempts_failed": 0,
+  "backend_map_validation": "each ready client process must map exactly one backend; retained mapped path must be one of the libcurl SONAME aliases in the planned prefix/lib directory and its SHA256 must match the frozen library",
+  "backend_provenance": {
+    "baseline": {
+      "library_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/baseline/lib/libcurl-impersonate.so",
+      "library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+      "manifest_file_count": 76,
+      "manifest_matches_files": true,
+      "manifest_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/baseline/manifest.json",
+      "manifest_sha256": "86ea0f8eef1de36eacafb14ca394724ac72558228161f87bb6c056d92a54250a",
+      "prefix": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/baseline",
+      "provenance": {
+        "backend_library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+        "baseline_snapshot_file_count": 76,
+        "baseline_snapshot_manifest_sha256": "86ea0f8eef1de36eacafb14ca394724ac72558228161f87bb6c056d92a54250a",
+        "candidate_snapshot_file_count": 78,
+        "candidate_snapshot_manifest_sha256": "ed018e18f987f8e31995ae6c569702ab8c46b96775bf99ec3ce410c366c49d7a",
+        "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+        "schema": 1,
+        "source": {
+          "backend_build_manifest": {
+            "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+            "compiler": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+            "configure": [
+              "cmake",
+              "-S",
+              "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/source",
+              "-B",
+              "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/build",
+              "-GNinja",
+              "-DCMAKE_INSTALL_PREFIX=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-live",
+              "-DCMAKE_INSTALL_LIBDIR=lib",
+              "-DCMAKE_C_COMPILER=/usr/bin/clang",
+              "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+              "-DSUBJOBS=4",
+              "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+              "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+              "-DUSE_LIBIDN2=ON"
+            ],
+            "input_sha256": {
+              "backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+              "backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+              "backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+              "scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed"
+            },
+            "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+          },
+          "baseline_library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+          "baseline_ws_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+          "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+          "candidate_library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+          "candidate_patch_sha256": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+          "candidate_ws_sha256": "9e67cfc98bd2e08de253fd9a09f57b06f1d6c5f5ab97780ac7e1da135946c058",
+          "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+          "curl_upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+          "dependency_static_libraries_unchanged": true,
+          "dependency_static_library_hashes_after_candidate": {
+            "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+            "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+            "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+            "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+            "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+            "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+            "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+            "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+            "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+            "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+            "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+            "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+            "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+          },
+          "dependency_static_library_hashes_before_candidate": {
+            "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+            "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+            "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+            "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+            "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+            "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+            "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+            "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+            "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+            "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+            "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+            "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+            "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+          }
+        },
+        "variant": "baseline"
+      },
+      "provenance_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-baseline-provenance.json",
+      "provenance_sha256": "16d4a09a473d16da0020f0cb8172a7adb45c4e5caefc7d1b422d45e4eaecaa0c"
+    },
+    "candidate": {
+      "library_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/candidate/lib/libcurl-impersonate.so",
+      "library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+      "manifest_file_count": 78,
+      "manifest_matches_files": true,
+      "manifest_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/candidate/manifest.json",
+      "manifest_sha256": "ed018e18f987f8e31995ae6c569702ab8c46b96775bf99ec3ce410c366c49d7a",
+      "prefix": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/candidate",
+      "provenance": {
+        "baseline_snapshot_file_count": 76,
+        "baseline_snapshot_manifest_sha256": "86ea0f8eef1de36eacafb14ca394724ac72558228161f87bb6c056d92a54250a",
+        "candidate_library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+        "candidate_snapshot_file_count": 78,
+        "candidate_snapshot_manifest_sha256": "ed018e18f987f8e31995ae6c569702ab8c46b96775bf99ec3ce410c366c49d7a",
+        "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+        "schema": 1,
+        "source": {
+          "backend_build_manifest": {
+            "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+            "compiler": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+            "configure": [
+              "cmake",
+              "-S",
+              "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/source",
+              "-B",
+              "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-work/build",
+              "-GNinja",
+              "-DCMAKE_INSTALL_PREFIX=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-live",
+              "-DCMAKE_INSTALL_LIBDIR=lib",
+              "-DCMAKE_C_COMPILER=/usr/bin/clang",
+              "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+              "-DSUBJOBS=4",
+              "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+              "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+              "-DUSE_LIBIDN2=ON"
+            ],
+            "input_sha256": {
+              "backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+              "backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+              "backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+              "scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed"
+            },
+            "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+          },
+          "baseline_library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+          "baseline_ws_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+          "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+          "candidate_library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+          "candidate_patch_sha256": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+          "candidate_ws_sha256": "9e67cfc98bd2e08de253fd9a09f57b06f1d6c5f5ab97780ac7e1da135946c058",
+          "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+          "curl_upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+          "dependency_static_libraries_unchanged": true,
+          "dependency_static_library_hashes_after_candidate": {
+            "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+            "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+            "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+            "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+            "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+            "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+            "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+            "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+            "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+            "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+            "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+            "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+            "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+          },
+          "dependency_static_library_hashes_before_candidate": {
+            "build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+            "build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+            "build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+            "build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+            "build/deps/install/lib/libcrypto.a": "3dbf4813b92080952e37051a14a5d4fd600fa15984a25a96b59d6ab5a4115dfb",
+            "build/deps/install/lib/libidn2.a": "115f6913e4fba3c6fb40a60758ca631e1ef3678cc770a94a0b611b1fdc297b28",
+            "build/deps/install/lib/libnghttp2.a": "575cb651693ea252e8c07547327cd5289e730a4bf7f441c86d52a3055a563e64",
+            "build/deps/install/lib/libnghttp3.a": "af20ec3c27ef3ad2c5106abd51a09cd751445c9b8bea2a7c9c1e62c0979cfee7",
+            "build/deps/install/lib/libngtcp2.a": "e38f7786e330a6c1762adc7ed37ab739041363e511917990fca66837189f6b52",
+            "build/deps/install/lib/libngtcp2_crypto_boringssl.a": "a407dbea21ca7017ebb9882467c29908d77f47b7e56f3a51cf4c7986a72654eb",
+            "build/deps/install/lib/libssl.a": "82758d07b8162b2478464c338c023baf50b32e8e010dfd722a307832fd09fb19",
+            "build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+            "build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+          }
+        },
+        "source_bundle": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+        "variant": "candidate"
+      },
+      "provenance_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backend-candidate-provenance.json",
+      "provenance_sha256": "acc269ac783d07f28925c10ff63dd20f3bd73c5ea7b3a09fdff5778bd4c6aad9"
+    }
+  },
+  "backend_provenance_after": {
+    "baseline": {
+      "library_sha256": "ae88ce76f50c08423969f85170d65409cb273cd96af9092000a40d5ce8e32050",
+      "manifest_sha256": "86ea0f8eef1de36eacafb14ca394724ac72558228161f87bb6c056d92a54250a",
+      "provenance_sha256": "16d4a09a473d16da0020f0cb8172a7adb45c4e5caefc7d1b422d45e4eaecaa0c"
+    },
+    "candidate": {
+      "library_sha256": "4a2477aa4de65f130d73e1eeaa75fcfdf47fdfa9088a4f696da67fcc16d902f1",
+      "manifest_sha256": "ed018e18f987f8e31995ae6c569702ab8c46b96775bf99ec3ce410c366c49d7a",
+      "provenance_sha256": "acc269ac783d07f28925c10ff63dd20f3bd73c5ea7b3a09fdff5778bd4c6aad9"
+    }
+  },
+  "binary_sha256_after": {
+    "baseline-bend": "f005cabbfb20db1ff8b1d4055a61fd059b8577cddc164a71861c96dc4599b25e",
+    "baseline-bridge": "f186e915258cffe0318bb1db9bfa5897aa7da6d96cb8087e39f10e5360b059a7",
+    "candidate-bend": "ad12f8e6ed01c8b7189227544110d3031651104a81e009217cea429d0d221766",
+    "candidate-bridge": "443237304e82a7664762cc9cd496293baf4da72218d6c5623677a7c1f4cbdce3",
+    "go_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "binary_sha256_before": {
+    "baseline-bend": "f005cabbfb20db1ff8b1d4055a61fd059b8577cddc164a71861c96dc4599b25e",
+    "baseline-bridge": "f186e915258cffe0318bb1db9bfa5897aa7da6d96cb8087e39f10e5360b059a7",
+    "candidate-bend": "ad12f8e6ed01c8b7189227544110d3031651104a81e009217cea429d0d221766",
+    "candidate-bridge": "443237304e82a7664762cc9cd496293baf4da72218d6c5623677a7c1f4cbdce3",
+    "go_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "bootstrap_resamples": 10000,
+  "call_counts": "not measured here; this driver is uninstrumented",
+  "client_provenance": {
+    "baseline": {
+      "bridge_library": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/bridges/baseline/libscrapanium.so",
+      "bridge_library_sha256": "f186e915258cffe0318bb1db9bfa5897aa7da6d96cb8087e39f10e5360b059a7",
+      "bridge_rpath_backend": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/baseline/lib",
+      "native_websocket_sha256": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+      "root": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/baseline",
+      "stream_binary": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/baseline/build/websocket_stream",
+      "stream_binary_sha256": "f005cabbfb20db1ff8b1d4055a61fd059b8577cddc164a71861c96dc4599b25e",
+      "stream_build_command": "cd /home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/baseline; env SCRAPANIUM_CURL_DIR=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/baseline BEND_SOURCE=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bend BUN=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun CC=/usr/bin/clang python3 scripts/build.py benchmarks/websocket_stream.bend -o build/websocket_stream"
+    },
+    "candidate": {
+      "bridge_library": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/bridges/candidate/libscrapanium.so",
+      "bridge_library_sha256": "443237304e82a7664762cc9cd496293baf4da72218d6c5623677a7c1f4cbdce3",
+      "bridge_rpath_backend": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/candidate/lib",
+      "native_websocket_sha256": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+      "root": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/candidate",
+      "stream_binary": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/candidate/build/websocket_stream",
+      "stream_binary_sha256": "ad12f8e6ed01c8b7189227544110d3031651104a81e009217cea429d0d221766",
+      "stream_build_command": "cd /home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/client-roots/candidate; env SCRAPANIUM_CURL_DIR=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/backends/candidate BEND_SOURCE=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bend BUN=/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun CC=/usr/bin/clang python3 scripts/build.py benchmarks/websocket_stream.bend -o build/websocket_stream"
+    }
+  },
+  "client_validation": "exact binary opcode, unique 8-digit sequence, full payload equality, order, and immediate release in both clients",
+  "created_utc": "2026-09-24T05:53:17.514499+00:00",
+  "environment": {
+    "LD_LIBRARY_PATH_set_per_condition": true,
+    "LD_PRELOAD_present": false,
+    "TLS": "WSS",
+    "profile": "chrome146",
+    "threads": 1
+  },
+  "execution_order_ids": [
+    "negative-swap-baseline-curl_cffi-matched",
+    "negative-swap-candidate-curl_cffi-matched",
+    "negative-corrupt-baseline-curl_cffi-matched",
+    "negative-swap-baseline-scrapanium-bend",
+    "negative-corrupt-candidate-scrapanium-bend",
+    "negative-swap-candidate-scrapanium-bend",
+    "negative-corrupt-candidate-curl_cffi-matched",
+    "negative-corrupt-baseline-scrapanium-bend",
+    "stream-65536b-flush64-r00-candidate-bend",
+    "stream-65536b-flush64-r00-candidate-curl-cffi",
+    "stream-65536b-flush64-r00-baseline-curl-cffi",
+    "stream-65536b-flush64-r00-baseline-bend",
+    "stream-30b-flush1-r00-candidate-curl-cffi",
+    "stream-30b-flush1-r00-baseline-bend",
+    "stream-30b-flush1-r00-candidate-bend",
+    "stream-30b-flush1-r00-baseline-curl-cffi",
+    "stream-65536b-flush1-r00-candidate-bend",
+    "stream-65536b-flush1-r00-candidate-curl-cffi",
+    "stream-65536b-flush1-r00-baseline-curl-cffi",
+    "stream-65536b-flush1-r00-baseline-bend",
+    "stream-1024b-flush1-r00-candidate-bend",
+    "stream-1024b-flush1-r00-candidate-curl-cffi",
+    "stream-1024b-flush1-r00-baseline-curl-cffi",
+    "stream-1024b-flush1-r00-baseline-bend",
+    "stream-1024b-flush64-r00-candidate-bend",
+    "stream-1024b-flush64-r00-candidate-curl-cffi",
+    "stream-1024b-flush64-r00-baseline-curl-cffi",
+    "stream-1024b-flush64-r00-baseline-bend",
+    "stream-30b-flush64-r00-candidate-curl-cffi",
+    "stream-30b-flush64-r00-baseline-bend",
+    "stream-30b-flush64-r00-candidate-bend",
+    "stream-30b-flush64-r00-baseline-curl-cffi"
+  ],
+  "finished_utc": "2026-09-24T05:53:23.290181+00:00",
+  "hashes_verified_after_run": true,
+  "matched_curl_cffi_binding": {
+    "baseline": {
+      "backend_context": "baseline",
+      "files": {
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "7d4007985a2822a5a3ce629c0b5bc04bddc64bf04371cdbe00b7b8e381751826",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    },
+    "candidate": {
+      "backend_context": "candidate",
+      "files": {
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "7d4007985a2822a5a3ce629c0b5bc04bddc64bf04371cdbe00b7b8e381751826",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    }
+  },
+  "matched_curl_cffi_binding_after": {
+    "baseline": {
+      "backend_context": "baseline",
+      "files": {
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "7d4007985a2822a5a3ce629c0b5bc04bddc64bf04371cdbe00b7b8e381751826",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    },
+    "candidate": {
+      "backend_context": "candidate",
+      "files": {
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "7d4007985a2822a5a3ce629c0b5bc04bddc64bf04371cdbe00b7b8e381751826",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    }
+  },
+  "mode": "correctness-smoke-only",
+  "negative_controls": "corrupt and swapped sequence/payload inputs; all eight backend\u00d7client\u00d7fault cells execute before positives",
+  "negative_plan": [
+    {
+      "backend": "baseline",
+      "client": "curl_cffi-matched",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-baseline-curl_cffi-matched"
+    },
+    {
+      "backend": "candidate",
+      "client": "curl_cffi-matched",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-candidate-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "curl_cffi-matched",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-baseline-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "scrapanium-bend",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-baseline-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "scrapanium-bend",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-candidate-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "scrapanium-bend",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-candidate-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "curl_cffi-matched",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-candidate-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "scrapanium-bend",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-baseline-scrapanium-bend"
+    }
+  ],
+  "peer_binary": {
+    "command": "go build -trimpath -o /home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/stream-smoke-cold-20260924/websocket_stream_server /home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/benchmarks/websocket_stream_server.go",
+    "path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/build/wss-recv-coalescing/stream-smoke-cold-20260924/websocket_stream_server",
+    "sha256": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "peer_exit_code": 0,
+  "plan_counts": {
+    "adaptive_extension": false,
+    "adoption_gate": {
+      "primary_64k_bend": "both 65,536-byte flush modes require median ratio >= 1.05 and paired 95% CI lower bound > 1.0",
+      "receive_call_counts": "candidate must reduce native curl_ws_recv calls in the separate fixed 8-run probe; not measured by this uninstrumented runner",
+      "small_and_medium_bend": "all four 30-byte/1,024-byte \u00d7 flush1/flush64 cells require paired 95% CI lower bound >= 0.95; curl_cffi cells are retained and reported separately",
+      "speed_ratio": "baseline elapsed / candidate elapsed; values greater than 1 favor candidate"
+    },
+    "bootstrap_resamples": 10000,
+    "conditions": [
+      {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      }
+    ],
+    "negative_controls": 8,
+    "positive_measurements": 24,
+    "repeats_per_workload": 1,
+    "row_counts_by_workload": {
+      "stream-1024b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-1024b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-30b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1
+      },
+      "stream-30b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1
+      },
+      "stream-65536b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-65536b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      }
+    },
+    "schedule_description": "Smoke selects one seeded Williams row per workload. Full mode uses each of the four Williams rows five times per workload. Row order and workload order are generated from the fixed seed.",
+    "seed": 20260924,
+    "total_attempts": 32,
+    "williams_rows": [
+      [
+        "baseline-bend",
+        "baseline-curl-cffi",
+        "candidate-curl-cffi",
+        "candidate-bend"
+      ],
+      [
+        "baseline-curl-cffi",
+        "candidate-bend",
+        "baseline-bend",
+        "candidate-curl-cffi"
+      ],
+      [
+        "candidate-bend",
+        "candidate-curl-cffi",
+        "baseline-curl-cffi",
+        "baseline-bend"
+      ],
+      [
+        "candidate-curl-cffi",
+        "baseline-bend",
+        "candidate-bend",
+        "baseline-curl-cffi"
+      ]
+    ],
+    "workloads": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    ]
+  },
+  "positive_peer_validation": "one warmup and start, exact data frame/payload/frame-byte totals; no peer error",
+  "positive_plan": [
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    }
+  ],
+  "schema": 1,
+  "seed": 20260924,
+  "smoke_only": true,
+  "source_sha256_after": {
+    "client-roots/baseline/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/baseline/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/baseline/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/baseline/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/baseline/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/baseline/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/baseline/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/baseline/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/baseline/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/baseline/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/baseline/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/baseline/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/baseline/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/baseline/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/baseline/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "client-roots/baseline/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/baseline/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/baseline/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/baseline/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/baseline/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/baseline/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "client-roots/candidate/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/candidate/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/candidate/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/candidate/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/candidate/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/candidate/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/candidate/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/candidate/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/candidate/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/candidate/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/candidate/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/candidate/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/candidate/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/candidate/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/candidate/native/websocket.inc.c": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+    "client-roots/candidate/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/candidate/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/candidate/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/candidate/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/candidate/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/candidate/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "main/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "main/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "main/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "main/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "main/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "main/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "main/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "main/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "main/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "main/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "main/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "main/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "main/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "main/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "main/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "main/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "main/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "main/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "main/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "main/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "main/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "runner/build/wss-recv-coalescing/stream_four_condition.py": "0e13fef8779896d41f0249641a1cbfe1c2c7ce46952534fbd05a8d626fff9b6b"
+  },
+  "source_sha256_before": {
+    "client-roots/baseline/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/baseline/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/baseline/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/baseline/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/baseline/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/baseline/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/baseline/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/baseline/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/baseline/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/baseline/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/baseline/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/baseline/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/baseline/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/baseline/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/baseline/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "client-roots/baseline/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/baseline/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/baseline/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/baseline/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/baseline/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/baseline/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "client-roots/candidate/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/candidate/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/candidate/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/candidate/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/candidate/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/candidate/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/candidate/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/candidate/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/candidate/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/candidate/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/candidate/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/candidate/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/candidate/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/candidate/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/candidate/native/websocket.inc.c": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+    "client-roots/candidate/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/candidate/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/candidate/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/candidate/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/candidate/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/candidate/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "main/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "main/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "main/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "main/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "main/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "main/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "main/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "main/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "main/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "main/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "main/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "main/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "main/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "main/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "main/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "main/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "main/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "main/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "main/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "main/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "main/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "runner/build/wss-recv-coalescing/stream_four_condition.py": "0e13fef8779896d41f0249641a1cbfe1c2c7ce46952534fbd05a8d626fff9b6b"
+  },
+  "status": "complete",
+  "summary": {
+    "workloads": {
+      "stream-1024b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.23399999999674037
+            },
+            "median_elapsed_ms": 0.23399999999674037,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.4765989999868907
+            },
+            "median_elapsed_ms": 0.4765989999868907,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2910000000265427
+            },
+            "median_elapsed_ms": 0.2910000000265427,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.41665199998533353
+            },
+            "median_elapsed_ms": 0.41665199998533353,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 2.0367478632202127,
+            "samples": [
+              2.0367478632202127
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.4317938142519926,
+            "samples": [
+              1.4317938142519926
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.1438778645096324,
+            "samples": [
+              1.1438778645096324
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.804123711255659,
+            "samples": [
+              0.804123711255659
+            ]
+          }
+        }
+      },
+      "stream-1024b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.33699999999953434
+            },
+            "median_elapsed_ms": 0.33699999999953434,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.28340899996692315
+            },
+            "median_elapsed_ms": 0.28340899996692315,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2370000000228174
+            },
+            "median_elapsed_ms": 0.2370000000228174,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.3860370000475086
+            },
+            "median_elapsed_ms": 0.3860370000475086,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 0.8409762610306076,
+            "samples": [
+              0.8409762610306076
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.6288481013094622,
+            "samples": [
+              1.6288481013094622
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.7341498352024409,
+            "samples": [
+              0.7341498352024409
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.4219409281311786,
+            "samples": [
+              1.4219409281311786
+            ]
+          }
+        }
+      },
+      "stream-30b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.22399999998742715
+            },
+            "median_elapsed_ms": 0.22399999998742715,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.36376300000119954
+            },
+            "median_elapsed_ms": 0.36376300000119954,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2669999999925494
+            },
+            "median_elapsed_ms": 0.2669999999925494,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.342646999983117
+            },
+            "median_elapsed_ms": 0.342646999983117,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.6239419643822193,
+            "samples": [
+              1.6239419643822193
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.2833220973508557,
+            "samples": [
+              1.2833220973508557
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.0616261050559994,
+            "samples": [
+              1.0616261050559994
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.8389513108377447,
+            "samples": [
+              0.8389513108377447
+            ]
+          }
+        }
+      },
+      "stream-30b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.16300000000046566
+            },
+            "median_elapsed_ms": 0.16300000000046566,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.24330299999564886
+            },
+            "median_elapsed_ms": 0.24330299999564886,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.26500000001396984
+            },
+            "median_elapsed_ms": 0.26500000001396984,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.3910129999858327
+            },
+            "median_elapsed_ms": 0.3910129999858327,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.492656441686833,
+            "samples": [
+              1.492656441686833
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.4755207545857356,
+            "samples": [
+              1.4755207545857356
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.6222376238244363,
+            "samples": [
+              0.6222376238244363
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.6150943395919731,
+            "samples": [
+              0.6150943395919731
+            ]
+          }
+        }
+      },
+      "stream-65536b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.1730000000097789
+            },
+            "median_elapsed_ms": 1.1730000000097789,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.4571179999620654
+            },
+            "median_elapsed_ms": 1.4571179999620654,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.543999999994412
+            },
+            "median_elapsed_ms": 1.543999999994412,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.2661410000291653
+            },
+            "median_elapsed_ms": 1.2661410000291653,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.242214833716895,
+            "samples": [
+              1.242214833716895
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 0.820039507793878,
+            "samples": [
+              0.820039507793878
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.1508339118064268,
+            "samples": [
+              1.1508339118064268
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.7597150259158187,
+            "samples": [
+              0.7597150259158187
+            ]
+          }
+        }
+      },
+      "stream-65536b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.282999999995809
+            },
+            "median_elapsed_ms": 1.282999999995809,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.8462869999930263
+            },
+            "median_elapsed_ms": 1.8462869999930263,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.4139999999897555
+            },
+            "median_elapsed_ms": 1.4139999999897555,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.7685570000321604
+            },
+            "median_elapsed_ms": 1.7685570000321604,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.4390389711606058,
+            "samples": [
+              1.4390389711606058
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.2507475247842814,
+            "samples": [
+              1.2507475247842814
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.043951085523086,
+            "samples": [
+              1.043951085523086
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.9073550212200173,
+            "samples": [
+              0.9073550212200173
+            ]
+          }
+        }
+      }
+    }
+  },
+  "timing_method": "Reuses websocket_streaming.sample without modifying client code. Corpus creation, process startup, TLS upgrade, warmup, and close are outside the client interval; start signal and ordered exact opcode/sequence/full-byte checks with immediate expected/actual release are inside.",
+  "timings_are_performance_evidence": false,
+  "toolchain": {
+    "bend_source": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bend",
+    "bend_source_dirty": "",
+    "bend_source_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "bun_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "clang_path": "/usr/lib/llvm-21/bin/clang",
+    "clang_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clang_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "clangxx_path": "/usr/lib/llvm-21/bin/clang",
+    "clangxx_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clangxx_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "cmake_version": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cpu_count": 12,
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "go_version": "go version go1.26.0 linux/amd64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]"
+  },
+  "toolchain_after": {
+    "bend_source": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bend",
+    "bend_source_dirty": "",
+    "bend_source_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "bun_path": "/home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "clang_path": "/usr/lib/llvm-21/bin/clang",
+    "clang_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clang_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "clangxx_path": "/usr/lib/llvm-21/bin/clang",
+    "clangxx_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clangxx_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "cmake_version": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cpu_count": 12,
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "go_version": "go version go1.26.0 linux/amd64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]"
+  },
+  "uncertainty": "paired repeat-level bootstrap 95% CI of median baseline_elapsed/candidate_elapsed ratios; raw rows retained"
+}

@@ -27,9 +27,12 @@ correctness-only 32-row stream smoke are retained under `evidence/`.
 
 Use a Linux x86-64 environment with the repository's pinned Bun, Bend source,
 matched curl_cffi virtual environment, Clang, CMake, Ninja, Go, and normal
-backend build dependencies installed. The documented cold setup is not
-claimed to have been exercised end-to-end on a clean machine. It performs a
-full optional-backend build and can take several minutes.
+backend build dependencies installed. The documented setup has now completed
+end-to-end in a new clean detached worktree after the repository's pinned
+dependencies were bootstrapped. It used the already-installed WSL2 system
+toolchain, so this verifies the fresh repository/backend setup path rather than
+a clean operating-system or compiler installation. A full optional-backend
+build can take several minutes.
 
 From a checkout containing this experiment directory, create a clean detached
 worktree at the source revision used for the measurements, then copy these
@@ -80,6 +83,13 @@ retains eight exact-check runs. Its timings are diagnostic only:
 python3 build/wss-recv-coalescing/recv_count_probe.py \
   --output-dir build/wss-recv-coalescing/recv-count-reproduction
 ```
+
+The fresh helper-and-smoke verification is retained under
+[`evidence/cold-reconstruction/`](evidence/cold-reconstruction/). It records the
+clean worktree setup, fresh backend library hashes, per-file snapshots, and
+the 32-row correctness smoke; it contains no performance samples. The
+[verification report](evidence/cold-reconstruction/REPORT.md) records the
+commands, environment, hashes, and limits of this validation.
 
 ## Recorded implementation and evidence
 
