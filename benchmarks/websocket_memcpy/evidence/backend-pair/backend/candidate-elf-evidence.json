@@ -1,0 +1,141 @@
+{
+  "files": {
+    "baseline_symbols": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-symbols.txt",
+      "sha256": "69d18f3a722a96840b1ecbf6c212fb3357dd527b4deb0184f6689dd1cf13cc76"
+    },
+    "candidate_symbols": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-symbols.txt",
+      "sha256": "784fe9a478efd2bebb4871929bf5d1c6192fdd1161970c75836d1213028b7ca4"
+    },
+    "baseline_dynsym": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-dynsym.txt",
+      "sha256": "12ac6113228697e23ef35be8dd9c7b120ab74de01ff457be8c22831e63e46692"
+    },
+    "candidate_dynsym": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-dynsym.txt",
+      "sha256": "b1b1c31289c7a12cf90d2ec05c3752500c35b1fb92792a3b738cc63a8f67b9b6"
+    },
+    "baseline_relocations": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-relocations.txt",
+      "sha256": "06510f91b4c9e62a921cd1aeff8606fcb491d4ce0b6604b5d8edec679a89af0c"
+    },
+    "candidate_relocations": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-relocations.txt",
+      "sha256": "30ae7da9c41cd70d6919076207180a8f4fae9792f5558143083e9d40ef6bfcc5"
+    },
+    "baseline_dynamic": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-dynamic.txt",
+      "sha256": "ddcff3996ecf7e439884be1c5ecaaac99601f9987d93d01cb4d15b0d989816eb"
+    },
+    "candidate_dynamic": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-dynamic.txt",
+      "sha256": "3f4296ca7fed28d16704bbd5b41acc68ec6ef7270daf3559693d69e1bba35039"
+    },
+    "baseline_versions": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-versions.txt",
+      "sha256": "5d06d884ba713bbe7e296746fa0e61e6ab041951140a3517acfbc0d3d39075a0"
+    },
+    "candidate_versions": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-versions.txt",
+      "sha256": "6577ecf8479d6221973a5ee0fdb6178daac11574cb988499460c4a90e7cd9e43"
+    },
+    "baseline_note": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-notes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate_note": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-notes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline_ssl_read": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-SSL_read.disasm.txt",
+      "sha256": "06840854e40b2244eabf7b91d6700eaf71178a83c2cae0874998488ab1665857"
+    },
+    "candidate_ssl_read": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-SSL_read.disasm.txt",
+      "sha256": "524ad58e9dcd02690f9dac795600a78476a5caef748b624031bcffec548812af"
+    },
+    "baseline_ssl_peek": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-SSL_peek.disasm.txt",
+      "sha256": "0ced4621de414687420d46c7a1ecdab5341abd71fd027d9c47a9b49b7f269dd6"
+    },
+    "candidate_ssl_peek": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-SSL_peek.disasm.txt",
+      "sha256": "d054ed78ba07455b61ed3735770ebd13fcd534f6225e4c16921b8cc1a67e7b61"
+    },
+    "candidate_route": {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-route.disasm.txt",
+      "sha256": "b96307d63d95641b051457420bba21f00b6c2a742e49339bab1941794b5afb29"
+    }
+  },
+  "symbols": {
+    "baseline_local_memcpy_symbol": " 12082: 00000000004e3fd0   351 FUNC    LOCAL  HIDDEN    13 memcpy",
+    "baseline_local_memcpy_address": "00000000004e3fd0",
+    "candidate_local_memcpy_symbol": "  2225: 0000000000279440    10 FUNC    LOCAL  HIDDEN    13 memcpy",
+    "candidate_test_alias_symbol": "  1037: 0000000000279440    10 FUNC    GLOBAL DEFAULT   13 sp_wss_memcpy_test",
+    "candidate_route_same_address": true,
+    "baseline_ssl_read_calls_local_memcpy": [
+      "2a5a1f:\te8 ac e5 23 00       \tcall   4e3fd0 <memcpy>"
+    ],
+    "baseline_ssl_peek_calls_local_memcpy": [
+      "2a5aff:\te8 cc e4 23 00       \tcall   4e3fd0 <memcpy>"
+    ],
+    "candidate_ssl_read_calls_route": [
+      "2a5a2f:\te8 0c 3a fd ff       \tcall   279440 <sp_wss_memcpy_test>"
+    ],
+    "candidate_ssl_peek_calls_route": [
+      "2a5b0f:\te8 2c 39 fd ff       \tcall   279440 <sp_wss_memcpy_test>"
+    ],
+    "candidate_route_body_calls_memcpy_plt": true,
+    "candidate_versioned_relocation": "memcpy@GLIBC_2.14"
+  },
+  "dynamic": {
+    "baseline_needed": [
+      "libpthread.so.0",
+      "libc.so.6",
+      "libdl.so.2",
+      "ld-linux-x86-64.so.2"
+    ],
+    "candidate_needed": [
+      "libpthread.so.0",
+      "libc.so.6",
+      "libdl.so.2",
+      "ld-linux-x86-64.so.2"
+    ],
+    "needed_identical": true
+  },
+  "glibc_versions": {
+    "baseline": [
+      "2.2.5",
+      "2.3",
+      "2.3.2",
+      "2.4",
+      "2.7",
+      "2.9",
+      "2.10",
+      "2.12",
+      "2.16",
+      "2.17"
+    ],
+    "candidate": [
+      "2.2.5",
+      "2.3",
+      "2.3.2",
+      "2.4",
+      "2.7",
+      "2.9",
+      "2.10",
+      "2.12",
+      "2.14",
+      "2.16",
+      "2.17"
+    ],
+    "maximum_candidate": "2.17",
+    "candidate_within_2_17": true
+  },
+  "install_prefix": {
+    "non_dso_lib_files_and_aliases_unchanged": true,
+    "static_archive_and_cli_remain_baseline": true
+  }
+}

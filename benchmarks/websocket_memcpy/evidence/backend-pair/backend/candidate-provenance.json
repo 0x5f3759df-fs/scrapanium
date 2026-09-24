@@ -1,0 +1,358 @@
+{
+  "schema": "scrapanium-wss-memcpy-backend-candidate-v1",
+  "purpose": "Candidate-only shared DSO relink; no source/object rebuild and no timing",
+  "baseline_provenance": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-provenance.json",
+  "baseline_provenance_sha256": "a472965c61c59cdc31e36fdcbf707ff0e8a21c97d4954d8737b6cbc3a96b675a",
+  "upstream": {
+    "repo": "https://github.com/lexiforest/curl-impersonate.git",
+    "tag": "v2.2.3",
+    "commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+    "clean": true,
+    "official_linux_x86_64_recipe": true,
+    "recipe_input_sha256": {
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/CMakeLists.txt": "a91f54a5daee1e2c5e2840b5cc6ed0e6c6b026827da85b95fc6e79636c2cefd6",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/.github/workflows/build.yml": "1e48a291f884b647a81888183ca5d4462d92a3bd8bf22f74d421883e52e3eb18",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/patches/boringssl.patch": "c8852fe2814b8f75d150af9c5c2edc6e2fc42b53b6329e2c01699377fe44c795",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/patches/brotli.patch": "d59ec1994ae6285222f65dd7192c2cbcbc0d0ae6c85eb5fce1cae735010f4d4f",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/patches/curl.patch": "b198abcd1e7ad065d5fc1d9d68ce99226ebc89bc7e1fa23c6aa9304b7e265bf1",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/patches/nghttp3.patch": "f23395f2896a150910d7620044a0913b6179440326ce8c7f9e5ab93a30a615ac",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/upstream/patches/ngtcp2.patch": "4974a62ab1810086b59265211ac8598ff1169a2cd2aa10ddc47120d247ce1168"
+    }
+  },
+  "toolchain": {
+    "zig": "0.15.2",
+    "zig_sha256": "2858dc89dbbfdd08cceda1b841e7fd0a793a1a67b49f150bc3d0d1de44ed7f51",
+    "target": "x86_64-linux-gnu.2.17.0",
+    "cmake": "cmake version 4.2.3",
+    "ninja": "1.13.2",
+    "make": "GNU Make 4.4.1",
+    "cc_shim_sha256": "1e29a8e6b5447a3dcf588db81b83930ebc1c65e32beb5e7e3c3489429e42385a",
+    "cxx_shim_sha256": "09b9709d97ffaac6681335779f114ce8887868816b0f3510431e13fa41dbd7ca",
+    "ar_shim_sha256": "fd59a1733888e65a05de0a64eba68765d45868efc2fcd8fee7096cb63738c308",
+    "root_cache_sha256": "ee51cc1ebf10f81e5980c61f71981355a4410bba69e1cc9cd14693432b986388",
+    "curl_cache_sha256": "12f14772a05812fc1b835b48ca0cae00f343326407b765ad00567f375452d7dd",
+    "clean_pkg_config_reconfigure": {
+      "purpose": "rerun the exact generated curl configure command with a fresh nested cache and pkg-config limited to pinned dependency metadata",
+      "upstream_source": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/src/curl",
+      "curl_build_dir": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl",
+      "pinned_dependency_pkgconfig_libdir": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/pkgconfig",
+      "failed_cache_backup": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/failed-curl-CMakeCache.host-pkg-config.txt",
+      "failed_cache_sha256": "e5b0693d0c5d0e2b61ac9d6f825b12a40c03fea3c937367e0506e75f3ec259cf",
+      "argv": [
+        "/usr/bin/cmake",
+        "-E",
+        "env",
+        "CPATH=",
+        "C_INCLUDE_PATH=",
+        "CPLUS_INCLUDE_PATH=",
+        "LIBRARY_PATH=",
+        "PKG_CONFIG_PATH=",
+        "PKG_CONFIG_LIBDIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/pkgconfig",
+        "/usr/bin/cmake",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_NO_SYSTEM_FROM_IMPORTED=ON",
+        "-DCMAKE_INCLUDE_SYSTEM_FLAG_C=-I",
+        "-DCMAKE_INSTALL_PREFIX=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install",
+        "-DCMAKE_INSTALL_LIBDIR=lib",
+        "-DCMAKE_C_COMPILER=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/toolshim/cc",
+        "-DCMAKE_CXX_COMPILER=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/toolshim/cxx",
+        "-DCMAKE_SYSTEM_NAME=Linux",
+        "-DCMAKE_SYSTEM_PROCESSOR=x86_64",
+        "-DCMAKE_LINKER=/usr/bin/ld",
+        "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
+        "-DCMAKE_PREFIX_PATH=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install",
+        "-DCMAKE_C_FLAGS=-I/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DCMAKE_CXX_FLAGS=-I/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DBROTLI_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DBROTLIDEC_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlidec.a",
+        "-DBROTLICOMMON_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlicommon.a",
+        "-DNGHTTP2_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DNGHTTP2_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp2.a",
+        "-DNGHTTP3_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DNGHTTP3_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp3.a",
+        "-DNGTCP2_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DNGTCP2_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2.a",
+        "-DNGTCP2_CRYPTO_BORINGSSL_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2_crypto_boringssl.a",
+        "-DLIBIDN2_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DLIBIDN2_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libidn2.a",
+        "-DCURL_USE_PKGCONFIG=OFF",
+        "-DCURL_USE_OPENSSL=ON",
+        "-DCURL_ENABLE_SSL=ON",
+        "-DCURL_IMPERSONATE_VERSION=2.2.3",
+        "-DOPENSSL_ROOT_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install",
+        "-DOPENSSL_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/src/boringssl/include",
+        "-DOPENSSL_SSL_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libssl.a",
+        "-DOPENSSL_CRYPTO_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcrypto.a",
+        "-DOPENSSL_USE_STATIC_LIBS=ON",
+        "-DHAVE_BORINGSSL=1",
+        "-DHAVE_AWSLC=0",
+        "-DHAVE_LIBRESSL=0",
+        "-DHAVE_DES_ECB_ENCRYPT=1",
+        "-DHAVE_SSL_SET0_WBIO=1",
+        "-DHAVE_SSL_SET1_ECH_CONFIG_LIST=1",
+        "-DHAVE_SSL_SET_QUIC_USE_LEGACY_CODEPOINT=1",
+        "-DHAVE_OPENSSL_SRP=0",
+        "-DCURL_BROTLI=ON",
+        "-DCURL_ZSTD=ON",
+        "-DZLIB_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DZLIB_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libz.a",
+        "-DZLIB_LIBRARY_RELEASE=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libz.a",
+        "-DZSTD_INCLUDE_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/include",
+        "-DZSTD_LIBRARY=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libzstd.a",
+        "-DUSE_NGHTTP2=ON",
+        "-DUSE_NGTCP2=ON",
+        "-DUSE_PROXY_HTTP3=ON",
+        "-DCURL_DISABLE_LDAP=ON",
+        "-DCURL_DISABLE_LDAPS=ON",
+        "-DCURL_USE_LIBPSL=OFF",
+        "-DUSE_LIBRTMP=OFF",
+        "-DCURL_DISABLE_WEBSOCKETS=OFF",
+        "-DUSE_ECH=ON",
+        "-DUSE_SSLS_EXPORT=ON",
+        "-DENABLE_IPV6=ON",
+        "-DCURL_USE_LIBSSH2=OFF",
+        "-DBUILD_MISC_DOCS=OFF",
+        "-DENABLE_CURL_MANUAL=OFF",
+        "-DENABLE_ARES=ON",
+        "-DENABLE_THREADED_RESOLVER=OFF",
+        "-DCARES_USE_STATIC_LIBS=ON",
+        "-DCURL_USE_CMAKECONFIG=ON",
+        "-Dc-ares_DIR=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/cmake/c-ares",
+        "-DCURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt",
+        "-DCURL_CA_PATH=/etc/ssl/certs",
+        "-DUSE_LIBIDN2=ON",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DBUILD_STATIC_LIBS=ON",
+        "-DBUILD_STATIC_CURL=ON",
+        "-DBUILD_CURL_EXE=ON",
+        "-GNinja",
+        "-S",
+        "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/src/curl",
+        "-B",
+        "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl"
+      ],
+      "result": "configured",
+      "pid": 639,
+      "started_unix": 1790242104.0053768,
+      "returncode": 0,
+      "elapsed_seconds": 14.881,
+      "new_cache_sha256": "12f14772a05812fc1b835b48ca0cae00f343326407b765ad00567f375452d7dd",
+      "openssl_static_cache_lines": [
+        "_OPENSSL_CFLAGS:INTERNAL=",
+        "_OPENSSL_CFLAGS_I:INTERNAL=",
+        "_OPENSSL_CFLAGS_OTHER:INTERNAL=",
+        "_OPENSSL_FOUND:INTERNAL=",
+        "_OPENSSL_INCLUDEDIR:INTERNAL=",
+        "_OPENSSL_LIBDIR:INTERNAL=",
+        "_OPENSSL_LIBS:INTERNAL=",
+        "_OPENSSL_LIBS_L:INTERNAL=",
+        "_OPENSSL_LIBS_OTHER:INTERNAL=",
+        "_OPENSSL_LIBS_PATHS:INTERNAL=",
+        "_OPENSSL_MODULE_NAME:INTERNAL=",
+        "_OPENSSL_PREFIX:INTERNAL=",
+        "_OPENSSL_STATIC_CFLAGS:INTERNAL=",
+        "_OPENSSL_STATIC_CFLAGS_I:INTERNAL=",
+        "_OPENSSL_STATIC_CFLAGS_OTHER:INTERNAL=",
+        "_OPENSSL_STATIC_LIBDIR:INTERNAL=",
+        "_OPENSSL_STATIC_LIBS:INTERNAL=",
+        "_OPENSSL_STATIC_LIBS_L:INTERNAL=",
+        "_OPENSSL_STATIC_LIBS_OTHER:INTERNAL=",
+        "_OPENSSL_STATIC_LIBS_PATHS:INTERNAL=",
+        "_OPENSSL_VERSION:INTERNAL=",
+        "_OPENSSL_openssl_INCLUDEDIR:INTERNAL=",
+        "_OPENSSL_openssl_LIBDIR:INTERNAL=",
+        "_OPENSSL_openssl_PREFIX:INTERNAL=",
+        "_OPENSSL_openssl_VERSION:INTERNAL=",
+        "__pkg_config_checked__OPENSSL:INTERNAL=1"
+      ],
+      "shared_link_libraries": "  LINK_LIBRARIES = /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libssl.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcrypto.a  -lstdc++  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libz.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libidn2.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcares.a  -ldl  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlidec.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlicommon.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libzstd.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp2.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2_crypto_boringssl.a  /home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp3.a",
+      "host_openssl_pkgconfig_absent": true,
+      "uses_pinned_zstd_archive": true,
+      "host_zstd_short_flag_absent": true,
+      "host_jitterentropy_flag_absent": true
+    },
+    "failed_host_pkg_config_cache_sha256": "e5b0693d0c5d0e2b61ac9d6f825b12a40c03fea3c937367e0506e75f3ec259cf"
+  },
+  "baseline_dso": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+    "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b",
+    "size_bytes": 32244080
+  },
+  "candidate_dso": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-install/lib/libcurl-impersonate.so.4.8.0",
+    "sha256": "c15ed19b2510ea89e94df68e64146612bda86733414706b367f186250ecd0621",
+    "size_bytes": 32244552
+  },
+  "route": {
+    "source": "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_route.c",
+    "source_sha256": "79f1816530383e34c36df60d46bfd1b672a7f2635cf3cbfebafb6bf617e0aea1",
+    "object": "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/objects/memcpy_route.o",
+    "object_sha256": "a5fb141075277aa556c968c3aa88de0d73d7c93dff67874c43907067ed3f2835",
+    "source_manifest": "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/manifest.json",
+    "source_manifest_sha256": "77da286ad3b7be59a4ae28d2547886427ea4d8a7fbbf5a02e58d5c171db8da76"
+  },
+  "link": {
+    "working_directory": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl",
+    "baseline_command_file": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-link-command.txt",
+    "candidate_command_file": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-command.txt",
+    "candidate_command_json": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-command.json",
+    "candidate_stdout": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-stdout.txt",
+    "candidate_stderr": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-stderr.txt",
+    "candidate_returncode": 0,
+    "baseline_input_count": 209,
+    "candidate_input_count": 210,
+    "baseline_object_count": 197,
+    "baseline_archive_count": 12,
+    "only_input_delta": "one reviewed memcpy_route.o added before pinned static archives",
+    "only_path_delta": "output changed from baseline-install DSO to candidate-install DSO",
+    "all_baseline_input_hashes_unchanged_after_link": true,
+    "baseline_dso_unchanged_after_link": true
+  },
+  "candidate_prefix_note": "The copied install tree is for the shared DSO experiment only; its copied static archive and curl-impersonate CLI remain baseline artifacts and must not be used for candidate claims.",
+  "timing": "not run",
+  "elf_evidence": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-evidence.json",
+    "sha256": "f2bf83fc588bfb6f239319e2ed4d05abcf61a9dd7f1ce8558a0c380ee8648b00",
+    "checks": {
+      "files": {
+        "baseline_symbols": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-symbols.txt",
+          "sha256": "69d18f3a722a96840b1ecbf6c212fb3357dd527b4deb0184f6689dd1cf13cc76"
+        },
+        "candidate_symbols": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-symbols.txt",
+          "sha256": "784fe9a478efd2bebb4871929bf5d1c6192fdd1161970c75836d1213028b7ca4"
+        },
+        "baseline_dynsym": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-dynsym.txt",
+          "sha256": "12ac6113228697e23ef35be8dd9c7b120ab74de01ff457be8c22831e63e46692"
+        },
+        "candidate_dynsym": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-dynsym.txt",
+          "sha256": "b1b1c31289c7a12cf90d2ec05c3752500c35b1fb92792a3b738cc63a8f67b9b6"
+        },
+        "baseline_relocations": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-relocations.txt",
+          "sha256": "06510f91b4c9e62a921cd1aeff8606fcb491d4ce0b6604b5d8edec679a89af0c"
+        },
+        "candidate_relocations": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-relocations.txt",
+          "sha256": "30ae7da9c41cd70d6919076207180a8f4fae9792f5558143083e9d40ef6bfcc5"
+        },
+        "baseline_dynamic": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-dynamic.txt",
+          "sha256": "ddcff3996ecf7e439884be1c5ecaaac99601f9987d93d01cb4d15b0d989816eb"
+        },
+        "candidate_dynamic": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-dynamic.txt",
+          "sha256": "3f4296ca7fed28d16704bbd5b41acc68ec6ef7270daf3559693d69e1bba35039"
+        },
+        "baseline_versions": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-versions.txt",
+          "sha256": "5d06d884ba713bbe7e296746fa0e61e6ab041951140a3517acfbc0d3d39075a0"
+        },
+        "candidate_versions": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-versions.txt",
+          "sha256": "6577ecf8479d6221973a5ee0fdb6178daac11574cb988499460c4a90e7cd9e43"
+        },
+        "baseline_note": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-elf-notes.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "candidate_note": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-elf-notes.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "baseline_ssl_read": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-SSL_read.disasm.txt",
+          "sha256": "06840854e40b2244eabf7b91d6700eaf71178a83c2cae0874998488ab1665857"
+        },
+        "candidate_ssl_read": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-SSL_read.disasm.txt",
+          "sha256": "524ad58e9dcd02690f9dac795600a78476a5caef748b624031bcffec548812af"
+        },
+        "baseline_ssl_peek": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-SSL_peek.disasm.txt",
+          "sha256": "0ced4621de414687420d46c7a1ecdab5341abd71fd027d9c47a9b49b7f269dd6"
+        },
+        "candidate_ssl_peek": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-SSL_peek.disasm.txt",
+          "sha256": "d054ed78ba07455b61ed3735770ebd13fcd534f6225e4c16921b8cc1a67e7b61"
+        },
+        "candidate_route": {
+          "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-route.disasm.txt",
+          "sha256": "b96307d63d95641b051457420bba21f00b6c2a742e49339bab1941794b5afb29"
+        }
+      },
+      "symbols": {
+        "baseline_local_memcpy_symbol": " 12082: 00000000004e3fd0   351 FUNC    LOCAL  HIDDEN    13 memcpy",
+        "baseline_local_memcpy_address": "00000000004e3fd0",
+        "candidate_local_memcpy_symbol": "  2225: 0000000000279440    10 FUNC    LOCAL  HIDDEN    13 memcpy",
+        "candidate_test_alias_symbol": "  1037: 0000000000279440    10 FUNC    GLOBAL DEFAULT   13 sp_wss_memcpy_test",
+        "candidate_route_same_address": true,
+        "baseline_ssl_read_calls_local_memcpy": [
+          "2a5a1f:\te8 ac e5 23 00       \tcall   4e3fd0 <memcpy>"
+        ],
+        "baseline_ssl_peek_calls_local_memcpy": [
+          "2a5aff:\te8 cc e4 23 00       \tcall   4e3fd0 <memcpy>"
+        ],
+        "candidate_ssl_read_calls_route": [
+          "2a5a2f:\te8 0c 3a fd ff       \tcall   279440 <sp_wss_memcpy_test>"
+        ],
+        "candidate_ssl_peek_calls_route": [
+          "2a5b0f:\te8 2c 39 fd ff       \tcall   279440 <sp_wss_memcpy_test>"
+        ],
+        "candidate_route_body_calls_memcpy_plt": true,
+        "candidate_versioned_relocation": "memcpy@GLIBC_2.14"
+      },
+      "dynamic": {
+        "baseline_needed": [
+          "libpthread.so.0",
+          "libc.so.6",
+          "libdl.so.2",
+          "ld-linux-x86-64.so.2"
+        ],
+        "candidate_needed": [
+          "libpthread.so.0",
+          "libc.so.6",
+          "libdl.so.2",
+          "ld-linux-x86-64.so.2"
+        ],
+        "needed_identical": true
+      },
+      "glibc_versions": {
+        "baseline": [
+          "2.2.5",
+          "2.3",
+          "2.3.2",
+          "2.4",
+          "2.7",
+          "2.9",
+          "2.10",
+          "2.12",
+          "2.16",
+          "2.17"
+        ],
+        "candidate": [
+          "2.2.5",
+          "2.3",
+          "2.3.2",
+          "2.4",
+          "2.7",
+          "2.9",
+          "2.10",
+          "2.12",
+          "2.14",
+          "2.16",
+          "2.17"
+        ],
+        "maximum_candidate": "2.17",
+        "candidate_within_2_17": true
+      },
+      "install_prefix": {
+        "non_dso_lib_files_and_aliases_unchanged": true,
+        "static_archive_and_cli_remain_baseline": true
+      }
+    }
+  }
+}

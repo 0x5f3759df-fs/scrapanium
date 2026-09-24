@@ -1,0 +1,538 @@
+{
+  "schema": 1,
+  "status": "complete",
+  "created_utc": "2026-09-24T09:54:03.505583+00:00",
+  "diagnostic_kind": "correctness_smoke",
+  "smoke_only": true,
+  "smoke_timing_warning": "correctness smoke timings are not profiling or performance evidence",
+  "seed": 20260924,
+  "message_count_per_positive": 8,
+  "message_bytes": 65536,
+  "fixed_repeat_count": 1,
+  "positive_count": 8,
+  "negative_control_count": 16,
+  "cpu_profile_sample_floor_per_label": 80,
+  "cpu_profile_floor_policy": "if any label is below 80 samples, report attribution inconclusive; never extend or repeat the run",
+  "client_cells": [
+    {
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 1
+    },
+    {
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 1
+    },
+    {
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 1
+    },
+    {
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 1
+    },
+    {
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 64
+    },
+    {
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 64
+    },
+    {
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 64
+    },
+    {
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 64
+    }
+  ],
+  "timing_definitions": {
+    "client_interval_wall_ns": "shim CLOCK_MONOTONIC start immediately before sending the start control and stop after the final exact opcode/sequence/full-byte check and immediate actual/expected release; setup, corpus creation, TLS upgrade, warmup, and close are outside",
+    "caller_thread_cpu_ns": "CLOCK_THREAD_CPUTIME_ID delta between nested boundaries, valid only when start/end Linux TIDs match; includes all caller-thread work in the total client interval, not only recv or Bend IO",
+    "process_cpu_ns": "CLOCK_PROCESS_CPUTIME_ID delta over the same client interval; includes any helper threads and is separately reported",
+    "curl_ws_recv_wall_sum_across_threads_ns": "sum of measured wall intervals around interposed curl_ws_recv calls, grouped by calling TID; may overlap wait wrappers and must not be added to them or treated as exclusive time",
+    "curl_ws_recv_thread_cpu_sum_across_threads_ns": "sum of per-call caller-thread CPU intervals when each call starts and ends on the same TID; across-thread sums can overlap in time",
+    "caller_cpu_residual": "client caller-thread CPU minus measured curl_ws_recv call CPU includes validation, releases, assembly, Bend/Python wrapper work, start-control send, and shim bookkeeping; it is not pure wrapper CPU and must not be combined with phase fractions from a different run",
+    "curl_ws_recv_scope": "per-call timing starts immediately before the real backend call and stops immediately after it; interposer bookkeeping is included only in client total clocks",
+    "wait_wrappers": "counts and, in attribution mode, nested wall/thread-CPU sums for poll, ppoll, select, and epoll_wait only; other waits/syscalls are not covered, and wait intervals can be nested inside curl_ws_recv",
+    "wall_minus_thread_cpu": "an unaccounted/off-CPU wall gap that can include scheduling and clock-boundary overhead; it is not automatically socket-blocked time",
+    "control_mode": "same shim, exact validation/release, client wall/thread/process clocks, and cheap call/result counters; skips per-call recv/wait clock reads but still pays common interposition, mutex/atomic bookkeeping, and the peer CPU profiler/trace",
+    "observer_effect": "control versus attribution estimates only the incremental per-call client timing clocks in this instrumented skeleton; peer profiling remains enabled and its observer effect is not isolated",
+    "peer_metrics": "peer send interval, TLS Conn.Write wall sum, whole-process user/system CPU, Go CPU profile and runtime trace are separate metrics; peer wall/CPU/profile intervals are not additive to client intervals",
+    "pprof_floor": "Go CPU pprof samples are grouped by client/mode/batch inside the peer send loop; a cell below the predeclared 80-sample floor is inconclusive with no adaptive extension"
+  },
+  "corpus": {
+    "messages": "ordered binary payloads exactly 65,536 bytes each",
+    "sequence": "zero-padded eight-digit decimal at bytes 0..7; exact complete payload comparison on every response",
+    "body": "remaining bytes repeat the fixed deterministic (offset * 31) mod 128 pattern",
+    "batches": [
+      1,
+      64
+    ],
+    "warmup": "one binary warmup echoed, opcode and exact bytes checked before the interval",
+    "body_sha256": "ba375692b65c6968b2730fe1fdff7b794b0110536c1c650b470a7a0709e189e4",
+    "body_path": "corpus-body.bin"
+  },
+  "negative_controls": "16 count-eight runs crossing both clients, modes, flush batches, and corrupt/swap sequence faults, all before profile-start",
+  "schedule_method": "fixed 48 complete eight-cell repeat blocks across both batch sizes; each block cyclically rotates all eight cells so each cell occupies each position once; this balances position but not carryover; no adaptive extension or rerun",
+  "planned_schedule": [
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-01-scrapanium-bend-control-corrupt-flush1",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-02-scrapanium-bend-control-swap-flush1",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-03-scrapanium-bend-attribution-corrupt-flush1",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-04-scrapanium-bend-attribution-swap-flush1",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-05-curl_cffi-matched-control-corrupt-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-06-curl_cffi-matched-control-swap-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-07-curl_cffi-matched-attribution-corrupt-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-08-curl_cffi-matched-attribution-swap-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-09-scrapanium-bend-control-corrupt-flush64",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-10-scrapanium-bend-control-swap-flush64",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-11-scrapanium-bend-attribution-corrupt-flush64",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-12-scrapanium-bend-attribution-swap-flush64",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-13-curl_cffi-matched-control-corrupt-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-14-curl_cffi-matched-control-swap-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-15-curl_cffi-matched-attribution-corrupt-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "ws-attribution-smoke-negative-16-curl_cffi-matched-attribution-swap-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "fault": "swap"
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-scrapanium-bend-control-flush1",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-scrapanium-bend-attribution-flush1",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-curl_cffi-matched-control-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-curl_cffi-matched-attribution-flush1",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 1,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-scrapanium-bend-control-flush64",
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-scrapanium-bend-attribution-flush64",
+      "client": "scrapanium-bend",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-curl_cffi-matched-control-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    },
+    {
+      "kind": "correctness_smoke",
+      "run_id": "ws-attribution-smoke-curl_cffi-matched-attribution-flush64",
+      "client": "curl_cffi-matched",
+      "mode": "attribution",
+      "batch": 64,
+      "count": 8,
+      "message_bytes": 65536,
+      "repeat": 1
+    }
+  ],
+  "execution_order": [
+    "ws-attribution-smoke-negative-01-scrapanium-bend-control-corrupt-flush1",
+    "ws-attribution-smoke-negative-02-scrapanium-bend-control-swap-flush1",
+    "ws-attribution-smoke-negative-03-scrapanium-bend-attribution-corrupt-flush1",
+    "ws-attribution-smoke-negative-04-scrapanium-bend-attribution-swap-flush1",
+    "ws-attribution-smoke-negative-05-curl_cffi-matched-control-corrupt-flush1",
+    "ws-attribution-smoke-negative-06-curl_cffi-matched-control-swap-flush1",
+    "ws-attribution-smoke-negative-07-curl_cffi-matched-attribution-corrupt-flush1",
+    "ws-attribution-smoke-negative-08-curl_cffi-matched-attribution-swap-flush1",
+    "ws-attribution-smoke-negative-09-scrapanium-bend-control-corrupt-flush64",
+    "ws-attribution-smoke-negative-10-scrapanium-bend-control-swap-flush64",
+    "ws-attribution-smoke-negative-11-scrapanium-bend-attribution-corrupt-flush64",
+    "ws-attribution-smoke-negative-12-scrapanium-bend-attribution-swap-flush64",
+    "ws-attribution-smoke-negative-13-curl_cffi-matched-control-corrupt-flush64",
+    "ws-attribution-smoke-negative-14-curl_cffi-matched-control-swap-flush64",
+    "ws-attribution-smoke-negative-15-curl_cffi-matched-attribution-corrupt-flush64",
+    "ws-attribution-smoke-negative-16-curl_cffi-matched-attribution-swap-flush64",
+    "ws-attribution-smoke-scrapanium-bend-control-flush1",
+    "ws-attribution-smoke-scrapanium-bend-attribution-flush1",
+    "ws-attribution-smoke-curl_cffi-matched-control-flush1",
+    "ws-attribution-smoke-curl_cffi-matched-attribution-flush1",
+    "ws-attribution-smoke-scrapanium-bend-control-flush64",
+    "ws-attribution-smoke-scrapanium-bend-attribution-flush64",
+    "ws-attribution-smoke-curl_cffi-matched-control-flush64",
+    "ws-attribution-smoke-curl_cffi-matched-attribution-flush64"
+  ],
+  "source_sha256": {
+    "dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "benchmarks/websocket_phase_diagnostic.py": "bb5d6649d8d33b2cb75ba9869cd45b5aa6af65378c89b5594aa740b951e60f0c",
+    "benchmarks/websocket_phase_diagnostic.bend": "2c20a1cf50b823412e7722910ef0afa775d0e8dada7d573f21b724a14921321a",
+    "benchmarks/websocket_phase_diagnostic_python.py": "cce95e7d34d413bf9e44d7e7a3e8eda7ab135146e056438a8571ef5d960c3630",
+    "benchmarks/websocket_phase_clock.c": "f3abe6a54505005753e59c918320c72adf0bfed779f788b472b4dcb655446219",
+    "benchmarks/websocket_attribution.bend": "f55ea6101f618c370c457846a806643f00f64680f7b6d0cd4f4c59153e0daeb0",
+    "benchmarks/websocket_attribution_python.py": "8fd1d5ffc001111be67c901bee0a1fc362145caba16cbed89b8aba60f0a3f7a3",
+    "benchmarks/websocket_attribution_clock.c": "89e7b746c5fe0cc085586394115ab88c142f9f3ddcab2dde5f06db9904842a26",
+    "benchmarks/websocket_attribution_shim.c": "57d89b0b270d5959cd3de280a68322468b08854382f52d30b54817f500bedd4c",
+    "benchmarks/websocket_attribution_peer.go": "e308285a25fca0d94e72117a791485ae2370546bc257a67afa8823bfd4ad8690",
+    "benchmarks/websocket_attribution.py": "065ef6bd2a5338fafa78576814d28364ccc45b62bcd9ed0c5ce7755922b23ea0",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+    "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a"
+  },
+  "binary_sha256": {
+    "bend_client": "f6a3b50c3137186567421fdd46ce2c73f2d71b7c336a3b695f1f6711ce898ec0",
+    "shim": "8d5609491f692aa7bc83939745dcf79b133a6d3c854ef74b41ddb6f08e5badb2",
+    "peer": "99a82cf0ef083e2557e0438f1a265d906f444f64213a25e3d30413df7e9e4b6d",
+    "shim_sanitized": "120573571cdf1369be26ade57211f18da5c3b64b8865aab05abe8eb62568fa27",
+    "generated_bend_c": "e59026e6ddbd00989258d800a959f23b661e358600eb2804be656e90513cbeae"
+  },
+  "samples_file": "samples.jsonl",
+  "profiles": {
+    "cpu": "cpu.prof",
+    "trace": "trace.out"
+  },
+  "sample_count": 24,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "cpu_count": 12,
+  "cpu_model": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "compiler": {
+    "command": [
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/bend/bend2/main.ts"
+    ],
+    "bun_version": "1.3.11",
+    "bun_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "compiler_script": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend/bend2/main.ts",
+    "compiler_script_sha256": "16672e44cc43891dc2fc76e0f72fcd53b90584fc6f4a6b423ec25067d4f6d264",
+    "compiler_git_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "compiler_tracked_status": "clean"
+  },
+  "clang_path": "/usr/bin/clang",
+  "clang_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+  "go_version": "go version go1.26.0 linux/amd64",
+  "dependencies": {
+    "bend": {
+      "repository": "https://github.com/bendlang/bend.git",
+      "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+      "version": "2.0.17"
+    },
+    "curl_impersonate": {
+      "version": "2.2.3",
+      "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+      "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+    },
+    "curl_cffi_matched": {
+      "repository": "https://github.com/lexiforest/curl_cffi.git",
+      "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+      "version": "0.16.4b1"
+    },
+    "curl_cffi_release": "0.16.0",
+    "bun": "1.3.11",
+    "platform": "linux-x86_64-glibc"
+  },
+  "curl_cffi_binding": {
+    "version": "0.16.4b1",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "python_executable": "/usr/bin/python3.14",
+    "python_executable_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "files": {
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/__init__.py": "e9827081dfedf066ee1e4da6a9eecf58daa69185538e15fd802571cd323261d7",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46"
+    }
+  },
+  "backend": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+    "library_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib",
+    "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b",
+    "selection": "pinned .deps/curl stock backend"
+  },
+  "built_by_this_run": true,
+  "sanitize_bend_smoke": true,
+  "sanitizer_coverage": {
+    "bend_and_embedded_bridge": "ASan/UBSan instrumented",
+    "bend_preloaded_shim": "AddressSanitizer instrumented",
+    "matched_python_and_its_shim": "not instrumented"
+  },
+  "source_and_binary_hashes_frozen_before_first_control": true,
+  "source_hashes_checked_after_samples": true,
+  "compiler_inputs_checked_after_samples": true,
+  "binding_inputs_checked_after_samples": true,
+  "asan_runtime": {
+    "path": "/usr/lib/llvm-21/lib/clang/21/lib/linux/libclang_rt.asan-x86_64.so",
+    "sha256": "2d5399bb0cd851fae501fde785ee6be3828c816a3ac2081d63ebb91e6c1eb4d0",
+    "linkage": "same shared runtime is a Bend dependency and is preloaded once before the sanitized shim"
+  },
+  "tls_certificate_sha256": "fc3e801027e235a78acfd470444ebf73946f6f7d118304c41ba3a5eba2045739",
+  "tls_private_key_retained": false,
+  "peer_url": "wss://127.0.0.1:32769",
+  "profile_paths": {
+    "cpu": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/cpu.prof",
+    "trace": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/trace.out"
+  },
+  "peer_profile_summary": {
+    "started": true,
+    "stopped": true,
+    "expected_profile_runs": 8,
+    "observed_profile_runs": 8,
+    "profile_window_wall_ns": 1408580306,
+    "cpu_profile_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/cpu.prof",
+    "cpu_profile_sha256": "5cbbc552476487937d9d9cadde6d6ddb097b28eb3edec0c3a174fa1031884f19",
+    "cpu_profile_bytes": 2533,
+    "cpu_profile_parseable": true,
+    "cpu_profile_sample_count": 5,
+    "cpu_labeled_sample_count": 0,
+    "cpu_unlabeled_sample_count": 5,
+    "cpu_samples_per_label_floor": 80,
+    "cpu_sample_floor_met": false,
+    "trace_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/trace.out",
+    "trace_sha256": "ff2f4533d943943306bb33600cb5e7c8faea616506fd097461a32c643dccf454",
+    "trace_bytes": 38336,
+    "trace_parseable": true
+  },
+  "peer_profile_stop_reply": {
+    "command": "profile-stop",
+    "ok": true,
+    "profile": {
+      "started": true,
+      "stopped": true,
+      "expected_profile_runs": 8,
+      "observed_profile_runs": 8,
+      "profile_window_wall_ns": 1408580306,
+      "cpu_profile_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/cpu.prof",
+      "cpu_profile_sha256": "5cbbc552476487937d9d9cadde6d6ddb097b28eb3edec0c3a174fa1031884f19",
+      "cpu_profile_bytes": 2533,
+      "cpu_profile_parseable": true,
+      "cpu_profile_sample_count": 5,
+      "cpu_labeled_sample_count": 0,
+      "cpu_unlabeled_sample_count": 5,
+      "cpu_samples_per_label_floor": 80,
+      "cpu_sample_floor_met": false,
+      "trace_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/build/ws-attribution-smoke/trace.out",
+      "trace_sha256": "ff2f4533d943943306bb33600cb5e7c8faea616506fd097461a32c643dccf454",
+      "trace_bytes": 38336,
+      "trace_parseable": true
+    }
+  },
+  "correctness_smoke_positive_count": 8,
+  "profile_floor_applicable": false,
+  "completed_utc": "2026-09-24T09:54:20.741581+00:00",
+  "completed_sample_count": 24
+}

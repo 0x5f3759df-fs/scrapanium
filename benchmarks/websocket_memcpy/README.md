@@ -73,3 +73,51 @@ throughput claims without a later separately reviewed experiment.
 ## Retained evidence
 
 The initial Zig symbol-routing probe is archived in [link-probe evidence](evidence/link-probe/README.md); bounded runtime/canary checks are in [guard evidence](evidence/guard/README.md). These establish probe correctness and symbol routing only, not a curl backend change or performance result.
+
+## Pinned curl backend pair
+
+The isolated upstream 2.2.3 backend pair now passes the symbol-route, guard-page,
+full WebSocket, and sanitizer correctness gates. Only the candidate DSO differs:
+the pinned BoringSSL `SSL_read`/`SSL_peek` call sites route through the wrapper,
+which calls `memcpy@GLIBC_2.14`; the pair retains the release's GLIBC 2.17
+ceiling. The exact source pins, build/relink commands, input map, ELF checks,
+and hashed correctness records are in [backend-pair evidence](evidence/backend-pair/README.md).
+This is still an experiment, not a product backend change, and no timing run has
+been performed.
+
+`stream_four_condition.py` compares the natural baseline and candidate DSOs
+with Bend and matched `curl_cffi` clients. It builds one immutable Bend client
+and bridge against baseline headers, then reuses those same file bytes for both
+backend conditions; `LD_LIBRARY_PATH` alone selects the runtime DSO, which the
+driver verifies from each process's mapped file path and SHA-256. Every sample
+retains the existing exact opcode, sequence, full-payload, ordering, and buffer
+release checks. `--print-plan` is plan-only. `--smoke` executes 8 corruption
+controls plus 24 count-32 correctness checks. `--run-full` is fixed at 8
+controls plus 480 measurements (20 repeats across six workloads and four
+conditions), with no adaptive extension. The predeclared promotion gate
+requires at least a 5% median Bend gain in both 64 KiB modes, paired 95% CI
+lower bounds above 1.0 for both, and lower bounds of at least 0.95 in all four
+30-byte/1 KiB Bend modes. Curl results are retained separately.
+
+Use the pair location produced by the evidence guide and the correctness gate
+generated for that exact pair. The archived gate is tied to the archived DSO
+hashes and must not be reused for a newly built pair. Give smoke and any later
+full run distinct, fresh directories on persistent Linux storage. Each
+`--build-root` must not already exist:
+
+```sh
+PAIR_ROOT=/path/to/recreated/wss-memcpy-backend-pair
+GATE="$PAIR_ROOT/correctness-gate.json"
+.deps/venv-matched/bin/python benchmarks/websocket_memcpy/stream_four_condition.py \
+  --smoke --pair-root "$PAIR_ROOT" \
+  --build-root "$HOME/scrapanium-experiments/wss-memcpy-smoke"
+```
+
+After the correctness output passes review, the fixed full plan uses a different
+fresh build root:
+
+```sh
+.deps/venv-matched/bin/python benchmarks/websocket_memcpy/stream_four_condition.py \
+  --run-full --pair-root "$PAIR_ROOT" --correctness-gate "$GATE" \
+  --build-root "$HOME/scrapanium-experiments/wss-memcpy-full"
+```

@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "kind": "correctness-only harness self-test",
+  "timing_collected": false,
+  "compiler_command": [
+    "/usr/bin/gcc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-builtin",
+    "-fno-lto",
+    "-fno-tree-loop-distribute-patterns",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/tests/memcpy_guard_test.c",
+    "-ldl",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-guard-selftest/memcpy_guard_test"
+  ],
+  "compiler_version": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "inputs": {
+    "memcpy_guard_test.c": "620875b0c3c7d65734d03a5fa32998a0bf62b2b2ade481baed6156351e393a4d",
+    "memcpy_fault_provider.c": "a2c3a828e726e772fe33f59428e7e069211f0f651c26d330d9229b42957c9e67"
+  },
+  "driver_sha256": "61093c5f271241cf3faaa47e22b32672ed4ef7016f440a0f285dfe345d76ecb4",
+  "cases": [
+    {
+      "fault_kind": 1,
+      "mode": "regular",
+      "expected_failure": "copied bytes differ",
+      "returncode": 1,
+      "library_sha256": "de4a7306758cb2d859130d5169f3ccdc9a05da5b697fe1bc005fbc5bd1e47e35",
+      "log": "fault-1.log"
+    },
+    {
+      "fault_kind": 2,
+      "mode": "regular",
+      "expected_failure": "copy did not return destination",
+      "returncode": 1,
+      "library_sha256": "8c1c23451e1348a87ab5d7f4a8dff30a3657ad22ba1d522206ecfe5f676eb0d9",
+      "log": "fault-2.log"
+    },
+    {
+      "fault_kind": 3,
+      "mode": "regular",
+      "expected_failure": "destination canary changed outside requested range",
+      "returncode": 1,
+      "library_sha256": "477fc9b8ae6c8363b9840e9ff38872046020af217c743a3093e8f3b812f1210f",
+      "log": "fault-3.log"
+    },
+    {
+      "fault_kind": 4,
+      "mode": "regular",
+      "expected_failure": "protected-page signal",
+      "returncode": -11,
+      "library_sha256": "bb86108c7db9f3347802853fa422a268f10cf78fef02d0bca4ab5f614e733ba2",
+      "log": "fault-4.log"
+    },
+    {
+      "fault_kind": 5,
+      "mode": "edge-src-start",
+      "expected_failure": "protected-page signal",
+      "returncode": -11,
+      "library_sha256": "d25fbed04bf0c028598953670847ea06a03b75921265972ec5c0b77853524571",
+      "log": "fault-5.log"
+    },
+    {
+      "fault_kind": 6,
+      "mode": "edge-dst-end",
+      "expected_failure": "protected-page signal",
+      "returncode": -11,
+      "library_sha256": "62f46f7fec8ca518396aac985c8f9b687e8a80e0a74809111e3482304952f72c",
+      "log": "fault-6.log"
+    }
+  ],
+  "reference": {
+    "library": "libc.so.6",
+    "resolved_path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+    "resolved_sha256": "85e64f97e348786a8fb4d9f3d52fec289e2fb86bba20f0731dfe61990525e0f7",
+    "symbol": "memcpy",
+    "returncode": 0,
+    "output": "test_symbol=memcpy\nresolved_dso=/usr/lib/x86_64-linux-gnu/libc.so.6\nmode=all\nPASS: 83135 alignment/size cases, 64 guarded-edge cases; source was read-only during calls\n",
+    "log": "reference-libc.log"
+  },
+  "source_sha256_before": {
+    "memcpy_guard_test.c": "620875b0c3c7d65734d03a5fa32998a0bf62b2b2ade481baed6156351e393a4d",
+    "memcpy_fault_provider.c": "a2c3a828e726e772fe33f59428e7e069211f0f651c26d330d9229b42957c9e67",
+    "run_memcpy_guard_controls.py": "555aabf47112557c03af2b541292699a133d5d8e4e63f4d5d29e9fffc3a67a69"
+  },
+  "source_sha256_after": {
+    "memcpy_guard_test.c": "620875b0c3c7d65734d03a5fa32998a0bf62b2b2ade481baed6156351e393a4d",
+    "memcpy_fault_provider.c": "a2c3a828e726e772fe33f59428e7e069211f0f651c26d330d9229b42957c9e67",
+    "run_memcpy_guard_controls.py": "555aabf47112557c03af2b541292699a133d5d8e4e63f4d5d29e9fffc3a67a69"
+  },
+  "runner_sha256": "555aabf47112557c03af2b541292699a133d5d8e4e63f4d5d29e9fffc3a67a69",
+  "result": "PASS"
+}

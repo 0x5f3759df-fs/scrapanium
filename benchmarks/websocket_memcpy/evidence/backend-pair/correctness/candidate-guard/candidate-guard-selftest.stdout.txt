@@ -1,0 +1,7 @@
+PASS: libc reference; six expected fault detections; no timings
+  fault-1 (regular): rejected with rc=1
+  fault-2 (regular): rejected with rc=1
+  fault-3 (regular): rejected with rc=1
+  fault-4 (regular): rejected with rc=-11
+  fault-5 (edge-src-start): rejected with rc=-11
+  fault-6 (edge-dst-end): rejected with rc=-11

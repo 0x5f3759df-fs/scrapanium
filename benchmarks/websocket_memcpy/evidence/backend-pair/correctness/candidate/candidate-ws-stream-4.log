@@ -1,0 +1,8 @@
+Both clients rejected byte corruption and reordered sequence tags
+stream-30b-flush1: repeat 1/1
+stream-1024b-flush1: repeat 1/1
+stream-65536b-flush1: repeat 1/1
+stream-30b-flush64: repeat 1/1
+stream-1024b-flush64: repeat 1/1
+stream-65536b-flush64: repeat 1/1
+/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/candidate/build/ws-stream-smoke-4.json

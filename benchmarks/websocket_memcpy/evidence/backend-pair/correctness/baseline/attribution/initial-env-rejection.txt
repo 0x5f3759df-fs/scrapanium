@@ -1,0 +1,9 @@
+Rejected setup invocation; no client or peer was started.
+
+Invocation used `SCRAPANIUM_CURL_DIR` pointing at the isolated baseline prefix while calling `websocket_attribution.py --smoke --sanitize`. The program rejected the environment override before collecting samples. Captured console text:
+
+usage: websocket_attribution.py [-h] [--output-dir OUTPUT_DIR] [--seed SEED]
+                                [--smoke] [--sanitize]
+websocket_attribution.py: error: clear SCRAPANIUM_CURL_DIR to use pinned compiler/backend inputs
+
+The first command's `tee` target was subsequently reused by the successful baseline invocation, so this file preserves the console text observed from that first tool result; it is not the original untouched log file. The first shell pipeline returned tee's status, so this record does not claim the script's process exit code. The successful retry uses a private worktree `.deps/curl` symlink to the baseline prefix and leaves the main checkout unchanged.

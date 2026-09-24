@@ -1,0 +1,4 @@
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-install/lib/libcurl-impersonate.so.4.8.0
+mode=all
+PASS: 83135 alignment/size cases, 64 guarded-edge cases; source was read-only during calls

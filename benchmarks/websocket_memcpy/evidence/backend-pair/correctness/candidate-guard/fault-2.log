@@ -1,0 +1,8 @@
+returncode=1
+stdout:
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-guard-selftest/fault-2.so
+mode=regular
+stderr:
+fault_provider_kind=2
+FAIL: copy did not return destination

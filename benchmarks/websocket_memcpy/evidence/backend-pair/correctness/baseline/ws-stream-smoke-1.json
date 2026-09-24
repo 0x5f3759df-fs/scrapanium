@@ -1,0 +1,683 @@
+{
+  "schema": 1,
+  "utc": "2026-09-24T09:45:55.662183+00:00",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "cpu_count": 12,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "go": "go version go1.26.0 linux/amd64",
+  "compiler": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n",
+  "dependencies": {
+    "bend": {
+      "repository": "https://github.com/bendlang/bend.git",
+      "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+      "version": "2.0.17"
+    },
+    "curl_impersonate": {
+      "version": "2.2.3",
+      "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+      "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+    },
+    "curl_cffi_matched": {
+      "repository": "https://github.com/lexiforest/curl_cffi.git",
+      "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+      "version": "0.16.4b1"
+    },
+    "curl_cffi_release": "0.16.0",
+    "bun": "1.3.11",
+    "platform": "linux-x86_64-glibc"
+  },
+  "runs": 1,
+  "seed": 20260920,
+  "profile": "chrome146",
+  "verify": true,
+  "operation_timeout_ms": 5000,
+  "smoke_only": true,
+  "sanitizers": true,
+  "bend_threads": 1,
+  "metric": "inbound messages per second, never round trips per second",
+  "clock": "CLOCK_MONOTONIC; Bend benchmark-only checked48-bit Nat microseconds, Python nanoseconds; every interval checked against independent parent-clock bounds",
+  "timing": "start signal plus ordered exact-byte-checked receives; excludes expected corpus preparation, startup, TLS upgrade, warmup and close",
+  "payload": "8 ASCII decimal sequence digits, then bytes(j*31 %128); every message is unique and checked in order",
+  "validation_buffer_lifetime": "Both clients consume and release expected and received payload buffers immediately after each exact check, inside timing; including final message",
+  "corpus_limit_per_connection_bytes": 67108864,
+  "peer_batching": "1 or 64 distinct RFC6455 frames per TLS Write call; identical wire bytes and batching for both clients",
+  "uncertainty": "95% repeat-level bootstrap intervals of medians (10,000 resamples); all samples and min/max retained",
+  "caveats": [
+    "Loopback WSL/Linux inbound streaming; does not establish WAN or request/response performance.",
+    "Expected corpus payload memory is bounded equally; runtime/container overhead differs and RSS is recorded at readiness.",
+    "CPU/context-switch accounting includes corpus preparation, setup and close; it is not timed-receive CPU.",
+    "Bend uses benchmark-only microsecond timing; Python uses CLOCK_MONOTONIC nanoseconds.",
+    "All frames use one verified TLS connection per sample; no compression, reconnect or TLS resumption in timing.",
+    "Scrapanium additionally validates the acceptance challenge during untimed setup.",
+    "WebSocket byte counts exclude TLS record overhead. Round-trip results remain in websocket.json."
+  ],
+  "negative_controls": [
+    {
+      "client": "scrapanium-bend",
+      "fault": "corrupt",
+      "returncode": 1,
+      "detected_by_exact_check": true,
+      "mapped_backend": {
+        "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+        "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+      }
+    },
+    {
+      "client": "curl_cffi-matched",
+      "fault": "corrupt",
+      "returncode": 1,
+      "detected_by_exact_check": true,
+      "mapped_backend": {
+        "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+        "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+      }
+    },
+    {
+      "client": "scrapanium-bend",
+      "fault": "swap",
+      "returncode": 1,
+      "detected_by_exact_check": true,
+      "mapped_backend": {
+        "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+        "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+      }
+    },
+    {
+      "client": "curl_cffi-matched",
+      "fault": "swap",
+      "returncode": 1,
+      "detected_by_exact_check": true,
+      "mapped_backend": {
+        "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+        "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+      }
+    }
+  ],
+  "execution_order": [
+    "stream-30b-flush1-0-scrapanium-bend",
+    "stream-30b-flush1-0-curl_cffi-matched",
+    "stream-1024b-flush1-0-curl_cffi-matched",
+    "stream-1024b-flush1-0-scrapanium-bend",
+    "stream-65536b-flush1-0-scrapanium-bend",
+    "stream-65536b-flush1-0-curl_cffi-matched",
+    "stream-30b-flush64-0-scrapanium-bend",
+    "stream-30b-flush64-0-curl_cffi-matched",
+    "stream-1024b-flush64-0-scrapanium-bend",
+    "stream-1024b-flush64-0-curl_cffi-matched",
+    "stream-65536b-flush64-0-curl_cffi-matched",
+    "stream-65536b-flush64-0-scrapanium-bend"
+  ],
+  "backend": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+    "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+  },
+  "curl_cffi_binding": {
+    "version": "0.16.4b1",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "files": {
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60",
+      "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/test-roots/baseline/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46"
+    }
+  },
+  "source_sha256": {
+    "scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+    "native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a"
+  },
+  "binary_sha256": {
+    "bend": "1b15dde2d7d862311fd57ab64c4926a7f66f2278a72f0ed5c91ed2101565bdc8",
+    "go_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "source_hashes_checked_before_build_and_after_samples": true,
+  "built_by_this_run": true,
+  "workloads": [
+    {
+      "name": "stream-30b-flush1",
+      "bytes": 30,
+      "count": 32,
+      "peer_flush_frames": 1,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 960,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-30b-flush1-0-scrapanium-bend",
+              "elapsed_ms": 2.0709999999962747,
+              "start_ms": 731523.21,
+              "end_ms": 731525.281,
+              "messages_per_second": 15451.472718521276,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 12.452226999926097,
+              "clock_sanity": {
+                "parent_gate_ms": 731523.039501,
+                "parent_finish_ms": 731531.547891,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 15944,
+              "expected_corpus_payload_bytes": 960,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.015443000000000318,
+                "system_seconds": 0.0037289999999999823,
+                "voluntary_context_switches": 17,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 960,
+                "data_frame_bytes": 1024,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-30b-flush1-0-curl_cffi-matched",
+              "elapsed_ms": 0.6548480000346899,
+              "start_ms": 731807.700787,
+              "end_ms": 731808.355635,
+              "messages_per_second": 48866.301795691266,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 254.07866400007606,
+              "clock_sanity": {
+                "parent_gate_ms": 731807.626574,
+                "parent_finish_ms": 731825.957574,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 35000,
+              "expected_corpus_payload_bytes": 960,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.10561500000000024,
+                "system_seconds": 0.02031000000000005,
+                "voluntary_context_switches": 924,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 960,
+                "data_frame_bytes": 1024,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stream-1024b-flush1",
+      "bytes": 1024,
+      "count": 32,
+      "peer_flush_frames": 1,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 32768,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-1024b-flush1-0-scrapanium-bend",
+              "elapsed_ms": 0.915999999968335,
+              "start_ms": 732212.393,
+              "end_ms": 732213.309,
+              "messages_per_second": 34934.49781780153,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 9.323700999971152,
+              "clock_sanity": {
+                "parent_gate_ms": 732212.217355,
+                "parent_finish_ms": 732219.502788,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 15872,
+              "expected_corpus_payload_bytes": 32768,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.009814999999999685,
+                "system_seconds": 0.005222999999999978,
+                "voluntary_context_switches": 16,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 32768,
+                "data_frame_bytes": 32896,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-1024b-flush1-0-curl_cffi-matched",
+              "elapsed_ms": 0.4042180000105873,
+              "start_ms": 732163.354075,
+              "end_ms": 732163.758293,
+              "messages_per_second": 79165.2029329764,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 316.3498479999589,
+              "clock_sanity": {
+                "parent_gate_ms": 732163.250152,
+                "parent_finish_ms": 732181.791437,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 35084,
+              "expected_corpus_payload_bytes": 32768,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.11592000000000002,
+                "system_seconds": 0.017174000000000023,
+                "voluntary_context_switches": 923,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 32768,
+                "data_frame_bytes": 32896,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stream-65536b-flush1",
+      "bytes": 65536,
+      "count": 32,
+      "peer_flush_frames": 1,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 2097152,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-65536b-flush1-0-scrapanium-bend",
+              "elapsed_ms": 7.4959999999264255,
+              "start_ms": 732304.623,
+              "end_ms": 732312.119,
+              "messages_per_second": 4268.943436541367,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 62.47693199998139,
+              "clock_sanity": {
+                "parent_gate_ms": 732304.481786,
+                "parent_finish_ms": 732318.98598,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 22888,
+              "expected_corpus_payload_bytes": 2097152,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.059628000000000014,
+                "system_seconds": 0.012746999999999953,
+                "voluntary_context_switches": 21,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 2097152,
+                "data_frame_bytes": 2097472,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-65536b-flush1-0-curl_cffi-matched",
+              "elapsed_ms": 1.6351509999949485,
+              "start_ms": 732535.104982,
+              "end_ms": 732536.740133,
+              "messages_per_second": 19570.05805586081,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 195.02255199995489,
+              "clock_sanity": {
+                "parent_gate_ms": 732535.001464,
+                "parent_finish_ms": 732556.394269,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 36744,
+              "expected_corpus_payload_bytes": 2097152,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.10900800000000022,
+                "system_seconds": 0.009909999999999974,
+                "voluntary_context_switches": 924,
+                "involuntary_context_switches": 2
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 2097152,
+                "data_frame_bytes": 2097472,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stream-30b-flush64",
+      "bytes": 30,
+      "count": 32,
+      "peer_flush_frames": 64,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 960,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-30b-flush64-0-scrapanium-bend",
+              "elapsed_ms": 0.6190000000642613,
+              "start_ms": 732586.703,
+              "end_ms": 732587.322,
+              "messages_per_second": 51696.28432419698,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 8.826564000059989,
+              "clock_sanity": {
+                "parent_gate_ms": 732586.518968,
+                "parent_finish_ms": 732593.520185,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 15988,
+              "expected_corpus_payload_bytes": 960,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.0042999999999997485,
+                "system_seconds": 0.009799000000000002,
+                "voluntary_context_switches": 18,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 960,
+                "data_frame_bytes": 1024,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-30b-flush64-0-curl_cffi-matched",
+              "elapsed_ms": 0.25854500010609627,
+              "start_ms": 732800.757959,
+              "end_ms": 732801.016504,
+              "messages_per_second": 123769.5565060957,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 185.5853870000601,
+              "clock_sanity": {
+                "parent_gate_ms": 732800.666321,
+                "parent_finish_ms": 732820.108647,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 35052,
+              "expected_corpus_payload_bytes": 960,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.08252300000000012,
+                "system_seconds": 0.02750700000000006,
+                "voluntary_context_switches": 923,
+                "involuntary_context_switches": 5
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 960,
+                "data_frame_bytes": 1024,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stream-1024b-flush64",
+      "bytes": 1024,
+      "count": 32,
+      "peer_flush_frames": 64,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 32768,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-1024b-flush64-0-scrapanium-bend",
+              "elapsed_ms": 0.9499999999534339,
+              "start_ms": 732851.576,
+              "end_ms": 732852.526,
+              "messages_per_second": 33684.21052796689,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 9.549099000082606,
+              "clock_sanity": {
+                "parent_gate_ms": 732851.405086,
+                "parent_finish_ms": 732859.353429,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 16192,
+              "expected_corpus_payload_bytes": 32768,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.010454999999999437,
+                "system_seconds": 0.006097999999999937,
+                "voluntary_context_switches": 17,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 32768,
+                "data_frame_bytes": 32896,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-1024b-flush64-0-curl_cffi-matched",
+              "elapsed_ms": 0.2923919999739155,
+              "start_ms": 733084.022841,
+              "end_ms": 733084.315233,
+              "messages_per_second": 109442.11880918336,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 203.73653199999353,
+              "clock_sanity": {
+                "parent_gate_ms": 733083.908333,
+                "parent_finish_ms": 733103.387068,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 34956,
+              "expected_corpus_payload_bytes": 32768,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.08986400000000039,
+                "system_seconds": 0.024508000000000085,
+                "voluntary_context_switches": 922,
+                "involuntary_context_switches": 3
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 32768,
+                "data_frame_bytes": 32896,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stream-65536b-flush64",
+      "bytes": 65536,
+      "count": 32,
+      "peer_flush_frames": 64,
+      "connections": 1,
+      "expected_corpus_payload_bytes": 2097152,
+      "clients": {
+        "scrapanium-bend": {
+          "samples": [
+            {
+              "run_id": "stream-65536b-flush64-0-scrapanium-bend",
+              "elapsed_ms": 4.532000000006519,
+              "start_ms": 733426.644,
+              "end_ms": 733431.176,
+              "messages_per_second": 7060.900264773602,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 64.11738299993885,
+              "clock_sanity": {
+                "parent_gate_ms": 733426.480104,
+                "parent_finish_ms": 733437.512471,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 23004,
+              "expected_corpus_payload_bytes": 2097152,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.06444099999999953,
+                "system_seconds": 0.006308000000000091,
+                "voluntary_context_switches": 19,
+                "involuntary_context_switches": 0
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 2097152,
+                "data_frame_bytes": 2097472,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        },
+        "curl_cffi-matched": {
+          "samples": [
+            {
+              "run_id": "stream-65536b-flush64-0-curl_cffi-matched",
+              "elapsed_ms": 1.4294089999748394,
+              "start_ms": 733321.685744,
+              "end_ms": 733323.115153,
+              "messages_per_second": 22386.87457583048,
+              "mapped_backend": {
+                "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-install/lib/libcurl-impersonate.so.4.8.0",
+                "sha256": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b"
+              },
+              "setup_and_corpus_wall_ms": 195.03578599994853,
+              "clock_sanity": {
+                "parent_gate_ms": 733321.581685,
+                "parent_finish_ms": 733341.262375,
+                "client_interval_within_parent": true
+              },
+              "resident_kib_at_ready": 36836,
+              "expected_corpus_payload_bytes": 2097152,
+              "client_cpu_including_preparation_setup_close": {
+                "user_seconds": 0.1001840000000005,
+                "system_seconds": 0.01484199999999991,
+                "voluntary_context_switches": 924,
+                "involuntary_context_switches": 1
+              },
+              "peer_observation": {
+                "data_frames": 32,
+                "data_payload_bytes": 2097152,
+                "data_frame_bytes": 2097472,
+                "warmups": 1,
+                "starts": 1,
+                "tls_version": 772,
+                "tls_cipher": 4865
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

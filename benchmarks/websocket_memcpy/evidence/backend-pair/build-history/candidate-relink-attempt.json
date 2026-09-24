@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "started_epoch": 1790243015.8555295,
+  "cwd": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl",
+  "candidate_command_sha256": "5dc352b10d6e1525b9668eb65b136d1e8f2b9a73fb3a9889a7b3a48d21690f9e",
+  "baseline_sha256_before": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b",
+  "route_object_sha256": "a5fb141075277aa556c968c3aa88de0d73d7c93dff67874c43907067ed3f2835",
+  "route_source_sha256": "79f1816530383e34c36df60d46bfd1b672a7f2635cf3cbfebafb6bf617e0aea1",
+  "returncode": 0,
+  "elapsed_seconds": 0.302,
+  "stdout_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-stdout.txt",
+  "stderr_path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-link-stderr.txt",
+  "candidate_dso_sha256": "c15ed19b2510ea89e94df68e64146612bda86733414706b367f186250ecd0621",
+  "baseline_sha256_after": "19a3732717119c67002204579881379c0d89beb0ae080cce38a4cc52fd9bbd8b",
+  "baseline_unchanged": true
+}

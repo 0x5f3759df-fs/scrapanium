@@ -1,0 +1,2109 @@
+{
+  "baseline_inputs": [
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/altsvc.c.o",
+      "sha256": "28c9007e0f097818d59a860754bdd5afd7bd9cb6d88274fc9d589504b80c17aa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/amigaos.c.o",
+      "sha256": "d33eb5f2ef00ea6ff0c3322de18a7de2b3a91e5cc9b04feff6dc681c04066b8a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/api.c.o",
+      "sha256": "50bfd0057b0bc0ef730dd12bd85105f1be2c44b63ad9deb4b6656f3ace20695c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/bufq.c.o",
+      "sha256": "9be9cd75d1949c6b8ba524636458136f2a0cca05d45c24201b2969bc652053fc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/bufref.c.o",
+      "sha256": "f513346d542585ddeea3930ebea6138eed2d120aa91c3f7e5dacdeab9586856d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-h1-proxy.c.o",
+      "sha256": "5d46f29d51b30e3a3c6b3826847748f5e3b09834ed7dfd1f16c4c9a70d5ac306",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-h2-proxy.c.o",
+      "sha256": "2e448dfdddba9c1098452c3d4cfd49457713620ac7c919c6958c8f54fbb7e6ab",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-haproxy.c.o",
+      "sha256": "e188fdd32c29b6a1d67ace4836b486b07522bfcfc80c284464b4a964c761960d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-https-connect.c.o",
+      "sha256": "e9f164be85f9430e6820a5e96a02364a11ce1f9c053a15e25c7474f6423b2dc1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-ip-happy.c.o",
+      "sha256": "5c4eb59bede90d712e6b4cef9ef00d18d8369e75ae2e540b06e3bbdff9d90db9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-recvbuf.c.o",
+      "sha256": "2694faa28a466ffbf3333bb6158c0507b456b66d12fcc76b4bfb138b4da60619",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-setup.c.o",
+      "sha256": "f7ac576b05a8e48efae9bea272d0cefdbdd24a0e143d57f8c1af4789f0572b40",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-socket.c.o",
+      "sha256": "5a8eef338f2bd7dec7cfce9290974eefd3c263063dd06e89aa806ed8f7433d72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cfilters.c.o",
+      "sha256": "a4ab0ba1e64d80b2e7035d480927156c358091b9556f0e5444fb909fa46ce75f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/conncache.c.o",
+      "sha256": "2537a3c978f94f52526082643dbb910c89b26508b0dcccd40cbe32676d495bdd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/connect.c.o",
+      "sha256": "d6a86f8c96c338a059f663fe70197791e426ef4504fee44a6d128631dbb961bd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/content_encoding.c.o",
+      "sha256": "7ef9096b4d2186e91c228f3fbed4e4bbac7eff6862b81ce56bcda7a1f41d6ad9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cookie.c.o",
+      "sha256": "3d964105a009f9575ecb31d5825f65b804fe20dfa967bc2b53bd9a306b64a15d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/creds.c.o",
+      "sha256": "d69038b7497ef1450a857e2575fea0b2d96a4327623a34d0d829bbbe814d7218",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cshutdn.c.o",
+      "sha256": "1954e9d343523c8c3f943283d0f1886545e6ee48fd5430d027f60a9a8d4ac6ff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_addrinfo.c.o",
+      "sha256": "ffbe2f312fdac10279f1492d509d67e3b51659b0ffbc21d9af4b68caa640361a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_endian.c.o",
+      "sha256": "afcad94dfb2f41d2a11e0672e98773298811d1d5c2cb9b9071026421053f48d9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_fnmatch.c.o",
+      "sha256": "97747f64f89ddc084912f63b16cf506b95a5e235c0caeefb0289c6629715fd9e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_fopen.c.o",
+      "sha256": "3187cd0240a6d992105ccdb3e4b5483761c639ac11ba2b7f653c5c81075df7ce",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_get_line.c.o",
+      "sha256": "3d3e2a83b13fc6f0455e4f29656b0bd37daa7e04bcfcb51ba6663b6adca7b8d6",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_gethostname.c.o",
+      "sha256": "f8799a85696ae2d63a995f3dd373c0d5f47d4c4eff6a4c140c2ffdeb693fd658",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_gssapi.c.o",
+      "sha256": "8994ef2f3cf6f1e5576840ef66bb838c09a9cf2911f8778af80600c5afba2b52",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_memrchr.c.o",
+      "sha256": "8eb242c74d548967910d8315cfbc0ab026021a47be515a0b07382cc731120337",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_ntlm_core.c.o",
+      "sha256": "ccb3f1cdb768daa9712886e10b3758968954fb451234bd6efdeb269b9668f51c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_range.c.o",
+      "sha256": "1d0ae09e1f9b2d1e354994fac5c0b26ea9529ccb846eb1c718a5816b5cf16a7b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sasl.c.o",
+      "sha256": "bd94f52867ce78f71402c7c265c626291b9cb80ca54a24f8f212406b64d5c415",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sha512_256.c.o",
+      "sha256": "ee6dede50608a1955198840f81a240cb387d47de864f968491e4a19d85ea0d4b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_share.c.o",
+      "sha256": "cb085403fa2f1d92f7a7e8a35f0e1f1ad066545c75ae86b1338a4e6ec8d97f9f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sspi.c.o",
+      "sha256": "1a0c24e64e6ea9e8ac8e32b7cabf69f73e9d12b4dea693d6eeb211d87f6e282e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_threads.c.o",
+      "sha256": "c0ac0adf85a242713984f0a853c473ef9507b634f6303f02cb2cc9f63500a4ff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_trc.c.o",
+      "sha256": "c9498d2d7b0b8c15ba3ce94f8fe8c7e5b813d1d0ff4c612b83b2d902bf73a903",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cw-out.c.o",
+      "sha256": "ef4ac008d34597ddb1bf094e2f0031bbfa813489a7a76142aab7dc7fee4d1290",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cw-pause.c.o",
+      "sha256": "fa07b2a932d0ca075c20c06384026449ba4cd3c606b7fdb84a36782a72ae37a5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/dict.c.o",
+      "sha256": "7925f2b2733b87c201f6ca7a8d268827ab30a73ea58bbcdf0d0accfc6a742cc9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/dynhds.c.o",
+      "sha256": "ea02c3acc0193454a6c784ab9a04151f96d96246105bc5d206be70f276295ab8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easy.c.o",
+      "sha256": "1464f1f4c9ac48368c0a7e58ccfb408bd72f8a13952c47c21146e2c53f6f37e5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easygetopt.c.o",
+      "sha256": "02d1b43b75c2ebac3f233616c8e0004fef5e038385fbdea2f83c335bd250ddf1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easyoptions.c.o",
+      "sha256": "95e6a81b93c58ea78e00f0723f693c0e82dc1e35c134c4d78dafd7f8a74aa6f1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/escape.c.o",
+      "sha256": "0955175896d049ddfc9907d48e94762affc8e59066b4b340d4ba959be8f361d5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/fake_addrinfo.c.o",
+      "sha256": "71c90bd338a93cb082bc4462ee87d5657390ff9f7d7b3db51a369038f2c59adc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/file.c.o",
+      "sha256": "54ebe0286b89d7d979d77f783ed9e76b1e22e3c8e6357752421388198666410f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/fileinfo.c.o",
+      "sha256": "1f71cf1575d3eb6bae483cfe35365d780d18ee268f3d95821e38d3eb8571e298",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/formdata.c.o",
+      "sha256": "911e1cedfede8236bf4889417d4b9871e9ea10a1bf76abf29cf74177a7a83945",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ftp.c.o",
+      "sha256": "256879a43dce80a1b38d5dd342c6dea7f83fb8dd3c3bf3ae9ce6d299b4f774a6",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ftplistparser.c.o",
+      "sha256": "9c47e587dcc0f0d60afac4eab908017d9b5dd4705ab406835a935107de812b93",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/getenv.c.o",
+      "sha256": "25b626caf0f274d3873daa71d23377470dfab56c012cc5fcb398a6b1dcbdddd2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/getinfo.c.o",
+      "sha256": "8259d0f40c480f2499ab2d7457fdf9baf94d3ac1a956aa534316b8a08e58d567",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/gopher.c.o",
+      "sha256": "eaea72dc0f3b9e8796b246d3658711071f296e0dc421d4e0d4584616c70ad5ba",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hash.c.o",
+      "sha256": "e3f2752e46b3bb0b4a4bc321ceca065e8f57a31ddbe047269255cd47eae1d48b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/headers.c.o",
+      "sha256": "fd7fd3b32b2640f8d0dfe2d7fc198ba3e28e8665a14c01de3d24c05c36610a2a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hmac.c.o",
+      "sha256": "8e36bfc5ca618f6fc9e7b37ae70146146825aad3f792808b2a9c215c83c662fa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hsts.c.o",
+      "sha256": "ebf80687509f41dbe113a6774f3da3b3eead971995672b08062db2cbfee3e090",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http.c.o",
+      "sha256": "0e653e7f731d9a9aa5700cc9003977f53ca7428fef7553c70f181b20d2c73e4c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http1.c.o",
+      "sha256": "015658cc934e5116d870411ca289845378dd31bf6176098e89d95c31c1c30636",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http2.c.o",
+      "sha256": "1b37ca756ae438a4402c4b9dcc089511a8e232f7f2e7bcb2fc8a7b8b33371e12",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_aws_sigv4.c.o",
+      "sha256": "407864eb602cc5b9c48c1cb551864063545e7dcac9ea3fd2c76670825d229216",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_httpsig.c.o",
+      "sha256": "98c9dce9d50a672986b2b0d1d3676161ecc5a895a923450dd3ec492b012d83cd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_ed25519.c.o",
+      "sha256": "d2a74298ecf230ff976f16d826b371ad9f597951fc2b4c97d78f5d3f0ecb76e8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_chunks.c.o",
+      "sha256": "40f186508baa7379e2ae9818bffdbc74c1752a188387c4672dfa818349aa74f0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_digest.c.o",
+      "sha256": "15b8b182330e294cdf9fb3818b66134085396152d810885979ac2d4830ddf142",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_negotiate.c.o",
+      "sha256": "68927f0607307e299131308a195d7454f6f9e3d69f9f491a3881fe8b2d0cc381",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_ntlm.c.o",
+      "sha256": "9cc6602ce93ba2d933dadede63595a12bf16d2e674ffd10f53d9d0c1eb058db1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_proxy.c.o",
+      "sha256": "cb6a3163ab020c2312fa5790e3c3ea41a6495976f6c3243fc15e43fc12fd93f0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/idn.c.o",
+      "sha256": "4904becfcda4c60d1852a7a06adc17b2372334ff724ca98b9b2b98cdbe416010",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/if2ip.c.o",
+      "sha256": "7e1951e0fdb12f45d8258bd21ecb8341c686267095e75d2463d3a2c6acb30b0e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/imap.c.o",
+      "sha256": "878b8546968e9892126464ab3be0f17979d2d7b56e9d5d709a03af6ef5e76423",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/impersonate.c.o",
+      "sha256": "d6d6a6939dffa937c78c9d7e11e142dc3d74b95087ccf36b087a8dbbd92e93ee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ldap.c.o",
+      "sha256": "c4667141fd14ffade3cf3c6da6c759362e3587913c88f4e563767899660f358a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/llist.c.o",
+      "sha256": "0ac46a2c79c94fa7181387e486cd63eed0ce96ec8f18c98b980e75fc079e4dff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/macos.c.o",
+      "sha256": "06753d7db85fd8a10473a130db4a87917f05d1a050687b0c5cc18be6928f497b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/md4.c.o",
+      "sha256": "d03357b0c00e9b84ce83baa053ea0470ee8ad686b7cf8b2c106d24c22b00aead",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/md5.c.o",
+      "sha256": "de5c65943c22f9b6725fb5e562cddd215c1dfa90a11b3caf9e82ea0d6453dc1f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/memdebug.c.o",
+      "sha256": "fbffa318686106b162361fd530961f790544742c97b9538a4809a7c321cdb5ee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mime.c.o",
+      "sha256": "b3b3be8542404899c7da103c8c7ce3140c27fd428699558cdc80fe8b8f1defa8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mprintf.c.o",
+      "sha256": "561ae1bc605b813adb2680884ca2255ff17291360c51d023b631b7b1bcae14a7",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mqtt.c.o",
+      "sha256": "f935e4cf88d685c1de775b7a0aaf5140f709030c15117e8c0c902f8bbe121a07",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi.c.o",
+      "sha256": "68c27458105fca6be67d8c672c565d19568ebd202b9485665d43222e58c2e6f1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi_ev.c.o",
+      "sha256": "784574b4324e1cfdd779770ae80af376f9e5522a1acbcb828cd43553978924e2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi_ntfy.c.o",
+      "sha256": "da2bdcc91d73701ea63b46f42e32a1cf93de7fd550ce68a5d74cda06bade86c7",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/netrc.c.o",
+      "sha256": "9088e33df709122f2c874742c9206095c974f71b725db9818355bdb6c583e56a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/openldap.c.o",
+      "sha256": "9765ddf2cb2431207ec6635da933817d4ba642f882b78fa2ffbe84206ecbd82c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/parsedate.c.o",
+      "sha256": "1fe45c4b59674b62440eaabf299e3f633f923f5e22fd5f8fb3d2f12e7aae026e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/peer.c.o",
+      "sha256": "21f4e0b28935c962d7fc41fb6dbf4d3440cf3f09a82a097ac4518724a0ab8498",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/pingpong.c.o",
+      "sha256": "23e3cc7bfb5628617bc5782b64140a300c583d698660bfcd71d78a6c425afc47",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/pop3.c.o",
+      "sha256": "e1fb27dac53772be508b6c4e7686b5b9a9dcd76490b4671c98898bd9f1b7f408",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/progress.c.o",
+      "sha256": "a68b04ed53aa9e925a4d072594bf563e9d19bfc9c37d53e59feb774f65366876",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/protocol.c.o",
+      "sha256": "879050eb9ff9d4195f2a5a095b090fe4a6c346093c905ea0d7c813a645df7a72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/proxy.c.o",
+      "sha256": "9a5e6385824e0159b8be30639b5562d4fa01eb0723be6f78fc73807d1c80a161",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/psl.c.o",
+      "sha256": "3a132f82cedf8e7e2fd831871f7a6d56b22e71120317d56c866d7a243ab8d547",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/rand.c.o",
+      "sha256": "12d9ea1bc0e3b1dab1a3a01d76c463fc2134116767b32f8b268a48fe330212a4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ratelimit.c.o",
+      "sha256": "75a1511221b9608c8d25b650eca5a2c73898510c0c58eb18f9c6a9594533e275",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/request.c.o",
+      "sha256": "7fd07f32282320ec007d82f79df11b386380639c8261cdeda4e0bcda99f7e934",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/rtsp.c.o",
+      "sha256": "ef20c2bb13acfe441e364f78fd131d7d9c16e5c5edfaf844037f99ecd6847ccc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/select.c.o",
+      "sha256": "ee80d4b4b054f055eebaa1e784cb4a37321b035a9cb74f6943786039d7d3fc3a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/sendf.c.o",
+      "sha256": "895561397bf81b1a966c9c2593e0bee4253a53a4c756b2ca57b8d44194e943b8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/setopt.c.o",
+      "sha256": "a390e9171a43bc540d9c1385236def8f0913769f5cb1d78a124da793b74cb720",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/sha256.c.o",
+      "sha256": "a45d3a8f05e0969461638a1936b865366a9f9ba01cfee12fed6440ba62ef28f4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/slist.c.o",
+      "sha256": "0ec668e5dfe5d821764a81ca4fa3d391bf857a6df5aeda4fdddbe6dc02391851",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/smb.c.o",
+      "sha256": "15341ad74ec3ffd5166ba887110c0513ee8139e113c0acb5411906fa02521473",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/smtp.c.o",
+      "sha256": "cfa9a1d0d8a44312dbf80b72485b44ba442b845c31b5672c8c96d07c149ddc72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socketpair.c.o",
+      "sha256": "fe3b36d4de5685b13bfe1a822e493484a93f468d73ad814800895925618a7574",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks.c.o",
+      "sha256": "6324be1febcfd77efb90b4c94b14e353326085310e4f0b2b547b200f9fe298aa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks_gssapi.c.o",
+      "sha256": "47fb9aaf6e75c3e919ee8041f42c42b9689ad9db4a4e2751028886ef2c0f6848",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks_sspi.c.o",
+      "sha256": "c1fbaeeee8a3e0a98ed36dcc5c430e7148463233833f7b47da11cab58f265614",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/splay.c.o",
+      "sha256": "e57a86fa669ae93850276a361619a0fe7a336a94d8f94a8a3b9ab3d178f1f11d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strcase.c.o",
+      "sha256": "f285e34f35c4f31bef10ce7457c2ba38809089b24a109ad07b59f2e257349537",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strequal.c.o",
+      "sha256": "ec69e73934fe2bcdad12a642f9acccbeb6ed3ff1a08b6337b1958ba3a2c50e0a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strerror.c.o",
+      "sha256": "152e437f642ec3bfaad20cd5f3d442b60e48cbcf6581f1b5c86046030b36d827",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/system_win32.c.o",
+      "sha256": "19c9438502fc911d96cfc5c41f2f8acb7c8c27482b1039f8450943109737c0e1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/telnet.c.o",
+      "sha256": "daf1675e50676c88e90536ecdcec46dc3935b87a6136314fe6ecd1d09b9ba7b4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/tftp.c.o",
+      "sha256": "e255a5faf47bbd6497d366d6974992b2193eb7fa88898b92a5a96ddc5e272100",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/thrdpool.c.o",
+      "sha256": "1a29c4f33a9d1f60c84be66fcfaffce4dddab9332c0134ccea5b54cd48798a1f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/thrdqueue.c.o",
+      "sha256": "fbdd4f4eba2f4e8a644d6fcd69c616443733f49a0b3cd8c8b436316f53a10109",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/transfer.c.o",
+      "sha256": "6076751aeb56b0d9efdead931fc8fa530a9d1b98ef70d1331320c2508791c3a4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-bset.c.o",
+      "sha256": "6ad0af3194248d9a9289c33418d208bae5699411cb05068ba55d01bbbe5fab5c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-hash.c.o",
+      "sha256": "1df2373b25dcd416f35036d906bcbe61a0d13eed8f2353221fbb2e630bedc499",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-hashset.c.o",
+      "sha256": "9c85c65957126ae78ec33270898250db97269d89f2a15c56e64c5de3823080c0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-spbset.c.o",
+      "sha256": "05adfd3e69e523348ae8f6e8eac70a7d6b4a327cc5aa10d88d3ce18b3d1af0c1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-table.c.o",
+      "sha256": "724c0288af3c770a42d5a49474666b89fa5fd282872a8b31d1506c007740660e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/url.c.o",
+      "sha256": "b2e0f4a53583299cb1a08e4627d261fc2df4bbe26881969e45c9a8813702faf3",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/urlapi.c.o",
+      "sha256": "c386f46c21d6c5aaadfa0fbfc93c6b20f8edc7ac4d3abeafa3a5a60937138d30",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/version.c.o",
+      "sha256": "540f76ccc2455128cf39a1260580e0fbc9ed98aeeb87d2418f5af335cd10f9e0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ws.c.o",
+      "sha256": "192b282f2d641ba89c4b4ba4c4ac03c7651ef900c65db1b2972ffe203900322b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/cleartext.c.o",
+      "sha256": "e2e44606e700ce74a7678ae9b9ea45aba8b7b48b6ac7c29b68f7ed1c85e608a1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/cram.c.o",
+      "sha256": "fb9a8bcf0f7ea113a5a012761cb8fb82110471900ed8731c3124c689a738e5cd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/digest.c.o",
+      "sha256": "f3ee2df45562d1adfc0371741a0a603ee84792375bd9ef2545aa4485a367f991",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/digest_sspi.c.o",
+      "sha256": "c2b64f84abb4b198645f1bab206a58bb2382b47d98f15a2f27ba4372e2bd4f7e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/gsasl.c.o",
+      "sha256": "0535e832498b776e0fa93d53c7b980b15b0377b45ea4d75f56d59e96b016249c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/krb5_gssapi.c.o",
+      "sha256": "d702614b14a723db3e066ab549281d44108bceb787f8b01a8b448a5a34b6715d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/krb5_sspi.c.o",
+      "sha256": "7ede8a5a74b1e6287da6c5686158b863bb3289e49bf8c62fd8757a427ac7120e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/ntlm.c.o",
+      "sha256": "add08acb96cea8a6ca4e417afea466b6fedbe3847cf4cfbf419f482e16202a48",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/ntlm_sspi.c.o",
+      "sha256": "fbe6dfcdd6e3c5a308675c759782686fde7bdf0579f5af35380e60111b58e487",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/oauth2.c.o",
+      "sha256": "2fe0cc23dc5b8e38e7d917be8d2e8764a7dee3ff1ac0e7a7f00e09f8e69cba09",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/spnego_gssapi.c.o",
+      "sha256": "04c1749e06a252fdd7d4cff7452c18bc3514dcaec362ae26b3b8ae7c8bac6dee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/spnego_sspi.c.o",
+      "sha256": "f31c50d4eea15e57afbf8f5c17a07e6c182cb886d9a2759a08c3867968b1d9c2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/vauth.c.o",
+      "sha256": "fb9736220757b3549ae1f59e44ad1021bc3defdef1de76820832075fafb61f84",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-ares.c.o",
+      "sha256": "c5b6c830a2b065138de182435ce4c93853ed808cbbe1c840690d79ea05849396",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-base.c.o",
+      "sha256": "ba8b9ee5a5074f64328d9568b5db504642d43594f3ed7d25edcfb3a77b55d5d1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-thrdd.c.o",
+      "sha256": "013d05ea5f6225fb283b5b192060074e938463fdb598bb369a2a8c4c831b235a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/cf-dns.c.o",
+      "sha256": "7cb2823969575a5ca0c1b7ccb1acbe46af30cb71bfe38170eceedce8284fae6c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/dnscache.c.o",
+      "sha256": "0b509f0a0ebe4b08cf6ec0664748ec4f710ca211b791a8311d4ac5871589a381",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/doh.c.o",
+      "sha256": "e0f58de334e86df877ab4ed959ee39ddc52bb2aa8cc66a22c180af635d109fa9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip.c.o",
+      "sha256": "8d39f36a250db8fb162a5fb3486c9ffcfdbd87271f65e40c1801fcf4b76789ae",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip4.c.o",
+      "sha256": "ca72f5e7b8894055420c42e7ee54601f755b2d91e8cd5f6d70d5490fd94833e1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip6.c.o",
+      "sha256": "9c8e7238387f8e61d7980db94ff2cb27a1748d3c217803b48b24891c429ac067",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/httpsrr.c.o",
+      "sha256": "7cd1516753ade84a609e9b800c7bec78c619dcf0411998c403a2ba3eaa476d84",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/apple.c.o",
+      "sha256": "102052767de63a5ffe10c7b6dd723e89efd302c94f4c89ee34bd21990c564ac1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/cipher_suite.c.o",
+      "sha256": "99c66f6f853296216e50240385b9b792fd1218ea00df5d16c88b9f73e3d748ef",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/gtls.c.o",
+      "sha256": "76964e0b4a7e17273751141ed97a7627e7a41c40b912e254ec7169256d5378a5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/hostcheck.c.o",
+      "sha256": "fc3994fbb12b1ba0104721fd29440576fd228463bff1ac05b53e2b9faadbb2c5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/keylog.c.o",
+      "sha256": "bd87c930ebb56e351450052ae739c67023eb799263c426a83d0fa378b7aaf83d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/mbedtls.c.o",
+      "sha256": "17a4753bf012f6f0e95fff177d75e9f64708b6dcc0a18931b1ee2cf3035db830",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/openssl.c.o",
+      "sha256": "94cbe2508f1cc0258f1da4f6c2c9d0508902e1eb23657cfbd61559884aba809b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/rustls.c.o",
+      "sha256": "5746f397c74a184db46b6e6993112c63b487824da9bcc2c44ad04f0a5c043ecd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/schannel.c.o",
+      "sha256": "2bc74534114f05833f3e5583ffbbb3201df481be21807886a53c16703c849768",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/schannel_verify.c.o",
+      "sha256": "1b845e9c704d942c01ba549cce7bfbbfd06c9e0afe1dc4b0e81ec751eeeebc08",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls.c.o",
+      "sha256": "4074364af2821ff1d1312204fde60f6113dff28e5dded859d5951f6c5ddc78ea",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_config.c.o",
+      "sha256": "8612dc40a37b1f72b01ac620b80fe99b856d5e050ae9f97371e13bf52f0f452a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_scache.c.o",
+      "sha256": "27389aebf30a4d114ded8b4d605f99e0d35bde77f6d6239055af5efc935bcb74",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_spack.c.o",
+      "sha256": "62beabd38868e1937618135208fde34bd6e38a837d8b7d021e5925186afb1949",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/wolfssl.c.o",
+      "sha256": "7849bdf1e96d8e1ae0d3121d4d18161a513b0795fa7dfd81bfd59a55d3112d98",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/x509asn1.c.o",
+      "sha256": "6960b1a060231a0dc3c1602adf832b3c6e06acb8660875490c5daca6a2f8bc2e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/capsule.c.o",
+      "sha256": "844a4af7a27ccaad9f850b61d68361b9eb1addc514e17dfd7c482046f4e2a612",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-capsule.c.o",
+      "sha256": "85511f536fc949edfa9dcee1792062bfa59dc9419ffde1c9c0be38b917f04f61",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2.c.o",
+      "sha256": "02d077d99e1e704532b3d36db5570c8bdd443f82147555323ae4f073db873d85",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2-cmn.c.o",
+      "sha256": "da2287ac101a095a3ff838bf116e4ed0276d891cd13a12c698b3ee5d585aac14",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2-proxy.c.o",
+      "sha256": "995d1847a8db79fb091567a1ff6b53e8d6109558bad19f12cd2e020577eb4362",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-quiche.c.o",
+      "sha256": "79c8d8bcd51b22a4330b3ab16babd08e6d963eadeb950ce1633a6b155551dd6e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/vquic.c.o",
+      "sha256": "b14573b47f4c4a720fc38e6165b79684191f14b2d92c996d448d1a88333b8985",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/vquic-tls.c.o",
+      "sha256": "2430ee26fbf209c807dc12e5284b780edc6c6225de4fe6ec9e7a2d19dacfca45",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/libssh.c.o",
+      "sha256": "bf0968db47cbbde1d1922c5dbcff3b0235b1329364118aec3b65a703ae791c37",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/libssh2.c.o",
+      "sha256": "0139c0a591bfb2668f136c4d7a1c11c5bbb5ffeacdea020a783c9df873e6be3c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/vssh.c.o",
+      "sha256": "20e1661dfba59bbd7f601fceaacbb0fe510286907ef1f879b24e6a4aa30c1e55",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/base64.c.o",
+      "sha256": "b9b1b9bb9a2d02c1911c9fb02b1e0b968937c24078b4cbe15abe3b9e80ac4f8f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/basename.c.o",
+      "sha256": "ea89b14e0c81b33de038bca829ab68a5629711b9322cebdfbfbb7c4a47bb551f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/dynbuf.c.o",
+      "sha256": "b752171757cb73376d4ab286b88a5a936f05377ca9cdc0932baf2e3d6f7b3731",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/fopen.c.o",
+      "sha256": "e27c7229e5dded3a5865e16e5058f89505ae73e91d1df0a9a85784e26cdc2dd4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/inet_ntop.c.o",
+      "sha256": "6c6c636691419fd57a31da4ae8d4d8d6ec6b63b9d98c01d64b69400f92a55dc5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/inet_pton.c.o",
+      "sha256": "09838daed1fc3c493ad0d67c25d5b53daeeefd859e5d89bca3b0e633838e0edb",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/multibyte.c.o",
+      "sha256": "72673c5926b43754a63a4fada50ee31156973261558e1258e35c5b64df82e327",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/nonblock.c.o",
+      "sha256": "6ee4f950b94884d90db6e1cb1ed3945831253cfc7663bb76dc39859b1ee92216",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/snprintf.c.o",
+      "sha256": "9244ef321fa6eb9c5ff3a829518f26ee4d19e59e685bbbef1649e508cb7bd391",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strcopy.c.o",
+      "sha256": "813e81dd797aeb0ec6844248fd373379aa08d14f4442ba64146b20c4f97a35da",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strdup.c.o",
+      "sha256": "754ed64b0ae8d7e47ae8154be75b76e85f2d1b6c3729e2462ceb4b1276b2033c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strerr.c.o",
+      "sha256": "8ac4e6f58561e9af06485255c5d22791de379de533ce04cbf4fe495fcb7c8da2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strparse.c.o",
+      "sha256": "c28d89368495e68987947c4889691a117fa70b8433ecfbcc8d527514bb94a135",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/timediff.c.o",
+      "sha256": "bd0ad283ad4a8dc15f4d7b6df6221291a60d5085c35b88740e24452d8e607bea",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/timeval.c.o",
+      "sha256": "28788be880565ed05c3668d93c46b1d6aaffa975d2b74a3f7d9291ee0a0ac0fa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/version_win32.c.o",
+      "sha256": "c094b2912b04e25ece9bf84bdb6238c8b0fe9ed085f96bfa92efd521fb40d580",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/wait.c.o",
+      "sha256": "ea265e138999d193a849e39d41769430063945519f2eda02c5fdb9849774407c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/warnless.c.o",
+      "sha256": "d257508050ff6139462e076df75e84b7bf3600b3fcd6f101281312ad8d8ec7c5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/winapi.c.o",
+      "sha256": "a219bbeb1634d32accb2d177afba3a55b010e971292b3cb5a1459a0b92e98660",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libssl.a",
+      "sha256": "1a60ecdc27171a96f917b78ddd612cab8841e3c808766e5fad33684927f005ac",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcrypto.a",
+      "sha256": "65a758f0c8229cf3387315befb20685658722da877a7e60f53c2ee490609dcbc",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libz.a",
+      "sha256": "9aae6a3e8069d1b721ed4c26d56471c775081438e19b4714a2aa897cf626113f",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libidn2.a",
+      "sha256": "a4bacd1ab103a9c6d661d7a8074fec1012115f73165e346eaf7c922dfc9f199c",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcares.a",
+      "sha256": "99b53d10daf6ec36aa75f148bead4734c0dab37cc2a2aa9043dfdfe9b98d1506",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlidec.a",
+      "sha256": "218fb0fec761b7cad996b2d118a99fe505ab85f39fa424106660d05e37a2c3e9",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlicommon.a",
+      "sha256": "c64041bacd0d265ffe0dc43a36acb488222ad79ab5e89e0db098015701616309",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libzstd.a",
+      "sha256": "b952f57378788db218695ace9b1d1a1a6757635f61b0fb14613ad55bef6c1ebe",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp2.a",
+      "sha256": "dd7b2294f8e82fd6f92b9f701b7e704c1b8a5974368194bf777d02519ffbb383",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2.a",
+      "sha256": "f58f297bdbfb59e0b41ca38615efb69de13200223e6bbc4ce58656f277453d0a",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2_crypto_boringssl.a",
+      "sha256": "c32346e62c610208af8c4bbf143dc587eb654f81cf8525fa7ba3195354ce90d4",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp3.a",
+      "sha256": "cde55dc60cbc2634134bcf1fcc47ed651b36d75128db0e6ea4810686d47b9bf1",
+      "kind": "archive"
+    }
+  ],
+  "candidate_inputs": [
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/altsvc.c.o",
+      "sha256": "28c9007e0f097818d59a860754bdd5afd7bd9cb6d88274fc9d589504b80c17aa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/amigaos.c.o",
+      "sha256": "d33eb5f2ef00ea6ff0c3322de18a7de2b3a91e5cc9b04feff6dc681c04066b8a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/api.c.o",
+      "sha256": "50bfd0057b0bc0ef730dd12bd85105f1be2c44b63ad9deb4b6656f3ace20695c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/bufq.c.o",
+      "sha256": "9be9cd75d1949c6b8ba524636458136f2a0cca05d45c24201b2969bc652053fc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/bufref.c.o",
+      "sha256": "f513346d542585ddeea3930ebea6138eed2d120aa91c3f7e5dacdeab9586856d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-h1-proxy.c.o",
+      "sha256": "5d46f29d51b30e3a3c6b3826847748f5e3b09834ed7dfd1f16c4c9a70d5ac306",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-h2-proxy.c.o",
+      "sha256": "2e448dfdddba9c1098452c3d4cfd49457713620ac7c919c6958c8f54fbb7e6ab",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-haproxy.c.o",
+      "sha256": "e188fdd32c29b6a1d67ace4836b486b07522bfcfc80c284464b4a964c761960d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-https-connect.c.o",
+      "sha256": "e9f164be85f9430e6820a5e96a02364a11ce1f9c053a15e25c7474f6423b2dc1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-ip-happy.c.o",
+      "sha256": "5c4eb59bede90d712e6b4cef9ef00d18d8369e75ae2e540b06e3bbdff9d90db9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-recvbuf.c.o",
+      "sha256": "2694faa28a466ffbf3333bb6158c0507b456b66d12fcc76b4bfb138b4da60619",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-setup.c.o",
+      "sha256": "f7ac576b05a8e48efae9bea272d0cefdbdd24a0e143d57f8c1af4789f0572b40",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cf-socket.c.o",
+      "sha256": "5a8eef338f2bd7dec7cfce9290974eefd3c263063dd06e89aa806ed8f7433d72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cfilters.c.o",
+      "sha256": "a4ab0ba1e64d80b2e7035d480927156c358091b9556f0e5444fb909fa46ce75f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/conncache.c.o",
+      "sha256": "2537a3c978f94f52526082643dbb910c89b26508b0dcccd40cbe32676d495bdd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/connect.c.o",
+      "sha256": "d6a86f8c96c338a059f663fe70197791e426ef4504fee44a6d128631dbb961bd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/content_encoding.c.o",
+      "sha256": "7ef9096b4d2186e91c228f3fbed4e4bbac7eff6862b81ce56bcda7a1f41d6ad9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cookie.c.o",
+      "sha256": "3d964105a009f9575ecb31d5825f65b804fe20dfa967bc2b53bd9a306b64a15d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/creds.c.o",
+      "sha256": "d69038b7497ef1450a857e2575fea0b2d96a4327623a34d0d829bbbe814d7218",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cshutdn.c.o",
+      "sha256": "1954e9d343523c8c3f943283d0f1886545e6ee48fd5430d027f60a9a8d4ac6ff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_addrinfo.c.o",
+      "sha256": "ffbe2f312fdac10279f1492d509d67e3b51659b0ffbc21d9af4b68caa640361a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_endian.c.o",
+      "sha256": "afcad94dfb2f41d2a11e0672e98773298811d1d5c2cb9b9071026421053f48d9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_fnmatch.c.o",
+      "sha256": "97747f64f89ddc084912f63b16cf506b95a5e235c0caeefb0289c6629715fd9e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_fopen.c.o",
+      "sha256": "3187cd0240a6d992105ccdb3e4b5483761c639ac11ba2b7f653c5c81075df7ce",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_get_line.c.o",
+      "sha256": "3d3e2a83b13fc6f0455e4f29656b0bd37daa7e04bcfcb51ba6663b6adca7b8d6",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_gethostname.c.o",
+      "sha256": "f8799a85696ae2d63a995f3dd373c0d5f47d4c4eff6a4c140c2ffdeb693fd658",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_gssapi.c.o",
+      "sha256": "8994ef2f3cf6f1e5576840ef66bb838c09a9cf2911f8778af80600c5afba2b52",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_memrchr.c.o",
+      "sha256": "8eb242c74d548967910d8315cfbc0ab026021a47be515a0b07382cc731120337",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_ntlm_core.c.o",
+      "sha256": "ccb3f1cdb768daa9712886e10b3758968954fb451234bd6efdeb269b9668f51c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_range.c.o",
+      "sha256": "1d0ae09e1f9b2d1e354994fac5c0b26ea9529ccb846eb1c718a5816b5cf16a7b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sasl.c.o",
+      "sha256": "bd94f52867ce78f71402c7c265c626291b9cb80ca54a24f8f212406b64d5c415",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sha512_256.c.o",
+      "sha256": "ee6dede50608a1955198840f81a240cb387d47de864f968491e4a19d85ea0d4b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_share.c.o",
+      "sha256": "cb085403fa2f1d92f7a7e8a35f0e1f1ad066545c75ae86b1338a4e6ec8d97f9f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_sspi.c.o",
+      "sha256": "1a0c24e64e6ea9e8ac8e32b7cabf69f73e9d12b4dea693d6eeb211d87f6e282e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_threads.c.o",
+      "sha256": "c0ac0adf85a242713984f0a853c473ef9507b634f6303f02cb2cc9f63500a4ff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_trc.c.o",
+      "sha256": "c9498d2d7b0b8c15ba3ce94f8fe8c7e5b813d1d0ff4c612b83b2d902bf73a903",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cw-out.c.o",
+      "sha256": "ef4ac008d34597ddb1bf094e2f0031bbfa813489a7a76142aab7dc7fee4d1290",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/cw-pause.c.o",
+      "sha256": "fa07b2a932d0ca075c20c06384026449ba4cd3c606b7fdb84a36782a72ae37a5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/dict.c.o",
+      "sha256": "7925f2b2733b87c201f6ca7a8d268827ab30a73ea58bbcdf0d0accfc6a742cc9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/dynhds.c.o",
+      "sha256": "ea02c3acc0193454a6c784ab9a04151f96d96246105bc5d206be70f276295ab8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easy.c.o",
+      "sha256": "1464f1f4c9ac48368c0a7e58ccfb408bd72f8a13952c47c21146e2c53f6f37e5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easygetopt.c.o",
+      "sha256": "02d1b43b75c2ebac3f233616c8e0004fef5e038385fbdea2f83c335bd250ddf1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/easyoptions.c.o",
+      "sha256": "95e6a81b93c58ea78e00f0723f693c0e82dc1e35c134c4d78dafd7f8a74aa6f1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/escape.c.o",
+      "sha256": "0955175896d049ddfc9907d48e94762affc8e59066b4b340d4ba959be8f361d5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/fake_addrinfo.c.o",
+      "sha256": "71c90bd338a93cb082bc4462ee87d5657390ff9f7d7b3db51a369038f2c59adc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/file.c.o",
+      "sha256": "54ebe0286b89d7d979d77f783ed9e76b1e22e3c8e6357752421388198666410f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/fileinfo.c.o",
+      "sha256": "1f71cf1575d3eb6bae483cfe35365d780d18ee268f3d95821e38d3eb8571e298",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/formdata.c.o",
+      "sha256": "911e1cedfede8236bf4889417d4b9871e9ea10a1bf76abf29cf74177a7a83945",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ftp.c.o",
+      "sha256": "256879a43dce80a1b38d5dd342c6dea7f83fb8dd3c3bf3ae9ce6d299b4f774a6",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ftplistparser.c.o",
+      "sha256": "9c47e587dcc0f0d60afac4eab908017d9b5dd4705ab406835a935107de812b93",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/getenv.c.o",
+      "sha256": "25b626caf0f274d3873daa71d23377470dfab56c012cc5fcb398a6b1dcbdddd2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/getinfo.c.o",
+      "sha256": "8259d0f40c480f2499ab2d7457fdf9baf94d3ac1a956aa534316b8a08e58d567",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/gopher.c.o",
+      "sha256": "eaea72dc0f3b9e8796b246d3658711071f296e0dc421d4e0d4584616c70ad5ba",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hash.c.o",
+      "sha256": "e3f2752e46b3bb0b4a4bc321ceca065e8f57a31ddbe047269255cd47eae1d48b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/headers.c.o",
+      "sha256": "fd7fd3b32b2640f8d0dfe2d7fc198ba3e28e8665a14c01de3d24c05c36610a2a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hmac.c.o",
+      "sha256": "8e36bfc5ca618f6fc9e7b37ae70146146825aad3f792808b2a9c215c83c662fa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/hsts.c.o",
+      "sha256": "ebf80687509f41dbe113a6774f3da3b3eead971995672b08062db2cbfee3e090",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http.c.o",
+      "sha256": "0e653e7f731d9a9aa5700cc9003977f53ca7428fef7553c70f181b20d2c73e4c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http1.c.o",
+      "sha256": "015658cc934e5116d870411ca289845378dd31bf6176098e89d95c31c1c30636",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http2.c.o",
+      "sha256": "1b37ca756ae438a4402c4b9dcc089511a8e232f7f2e7bcb2fc8a7b8b33371e12",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_aws_sigv4.c.o",
+      "sha256": "407864eb602cc5b9c48c1cb551864063545e7dcac9ea3fd2c76670825d229216",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_httpsig.c.o",
+      "sha256": "98c9dce9d50a672986b2b0d1d3676161ecc5a895a923450dd3ec492b012d83cd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curl_ed25519.c.o",
+      "sha256": "d2a74298ecf230ff976f16d826b371ad9f597951fc2b4c97d78f5d3f0ecb76e8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_chunks.c.o",
+      "sha256": "40f186508baa7379e2ae9818bffdbc74c1752a188387c4672dfa818349aa74f0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_digest.c.o",
+      "sha256": "15b8b182330e294cdf9fb3818b66134085396152d810885979ac2d4830ddf142",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_negotiate.c.o",
+      "sha256": "68927f0607307e299131308a195d7454f6f9e3d69f9f491a3881fe8b2d0cc381",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_ntlm.c.o",
+      "sha256": "9cc6602ce93ba2d933dadede63595a12bf16d2e674ffd10f53d9d0c1eb058db1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/http_proxy.c.o",
+      "sha256": "cb6a3163ab020c2312fa5790e3c3ea41a6495976f6c3243fc15e43fc12fd93f0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/idn.c.o",
+      "sha256": "4904becfcda4c60d1852a7a06adc17b2372334ff724ca98b9b2b98cdbe416010",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/if2ip.c.o",
+      "sha256": "7e1951e0fdb12f45d8258bd21ecb8341c686267095e75d2463d3a2c6acb30b0e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/imap.c.o",
+      "sha256": "878b8546968e9892126464ab3be0f17979d2d7b56e9d5d709a03af6ef5e76423",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/impersonate.c.o",
+      "sha256": "d6d6a6939dffa937c78c9d7e11e142dc3d74b95087ccf36b087a8dbbd92e93ee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ldap.c.o",
+      "sha256": "c4667141fd14ffade3cf3c6da6c759362e3587913c88f4e563767899660f358a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/llist.c.o",
+      "sha256": "0ac46a2c79c94fa7181387e486cd63eed0ce96ec8f18c98b980e75fc079e4dff",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/macos.c.o",
+      "sha256": "06753d7db85fd8a10473a130db4a87917f05d1a050687b0c5cc18be6928f497b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/md4.c.o",
+      "sha256": "d03357b0c00e9b84ce83baa053ea0470ee8ad686b7cf8b2c106d24c22b00aead",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/md5.c.o",
+      "sha256": "de5c65943c22f9b6725fb5e562cddd215c1dfa90a11b3caf9e82ea0d6453dc1f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/memdebug.c.o",
+      "sha256": "fbffa318686106b162361fd530961f790544742c97b9538a4809a7c321cdb5ee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mime.c.o",
+      "sha256": "b3b3be8542404899c7da103c8c7ce3140c27fd428699558cdc80fe8b8f1defa8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mprintf.c.o",
+      "sha256": "561ae1bc605b813adb2680884ca2255ff17291360c51d023b631b7b1bcae14a7",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/mqtt.c.o",
+      "sha256": "f935e4cf88d685c1de775b7a0aaf5140f709030c15117e8c0c902f8bbe121a07",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi.c.o",
+      "sha256": "68c27458105fca6be67d8c672c565d19568ebd202b9485665d43222e58c2e6f1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi_ev.c.o",
+      "sha256": "784574b4324e1cfdd779770ae80af376f9e5522a1acbcb828cd43553978924e2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/multi_ntfy.c.o",
+      "sha256": "da2bdcc91d73701ea63b46f42e32a1cf93de7fd550ce68a5d74cda06bade86c7",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/netrc.c.o",
+      "sha256": "9088e33df709122f2c874742c9206095c974f71b725db9818355bdb6c583e56a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/openldap.c.o",
+      "sha256": "9765ddf2cb2431207ec6635da933817d4ba642f882b78fa2ffbe84206ecbd82c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/parsedate.c.o",
+      "sha256": "1fe45c4b59674b62440eaabf299e3f633f923f5e22fd5f8fb3d2f12e7aae026e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/peer.c.o",
+      "sha256": "21f4e0b28935c962d7fc41fb6dbf4d3440cf3f09a82a097ac4518724a0ab8498",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/pingpong.c.o",
+      "sha256": "23e3cc7bfb5628617bc5782b64140a300c583d698660bfcd71d78a6c425afc47",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/pop3.c.o",
+      "sha256": "e1fb27dac53772be508b6c4e7686b5b9a9dcd76490b4671c98898bd9f1b7f408",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/progress.c.o",
+      "sha256": "a68b04ed53aa9e925a4d072594bf563e9d19bfc9c37d53e59feb774f65366876",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/protocol.c.o",
+      "sha256": "879050eb9ff9d4195f2a5a095b090fe4a6c346093c905ea0d7c813a645df7a72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/proxy.c.o",
+      "sha256": "9a5e6385824e0159b8be30639b5562d4fa01eb0723be6f78fc73807d1c80a161",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/psl.c.o",
+      "sha256": "3a132f82cedf8e7e2fd831871f7a6d56b22e71120317d56c866d7a243ab8d547",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/rand.c.o",
+      "sha256": "12d9ea1bc0e3b1dab1a3a01d76c463fc2134116767b32f8b268a48fe330212a4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ratelimit.c.o",
+      "sha256": "75a1511221b9608c8d25b650eca5a2c73898510c0c58eb18f9c6a9594533e275",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/request.c.o",
+      "sha256": "7fd07f32282320ec007d82f79df11b386380639c8261cdeda4e0bcda99f7e934",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/rtsp.c.o",
+      "sha256": "ef20c2bb13acfe441e364f78fd131d7d9c16e5c5edfaf844037f99ecd6847ccc",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/select.c.o",
+      "sha256": "ee80d4b4b054f055eebaa1e784cb4a37321b035a9cb74f6943786039d7d3fc3a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/sendf.c.o",
+      "sha256": "895561397bf81b1a966c9c2593e0bee4253a53a4c756b2ca57b8d44194e943b8",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/setopt.c.o",
+      "sha256": "a390e9171a43bc540d9c1385236def8f0913769f5cb1d78a124da793b74cb720",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/sha256.c.o",
+      "sha256": "a45d3a8f05e0969461638a1936b865366a9f9ba01cfee12fed6440ba62ef28f4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/slist.c.o",
+      "sha256": "0ec668e5dfe5d821764a81ca4fa3d391bf857a6df5aeda4fdddbe6dc02391851",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/smb.c.o",
+      "sha256": "15341ad74ec3ffd5166ba887110c0513ee8139e113c0acb5411906fa02521473",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/smtp.c.o",
+      "sha256": "cfa9a1d0d8a44312dbf80b72485b44ba442b845c31b5672c8c96d07c149ddc72",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socketpair.c.o",
+      "sha256": "fe3b36d4de5685b13bfe1a822e493484a93f468d73ad814800895925618a7574",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks.c.o",
+      "sha256": "6324be1febcfd77efb90b4c94b14e353326085310e4f0b2b547b200f9fe298aa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks_gssapi.c.o",
+      "sha256": "47fb9aaf6e75c3e919ee8041f42c42b9689ad9db4a4e2751028886ef2c0f6848",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/socks_sspi.c.o",
+      "sha256": "c1fbaeeee8a3e0a98ed36dcc5c430e7148463233833f7b47da11cab58f265614",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/splay.c.o",
+      "sha256": "e57a86fa669ae93850276a361619a0fe7a336a94d8f94a8a3b9ab3d178f1f11d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strcase.c.o",
+      "sha256": "f285e34f35c4f31bef10ce7457c2ba38809089b24a109ad07b59f2e257349537",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strequal.c.o",
+      "sha256": "ec69e73934fe2bcdad12a642f9acccbeb6ed3ff1a08b6337b1958ba3a2c50e0a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/strerror.c.o",
+      "sha256": "152e437f642ec3bfaad20cd5f3d442b60e48cbcf6581f1b5c86046030b36d827",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/system_win32.c.o",
+      "sha256": "19c9438502fc911d96cfc5c41f2f8acb7c8c27482b1039f8450943109737c0e1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/telnet.c.o",
+      "sha256": "daf1675e50676c88e90536ecdcec46dc3935b87a6136314fe6ecd1d09b9ba7b4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/tftp.c.o",
+      "sha256": "e255a5faf47bbd6497d366d6974992b2193eb7fa88898b92a5a96ddc5e272100",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/thrdpool.c.o",
+      "sha256": "1a29c4f33a9d1f60c84be66fcfaffce4dddab9332c0134ccea5b54cd48798a1f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/thrdqueue.c.o",
+      "sha256": "fbdd4f4eba2f4e8a644d6fcd69c616443733f49a0b3cd8c8b436316f53a10109",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/transfer.c.o",
+      "sha256": "6076751aeb56b0d9efdead931fc8fa530a9d1b98ef70d1331320c2508791c3a4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-bset.c.o",
+      "sha256": "6ad0af3194248d9a9289c33418d208bae5699411cb05068ba55d01bbbe5fab5c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-hash.c.o",
+      "sha256": "1df2373b25dcd416f35036d906bcbe61a0d13eed8f2353221fbb2e630bedc499",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-hashset.c.o",
+      "sha256": "9c85c65957126ae78ec33270898250db97269d89f2a15c56e64c5de3823080c0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-spbset.c.o",
+      "sha256": "05adfd3e69e523348ae8f6e8eac70a7d6b4a327cc5aa10d88d3ce18b3d1af0c1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/uint-table.c.o",
+      "sha256": "724c0288af3c770a42d5a49474666b89fa5fd282872a8b31d1506c007740660e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/url.c.o",
+      "sha256": "b2e0f4a53583299cb1a08e4627d261fc2df4bbe26881969e45c9a8813702faf3",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/urlapi.c.o",
+      "sha256": "c386f46c21d6c5aaadfa0fbfc93c6b20f8edc7ac4d3abeafa3a5a60937138d30",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/version.c.o",
+      "sha256": "540f76ccc2455128cf39a1260580e0fbc9ed98aeeb87d2418f5af335cd10f9e0",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/ws.c.o",
+      "sha256": "192b282f2d641ba89c4b4ba4c4ac03c7651ef900c65db1b2972ffe203900322b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/cleartext.c.o",
+      "sha256": "e2e44606e700ce74a7678ae9b9ea45aba8b7b48b6ac7c29b68f7ed1c85e608a1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/cram.c.o",
+      "sha256": "fb9a8bcf0f7ea113a5a012761cb8fb82110471900ed8731c3124c689a738e5cd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/digest.c.o",
+      "sha256": "f3ee2df45562d1adfc0371741a0a603ee84792375bd9ef2545aa4485a367f991",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/digest_sspi.c.o",
+      "sha256": "c2b64f84abb4b198645f1bab206a58bb2382b47d98f15a2f27ba4372e2bd4f7e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/gsasl.c.o",
+      "sha256": "0535e832498b776e0fa93d53c7b980b15b0377b45ea4d75f56d59e96b016249c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/krb5_gssapi.c.o",
+      "sha256": "d702614b14a723db3e066ab549281d44108bceb787f8b01a8b448a5a34b6715d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/krb5_sspi.c.o",
+      "sha256": "7ede8a5a74b1e6287da6c5686158b863bb3289e49bf8c62fd8757a427ac7120e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/ntlm.c.o",
+      "sha256": "add08acb96cea8a6ca4e417afea466b6fedbe3847cf4cfbf419f482e16202a48",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/ntlm_sspi.c.o",
+      "sha256": "fbe6dfcdd6e3c5a308675c759782686fde7bdf0579f5af35380e60111b58e487",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/oauth2.c.o",
+      "sha256": "2fe0cc23dc5b8e38e7d917be8d2e8764a7dee3ff1ac0e7a7f00e09f8e69cba09",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/spnego_gssapi.c.o",
+      "sha256": "04c1749e06a252fdd7d4cff7452c18bc3514dcaec362ae26b3b8ae7c8bac6dee",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/spnego_sspi.c.o",
+      "sha256": "f31c50d4eea15e57afbf8f5c17a07e6c182cb886d9a2759a08c3867968b1d9c2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vauth/vauth.c.o",
+      "sha256": "fb9736220757b3549ae1f59e44ad1021bc3defdef1de76820832075fafb61f84",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-ares.c.o",
+      "sha256": "c5b6c830a2b065138de182435ce4c93853ed808cbbe1c840690d79ea05849396",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-base.c.o",
+      "sha256": "ba8b9ee5a5074f64328d9568b5db504642d43594f3ed7d25edcfb3a77b55d5d1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/asyn-thrdd.c.o",
+      "sha256": "013d05ea5f6225fb283b5b192060074e938463fdb598bb369a2a8c4c831b235a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/cf-dns.c.o",
+      "sha256": "7cb2823969575a5ca0c1b7ccb1acbe46af30cb71bfe38170eceedce8284fae6c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/dnscache.c.o",
+      "sha256": "0b509f0a0ebe4b08cf6ec0664748ec4f710ca211b791a8311d4ac5871589a381",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/doh.c.o",
+      "sha256": "e0f58de334e86df877ab4ed959ee39ddc52bb2aa8cc66a22c180af635d109fa9",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip.c.o",
+      "sha256": "8d39f36a250db8fb162a5fb3486c9ffcfdbd87271f65e40c1801fcf4b76789ae",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip4.c.o",
+      "sha256": "ca72f5e7b8894055420c42e7ee54601f755b2d91e8cd5f6d70d5490fd94833e1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/hostip6.c.o",
+      "sha256": "9c8e7238387f8e61d7980db94ff2cb27a1748d3c217803b48b24891c429ac067",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vdns/httpsrr.c.o",
+      "sha256": "7cd1516753ade84a609e9b800c7bec78c619dcf0411998c403a2ba3eaa476d84",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/apple.c.o",
+      "sha256": "102052767de63a5ffe10c7b6dd723e89efd302c94f4c89ee34bd21990c564ac1",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/cipher_suite.c.o",
+      "sha256": "99c66f6f853296216e50240385b9b792fd1218ea00df5d16c88b9f73e3d748ef",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/gtls.c.o",
+      "sha256": "76964e0b4a7e17273751141ed97a7627e7a41c40b912e254ec7169256d5378a5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/hostcheck.c.o",
+      "sha256": "fc3994fbb12b1ba0104721fd29440576fd228463bff1ac05b53e2b9faadbb2c5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/keylog.c.o",
+      "sha256": "bd87c930ebb56e351450052ae739c67023eb799263c426a83d0fa378b7aaf83d",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/mbedtls.c.o",
+      "sha256": "17a4753bf012f6f0e95fff177d75e9f64708b6dcc0a18931b1ee2cf3035db830",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/openssl.c.o",
+      "sha256": "94cbe2508f1cc0258f1da4f6c2c9d0508902e1eb23657cfbd61559884aba809b",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/rustls.c.o",
+      "sha256": "5746f397c74a184db46b6e6993112c63b487824da9bcc2c44ad04f0a5c043ecd",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/schannel.c.o",
+      "sha256": "2bc74534114f05833f3e5583ffbbb3201df481be21807886a53c16703c849768",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/schannel_verify.c.o",
+      "sha256": "1b845e9c704d942c01ba549cce7bfbbfd06c9e0afe1dc4b0e81ec751eeeebc08",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls.c.o",
+      "sha256": "4074364af2821ff1d1312204fde60f6113dff28e5dded859d5951f6c5ddc78ea",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_config.c.o",
+      "sha256": "8612dc40a37b1f72b01ac620b80fe99b856d5e050ae9f97371e13bf52f0f452a",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_scache.c.o",
+      "sha256": "27389aebf30a4d114ded8b4d605f99e0d35bde77f6d6239055af5efc935bcb74",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/vtls_spack.c.o",
+      "sha256": "62beabd38868e1937618135208fde34bd6e38a837d8b7d021e5925186afb1949",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/wolfssl.c.o",
+      "sha256": "7849bdf1e96d8e1ae0d3121d4d18161a513b0795fa7dfd81bfd59a55d3112d98",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vtls/x509asn1.c.o",
+      "sha256": "6960b1a060231a0dc3c1602adf832b3c6e06acb8660875490c5daca6a2f8bc2e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/capsule.c.o",
+      "sha256": "844a4af7a27ccaad9f850b61d68361b9eb1addc514e17dfd7c482046f4e2a612",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-capsule.c.o",
+      "sha256": "85511f536fc949edfa9dcee1792062bfa59dc9419ffde1c9c0be38b917f04f61",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2.c.o",
+      "sha256": "02d077d99e1e704532b3d36db5570c8bdd443f82147555323ae4f073db873d85",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2-cmn.c.o",
+      "sha256": "da2287ac101a095a3ff838bf116e4ed0276d891cd13a12c698b3ee5d585aac14",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-ngtcp2-proxy.c.o",
+      "sha256": "995d1847a8db79fb091567a1ff6b53e8d6109558bad19f12cd2e020577eb4362",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/cf-quiche.c.o",
+      "sha256": "79c8d8bcd51b22a4330b3ab16babd08e6d963eadeb950ce1633a6b155551dd6e",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/vquic.c.o",
+      "sha256": "b14573b47f4c4a720fc38e6165b79684191f14b2d92c996d448d1a88333b8985",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vquic/vquic-tls.c.o",
+      "sha256": "2430ee26fbf209c807dc12e5284b780edc6c6225de4fe6ec9e7a2d19dacfca45",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/libssh.c.o",
+      "sha256": "bf0968db47cbbde1d1922c5dbcff3b0235b1329364118aec3b65a703ae791c37",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/libssh2.c.o",
+      "sha256": "0139c0a591bfb2668f136c4d7a1c11c5bbb5ffeacdea020a783c9df873e6be3c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/vssh/vssh.c.o",
+      "sha256": "20e1661dfba59bbd7f601fceaacbb0fe510286907ef1f879b24e6a4aa30c1e55",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/base64.c.o",
+      "sha256": "b9b1b9bb9a2d02c1911c9fb02b1e0b968937c24078b4cbe15abe3b9e80ac4f8f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/basename.c.o",
+      "sha256": "ea89b14e0c81b33de038bca829ab68a5629711b9322cebdfbfbb7c4a47bb551f",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/dynbuf.c.o",
+      "sha256": "b752171757cb73376d4ab286b88a5a936f05377ca9cdc0932baf2e3d6f7b3731",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/fopen.c.o",
+      "sha256": "e27c7229e5dded3a5865e16e5058f89505ae73e91d1df0a9a85784e26cdc2dd4",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/inet_ntop.c.o",
+      "sha256": "6c6c636691419fd57a31da4ae8d4d8d6ec6b63b9d98c01d64b69400f92a55dc5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/inet_pton.c.o",
+      "sha256": "09838daed1fc3c493ad0d67c25d5b53daeeefd859e5d89bca3b0e633838e0edb",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/multibyte.c.o",
+      "sha256": "72673c5926b43754a63a4fada50ee31156973261558e1258e35c5b64df82e327",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/nonblock.c.o",
+      "sha256": "6ee4f950b94884d90db6e1cb1ed3945831253cfc7663bb76dc39859b1ee92216",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/snprintf.c.o",
+      "sha256": "9244ef321fa6eb9c5ff3a829518f26ee4d19e59e685bbbef1649e508cb7bd391",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strcopy.c.o",
+      "sha256": "813e81dd797aeb0ec6844248fd373379aa08d14f4442ba64146b20c4f97a35da",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strdup.c.o",
+      "sha256": "754ed64b0ae8d7e47ae8154be75b76e85f2d1b6c3729e2462ceb4b1276b2033c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strerr.c.o",
+      "sha256": "8ac4e6f58561e9af06485255c5d22791de379de533ce04cbf4fe495fcb7c8da2",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/strparse.c.o",
+      "sha256": "c28d89368495e68987947c4889691a117fa70b8433ecfbcc8d527514bb94a135",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/timediff.c.o",
+      "sha256": "bd0ad283ad4a8dc15f4d7b6df6221291a60d5085c35b88740e24452d8e607bea",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/timeval.c.o",
+      "sha256": "28788be880565ed05c3668d93c46b1d6aaffa975d2b74a3f7d9291ee0a0ac0fa",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/version_win32.c.o",
+      "sha256": "c094b2912b04e25ece9bf84bdb6238c8b0fe9ed085f96bfa92efd521fb40d580",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/wait.c.o",
+      "sha256": "ea265e138999d193a849e39d41769430063945519f2eda02c5fdb9849774407c",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/warnless.c.o",
+      "sha256": "d257508050ff6139462e076df75e84b7bf3600b3fcd6f101281312ad8d8ec7c5",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/build/curl/lib/CMakeFiles/libcurl_shared.dir/curlx/winapi.c.o",
+      "sha256": "a219bbeb1634d32accb2d177afba3a55b010e971292b3cb5a1459a0b92e98660",
+      "kind": "object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/objects/memcpy_route.o",
+      "sha256": "a5fb141075277aa556c968c3aa88de0d73d7c93dff67874c43907067ed3f2835",
+      "kind": "route_object"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libssl.a",
+      "sha256": "1a60ecdc27171a96f917b78ddd612cab8841e3c808766e5fad33684927f005ac",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcrypto.a",
+      "sha256": "65a758f0c8229cf3387315befb20685658722da877a7e60f53c2ee490609dcbc",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libz.a",
+      "sha256": "9aae6a3e8069d1b721ed4c26d56471c775081438e19b4714a2aa897cf626113f",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libidn2.a",
+      "sha256": "a4bacd1ab103a9c6d661d7a8074fec1012115f73165e346eaf7c922dfc9f199c",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libcares.a",
+      "sha256": "99b53d10daf6ec36aa75f148bead4734c0dab37cc2a2aa9043dfdfe9b98d1506",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlidec.a",
+      "sha256": "218fb0fec761b7cad996b2d118a99fe505ab85f39fa424106660d05e37a2c3e9",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libbrotlicommon.a",
+      "sha256": "c64041bacd0d265ffe0dc43a36acb488222ad79ab5e89e0db098015701616309",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libzstd.a",
+      "sha256": "b952f57378788db218695ace9b1d1a1a6757635f61b0fb14613ad55bef6c1ebe",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp2.a",
+      "sha256": "dd7b2294f8e82fd6f92b9f701b7e704c1b8a5974368194bf777d02519ffbb383",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2.a",
+      "sha256": "f58f297bdbfb59e0b41ca38615efb69de13200223e6bbc4ce58656f277453d0a",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libngtcp2_crypto_boringssl.a",
+      "sha256": "c32346e62c610208af8c4bbf143dc587eb654f81cf8525fa7ba3195354ce90d4",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/baseline-build/deps/install/lib/libnghttp3.a",
+      "sha256": "cde55dc60cbc2634134bcf1fcc47ed651b36d75128db0e6ea4810686d47b9bf1",
+      "kind": "archive"
+    }
+  ],
+  "only_input_addition": {
+    "path": "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/objects/memcpy_route.o",
+    "sha256": "a5fb141075277aa556c968c3aa88de0d73d7c93dff67874c43907067ed3f2835",
+    "kind": "route_object"
+  },
+  "baseline_input_count": 209,
+  "candidate_input_count": 210,
+  "input_hashes_verified_before_link": true
+}

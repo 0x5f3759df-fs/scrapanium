@@ -1,0 +1,7 @@
+returncode=-11
+stdout:
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/home/baidu/scrapanium-experiments/wss-memcpy-backend-pair-20260924/candidate-guard-selftest/fault-6.so
+mode=edge-dst-end
+stderr:
+fault_provider_kind=6
