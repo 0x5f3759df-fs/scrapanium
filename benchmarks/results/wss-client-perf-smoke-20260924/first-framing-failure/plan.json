@@ -1,0 +1,46 @@
+{
+  "batches": [
+    1,
+    64
+  ],
+  "client_check_contract": "binary opcode, ordered eight-digit sequence, full exact payload comparison, immediate actual and expected release",
+  "conditions": [
+    {
+      "client": "scrapanium-bend",
+      "sampling": "disabled"
+    },
+    {
+      "client": "scrapanium-bend",
+      "sampling": "profiled"
+    },
+    {
+      "client": "curl_cffi-matched",
+      "sampling": "disabled"
+    },
+    {
+      "client": "curl_cffi-matched",
+      "sampling": "profiled"
+    }
+  ],
+  "controls_run_first": true,
+  "mode": "smoke",
+  "negative_control_count": 16,
+  "observer_control": "attached perf recorder is identical; event enabled only for profiled condition and held disabled in control",
+  "positive_count": 32,
+  "positive_message_count": 8,
+  "positive_repeats_per_batch": 4,
+  "sampling_contract": {
+    "call_graph": "DWARF",
+    "clock": "CLOCK_MONOTONIC",
+    "event": "cpu-clock:u",
+    "frequency_hz": 99,
+    "inherit": true,
+    "kernel_samples": false,
+    "no_adaptive_extension": true,
+    "sample_floor_per_client_batch": 80,
+    "user_stack_bytes": 16384
+  },
+  "seed": 20260923,
+  "size_bytes": 65536,
+  "timer_contract": "integer CLOCK_MONOTONIC nanoseconds; half-open sample filter [start,end); start immediately before sending start control; end after exact opcode/bytes/order validation and immediate release, before socket close"
+}

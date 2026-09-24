@@ -1,0 +1,30 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1  of event 'cpu-clock:u'
+# Event count (approx.): 10101010
+#
+# Overhead  Symbol                  IPC   [IPC Coverage]
+# ........  ......................  ....................
+#
+   100.00%  [.] 0x0000000000188378  -      -            
+            |
+            ---0x573401
+               _Py_Dealloc
+               0x5185e6
+               0x630431
+               0x6d536a
+               0x6b004b
+               Py_RunMain
+               Py_BytesMain
+               0x7fddadc2a600
+               __libc_start_main
+               _start
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

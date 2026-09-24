@@ -1,0 +1,1 @@
+WebSocket opcode, sequence, or payload mismatch

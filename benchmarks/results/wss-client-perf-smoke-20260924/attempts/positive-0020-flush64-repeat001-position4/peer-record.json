@@ -1,0 +1,9 @@
+{
+  "data_frame_bytes": 524368,
+  "data_frames": 8,
+  "data_payload_bytes": 524288,
+  "starts": 1,
+  "tls_cipher": 4865,
+  "tls_version": 772,
+  "warmups": 1
+}

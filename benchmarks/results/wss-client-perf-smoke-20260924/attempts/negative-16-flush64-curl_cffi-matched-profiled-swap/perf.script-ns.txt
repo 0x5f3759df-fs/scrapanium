@@ -1,0 +1,12 @@
+    961/961       151.120420815: cpu-clock:u: 
+	          513fa2 [unknown] (/usr/bin/python3.14)
+	          51845b [unknown] (/usr/bin/python3.14)
+	          630354 [unknown] (/usr/bin/python3.14)
+	          6d536a [unknown] (/usr/bin/python3.14)
+	          6b004b [unknown] (/usr/bin/python3.14)
+	          6c43af Py_RunMain (/usr/bin/python3.14)
+	          673873 Py_BytesMain (/usr/bin/python3.14)
+	    76c13a22a600 [unknown] (/usr/lib/x86_64-linux-gnu/libc.so.6)
+	    76c13a22a717 __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6)
+	          672c44 _start (/usr/bin/python3.14)
+

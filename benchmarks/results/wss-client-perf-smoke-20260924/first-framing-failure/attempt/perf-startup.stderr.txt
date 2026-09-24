@@ -1,0 +1,4 @@
+Events disabled
+Events disabled
+[ perf record: Woken up 3 times to write data ]
+[ perf record: Captured and wrote 0.009 MB /home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924/attempts/negative-01-flush1-scrapanium-bend-disabled-corrupt/perf.data ]

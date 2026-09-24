@@ -1,0 +1,14 @@
+   1010/1010      157.004957385: cpu-clock:u: 
+	          588378 [unknown] (/usr/bin/python3.14)
+	          573401 [unknown] (/usr/bin/python3.14)
+	          5137b2 _Py_Dealloc (/usr/bin/python3.14)
+	          5185e6 [unknown] (/usr/bin/python3.14)
+	          630354 [unknown] (/usr/bin/python3.14)
+	          6d536a [unknown] (/usr/bin/python3.14)
+	          6b004b [unknown] (/usr/bin/python3.14)
+	          6c43af Py_RunMain (/usr/bin/python3.14)
+	          673873 Py_BytesMain (/usr/bin/python3.14)
+	    79c03d62a600 [unknown] (/usr/lib/x86_64-linux-gnu/libc.so.6)
+	    79c03d62a717 __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6)
+	          672c44 _start (/usr/bin/python3.14)
+

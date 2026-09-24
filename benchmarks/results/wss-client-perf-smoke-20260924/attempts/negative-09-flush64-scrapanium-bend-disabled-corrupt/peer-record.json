@@ -1,0 +1,10 @@
+{
+  "data_frame_bytes": 0,
+  "data_frames": 0,
+  "data_payload_bytes": 0,
+  "error": "write tcp 127.0.0.1:43813->127.0.0.1:49290: write: connection reset by peer",
+  "starts": 1,
+  "tls_cipher": 4865,
+  "tls_version": 772,
+  "warmups": 1
+}

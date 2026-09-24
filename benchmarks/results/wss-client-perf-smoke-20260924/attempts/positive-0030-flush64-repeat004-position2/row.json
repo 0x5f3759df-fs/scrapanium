@@ -1,0 +1,370 @@
+{
+  "attempt_dir": "/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0030-flush64-repeat004-position2",
+  "backend": {
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "client_command": [
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/bin/python",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_client_perf_stream_python.py"
+  ],
+  "client_pid": 1145,
+  "client_result": {
+    "elapsed_ns": 638216,
+    "elapsed_us": 638,
+    "end_ns": 170020142282,
+    "start_ns": 170019504066
+  },
+  "client_returncode": 0,
+  "client_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "client_stdout_sha256": "61381244d6e1dd46740e09b3b724ea53221f70dc6f39f8a9f6887d79b62939f5",
+  "client_tids": [
+    1145
+  ],
+  "client_tids_before_gate": [
+    1145
+  ],
+  "client_tids_before_perf": [
+    1145
+  ],
+  "finished_utc": "2026-09-24T07:08:16.381345+00:00",
+  "mapped_backend": {
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "parent_gate_write_monotonic_ns": 170019454909,
+  "peer": {
+    "data_frame_bytes": 524368,
+    "data_frames": 8,
+    "data_payload_bytes": 524288,
+    "error": null,
+    "starts": 1,
+    "tls_cipher": 4865,
+    "tls_version": 772,
+    "warmups": 1
+  },
+  "peer_raw": {
+    "data_frame_bytes": 524368,
+    "data_frames": 8,
+    "data_payload_bytes": 524288,
+    "starts": 1,
+    "tls_cipher": 4865,
+    "tls_version": 772,
+    "warmups": 1
+  },
+  "perf": {
+    "actual_header_checks": {
+      "all_perf_lines_parsed": true,
+      "clock_id": true,
+      "dwarf_callchain_register_filter": true,
+      "event_name": true,
+      "event_type": true,
+      "frequency_hz": true,
+      "frequency_mode": true,
+      "hypervisor_excluded": true,
+      "inherit": true,
+      "kernel_excluded": true,
+      "one_event": true,
+      "sample_fields": true,
+      "sample_registers": true,
+      "use_clockid": true,
+      "user_stack_bytes": true,
+      "window_attribution_valid": true
+    },
+    "artifact_sha256": {
+      "perf.data": "e3dbf7d61d3964d910e3464cba8daa6039a11f40e74abacb42fd54501ef4f63a",
+      "perf.header.txt": "aad5a9a1a8db538d4bbd774be31a3e830c74c292d2a635c115e25dc1ab30baae",
+      "perf.report.txt": "975472991dcc6550e874a3d18fba2191691e8060439a5a6a68e1d7b653ebfe5c",
+      "perf.script-ns.txt": "fc53a39dcc997bd467be99da85808072616bcd537de342a372fc97134c055e20"
+    },
+    "flat_leaf_sample_counts": {},
+    "header": {
+      "clock": {
+        "id": 1,
+        "name": "monotonic"
+      },
+      "diagnostic_sources": {
+        "record_diagnostics_observed": false,
+        "record_dump_completeness": "unknown",
+        "record_text_supplied": true,
+        "report_present": true
+      },
+      "event": {
+        "clockid": 1,
+        "config": 0,
+        "disabled": true,
+        "exclude_callchain_user": true,
+        "exclude_hv": true,
+        "exclude_kernel": true,
+        "frequency_hz": 99,
+        "frequency_mode": true,
+        "inherit": true,
+        "name": "cpu-clock:u",
+        "sample_period": null,
+        "sample_regs_user": 16715775,
+        "sample_stack_user_bytes": 16384,
+        "sample_type": [
+          "IP",
+          "TID",
+          "TIME",
+          "CALLCHAIN",
+          "PERIOD",
+          "REGS_USER",
+          "STACK_USER",
+          "IDENTIFIER"
+        ],
+        "type_num": 1,
+        "use_clockid": true
+      },
+      "event_count_all": 2,
+      "event_rows": [
+        {
+          "clockid": 1,
+          "config": 0,
+          "disabled": true,
+          "exclude_callchain_user": true,
+          "exclude_hv": true,
+          "exclude_kernel": true,
+          "frequency_hz": 99,
+          "frequency_mode": true,
+          "inherit": true,
+          "name": "cpu-clock:u",
+          "sample_period": null,
+          "sample_regs_user": 16715775,
+          "sample_stack_user_bytes": 16384,
+          "sample_type": [
+            "IP",
+            "TID",
+            "TIME",
+            "CALLCHAIN",
+            "PERIOD",
+            "REGS_USER",
+            "STACK_USER",
+            "IDENTIFIER"
+          ],
+          "type_num": 1,
+          "use_clockid": true
+        },
+        {
+          "clockid": 1,
+          "config": 9,
+          "disabled": true,
+          "exclude_callchain_user": null,
+          "exclude_hv": true,
+          "exclude_kernel": true,
+          "frequency_hz": 99,
+          "frequency_mode": true,
+          "inherit": true,
+          "name": "dummy:u",
+          "sample_period": null,
+          "sample_regs_user": null,
+          "sample_stack_user_bytes": null,
+          "sample_type": [
+            "IP",
+            "TID",
+            "TIME",
+            "PERIOD",
+            "IDENTIFIER"
+          ],
+          "type_num": 1,
+          "use_clockid": true
+        }
+      ],
+      "events": 1,
+      "lost_record_sample_count": null,
+      "lost_records": null,
+      "lost_samples": 0,
+      "perf_version": "7.0.14",
+      "reported_sample_count": 1,
+      "throttle_records": null,
+      "unthrottle_records": null
+    },
+    "inclusive_membership_note": "observed-stack lower bounds; memberships overlap and must not be summed",
+    "inclusive_stack_membership_counts_overlap": {},
+    "malformed_lines": [],
+    "profile_zero_status": null,
+    "resolved_stack_samples": 0,
+    "sampling": "profiled",
+    "script_diagnostics": {
+      "diagnostic_lines": [],
+      "malformed_lines": [],
+      "missing_stack_sample_count": 0,
+      "sample_count": 1,
+      "truncated_stack_sample_count": null,
+      "truncation_status": "unobservable_from_perf_script_text",
+      "unknown_frame_count": 6,
+      "unknown_stack_sample_count": 1,
+      "unresolved_stack_sample_count": 1
+    },
+    "selected_samples": [],
+    "selected_window_user_samples": 0,
+    "truncation_status": "unobservable_from_perf_script_text",
+    "unknown_stack_selected_samples": 0,
+    "window_filter": {
+      "end_exclusive_ns": 170020142282,
+      "excluded_counts": {
+        "at_or_after_end": 1,
+        "before_window": 0,
+        "wrong_event": 0,
+        "wrong_pid": 0,
+        "wrong_tid": 0
+      },
+      "excluded_rows": [
+        {
+          "reason": "at_or_after_end",
+          "sample": {
+            "event": "cpu-clock:u",
+            "frames": [
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "6257e8",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "625665",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "624fd8",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "56256c",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "6b004b",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "6c43af",
+                "symbol": "Py_RunMain",
+                "unknown": false
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "673873",
+                "symbol": "Py_BytesMain",
+                "unknown": false
+              },
+              {
+                "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+                "inlined": false,
+                "ip": "78e2ebe2a600",
+                "symbol": "[unknown]",
+                "unknown": true
+              },
+              {
+                "dso": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+                "inlined": false,
+                "ip": "78e2ebe2a717",
+                "symbol": "__libc_start_main",
+                "unknown": false
+              },
+              {
+                "dso": "/usr/bin/python3.14",
+                "inlined": false,
+                "ip": "672c44",
+                "symbol": "_start",
+                "unknown": false
+              }
+            ],
+            "leaf_symbol": "[unknown]",
+            "pid": 1145,
+            "raw_header": "   1145/1145      170.029929148: cpu-clock:u: ",
+            "stack_status": "unresolved",
+            "tid": 1145,
+            "time_ns": 170029929148,
+            "truncation_status": "unobservable_from_perf_script_text",
+            "unknown_frame_count": 6,
+            "unknown_stack": true
+          }
+        }
+      ],
+      "input_samples": 1,
+      "pid": 1145,
+      "selected_samples": 0,
+      "start_inclusive_ns": 170019504066,
+      "tids": [
+        1145
+      ]
+    }
+  },
+  "perf_arming_ack": {
+    "ack_monotonic_ns": 170019378780,
+    "command": "enable",
+    "raw_ack": "ack",
+    "request_monotonic_ns": 170018771498
+  },
+  "perf_attach_ping_ack": {
+    "ack_monotonic_ns": 170018745460,
+    "command": "ping",
+    "raw_ack": "ack",
+    "request_monotonic_ns": 169999099506
+  },
+  "perf_command": [
+    "/home/baidu/wss-perf-feasibility-20260923/extracted/usr/bin/perf",
+    "record",
+    "--delay=-1",
+    "--event=cpu-clock:u",
+    "--freq=99",
+    "--call-graph=dwarf,16384",
+    "--clockid=monotonic",
+    "--inherit",
+    "--control=fifo:/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0030-flush64-repeat004-position2/perf.ctl,/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0030-flush64-repeat004-position2/perf.ack",
+    "-p",
+    "1145",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0030-flush64-repeat004-position2/perf.data"
+  ],
+  "perf_control_commands": [
+    {
+      "ack_monotonic_ns": 170018745460,
+      "command": "ping",
+      "raw_ack": "ack",
+      "request_monotonic_ns": 169999099506
+    },
+    {
+      "ack_monotonic_ns": 170019378780,
+      "command": "enable",
+      "raw_ack": "ack",
+      "request_monotonic_ns": 170018771498
+    }
+  ],
+  "perf_data_bytes": 52352,
+  "perf_data_sha256": "e3dbf7d61d3964d910e3464cba8daa6039a11f40e74abacb42fd54501ef4f63a",
+  "plan": {
+    "batch": 64,
+    "client": "curl_cffi-matched",
+    "count": 8,
+    "fault": "",
+    "kind": "positive",
+    "position": 2,
+    "repeat": 4,
+    "run_id": "positive-0030-flush64-repeat004-position2",
+    "sampling": "profiled"
+  },
+  "status": "passed",
+  "timer": {
+    "client_end_monotonic_ns": 170020142282,
+    "client_start_monotonic_ns": 170019504066,
+    "parent_gate_write_monotonic_ns": 170019454909
+  }
+}

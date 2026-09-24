@@ -1,0 +1,53 @@
+{
+  "arming": {
+    "ack_monotonic_ns": 165026888160,
+    "command": "enable",
+    "raw_ack": "ack",
+    "request_monotonic_ns": 165026263679
+  },
+  "command": [
+    "/home/baidu/wss-perf-feasibility-20260923/extracted/usr/bin/perf",
+    "record",
+    "--delay=-1",
+    "--event=cpu-clock:u",
+    "--freq=99",
+    "--call-graph=dwarf,16384",
+    "--clockid=monotonic",
+    "--inherit",
+    "--control=fifo:/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0021-flush64-repeat002-position1/perf.ctl,/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0021-flush64-repeat002-position1/perf.ack",
+    "-p",
+    "1091",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0021-flush64-repeat002-position1/perf.data"
+  ],
+  "commands": [
+    {
+      "ack_monotonic_ns": 165026238047,
+      "command": "ping",
+      "raw_ack": "ack",
+      "request_monotonic_ns": 165008714912
+    },
+    {
+      "ack_monotonic_ns": 165026888160,
+      "command": "enable",
+      "raw_ack": "ack",
+      "request_monotonic_ns": 165026263679
+    }
+  ],
+  "data_path": "/home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0021-flush64-repeat002-position1/perf.data",
+  "perf_env": {
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LD_LIBRARY_PATH": "/home/baidu/wss-perf-feasibility-20260923/extracted/usr/lib/x86_64-linux-gnu",
+    "PATH": "/home/baidu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell:/mnt/c/Users/Baidu/.codex/tmp/arg0/codex-arg0yBjFeo:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/libheif/libheif/bin:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/jxrlib/jxrlib/bin:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Arduino CLI/:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell:/mnt/c/Users/Baidu/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Baidu/AppData/Local/PowerToys/DSCModules/:/mnt/c/Users/Baidu/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/Baidu/.local/bin:/mnt/c/Users/Baidu/AppData/Roaming/npm:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/mnt/c/Users/Baidu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd:/mnt/c/Users/Baidu/AppData/Local/OpenAI/Codex/bin/73fd6465d9c76545:/mnt/c/Users/Baidu/AppData/Local/OpenAI/Codex/bin/247581e40ee272fb:/snap/bin"
+  },
+  "ping": {
+    "ack_monotonic_ns": 165026238047,
+    "command": "ping",
+    "raw_ack": "ack",
+    "request_monotonic_ns": 165008714912
+  },
+  "returncode": 0,
+  "stderr": "Events disabled\nEvents enabled\n[ perf record: Woken up 3 times to write data ]\n[ perf record: Captured and wrote 0.038 MB /home/baidu/scrapanium-experiments/wss-client-perf-smoke-20260924-nul-ack-final/attempts/positive-0021-flush64-repeat002-position1/perf.data (1 samples) ]\n",
+  "stdout": ""
+}

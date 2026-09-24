@@ -308,3 +308,7 @@ The separate [receive-coalescing experiment report](results/websocket-recv-coale
 shows fewer receive calls but fails both predeclared 64 KiB Bend throughput gates.
 The optional browser-controls candidate remains experimental. The report includes
 all six workloads, matched-client comparisons, and retained provenance.
+
+The [WSS client CPU profile diagnostic](WSS_CLIENT_PERF.md) records the fixed
+profiled/disabled schedule, timer and sample-filter boundaries, backend identity,
+and limits on interpreting incomplete stacks or profiler observer cost.

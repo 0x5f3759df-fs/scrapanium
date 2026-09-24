@@ -1,0 +1,2 @@
+WSS_PERF_INTERVAL_NS=170610975773,170611561408
+client_interval_elapsed_us=585

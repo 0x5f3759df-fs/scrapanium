@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_client_perf_stream_python.py", line 46, in <module>
+    raise RuntimeError("WebSocket opcode, sequence, or payload mismatch")
+RuntimeError: WebSocket opcode, sequence, or payload mismatch

@@ -1,0 +1,38 @@
+# ========
+# captured on    : Thu Sep 24 00:07:48 2026
+# header version : 1
+# data offset    : 808
+# data size      : 9016
+# feat offset    : 9824
+# hostname : DESKTOP-QFHVKL9
+# os release : 6.18.33.2-microsoft-standard-WSL2
+# perf version : 7.0.14
+# arch : x86_64
+# nrcpus online : 12
+# nrcpus avail : 12
+# cpudesc : 13th Gen Intel(R) Core(TM) i5-13420H
+# cpuid : GenuineIntel,6,186,2
+# total memory : 7959184 kB
+# cmdline : /home/baidu/wss-perf-feasibility-20260923/extracted/usr/bin/perf 
+# event : name = cpu-clock:u, , id = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 }, type = 1 (PERF_TYPE_SOFTWARE), size = 144, config = 0 (PERF_COUNT_SW_CPU_CLOCK), { sample_period, sample_freq } = 99, sample_type = IP|TID|TIME|CALLCHAIN|PERIOD|REGS_USER|STACK_USER|IDENTIFIER, read_format = ID|LOST, disabled = 1, inherit = 1, exclude_kernel = 1, exclude_hv = 1, freq = 1, sample_id_all = 1, exclude_callchain_user = 1, use_clockid = 1, sample_regs_user = 0xff0fff, sample_stack_user = 16384, clockid = 1
+# event : name = dummy:u, , id = { 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 }, type = 1 (PERF_TYPE_SOFTWARE), size = 144, config = 0x9 (PERF_COUNT_SW_DUMMY), { sample_period, sample_freq } = 99, sample_type = IP|TID|TIME|PERIOD|IDENTIFIER, read_format = ID|LOST, disabled = 1, inherit = 1, exclude_kernel = 1, exclude_hv = 1, mmap = 1, comm = 1, freq = 1, enable_on_exec = 1, task = 1, mmap_data = 1, sample_id_all = 1, exclude_guest = 1, mmap2 = 1, comm_exec = 1, use_clockid = 1, ksymbol = 1, bpf_event = 1, build_id = 1, clockid = 1
+# CPU_TOPOLOGY info available, use -I to display
+# NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: cpu = 4, breakpoint = 5, hwmon_bat1 = 4294901760, hwmon_ac1 = 4294901761, kprobe = 8, msr = 11, power = 10, software = 1, tool = 4294967294, tracepoint = 2, uprobe = 9
+# CACHE info available, use -I to display
+# time of first sample : 0.000000
+# time of last sample : 0.000000
+# sample duration :      0.000 ms
+# MEM_TOPOLOGY info available, use -I to display
+# clockid frequency: 1000 MHz
+# bpf_prog_info empty
+# btf info empty
+# cpu pmu capabilities: not available
+# clockid: monotonic (1)
+# reference time: 2026-09-24 00:07:48.424177 = 1790233668.424177 (TOD) = 142.160325177 (monotonic)
+# CPU_DOMAIN_INFO info available, use -I to display
+# e_machine : 62
+#   e_flags : 0
+# missing features: TRACING_DATA BUILD_ID BRANCH_STACK GROUP_DESC AUXTRACE STAT DIR_FORMAT COMPRESSED HYBRID_TOPOLOGY 
+# ========
+#
