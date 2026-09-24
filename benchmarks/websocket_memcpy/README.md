@@ -4,7 +4,9 @@ This isolated experiment tests whether one ordinary, unknown-size `memcpy`
 call can be redirected from Zig's compiler-rt implementation to glibc's
 versioned `memcpy@GLIBC_2.14` without exceeding the x86_64 glibc 2.17 target.
 It does not change Scrapanium's backend, dependency defaults, or performance
-claims. There are no timing results.
+claims or headline charts. The same-source backend comparison is complete, but
+the candidate failed its predeclared Bend gain gate and is not adopted. Results
+are limited to this local source-built pair, not released stock performance.
 
 `memcpy_probe_callsite.c` is compiled once with Zig 0.15.2 for both links. The
 same Zig release's `lib/compiler_rt/memcpy.zig` is compiled into both shared
@@ -82,8 +84,12 @@ the pinned BoringSSL `SSL_read`/`SSL_peek` call sites route through the wrapper,
 which calls `memcpy@GLIBC_2.14`; the pair retains the release's GLIBC 2.17
 ceiling. The exact source pins, build/relink commands, input map, ELF checks,
 and hashed correctness records are in [backend-pair evidence](evidence/backend-pair/README.md).
-This is still an experiment, not a product backend change, and no timing run has
-been performed.
+The fixed 488-attempt comparison retained all six workloads, but missed its
+predeclared Bend 64 KiB promotion threshold in both flush modes. See the
+[four-condition report](evidence/four-condition/README.md) for both clients'
+backend ratios, matched-client ratios, confidence intervals, and raw evidence.
+This remains an experiment, not a product backend change; its local
+source-built results do not update released-stock performance claims.
 
 `stream_four_condition.py` compares the natural baseline and candidate DSOs
 with Bend and matched `curl_cffi` clients. It builds one immutable Bend client
