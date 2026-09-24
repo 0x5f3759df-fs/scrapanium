@@ -1,0 +1,29 @@
+Relocation section '.rela.text' at offset 0x88 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000006  0000000c00000004 R_X86_64_PLT32         0000000000000000 memcpy@GLIBC_2.14 - 4
+
+Relocation section '.rela.debug_info' at offset 0x200 contains 15 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000006  000000030000000a R_X86_64_32            0000000000000000 .debug_abbrev + 0
+000000000000000c  000000080000000a R_X86_64_32            0000000000000000 .debug_str + bf
+0000000000000012  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 6e
+0000000000000016  000000060000000a R_X86_64_32            0000000000000000 .debug_line + 0
+000000000000001a  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 1e
+000000000000001e  0000000200000001 R_X86_64_64            0000000000000000 .text + 0
+000000000000002b  0000000200000001 R_X86_64_64            0000000000000000 .text + 0
+0000000000000039  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 0
+0000000000000046  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 13
+0000000000000053  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 57
+0000000000000060  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 52
+000000000000006f  0000000200000001 R_X86_64_64            0000000000000000 .text + a
+000000000000008f  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 5b
+00000000000000b5  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 17
+00000000000000bc  000000080000000a R_X86_64_32            0000000000000000 .debug_str + 44
+
+Relocation section '.rela.eh_frame' at offset 0x500 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000020  0000000200000002 R_X86_64_PC32          0000000000000000 .text + 0
+
+Relocation section '.rela.debug_line' at offset 0x5f0 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+00000000000000bc  0000000200000001 R_X86_64_64            0000000000000000 .text + 0

@@ -1,0 +1,135 @@
+/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/libmemcpy-candidate.so:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000001410 <sp_memcpy_probe_callsite>:
+    1410:	55                   	push   %rbp
+    1411:	48 89 e5             	mov    %rsp,%rbp
+    1414:	5d                   	pop    %rbp
+    1415:	e9 66 01 00 00       	jmp    1580 <sp_wss_memcpy_test>
+    141a:	cc                   	int3
+    141b:	cc                   	int3
+    141c:	cc                   	int3
+    141d:	cc                   	int3
+    141e:	cc                   	int3
+    141f:	cc                   	int3
+    1420:	55                   	push   %rbp
+    1421:	48 89 e5             	mov    %rsp,%rbp
+    1424:	48 89 f8             	mov    %rdi,%rax
+    1427:	48 83 fa 0f          	cmp    $0xf,%rdx
+    142b:	77 2d                	ja     145a <sp_memcpy_probe_callsite+0x4a>
+    142d:	48 83 fa 03          	cmp    $0x3,%rdx
+    1431:	77 56                	ja     1489 <sp_memcpy_probe_callsite+0x79>
+    1433:	48 85 d2             	test   %rdx,%rdx
+    1436:	0f 84 41 01 00 00    	je     157d <sp_memcpy_probe_callsite+0x16d>
+    143c:	0f b6 0e             	movzbl (%rsi),%ecx
+    143f:	88 08                	mov    %cl,(%rax)
+    1441:	48 89 d1             	mov    %rdx,%rcx
+    1444:	48 d1 e9             	shr    $1,%rcx
+    1447:	0f b6 3c 0e          	movzbl (%rsi,%rcx,1),%edi
+    144b:	40 88 3c 08          	mov    %dil,(%rax,%rcx,1)
+    144f:	0f b6 4c 16 ff       	movzbl -0x1(%rsi,%rdx,1),%ecx
+    1454:	88 4c 10 ff          	mov    %cl,-0x1(%rax,%rdx,1)
+    1458:	5d                   	pop    %rbp
+    1459:	c3                   	ret
+    145a:	48 83 fa 3f          	cmp    $0x3f,%rdx
+    145e:	77 55                	ja     14b5 <sp_memcpy_probe_callsite+0xa5>
+    1460:	89 d1                	mov    %edx,%ecx
+    1462:	d1 e9                	shr    $1,%ecx
+    1464:	83 e1 10             	and    $0x10,%ecx
+    1467:	48 8d 7a f0          	lea    -0x10(%rdx),%rdi
+    146b:	48 29 cf             	sub    %rcx,%rdi
+    146e:	0f 10 06             	movups (%rsi),%xmm0
+    1471:	0f 11 00             	movups %xmm0,(%rax)
+    1474:	0f 10 04 0e          	movups (%rsi,%rcx,1),%xmm0
+    1478:	0f 11 04 08          	movups %xmm0,(%rax,%rcx,1)
+    147c:	0f 10 04 3e          	movups (%rsi,%rdi,1),%xmm0
+    1480:	0f 11 04 38          	movups %xmm0,(%rax,%rdi,1)
+    1484:	e9 ea 00 00 00       	jmp    1573 <sp_memcpy_probe_callsite+0x163>
+    1489:	89 d1                	mov    %edx,%ecx
+    148b:	d1 e9                	shr    $1,%ecx
+    148d:	83 e1 04             	and    $0x4,%ecx
+    1490:	48 8d 7a fc          	lea    -0x4(%rdx),%rdi
+    1494:	48 29 cf             	sub    %rcx,%rdi
+    1497:	44 8b 06             	mov    (%rsi),%r8d
+    149a:	44 89 00             	mov    %r8d,(%rax)
+    149d:	44 8b 04 0e          	mov    (%rsi,%rcx,1),%r8d
+    14a1:	44 89 04 08          	mov    %r8d,(%rax,%rcx,1)
+    14a5:	8b 0c 3e             	mov    (%rsi,%rdi,1),%ecx
+    14a8:	89 0c 38             	mov    %ecx,(%rax,%rdi,1)
+    14ab:	8b 4c 16 fc          	mov    -0x4(%rsi,%rdx,1),%ecx
+    14af:	89 4c 10 fc          	mov    %ecx,-0x4(%rax,%rdx,1)
+    14b3:	5d                   	pop    %rbp
+    14b4:	c3                   	ret
+    14b5:	0f 10 06             	movups (%rsi),%xmm0
+    14b8:	0f 11 00             	movups %xmm0,(%rax)
+    14bb:	89 f7                	mov    %esi,%edi
+    14bd:	83 e7 0f             	and    $0xf,%edi
+    14c0:	4c 8d 04 17          	lea    (%rdi,%rdx,1),%r8
+    14c4:	49 83 c0 f0          	add    $0xfffffffffffffff0,%r8
+    14c8:	49 c1 e8 04          	shr    $0x4,%r8
+    14cc:	4d 8d 48 ff          	lea    -0x1(%r8),%r9
+    14d0:	44 89 c1             	mov    %r8d,%ecx
+    14d3:	83 e1 03             	and    $0x3,%ecx
+    14d6:	49 83 f9 03          	cmp    $0x3,%r9
+    14da:	73 05                	jae    14e1 <sp_memcpy_probe_callsite+0xd1>
+    14dc:	45 31 c9             	xor    %r9d,%r9d
+    14df:	eb 5a                	jmp    153b <sp_memcpy_probe_callsite+0x12b>
+    14e1:	49 83 e0 fc          	and    $0xfffffffffffffffc,%r8
+    14e5:	41 ba 40 00 00 00    	mov    $0x40,%r10d
+    14eb:	49 29 fa             	sub    %rdi,%r10
+    14ee:	45 31 c9             	xor    %r9d,%r9d
+    14f1:	66 2e 0f 1f 84 00 00 00 00 00 	cs nopw 0x0(%rax,%rax,1)
+    14fb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+    1500:	42 0f 28 44 16 d0    	movaps -0x30(%rsi,%r10,1),%xmm0
+    1506:	42 0f 11 44 10 d0    	movups %xmm0,-0x30(%rax,%r10,1)
+    150c:	42 0f 28 44 16 e0    	movaps -0x20(%rsi,%r10,1),%xmm0
+    1512:	42 0f 11 44 10 e0    	movups %xmm0,-0x20(%rax,%r10,1)
+    1518:	42 0f 28 44 16 f0    	movaps -0x10(%rsi,%r10,1),%xmm0
+    151e:	42 0f 11 44 10 f0    	movups %xmm0,-0x10(%rax,%r10,1)
+    1524:	42 0f 28 04 16       	movaps (%rsi,%r10,1),%xmm0
+    1529:	42 0f 11 04 10       	movups %xmm0,(%rax,%r10,1)
+    152e:	49 83 c1 04          	add    $0x4,%r9
+    1532:	49 83 c2 40          	add    $0x40,%r10
+    1536:	4d 39 c8             	cmp    %r9,%r8
+    1539:	75 c5                	jne    1500 <sp_memcpy_probe_callsite+0xf0>
+    153b:	48 85 c9             	test   %rcx,%rcx
+    153e:	74 33                	je     1573 <sp_memcpy_probe_callsite+0x163>
+    1540:	49 c1 e1 04          	shl    $0x4,%r9
+    1544:	49 29 f9             	sub    %rdi,%r9
+    1547:	4a 8d 3c 0e          	lea    (%rsi,%r9,1),%rdi
+    154b:	48 83 c7 10          	add    $0x10,%rdi
+    154f:	4e 8d 04 08          	lea    (%rax,%r9,1),%r8
+    1553:	49 83 c0 10          	add    $0x10,%r8
+    1557:	c1 e1 04             	shl    $0x4,%ecx
+    155a:	45 31 c9             	xor    %r9d,%r9d
+    155d:	0f 1f 00             	nopl   (%rax)
+    1560:	42 0f 28 04 0f       	movaps (%rdi,%r9,1),%xmm0
+    1565:	43 0f 11 04 08       	movups %xmm0,(%r8,%r9,1)
+    156a:	49 83 c1 10          	add    $0x10,%r9
+    156e:	4c 39 c9             	cmp    %r9,%rcx
+    1571:	75 ed                	jne    1560 <sp_memcpy_probe_callsite+0x150>
+    1573:	0f 10 44 16 f0       	movups -0x10(%rsi,%rdx,1),%xmm0
+    1578:	0f 11 44 10 f0       	movups %xmm0,-0x10(%rax,%rdx,1)
+    157d:	5d                   	pop    %rbp
+    157e:	c3                   	ret
+    157f:	cc                   	int3
+
+0000000000001580 <sp_wss_memcpy_test>:
+    1580:	55                   	push   %rbp
+    1581:	48 89 e5             	mov    %rsp,%rbp
+    1584:	5d                   	pop    %rbp
+    1585:	e9 16 00 00 00       	jmp    15a0 <memcpy@plt>
+
+Disassembly of section .plt:
+
+0000000000001590 <memcpy@plt-0x10>:
+    1590:	ff 35 42 11 00 00    	push   0x1142(%rip)        # 26d8 <_DYNAMIC+0x128>
+    1596:	ff 25 44 11 00 00    	jmp    *0x1144(%rip)        # 26e0 <_DYNAMIC+0x130>
+    159c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000000015a0 <memcpy@plt>:
+    15a0:	ff 25 42 11 00 00    	jmp    *0x1142(%rip)        # 26e8 <memcpy@GLIBC_2.14>
+    15a6:	68 00 00 00 00       	push   $0x0
+    15ab:	e9 e0 ff ff ff       	jmp    1590 <sp_wss_memcpy_test+0x10>

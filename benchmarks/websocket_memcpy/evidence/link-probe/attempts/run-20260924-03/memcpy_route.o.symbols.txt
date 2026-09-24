@@ -1,0 +1,15 @@
+Symbol table '.symtab' contains 13 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS memcpy_route.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 .text
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 .debug_abbrev
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 .debug_info
+     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 .eh_frame
+     6: 0000000000000000     0 SECTION LOCAL  DEFAULT   10 .debug_line
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT   12 .llvm_addrsig
+     8: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 .debug_str
+     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 .comment
+    10: 0000000000000000    10 FUNC    GLOBAL DEFAULT    1 sp_wss_memcpy_test
+    11: 0000000000000000    10 FUNC    GLOBAL HIDDEN     1 memcpy
+    12: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND memcpy@GLIBC_2.14

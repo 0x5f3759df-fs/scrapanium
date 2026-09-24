@@ -1,0 +1,7 @@
+returncode=-11
+stdout:
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-memcpy-guard-selftest-final/fault-5.so
+mode=edge-src-start
+stderr:
+fault_provider_kind=5

@@ -1,0 +1,3 @@
+Relocation section '.rela.plt' at offset 0x338 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+00000000000026e8  0000000100000007 R_X86_64_JUMP_SLOT     0000000000000000 memcpy@GLIBC_2.14 + 0

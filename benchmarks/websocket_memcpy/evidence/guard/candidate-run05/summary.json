@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-memcpy-guard-selftest-final/memcpy_guard_test",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/libmemcpy-candidate.so",
+    "sp_wss_memcpy_test",
+    "all"
+  ],
+  "returncode": 0,
+  "candidate_sha256": "1208da01e9ba6b8564bd99c4e5d6b898df78acd70f690514145ae37eb8e7c7a3",
+  "driver_sha256": "61093c5f271241cf3faaa47e22b32672ed4ef7016f440a0f285dfe345d76ecb4",
+  "stdout_sha256": "4e4ac3551e050607ace56a383283debc6a4aff4393b666dec59ae48d088f8500",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "test_symbol=sp_wss_memcpy_test\nresolved_dso=/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/libmemcpy-candidate.so\nmode=all\nPASS: 83135 alignment/size cases, 64 guarded-edge cases; source was read-only during calls\n",
+  "stderr": ""
+}

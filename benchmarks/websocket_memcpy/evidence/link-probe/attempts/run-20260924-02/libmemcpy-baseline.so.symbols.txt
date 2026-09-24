@@ -1,0 +1,13 @@
+Symbol table '.dynsym' contains 2 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000001330    10 FUNC    GLOBAL DEFAULT    7 sp_memcpy_probe_callsite
+
+Symbol table '.symtab' contains 6 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS memcpy_probe_callsite.c
+     2: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS memcpy
+     3: 0000000000001340   351 FUNC    LOCAL  HIDDEN     7 memcpy
+     4: 00000000000024a0     0 NOTYPE  LOCAL  HIDDEN     8 _DYNAMIC
+     5: 0000000000001330    10 FUNC    GLOBAL DEFAULT    7 sp_memcpy_probe_callsite

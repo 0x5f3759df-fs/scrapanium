@@ -1,0 +1,112 @@
+{
+  "schema": 2,
+  "status": "link_feasible",
+  "target": "x86_64-linux-gnu.2.17.0",
+  "zig_version": "0.15.2",
+  "zig_executable": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/zig",
+  "zig_executable_sha256": "2858dc89dbbfdd08cceda1b841e7fd0a793a1a67b49f150bc3d0d1de44ed7f51",
+  "zig_archive": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-0.15.2.tar.xz",
+  "zig_archive_sha256": "02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239",
+  "compiler_rt_memcpy_source": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/memcpy.zig",
+  "compiler_rt_common_source": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/common.zig",
+  "source_sha256_before_build": {
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/link_probe.py": "9c100302ed17fcab5444b0c2098e5613ddd109c01545cb98c83a999a3fc3fe7c",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_probe_callsite.c": "5d1724b59e5221b9adcb2ad3f5962ca3f6d3d709bb2083d930d1e716cf7fb0ed",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_route.c": "79f1816530383e34c36df60d46bfd1b672a7f2635cf3cbfebafb6bf617e0aea1",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/memcpy.zig": "2414b6dbd73ca1d7ac0b1242003025c9a9883d512740d80ecd7615b9d8ea3f14",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/common.zig": "530232c1711ad74a4168bb6797a88fac2d047857dbb85f64a70dad78b0e8c592"
+  },
+  "source_sha256_after_build": {
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/link_probe.py": "9c100302ed17fcab5444b0c2098e5613ddd109c01545cb98c83a999a3fc3fe7c",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_probe_callsite.c": "5d1724b59e5221b9adcb2ad3f5962ca3f6d3d709bb2083d930d1e716cf7fb0ed",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_route.c": "79f1816530383e34c36df60d46bfd1b672a7f2635cf3cbfebafb6bf617e0aea1",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/memcpy.zig": "2414b6dbd73ca1d7ac0b1242003025c9a9883d512740d80ecd7615b9d8ea3f14",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/common.zig": "530232c1711ad74a4168bb6797a88fac2d047857dbb85f64a70dad78b0e8c592"
+  },
+  "source_hashes_unchanged": true,
+  "object_sha256": {
+    "memcpy_probe_callsite.o": "a7a19573baccc808b02c13120a71d1508fb6b9abeb2206e3e0b6a38eaab7b4ab",
+    "zig_compiler_rt_memcpy.o": "39eef5dc74c27130a578672a78ae4a1b67293685fd6c2a2432576f1c0d47b5c8",
+    "memcpy_route.o": "a5fb141075277aa556c968c3aa88de0d73d7c93dff67874c43907067ed3f2835"
+  },
+  "library_sha256": {
+    "libmemcpy-baseline.so": "87c2bb384acfa42ea5634438e1e0a6110899b29653806c7aa9383aac67029c0d",
+    "libmemcpy-candidate.so": "1208da01e9ba6b8564bd99c4e5d6b898df78acd70f690514145ae37eb8e7c7a3"
+  },
+  "baseline_glibc_versions": [],
+  "candidate_glibc_versions": [
+    "2.14"
+  ],
+  "both_probe_links_within_glibc_2_17_ceiling": true,
+  "checks": {
+    "baseline_has_hidden_zig_compiler_rt_memcpy": true,
+    "baseline_callsite_targets_local_compiler_rt_memcpy": true,
+    "candidate_has_strong_hidden_memcpy_override": true,
+    "candidate_has_undefined_memcpy_glibc_2_14": true,
+    "candidate_callsite_targets_override": true,
+    "test_alias_and_override_share_symbol_address": true,
+    "wrapper_branches_to_versioned_libc_not_itself": true,
+    "bounded_runtime_copy_and_canary_checks_pass": true,
+    "targeted_glibc_requirement_no_higher_than_2_17": true
+  },
+  "branch_evidence": {
+    "baseline_callsite": "0000000000001330 <sp_memcpy_probe_callsite>:\n    1330:\t55                   \tpush   %rbp\n    1331:\t48 89 e5             \tmov    %rsp,%rbp\n    1334:\t5d                   \tpop    %rbp\n    1335:\te9 06 00 00 00       \tjmp    1340 <memcpy>\n",
+    "candidate_callsite": "0000000000001410 <sp_memcpy_probe_callsite>:\n    1410:\t55                   \tpush   %rbp\n    1411:\t48 89 e5             \tmov    %rsp,%rbp\n    1414:\t5d                   \tpop    %rbp\n    1415:\te9 66 01 00 00       \tjmp    1580 <sp_wss_memcpy_test>\n",
+    "candidate_wrapper_body": "0000000000001580 <sp_wss_memcpy_test>:\n    1580:\t55                   \tpush   %rbp\n    1581:\t48 89 e5             \tmov    %rsp,%rbp\n    1584:\t5d                   \tpop    %rbp\n    1585:\te9 16 00 00 00       \tjmp    15a0 <memcpy@plt>\n\nDisassembly of section .plt:\n\n",
+    "candidate_versioned_libc_plt": "00000000000015a0 <memcpy@plt>:\n    15a0:\tff 25 42 11 00 00    \tjmp    *0x1142(%rip)        # 26e8 <memcpy@GLIBC_2.14>\n    15a6:\t68 00 00 00 00       \tpush   $0x0\n    15ab:\te9 e0 ff ff ff       \tjmp    1590 <sp_wss_memcpy_test+0x10>\n",
+    "baseline_memcpy_symbol": {
+      "value": 4928,
+      "size": 351,
+      "type": "FUNC",
+      "bind": "LOCAL",
+      "visibility": "HIDDEN",
+      "index": "7"
+    },
+    "candidate_memcpy_symbol": {
+      "value": 5504,
+      "size": 10,
+      "type": "FUNC",
+      "bind": "LOCAL",
+      "visibility": "HIDDEN",
+      "index": "10"
+    },
+    "candidate_test_alias_symbol": {
+      "value": 5504,
+      "size": 10,
+      "type": "FUNC",
+      "bind": "GLOBAL",
+      "visibility": "DEFAULT",
+      "index": "10"
+    },
+    "route_object_memcpy_symbol": {
+      "value": 0,
+      "size": 10,
+      "type": "FUNC",
+      "bind": "GLOBAL",
+      "visibility": "HIDDEN",
+      "index": "1"
+    },
+    "route_object_test_alias_symbol": {
+      "value": 0,
+      "size": 10,
+      "type": "FUNC",
+      "bind": "GLOBAL",
+      "visibility": "DEFAULT",
+      "index": "1"
+    }
+  },
+  "commands_log": "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-05/commands.log",
+  "evidence_files": [
+    "libmemcpy-baseline.so.symbols.txt",
+    "libmemcpy-baseline.so.relocations.txt",
+    "libmemcpy-baseline.so.versions.txt",
+    "libmemcpy-baseline.so.disassembly.txt",
+    "libmemcpy-candidate.so.symbols.txt",
+    "libmemcpy-candidate.so.relocations.txt",
+    "libmemcpy-candidate.so.versions.txt",
+    "libmemcpy-candidate.so.disassembly.txt",
+    "memcpy_route.o.symbols.txt",
+    "memcpy_route.o.relocations.txt",
+    "memcpy_route.o.disassembly.txt"
+  ]
+}

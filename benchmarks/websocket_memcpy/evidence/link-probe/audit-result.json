@@ -1,0 +1,43 @@
+{
+  "baseline_callsite_size": 10,
+  "baseline_glibc_versions": [],
+  "candidate_alias_size": 10,
+  "candidate_callsite_size": 10,
+  "candidate_callsite_target": 5504,
+  "candidate_dso_hash_from_run05_manifest": "1208da01e9ba6b8564bd99c4e5d6b898df78acd70f690514145ae37eb8e7c7a3",
+  "candidate_glibc_versions": [
+    "2.14"
+  ],
+  "candidate_guard_dso_hash_matches_manifest": true,
+  "candidate_memcpy_alias_address_matches": true,
+  "candidate_route_object_alias_address_matches": true,
+  "checked_text_files": [
+    "libmemcpy-baseline.so.disassembly.txt",
+    "libmemcpy-baseline.so.relocations.txt",
+    "libmemcpy-baseline.so.symbols.txt",
+    "libmemcpy-baseline.so.versions.txt",
+    "libmemcpy-candidate.so.disassembly.txt",
+    "libmemcpy-candidate.so.relocations.txt",
+    "libmemcpy-candidate.so.symbols.txt",
+    "libmemcpy-candidate.so.versions.txt",
+    "memcpy_route.o.disassembly.txt",
+    "memcpy_route.o.relocations.txt",
+    "memcpy_route.o.symbols.txt"
+  ],
+  "current_parser_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/link_probe.py",
+  "current_parser_sha256": "61fb501c7b78a868a5f4723ce11a617db970372e229c69b78598a134ea52ecd7",
+  "current_parser_text_header_format_differs_from_saved_text": true,
+  "mode": "offline saved-text audit; did not build or load a binary",
+  "note": "The run-05 runner snapshot is not retained separately; this replays current function-size-bounded parsing against saved run-05 text.",
+  "parser_comparison": "instruction addresses/bytes/operands match within recorded FUNC bounds; label-line separator is normalized",
+  "result": "PASS",
+  "run05_manifest_sha256": "77da286ad3b7be59a4ae28d2547886427ea4d8a7fbbf5a02e58d5c171db8da76",
+  "run05_parser_snapshot_present": false,
+  "run05_recorded_parser_sha256": "9c100302ed17fcab5444b0c2098e5613ddd109c01545cb98c83a999a3fc3fe7c",
+  "run_name": "run-20260924-05",
+  "saved_runtime_children": {
+    "baseline-callsite": 0,
+    "candidate-callsite": 0,
+    "candidate-test-alias": 0
+  }
+}

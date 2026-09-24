@@ -1,0 +1,7 @@
+returncode=0
+stdout:
+test_symbol=memcpy
+resolved_dso=/usr/lib/x86_64-linux-gnu/libc.so.6
+mode=all
+PASS: 83135 alignment/size cases, 64 guarded-edge cases; source was read-only during calls
+stderr:

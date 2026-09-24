@@ -1,0 +1,10 @@
+/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-04/objects/memcpy_route.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <memcpy>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	5d                   	pop    %rbp
+   5:	e9 00 00 00 00       	jmp    a <memcpy+0xa>	6: R_X86_64_PLT32	memcpy@GLIBC_2.14-0x4

@@ -1,0 +1,118 @@
+/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-03/libmemcpy-baseline.so:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000001330 <sp_memcpy_probe_callsite>:
+    1330:	55                   	push   %rbp
+    1331:	48 89 e5             	mov    %rsp,%rbp
+    1334:	5d                   	pop    %rbp
+    1335:	e9 06 00 00 00       	jmp    1340 <memcpy>
+    133a:	cc                   	int3
+    133b:	cc                   	int3
+    133c:	cc                   	int3
+    133d:	cc                   	int3
+    133e:	cc                   	int3
+    133f:	cc                   	int3
+
+0000000000001340 <memcpy>:
+    1340:	55                   	push   %rbp
+    1341:	48 89 e5             	mov    %rsp,%rbp
+    1344:	48 89 f8             	mov    %rdi,%rax
+    1347:	48 83 fa 0f          	cmp    $0xf,%rdx
+    134b:	77 2d                	ja     137a <memcpy+0x3a>
+    134d:	48 83 fa 03          	cmp    $0x3,%rdx
+    1351:	77 56                	ja     13a9 <memcpy+0x69>
+    1353:	48 85 d2             	test   %rdx,%rdx
+    1356:	0f 84 41 01 00 00    	je     149d <memcpy+0x15d>
+    135c:	0f b6 0e             	movzbl (%rsi),%ecx
+    135f:	88 08                	mov    %cl,(%rax)
+    1361:	48 89 d1             	mov    %rdx,%rcx
+    1364:	48 d1 e9             	shr    $1,%rcx
+    1367:	0f b6 3c 0e          	movzbl (%rsi,%rcx,1),%edi
+    136b:	40 88 3c 08          	mov    %dil,(%rax,%rcx,1)
+    136f:	0f b6 4c 16 ff       	movzbl -0x1(%rsi,%rdx,1),%ecx
+    1374:	88 4c 10 ff          	mov    %cl,-0x1(%rax,%rdx,1)
+    1378:	5d                   	pop    %rbp
+    1379:	c3                   	ret
+    137a:	48 83 fa 3f          	cmp    $0x3f,%rdx
+    137e:	77 55                	ja     13d5 <memcpy+0x95>
+    1380:	89 d1                	mov    %edx,%ecx
+    1382:	d1 e9                	shr    $1,%ecx
+    1384:	83 e1 10             	and    $0x10,%ecx
+    1387:	48 8d 7a f0          	lea    -0x10(%rdx),%rdi
+    138b:	48 29 cf             	sub    %rcx,%rdi
+    138e:	0f 10 06             	movups (%rsi),%xmm0
+    1391:	0f 11 00             	movups %xmm0,(%rax)
+    1394:	0f 10 04 0e          	movups (%rsi,%rcx,1),%xmm0
+    1398:	0f 11 04 08          	movups %xmm0,(%rax,%rcx,1)
+    139c:	0f 10 04 3e          	movups (%rsi,%rdi,1),%xmm0
+    13a0:	0f 11 04 38          	movups %xmm0,(%rax,%rdi,1)
+    13a4:	e9 ea 00 00 00       	jmp    1493 <memcpy+0x153>
+    13a9:	89 d1                	mov    %edx,%ecx
+    13ab:	d1 e9                	shr    $1,%ecx
+    13ad:	83 e1 04             	and    $0x4,%ecx
+    13b0:	48 8d 7a fc          	lea    -0x4(%rdx),%rdi
+    13b4:	48 29 cf             	sub    %rcx,%rdi
+    13b7:	44 8b 06             	mov    (%rsi),%r8d
+    13ba:	44 89 00             	mov    %r8d,(%rax)
+    13bd:	44 8b 04 0e          	mov    (%rsi,%rcx,1),%r8d
+    13c1:	44 89 04 08          	mov    %r8d,(%rax,%rcx,1)
+    13c5:	8b 0c 3e             	mov    (%rsi,%rdi,1),%ecx
+    13c8:	89 0c 38             	mov    %ecx,(%rax,%rdi,1)
+    13cb:	8b 4c 16 fc          	mov    -0x4(%rsi,%rdx,1),%ecx
+    13cf:	89 4c 10 fc          	mov    %ecx,-0x4(%rax,%rdx,1)
+    13d3:	5d                   	pop    %rbp
+    13d4:	c3                   	ret
+    13d5:	0f 10 06             	movups (%rsi),%xmm0
+    13d8:	0f 11 00             	movups %xmm0,(%rax)
+    13db:	89 f7                	mov    %esi,%edi
+    13dd:	83 e7 0f             	and    $0xf,%edi
+    13e0:	4c 8d 04 17          	lea    (%rdi,%rdx,1),%r8
+    13e4:	49 83 c0 f0          	add    $0xfffffffffffffff0,%r8
+    13e8:	49 c1 e8 04          	shr    $0x4,%r8
+    13ec:	4d 8d 48 ff          	lea    -0x1(%r8),%r9
+    13f0:	44 89 c1             	mov    %r8d,%ecx
+    13f3:	83 e1 03             	and    $0x3,%ecx
+    13f6:	49 83 f9 03          	cmp    $0x3,%r9
+    13fa:	73 05                	jae    1401 <memcpy+0xc1>
+    13fc:	45 31 c9             	xor    %r9d,%r9d
+    13ff:	eb 5a                	jmp    145b <memcpy+0x11b>
+    1401:	49 83 e0 fc          	and    $0xfffffffffffffffc,%r8
+    1405:	41 ba 40 00 00 00    	mov    $0x40,%r10d
+    140b:	49 29 fa             	sub    %rdi,%r10
+    140e:	45 31 c9             	xor    %r9d,%r9d
+    1411:	66 2e 0f 1f 84 00 00 00 00 00 	cs nopw 0x0(%rax,%rax,1)
+    141b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+    1420:	42 0f 28 44 16 d0    	movaps -0x30(%rsi,%r10,1),%xmm0
+    1426:	42 0f 11 44 10 d0    	movups %xmm0,-0x30(%rax,%r10,1)
+    142c:	42 0f 28 44 16 e0    	movaps -0x20(%rsi,%r10,1),%xmm0
+    1432:	42 0f 11 44 10 e0    	movups %xmm0,-0x20(%rax,%r10,1)
+    1438:	42 0f 28 44 16 f0    	movaps -0x10(%rsi,%r10,1),%xmm0
+    143e:	42 0f 11 44 10 f0    	movups %xmm0,-0x10(%rax,%r10,1)
+    1444:	42 0f 28 04 16       	movaps (%rsi,%r10,1),%xmm0
+    1449:	42 0f 11 04 10       	movups %xmm0,(%rax,%r10,1)
+    144e:	49 83 c1 04          	add    $0x4,%r9
+    1452:	49 83 c2 40          	add    $0x40,%r10
+    1456:	4d 39 c8             	cmp    %r9,%r8
+    1459:	75 c5                	jne    1420 <memcpy+0xe0>
+    145b:	48 85 c9             	test   %rcx,%rcx
+    145e:	74 33                	je     1493 <memcpy+0x153>
+    1460:	49 c1 e1 04          	shl    $0x4,%r9
+    1464:	49 29 f9             	sub    %rdi,%r9
+    1467:	4a 8d 3c 0e          	lea    (%rsi,%r9,1),%rdi
+    146b:	48 83 c7 10          	add    $0x10,%rdi
+    146f:	4e 8d 04 08          	lea    (%rax,%r9,1),%r8
+    1473:	49 83 c0 10          	add    $0x10,%r8
+    1477:	c1 e1 04             	shl    $0x4,%ecx
+    147a:	45 31 c9             	xor    %r9d,%r9d
+    147d:	0f 1f 00             	nopl   (%rax)
+    1480:	42 0f 28 04 0f       	movaps (%rdi,%r9,1),%xmm0
+    1485:	43 0f 11 04 08       	movups %xmm0,(%r8,%r9,1)
+    148a:	49 83 c1 10          	add    $0x10,%r9
+    148e:	4c 39 c9             	cmp    %r9,%rcx
+    1491:	75 ed                	jne    1480 <memcpy+0x140>
+    1493:	0f 10 44 16 f0       	movups -0x10(%rsi,%rdx,1),%xmm0
+    1498:	0f 11 44 10 f0       	movups %xmm0,-0x10(%rax,%rdx,1)
+    149d:	5d                   	pop    %rbp
+    149e:	c3                   	ret

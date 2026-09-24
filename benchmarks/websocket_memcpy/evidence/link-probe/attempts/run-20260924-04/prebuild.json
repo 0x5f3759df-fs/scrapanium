@@ -1,0 +1,17 @@
+{
+  "target": "x86_64-linux-gnu.2.17.0",
+  "zig_version": "0.15.2",
+  "zig_executable": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/zig",
+  "zig_executable_sha256": "2858dc89dbbfdd08cceda1b841e7fd0a793a1a67b49f150bc3d0d1de44ed7f51",
+  "zig_archive": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-0.15.2.tar.xz",
+  "zig_archive_sha256": "02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239",
+  "compiler_rt_memcpy_source": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/memcpy.zig",
+  "compiler_rt_common_source": "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/common.zig",
+  "source_sha256_before_build": {
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/link_probe.py": "5c5515702c11fb14dfd47920ed708fd72dfd467175d9242bd63212a3a11b7293",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_probe_callsite.c": "5d1724b59e5221b9adcb2ad3f5962ca3f6d3d709bb2083d930d1e716cf7fb0ed",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/memcpy_route.c": "79f1816530383e34c36df60d46bfd1b672a7f2635cf3cbfebafb6bf617e0aea1",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/memcpy.zig": "2414b6dbd73ca1d7ac0b1242003025c9a9883d512740d80ecd7615b9d8ea3f14",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-tools/zig-x86_64-linux-0.15.2/lib/compiler_rt/common.zig": "530232c1711ad74a4168bb6797a88fac2d047857dbb85f64a70dad78b0e8c592"
+  }
+}

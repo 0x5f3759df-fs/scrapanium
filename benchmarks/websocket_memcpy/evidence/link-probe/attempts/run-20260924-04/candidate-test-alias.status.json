@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_memcpy/link_probe.py",
+    "--exercise-only",
+    "--library",
+    "/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-04/libmemcpy-candidate.so",
+    "--symbol",
+    "sp_wss_memcpy_test"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "timeout_seconds": 15
+}

@@ -1,0 +1,4 @@
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/home/baidu/scrapanium-experiments/wss-memcpy-link-probe/run-20260924-04/libmemcpy-candidate.so
+mode=all
+PASS: 83135 alignment/size cases, 64 guarded-edge cases; source was read-only during calls

@@ -1,0 +1,8 @@
+returncode=1
+stdout:
+test_symbol=sp_wss_memcpy_test
+resolved_dso=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-memcpy-guard-selftest-final/fault-3.so
+mode=regular
+stderr:
+fault_provider_kind=3
+FAIL: destination canary changed outside requested range
