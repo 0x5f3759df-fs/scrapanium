@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "status": "validated",
+  "captured_date": "2026-09-24",
+  "capture_mode": "fresh browser process and temporary profile per sample",
+  "execution": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4",
+    "headed_display": "xvfb-run -a",
+    "commands": {
+      "fetch": "python3 scripts/fetch_browsers.py --manifest profiles/browsers/releases-2026-09-24.json --target-root .deps/browsers/current-2026-09-24",
+      "headless": ".deps/venv-matched/bin/python scripts/capture_browsers.py --chrome .deps/browsers/current-2026-09-24/chrome-linux64/chrome --firefox .deps/browsers/current-2026-09-24/firefox/firefox --http2 --samples 3 --release-manifest profiles/browsers/releases-2026-09-24.json --browser-root .deps/browsers/current-2026-09-24 --output profiles/browsers/captures-2026-09-24/linux-headless.json",
+      "headed": "xvfb-run -a .deps/venv-matched/bin/python scripts/capture_browsers.py --google-chrome .deps/browsers/current-2026-09-24/google-chrome/opt/google/chrome/chrome --chrome .deps/browsers/current-2026-09-24/chrome-linux64/chrome --firefox .deps/browsers/current-2026-09-24/firefox/firefox --headed --http2 --samples 3 --release-manifest profiles/browsers/releases-2026-09-24.json --browser-root .deps/browsers/current-2026-09-24 --output profiles/browsers/captures-2026-09-24/linux-headed.json"
+    }
+  },
+  "release_manifest": {
+    "path": "profiles/browsers/releases-2026-09-24.json",
+    "sha256": "591b92e31cdfd01f1a0c71c5020b17869eae9128749419337788818e28a0eb74"
+  },
+  "upstream_metadata_sha256": {
+    "chrome-for-testing-154-linux64-object-headers.json": "bfdfae8b464f1cf6c622a84e32a1c6981a3e529c4b918465c6cd7a547dc75bb3",
+    "chrome-for-testing-last-known-good.json": "a478de6a46adbf8480cc46ea05b441db7254fc8397d2857e7663bec159e8bae9",
+    "firefox-156.0.1-SHA512SUMS": "59e1549b9cd82e139328514b13c618716f9f88396469c3332620501397a6d49b",
+    "firefox-versions.json": "47c8e60db8f818d0d6374ac7104cca87a16b52b6381e1815f05493bd1a398c9b",
+    "google-chrome-stable-Packages.gz": "0a9dc1d5a2ce4cbe0fe8cfd4cd551f428a2f5045575bc335b13d9c5f5fc90c90"
+  },
+  "archive_verification": {
+    "google_chrome": "local SHA-256 and size match official Packages.gz entry",
+    "chrome_for_testing": "local SHA-256 recorded; MD5 matches the GCS ETag and x-goog-hash, while CRC32C/generation/Last-Modified are retained from GCS object metadata",
+    "firefox": "local SHA-256 recorded and SHA-512 matches Mozilla SHA512SUMS"
+  },
+  "archives": {
+    "google_chrome": {
+      "path": "google-chrome-stable_154.0.8037.57-1_amd64.deb",
+      "bytes": 142114088,
+      "sha256": "66c0645f6a19871bab2844b8537c11a0db2e7d3bea8ef85a1c7cb52a54e65a3e"
+    },
+    "chrome": {
+      "path": "chrome-linux64-154.0.8037.57.zip",
+      "bytes": 196223440,
+      "sha256": "ceee2972074d441ea7c4ba8bcc0eaab77e7e87680f6653d73d3065851fe10302"
+    },
+    "firefox": {
+      "path": "firefox-156.0.1.tar.xz",
+      "bytes": 88308892,
+      "sha256": "7405c0487fa3e517c1e20e5aec0ed14014185dad6357d99a59b53f65acb10ed6"
+    }
+  },
+  "browsers": [
+    {
+      "mode": "headless",
+      "browser": "chrome",
+      "version_output": "Google Chrome for Testing 154.0.8037.57",
+      "executable_sha256": "e528b77a8b250c48a5bbd7aeeabbc2813940c0a2fe39b1b11fbaf1f01fb04f18",
+      "samples": 3
+    },
+    {
+      "mode": "headless",
+      "browser": "firefox",
+      "version_output": "Mozilla Firefox 156.0.1",
+      "executable_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a",
+      "samples": 3,
+      "libxul_sha256": "d4639727b18b98e0c47da1cbcf8cc3cc36dfa1873b24628c7c965ccc8da59230"
+    },
+    {
+      "mode": "headed",
+      "browser": "chrome",
+      "version_output": "Google Chrome for Testing 154.0.8037.57",
+      "executable_sha256": "e528b77a8b250c48a5bbd7aeeabbc2813940c0a2fe39b1b11fbaf1f01fb04f18",
+      "samples": 3
+    },
+    {
+      "mode": "headed",
+      "browser": "google_chrome",
+      "version_output": "Google Chrome 154.0.8037.57",
+      "executable_sha256": "4d2512ae84986bf987e6ea8ef14ca1af555ae574fbaff5b5a8c78a8dd73fa36f",
+      "samples": 3
+    },
+    {
+      "mode": "headed",
+      "browser": "firefox",
+      "version_output": "Mozilla Firefox 156.0.1",
+      "executable_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a",
+      "samples": 3,
+      "libxul_sha256": "d4639727b18b98e0c47da1cbcf8cc3cc36dfa1873b24628c7c965ccc8da59230"
+    }
+  ],
+  "captures": {
+    "headed": {
+      "path": "profiles/browsers/captures-2026-09-24/linux-headed.json",
+      "sha256": "8376ead6e2c4e0719cd811499c5ef32ad0484db6fd65e70fc83c16cd2884d814"
+    },
+    "headless": {
+      "path": "profiles/browsers/captures-2026-09-24/linux-headless.json",
+      "sha256": "c5fff7126fc149858b4b812cd4e1aecb1c1f1ba07d665067fbe92101e8f4ba05"
+    }
+  },
+  "comparison": {
+    "report": {
+      "path": "profiles/browsers/captures-2026-09-24/COMPARISON.md",
+      "sha256": "8a342bd9cf6717ddd6e5ba84c21120a1ec416f999156785f13c4b33e6d965d5c"
+    },
+    "machine_readable": {
+      "path": "profiles/browsers/captures-2026-09-24/comparison.json",
+      "sha256": "76a1fad4de4247ccf2809669860a116e811d719b620675bb347f401777b74bab"
+    }
+  },
+  "baseline_captures": {
+    "headed": {
+      "path": "profiles/browsers/linux-headed-2026-09-20.json",
+      "sha256": "d92365eba3b9230c7611fbb5b62cdf907df1fdf46a136bfafc6e198bcf423423"
+    },
+    "headless": {
+      "path": "profiles/browsers/linux-headless-2026-09-20.json",
+      "sha256": "4dba878d366ee7247a68cb4558b8e48531644267cf128214878292ecf945afa5"
+    }
+  },
+  "validation": {
+    "capture_source_hashes_match": true,
+    "all_clienthello_records_reparsed": true,
+    "all_http2_samples_parse_and_match_within_browser_group": true,
+    "all_archive_checksums_verified": true
+  },
+  "limits": "Three fresh-profile samples per browser/mode on the existing WSL/Linux environment; not a clean OS provisioning test or a population-wide measurement.",
+  "release_announcement_url": "https://chromereleases.googleblog.com/2026/09/stable-channel-update-for-desktop_0856730748.html"
+}

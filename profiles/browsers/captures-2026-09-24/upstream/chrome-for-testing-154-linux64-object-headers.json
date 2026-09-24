@@ -1,0 +1,16 @@
+{
+  "url": "https://storage.googleapis.com/chrome-for-testing-public/154.0.8037.57/linux64/chrome-linux64.zip",
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/zip",
+    "Last-Modified": "Tue, 22 Sep 2026 01:24:31 GMT",
+    "ETag": "\"0feaa732dbd1c6b075afd6cc55e0c8af\"",
+    "x-goog-generation": "1790040271282437",
+    "x-goog-metageneration": "1",
+    "x-goog-stored-content-encoding": "identity",
+    "x-goog-stored-content-length": "196223440",
+    "x-goog-hash": "md5=D+qnMtvRxrB1r9bMVeDIrw==",
+    "x-goog-storage-class": "STANDARD",
+    "Content-Length": "196223440"
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download optional pinned Linux browsers for capture work, inside .deps only."""
+"""Download pinned Linux browsers for capture work, defaulting to .deps/browsers."""
 import hashlib
 import argparse
 import json
@@ -16,12 +16,28 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     if sys.platform != 'linux':
         raise SystemExit('Use Linux or WSL for these capture binaries.')
-    lock = json.loads((ROOT / 'profiles/browsers/releases.json').read_text())
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', action='append', choices=['chrome', 'google_chrome', 'firefox'])
+    parser.add_argument('--manifest', type=Path,
+                        help='release lock (defaults to profiles/browsers/releases.json)')
+    parser.add_argument('--target-root', type=Path,
+                        help='extraction/download root (defaults to .deps/browsers)')
     args = parser.parse_args()
-    target = ROOT / '.deps/browsers'
+    manifest = args.manifest or ROOT / 'profiles/browsers/releases.json'
+    if not manifest.is_absolute():
+        manifest = ROOT / manifest
+    manifest = manifest.resolve(strict=True)
+    if not manifest.is_relative_to(ROOT):
+        raise SystemExit('release manifest must be inside the repository')
+    target = args.target_root or ROOT / '.deps/browsers'
+    if not target.is_absolute():
+        target = ROOT / target
+    target = target.resolve()
+    browser_store = (ROOT / '.deps/browsers').resolve()
+    if not target.is_relative_to(browser_store):
+        raise SystemExit('target root must remain inside .deps/browsers')
     target.mkdir(parents=True, exist_ok=True)
+    lock = json.loads(manifest.read_text())
     for name in args.browser or ('chrome', 'google_chrome', 'firefox'):
         spec = lock[name]
         archive = target / spec['archive']

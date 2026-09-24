@@ -33,6 +33,24 @@ def sha256(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+def resolve_release_inputs(release_manifest=None, browser_root=None):
+    manifest = release_manifest or ROOT / 'profiles/browsers/releases.json'
+    if not manifest.is_absolute():
+        manifest = ROOT / manifest
+    manifest = manifest.resolve(strict=True)
+    if not manifest.is_relative_to(ROOT):
+        raise ValueError('release manifest must be inside the repository')
+    root = browser_root or ROOT / '.deps/browsers'
+    if not root.is_absolute():
+        root = ROOT / root
+    # Do not require the default store to exist when callers supply an external
+    # executable; in that case no pinned archive lookup is needed.
+    root = root.resolve()
+    if not root.is_relative_to((ROOT / '.deps/browsers').resolve()):
+        raise ValueError('browser root must remain inside .deps/browsers')
+    return manifest, root
+
+
 def read_hello(conn):
     """Bound and retain every complete TLS record used for the first hello."""
     def exact(size):
@@ -176,6 +194,10 @@ def main():
     parser.add_argument('--firefox', type=Path)
     parser.add_argument('--samples', type=int, default=3)
     parser.add_argument('--timeout', type=float, default=30)
+    parser.add_argument('--release-manifest', type=Path,
+                        help='browser release lock (defaults to profiles/browsers/releases.json)')
+    parser.add_argument('--browser-root', type=Path,
+                        help='browser extraction root (defaults to .deps/browsers)')
     parser.add_argument('--http2', action='store_true', help='also capture HTTP/2 against a local test certificate')
     parser.add_argument('--headed', action='store_true', help='normal browser mode; run under xvfb-run on a test display')
     parser.add_argument('--output', type=Path, required=True)
@@ -186,10 +208,18 @@ def main():
         parser.error('supply at least one explicit browser executable')
     if args.headed and not os.environ.get('DISPLAY'):
         parser.error('--headed requires an X display, for example xvfb-run -a')
+    try:
+        release_manifest, browser_root = resolve_release_inputs(
+            args.release_manifest, args.browser_root)
+    except (OSError, ValueError) as error:
+        parser.error(str(error))
     source_paths = [Path(__file__).resolve(), ROOT / 'tests/fingerprint.py',
-                    ROOT / 'tests/browser_lab.py', ROOT / 'tests/lab.py']
-    sources = {str(path.relative_to(ROOT)): sha256(path) for path in source_paths}
-    releases = json.loads((ROOT / 'profiles/browsers/releases.json').read_text())
+                    ROOT / 'tests/browser_lab.py', ROOT / 'tests/lab.py', release_manifest]
+    source_names = {
+        str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path): sha256(path)
+        for path in source_paths
+    }
+    releases = json.loads(release_manifest.read_text())
     results = {}
     for label, kind in [('chrome', 'chrome'), ('google_chrome', 'chrome'), ('firefox', 'firefox')]:
         binary = getattr(args, label)
@@ -207,9 +237,9 @@ def main():
             'detailed_samples_identical': all(
                 sample['detailed_clienthello'] == samples[0]['detailed_clienthello'] for sample in samples),
         }
-        pinned = (ROOT / '.deps/browsers' / releases[label]['executable']).resolve()
+        pinned = (browser_root / releases[label]['executable']).resolve()
         if binary == pinned:
-            archive = ROOT / '.deps/browsers' / releases[label]['archive']
+            archive = browser_root / releases[label]['archive']
             if sha256(archive) != releases[label]['sha256']:
                 raise ValueError('browser distribution hash mismatch')
             results[label]['download'] = releases[label]
@@ -226,14 +256,23 @@ def main():
         'capture': 'TCP localhost; fresh temporary profile per sample; first ClientHello',
         'browser_mode': 'headed' if args.headed else 'headless',
         'scope': 'ClientHello offers and optionally fresh HTTP/2 navigation; not complete browser parity',
+        'release_manifest': {
+            'path': str(release_manifest.relative_to(ROOT)) if release_manifest.is_relative_to(ROOT)
+                    else str(release_manifest),
+            'sha256': sha256(release_manifest),
+            'browser_root': str(browser_root),
+        },
         'normalization': ['GREASE values (counts retained where parsed)',
                           'random/session/key-share bytes', 'extension permutation',
                           'conditional padding extension 21', 'SNI value', 'ECH payload bytes',
                           'trust-anchor order'],
-        'source_sha256': sources,
+        'source_sha256': source_names,
         'browsers': results,
     }
-    if sources != {str(path.relative_to(ROOT)): sha256(path) for path in source_paths}:
+    if source_names != {
+        str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path): sha256(path)
+        for path in source_paths
+    }:
         raise RuntimeError('capture sources changed while running; discard and repeat this capture')
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + '\n')

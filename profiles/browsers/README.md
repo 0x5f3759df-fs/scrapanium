@@ -62,3 +62,14 @@ configurations, macOS, Android or iOS behavior. Safari 27 still needs captures.
 Official release metadata: [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json),
 [Google Chrome packages](https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz),
 [Firefox versions](https://product-details.mozilla.org/1.0/firefox_versions.json).
+
+## Current release observations (2026-09-24)
+
+Separate three-sample headed and headless captures of Chrome for Testing
+154.0.8037.57, headed Google Chrome 154.0.8037.57, and headed/headless Firefox
+156.0.1 are retained under
+[`captures-2026-09-24/`](captures-2026-09-24/). The dated release lock is
+[`releases-2026-09-24.json`](releases-2026-09-24.json). The comparison report
+lists every normalized TLS and HTTP/2 difference against the 2026-09-20 captures
+and calls out raw ECH payload-length variation. These observations do not
+replace the historical capture inputs or update native profile data.
