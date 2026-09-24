@@ -299,5 +299,7 @@ The audit helper validates report semantics and arithmetic; it does not rerun
 the timed benchmark or treat the instrumented probe as performance evidence.
 
 The separate [WSS phase diagnostic](WSS_PHASE_DIAGNOSTIC.md) reports receive,
-validation and peer timing measurements with their correctness controls and
-limits; these results are separate from the throughput tables above.
+validation and peer timing measurements. The [WSS receive attribution diagnostic](WSS_ATTRIBUTION_DIAGNOSTIC.md)
+adds a labeled Go CPU profile and runtime trace for the 64 KiB workload. Both
+retain their correctness controls and limits separately from the throughput
+tables above.

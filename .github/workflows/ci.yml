@@ -37,6 +37,9 @@ jobs:
           .deps/venv-matched/bin/python benchmarks/websocket_streaming.py --smoke --sanitize --no-build --runs 1 --threads 4 --output build/ws-stream-smoke-4.json
       - name: Check WebSocket phase diagnostics under sanitizers
         run: .deps/venv-matched/bin/python benchmarks/websocket_phase_diagnostic.py --smoke --sanitize --output-dir build/ws-phase-smoke
+      - name: Check WebSocket attribution diagnostics under sanitizers (stock backend)
+        if: matrix.backend == 'stock'
+        run: .deps/venv-matched/bin/python benchmarks/websocket_attribution.py --smoke --sanitize --output-dir build/ws-attribution-smoke
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -47,4 +50,6 @@ jobs:
             build/ws-stream-smoke-*.json
             build/ws-phase-smoke/manifest.json
             build/ws-phase-smoke/samples.jsonl
+            build/ws-attribution-smoke/manifest.json
+            build/ws-attribution-smoke/samples.jsonl
             .deps/curl-browser/manifest.json
