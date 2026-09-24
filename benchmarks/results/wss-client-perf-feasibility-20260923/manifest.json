@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "purpose": "user-local perf symbol and unwind feasibility only",
+  "repo": {
+    "head": "8f564b39723f2f9ee4decab4a4b7f4205eb99621",
+    "branch": "main",
+    "working_tree_was_clean_before_evidence_copy": true,
+    "source_hashes_are_retrospective_inventory_not_binary_build_provenance": true
+  },
+  "capture": {
+    "attempt_count": 2,
+    "measured_sessions": 1,
+    "attempt_1": "setup failed before perf start due wrong mapped_backend import; no samples",
+    "attempt_2": "perf captured; the client exited before disable acknowledgement, so harness aborted before peer stats/final JSON",
+    "client": "Scrapanium Bend websocket_stream client",
+    "client_returncode": 0,
+    "client_exact_opcode_ordered_byte_checks": "passed by existing client; status 0 observed",
+    "peer_frame_totals_recorded": false,
+    "count": 1024,
+    "message_payload_bytes": 65536,
+    "payload_total_bytes": 67108864,
+    "frame_batch": 1,
+    "tls_profile": "chrome146",
+    "transport": "local WSS loopback",
+    "backend": {
+      "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+      "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+    }
+  },
+  "profile": {
+    "tool_version": "perf version 7.0.14",
+    "package": "linux-perf_7.0.0-31.31_amd64.deb",
+    "package_sha256": "a32aa4f85e70546a1cc7b8ecb50aacc78c2bfb83b9589a2909d43f87326371ce",
+    "extracted_perf_sha256": "94b3ed36eeedf585d88fedd326fb616f662223193dddbf6d48d2df1cced69009",
+    "event": "cpu-clock:u",
+    "requested_frequency_hz": 999,
+    "call_graph": "DWARF",
+    "user_stack_size_bytes": 16384,
+    "clock": "CLOCK_MONOTONIC",
+    "kernel_stacks": false,
+    "client_pid": 758,
+    "capture_window": "events enabled and acknowledged immediately before start gate; profile naturally finalized when target client exited; post-close samples retained and not filtered",
+    "sample_records": 72,
+    "lost_samples": 0,
+    "resolved_stack_functions": [
+      "curl_ws_recv",
+      "Curl_easy_recv",
+      "SSL_read",
+      "ssl_read_impl",
+      "ssl_handle_open_record",
+      "EVP_AEAD_CTX_open",
+      "aes_gcm_dec_update_vaes_avx2",
+      "sp_ws_io_advance",
+      "sp_ws_append",
+      "memcpy"
+    ],
+    "binary_contains_asan_symbols": true,
+    "binary_build_recipe_provenance": "not recorded; current source file hashes do not prove binary build inputs"
+  },
+  "artifact_sha256": {
+    "perf.data": "11198d43f58dbe000a4a65705278432a4f8cb713c5abc62a5bb6bfa61017f037",
+    "perf.report.txt": "331e3f6a409df113fb2c08df0ab22a721e845160e19291a95a1ad47c9202440f",
+    "perf.script-ns.txt": "7094023421d2fe9b6c63f98aa13cf84cd14d85b548419468c5fd58b04f5010f1",
+    "capture_attempt.py": "493cc8f6efbeaabd137990aecf93ec027a98b0e136a0a0d08a7156a7dd488db2"
+  },
+  "binary_sha256": {
+    "bend_client": "86bc6f9a5a757639c2e1b081a20a6e948fb545778138d951d0271b3b822b9976",
+    "go_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "source_inventory_sha256": {
+    "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a"
+  },
+  "interpretation": "symbol visibility and DWARF stack resolution are feasible; sample mix is insufficient for attribution and must not be used for throughput or bottleneck claims",
+  "next_run_status": "implementation and correctness review pending; not started"
+}

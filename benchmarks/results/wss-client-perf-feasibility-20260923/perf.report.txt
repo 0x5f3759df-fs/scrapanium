@@ -1,0 +1,1026 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 72  of event 'cpu-clock:u'
+# Event count (approx.): 72072072
+#
+# Overhead  Shared Object                 Symbol                                                                                                                                                                                                                                                                                                                                      IPC   [IPC Coverage]
+# ........  ............................  ..........................................................................................................................................................................................................................................................................................................................................  ....................
+#
+    13.89%  libcurl-impersonate.so.4.8.0  [.] memcpy                                                                                                                                                                                                                                                                                                                                  -      -            
+            |
+            ---copyBlocks (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyForwards (inlined)
+               memcpyFast (inlined)
+               |          
+               |--9.72%--ws_client_collect
+               |          ws_dec_pass_payload (inlined)
+               |          ws_dec_pass
+               |          curl_ws_recv
+               |          sp_ws_io_advance (inlined)
+               |          sp_ws_io_step
+               |          sp_bend_ws_more
+               |          sp_bend_ws_start
+               |          sp_bend_ws_receive
+               |          io_exec
+               |          io_step (inlined)
+               |          io_loop
+               |          main
+               |          0x79938da2a600
+               |          __libc_start_main
+               |          _start
+               |          
+                --4.17%--OPENSSL_memcpy (inlined)
+                          SSL_peek (inlined)
+                          SSL_read
+                          ossl_recv
+                          ssl_cf_recv
+                          Curl_easy_recv
+                          chunk_slurpn (inlined)
+                          Curl_bufq_sipn (inlined)
+                          bufq_slurpn (inlined)
+                          Curl_bufq_slurp
+                          curl_ws_recv
+                          sp_ws_io_advance (inlined)
+                          sp_ws_io_step
+                          sp_bend_ws_more
+                          sp_bend_ws_start
+                          sp_bend_ws_receive
+                          io_exec
+                          io_step (inlined)
+                          io_loop
+                          main
+                          0x79938da2a600
+                          __libc_start_main
+                          _start
+
+     6.94%  bench-ws-stream               [.] __sanitizer::BufferedStackTrace::UnwindFast(unsigned long, unsigned long, unsigned long, unsigned long, unsigned int)                                                                                                                                                                                                                   -      -            
+            |
+            ---__sanitizer::BufferedStackTrace::UnwindFast(unsigned long, unsigned long, unsigned long, unsigned long, unsigned int)
+               __sanitizer::BufferedStackTrace::UnwindImpl(unsigned long, unsigned long, void*, bool, unsigned int)
+               ___interceptor_free
+               |          
+               |--5.56%--err_clear (inlined)
+               |          ERR_clear_error
+               |          |          
+               |          |--4.17%--ssl_reset_error_state (inlined)
+               |          |          ssl_read_impl (inlined)
+               |          |          SSL_peek (inlined)
+               |          |          SSL_read
+               |          |          ossl_recv
+               |          |          ssl_cf_recv
+               |          |          Curl_easy_recv
+               |          |          chunk_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_slurp
+               |          |          curl_ws_recv
+               |          |          sp_ws_io_advance (inlined)
+               |          |          sp_ws_io_step
+               |          |          sp_bend_ws_more
+               |          |          sp_bend_ws_start
+               |          |          sp_bend_ws_receive
+               |          |          io_exec
+               |          |          io_step (inlined)
+               |          |          io_loop
+               |          |          main
+               |          |          0x79938da2a600
+               |          |          __libc_start_main
+               |          |          _start
+               |          |          
+               |           --1.39%--ossl_recv
+               |                     ssl_cf_recv
+               |                     Curl_easy_recv
+               |                     chunk_slurpn (inlined)
+               |                     Curl_bufq_sipn (inlined)
+               |                     bufq_slurpn (inlined)
+               |                     Curl_bufq_slurp
+               |                     curl_ws_recv
+               |                     sp_ws_io_advance (inlined)
+               |                     sp_ws_io_step
+               |                     sp_bend_ws_more
+               |                     sp_bend_ws_start
+               |                     sp_bend_ws_receive
+               |                     io_exec
+               |                     io_step (inlined)
+               |                     io_loop
+               |                     main
+               |                     0x79938da2a600
+               |                     __libc_start_main
+               |                     _start
+               |          
+                --1.39%--ERR_clear_error
+                          ssl_reset_error_state (inlined)
+                          ssl_read_impl (inlined)
+                          SSL_peek (inlined)
+                          SSL_read
+                          ossl_recv
+                          ssl_cf_recv
+                          Curl_easy_recv
+                          chunk_slurpn (inlined)
+                          Curl_bufq_sipn (inlined)
+                          bufq_slurpn (inlined)
+                          Curl_bufq_slurp
+                          curl_ws_recv
+                          sp_ws_io_advance (inlined)
+                          sp_ws_io_step
+                          sp_bend_ws_more
+                          sp_bend_ws_start
+                          sp_bend_ws_receive
+                          io_exec
+                          io_step (inlined)
+                          io_loop
+                          main
+                          0x79938da2a600
+                          __libc_start_main
+                          _start
+
+     6.94%  libcurl-impersonate.so.4.8.0  [.] aes_gcm_dec_update_vaes_avx2                                                                                                                                                                                                                                                                                                            -      -            
+            |
+            ---aes_gcm_dec_update_vaes_avx2
+               aead_aes_gcm_openv_detached_impl (inlined)
+               EVP_AEAD_CTX_openv_detached
+               EVP_AEAD_CTX_open
+               Open (inlined)
+               tls_open_record (inlined)
+               tls_open_app_data (inlined)
+               ssl_open_app_data (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     5.56%  bench-ws-stream               [.] __asan::Allocator::Allocate(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType, bool)                                                                                                                                                                                                                    -      -            
+            |
+            ---__asan::Allocator::Allocate(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType, bool)
+               |          
+               |--4.17%--__asan::asan_malloc(unsigned long, __sanitizer::BufferedStackTrace*)
+               |          ___interceptor_malloc
+               |          EnsureCap (inlined)
+               |          ssl_read_buffer_extend_to (inlined)
+               |          ssl_handle_open_record (inlined)
+               |          ssl_read_impl (inlined)
+               |          SSL_peek (inlined)
+               |          SSL_read
+               |          ossl_recv
+               |          ssl_cf_recv
+               |          Curl_easy_recv
+               |          chunk_slurpn (inlined)
+               |          Curl_bufq_sipn (inlined)
+               |          bufq_slurpn (inlined)
+               |          Curl_bufq_slurp
+               |          curl_ws_recv
+               |          sp_ws_io_advance (inlined)
+               |          sp_ws_io_step
+               |          sp_bend_ws_more
+               |          sp_bend_ws_start
+               |          sp_bend_ws_receive
+               |          io_exec
+               |          io_step (inlined)
+               |          io_loop
+               |          main
+               |          0x79938da2a600
+               |          __libc_start_main
+               |          _start
+               |          
+                --1.39%--__asan::asan_realloc(void*, unsigned long, __sanitizer::BufferedStackTrace*)
+                          ___interceptor_realloc
+                          sp_ws_append
+                          sp_ws_io_advance (inlined)
+                          sp_ws_io_step
+                          sp_bend_ws_more
+                          sp_bend_ws_start
+                          sp_bend_ws_receive
+                          io_exec
+                          io_step (inlined)
+                          io_loop
+                          main
+                          0x79938da2a600
+                          __libc_start_main
+                          _start
+
+     5.56%  libc.so.6                     [.] pthread_getspecific                                                                                                                                                                                                                                                                                                                     -      -            
+            |
+            ---pthread_getspecific
+               __asan::GetCurrentThread()
+               |          
+               |--4.17%--__sanitizer::BufferedStackTrace::UnwindImpl(unsigned long, unsigned long, void*, bool, unsigned int)
+               |          ___interceptor_free
+               |          |          
+               |          |--2.78%--err_clear (inlined)
+               |          |          ERR_clear_error
+               |          |          ossl_recv
+               |          |          ssl_cf_recv
+               |          |          Curl_easy_recv
+               |          |          chunk_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_slurp
+               |          |          curl_ws_recv
+               |          |          sp_ws_io_advance (inlined)
+               |          |          sp_ws_io_step
+               |          |          sp_bend_ws_more
+               |          |          sp_bend_ws_start
+               |          |          sp_bend_ws_receive
+               |          |          io_exec
+               |          |          io_step (inlined)
+               |          |          io_loop
+               |          |          main
+               |          |          0x79938da2a600
+               |          |          __libc_start_main
+               |          |          _start
+               |          |          
+               |           --1.39%--Clear (inlined)
+               |                     DiscardConsumed (inlined)
+               |                     SSL_read
+               |                     ossl_recv
+               |                     ssl_cf_recv
+               |                     Curl_easy_recv
+               |                     chunk_slurpn (inlined)
+               |                     Curl_bufq_sipn (inlined)
+               |                     bufq_slurpn (inlined)
+               |                     Curl_bufq_slurp
+               |                     curl_ws_recv
+               |                     sp_ws_io_advance (inlined)
+               |                     sp_ws_io_step
+               |                     sp_bend_ws_more
+               |                     sp_bend_ws_start
+               |                     sp_bend_ws_receive
+               |                     io_exec
+               |                     io_step (inlined)
+               |                     io_loop
+               |                     main
+               |                     0x79938da2a600
+               |                     __libc_start_main
+               |                     _start
+               |          
+                --1.39%--__asan::GetCurrentThreadStats()
+                          __asan::Allocator::Allocate(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType, bool)
+                          __asan::asan_malloc(unsigned long, __sanitizer::BufferedStackTrace*)
+                          ___interceptor_malloc
+                          EnsureCap (inlined)
+                          ssl_read_buffer_extend_to (inlined)
+                          ssl_handle_open_record (inlined)
+                          ssl_read_impl (inlined)
+                          SSL_peek (inlined)
+                          SSL_read
+                          ossl_recv
+                          ssl_cf_recv
+                          Curl_easy_recv
+                          chunk_slurpn (inlined)
+                          Curl_bufq_sipn (inlined)
+                          bufq_slurpn (inlined)
+                          Curl_bufq_slurp
+                          curl_ws_recv
+                          sp_ws_io_advance (inlined)
+                          sp_ws_io_step
+                          sp_bend_ws_more
+                          sp_bend_ws_start
+                          sp_bend_ws_receive
+                          io_exec
+                          io_step (inlined)
+                          io_loop
+                          main
+                          0x79938da2a600
+                          __libc_start_main
+                          _start
+
+     5.56%  libcurl-impersonate.so.4.8.0  [.] ossl_bio_cf_in_read                                                                                                                                                                                                                                                                                                                     -      -            
+            |
+            ---ossl_bio_cf_in_read
+               BIO_read
+               tls_read_buffer_extend_to (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     2.78%  bench-ws-stream               [.] WL_FID_CLO_APPLY                                                                                                                                                                                                                                                                                                                        -      -            
+            |          
+            |--1.39%--spare_free (inlined)
+            |          WL_FID_CLO_APPLY
+            |          work_loop (inlined)
+            |          corpus_eval
+            |          io_step (inlined)
+            |          io_loop
+            |          main
+            |          0x79938da2a600
+            |          __libc_start_main
+            |          _start
+            |          
+             --1.39%--WL_FID_CLO_APPLY
+                       work_loop (inlined)
+                       corpus_eval
+                       io_step (inlined)
+                       io_loop
+                       main
+                       0x79938da2a600
+                       __libc_start_main
+                       _start
+
+     2.78%  bench-ws-stream               [.] __asan::asan_realloc(void*, unsigned long, __sanitizer::BufferedStackTrace*)                                                                                                                                                                                                                                                            -      -            
+            |
+            ---__asan::asan_realloc(void*, unsigned long, __sanitizer::BufferedStackTrace*)
+               ___interceptor_realloc
+               sp_ws_append
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     2.78%  bench-ws-stream               [.] sp_ws_io_step                                                                                                                                                                                                                                                                                                                           -      -            
+            |
+            ---sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     2.78%  bench-ws-stream               [.] void __lsan::ScanForPointers<__lsan::(anonymous namespace)::DirectMemoryAccessor>(unsigned long, unsigned long, __sanitizer::InternalMmapVector<unsigned long>*, char const*, __lsan::ChunkTag, __lsan::(anonymous namespace)::DirectMemoryAccessor&)                                                                                   -      -            
+            |
+            ---void __lsan::ScanForPointers<__lsan::(anonymous namespace)::DirectMemoryAccessor>(unsigned long, unsigned long, __sanitizer::InternalMmapVector<unsigned long>*, char const*, __lsan::ChunkTag, __lsan::(anonymous namespace)::DirectMemoryAccessor&)
+               __lsan::ScanGlobalRange(unsigned long, unsigned long, __sanitizer::InternalMmapVector<unsigned long>*)
+               __lsan::ProcessGlobalRegionsCallback(dl_phdr_info*, unsigned long, void*)
+               dl_iterate_phdr
+               __lsan::CheckForLeaksCallback(__sanitizer::SuspendedThreadsList const&, void*)
+               __sanitizer::TracerThread(void*)
+               __sanitizer::internal_clone(int (*)(void*), void*, int, void*, int*, void*, int*)
+
+     2.78%  libc.so.6                     [.] pthread_once                                                                                                                                                                                                                                                                                                                            -      -            
+            |
+            ---pthread_once
+               CRYPTO_once (inlined)
+               CRYPTO_get_thread_local (inlined)
+               err_get_state (inlined)
+               ERR_clear_error
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     2.78%  libc.so.6                     [.] 0x000000000019743a                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---0x79938db9743a
+               MemcmpInterceptorCommon(void*, int (*)(void const*, void const*, unsigned long), void const*, void const*, unsigned long)
+               ___interceptor_bcmp
+               sp_bend_bytes_equal
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     2.78%  libcurl-impersonate.so.4.8.0  [.] bssl::tls_open_record(bssl::SSLImpl*, unsigned char*, bssl::Span<unsigned char, 18446744073709551615ul>*, unsigned long*, unsigned char*, bssl::Span<unsigned char, 18446744073709551615ul>)                                                                                                                                            -      -            
+            |          
+            |--1.39%--tls_record_version (inlined)
+            |          tls_open_record (inlined)
+            |          tls_open_app_data (inlined)
+            |          ssl_open_app_data (inlined)
+            |          ssl_read_impl (inlined)
+            |          SSL_peek (inlined)
+            |          SSL_read
+            |          ossl_recv
+            |          ssl_cf_recv
+            |          Curl_easy_recv
+            |          chunk_slurpn (inlined)
+            |          Curl_bufq_sipn (inlined)
+            |          bufq_slurpn (inlined)
+            |          Curl_bufq_slurp
+            |          curl_ws_recv
+            |          sp_ws_io_advance (inlined)
+            |          sp_ws_io_step
+            |          sp_bend_ws_more
+            |          sp_bend_ws_start
+            |          sp_bend_ws_receive
+            |          io_exec
+            |          io_step (inlined)
+            |          io_loop
+            |          main
+            |          0x79938da2a600
+            |          __libc_start_main
+            |          _start
+            |          
+             --1.39%--tls_open_record (inlined)
+                       tls_open_app_data (inlined)
+                       ssl_open_app_data (inlined)
+                       ssl_read_impl (inlined)
+                       SSL_peek (inlined)
+                       SSL_read
+                       ossl_recv
+                       ssl_cf_recv
+                       Curl_easy_recv
+                       chunk_slurpn (inlined)
+                       Curl_bufq_sipn (inlined)
+                       bufq_slurpn (inlined)
+                       Curl_bufq_slurp
+                       curl_ws_recv
+                       sp_ws_io_advance (inlined)
+                       sp_ws_io_step
+                       sp_bend_ws_more
+                       sp_bend_ws_start
+                       sp_bend_ws_receive
+                       io_exec
+                       io_step (inlined)
+                       io_loop
+                       main
+                       0x79938da2a600
+                       __libc_start_main
+                       _start
+
+     1.39%  bench-ws-stream               [.] WL_FID_ENTER                                                                                                                                                                                                                                                                                                                            -      -            
+            |
+            ---WL_FID_ENTER
+               work_loop (inlined)
+               corpus_eval
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] WL_FID_SCRAPANIUM_WS_RECEIVE                                                                                                                                                                                                                                                                                                            -      -            
+            |
+            ---WL_FID_SCRAPANIUM_WS_RECEIVE
+               work_loop (inlined)
+               corpus_eval
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] ___interceptor_recv                                                                                                                                                                                                                                                                                                                     -      -            
+            |
+            ---__interceptor_recv (inlined)
+               cf_socket_recv
+               ossl_bio_cf_in_read
+               BIO_read
+               tls_read_buffer_extend_to (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __asan::Allocator::GetAsanChunkByAddrFastLocked(unsigned long)                                                                                                                                                                                                                                                                          -      -            
+            |
+            ---__asan::Allocator::GetAsanChunkByAddrFastLocked(unsigned long)
+               __lsan::GetUserBegin(unsigned long)
+               __lsan::ResetTagsCb(unsigned long, void*)
+               __lsan::ForEachChunk(void (*)(unsigned long, void*), void*)
+               __lsan::CheckForLeaksCallback(__sanitizer::SuspendedThreadsList const&, void*)
+               __sanitizer::TracerThread(void*)
+               __sanitizer::internal_clone(int (*)(void*), void*, int, void*, int*, void*, int*)
+
+     1.39%  bench-ws-stream               [.] __asan::QuarantineCallback::Recycle(__asan::AsanChunk*) const                                                                                                                                                                                                                                                                           -      -            
+            |
+            ---__asan::QuarantineCallback::Recycle(__asan::AsanChunk*) const
+               __sanitizer::Quarantine<__asan::QuarantineCallback, __asan::AsanChunk>::DoRecycle(__sanitizer::QuarantineCache<__asan::QuarantineCallback>*, __asan::QuarantineCallback)
+               __sanitizer::Quarantine<__asan::QuarantineCallback, __asan::AsanChunk>::Recycle(unsigned long, __asan::QuarantineCallback)
+               __sanitizer::Quarantine<__asan::QuarantineCallback, __asan::AsanChunk>::Put(__sanitizer::QuarantineCache<__asan::QuarantineCallback>*, __asan::QuarantineCallback, __asan::AsanChunk*, unsigned long)
+               ___interceptor_free
+               sp_bend_bytes_free (inlined)
+               sp_bend_bytes_discard
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __asan::asan_calloc(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*)                                                                                                                                                                                                                                                     -      -            
+            |
+            ---__asan::asan_calloc(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*)
+               ___interceptor_calloc
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __interceptor_trampoline_free                                                                                                                                                                                                                                                                                                           -      -            
+            |
+            ---free (inlined)
+               Clear (inlined)
+               DiscardConsumed (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __lsan::LsanMetadata::allocated() const                                                                                                                                                                                                                                                                                                 -      -            
+            |
+            ---__lsan::LsanMetadata::allocated() const
+               __lsan::CollectLeaksCb(unsigned long, void*)
+               __lsan::ForEachChunk(void (*)(unsigned long, void*), void*)
+               __lsan::CheckForLeaksCallback(__sanitizer::SuspendedThreadsList const&, void*)
+               __sanitizer::TracerThread(void*)
+               __sanitizer::internal_clone(int (*)(void*), void*, int, void*, int*, void*, int*)
+
+     1.39%  bench-ws-stream               [.] __sanitizer::BufferedStackTrace::UnwindImpl(unsigned long, unsigned long, void*, bool, unsigned int)                                                                                                                                                                                                                                    -      -            
+            |
+            ---__sanitizer::BufferedStackTrace::UnwindImpl(unsigned long, unsigned long, void*, bool, unsigned int)
+               ___interceptor_free
+               err_clear (inlined)
+               ERR_clear_error
+               ssl_reset_error_state (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __sanitizer::LargeMmapAllocator<__asan::AsanMapUnmapCallback, __sanitizer::LargeMmapAllocatorPtrArrayDynamic, __sanitizer::LocalAddressSpaceView>::EnsureSortedChunks()                                                                                                                                                                 -      -            
+            |
+            ---__sanitizer::LargeMmapAllocator<__asan::AsanMapUnmapCallback, __sanitizer::LargeMmapAllocatorPtrArrayDynamic, __sanitizer::LocalAddressSpaceView>::EnsureSortedChunks()
+               __sanitizer::LargeMmapAllocator<__asan::AsanMapUnmapCallback, __sanitizer::LargeMmapAllocatorPtrArrayDynamic, __sanitizer::LocalAddressSpaceView>::GetBlockBeginFastLocked(void const*)
+               __asan::Allocator::GetAsanChunkByAddrFastLocked(unsigned long)
+               __lsan::PointsIntoChunk(void*)
+               void __lsan::ScanForPointers<__lsan::(anonymous namespace)::DirectMemoryAccessor>(unsigned long, unsigned long, __sanitizer::InternalMmapVector<unsigned long>*, char const*, __lsan::ChunkTag, __lsan::(anonymous namespace)::DirectMemoryAccessor&)
+               __lsan::ScanGlobalRange(unsigned long, unsigned long, __sanitizer::InternalMmapVector<unsigned long>*)
+               __lsan::ProcessGlobalRegionsCallback(dl_phdr_info*, unsigned long, void*)
+               dl_iterate_phdr
+               __lsan::CheckForLeaksCallback(__sanitizer::SuspendedThreadsList const&, void*)
+               __sanitizer::TracerThread(void*)
+               __sanitizer::internal_clone(int (*)(void*), void*, int, void*, int*, void*, int*)
+
+     1.39%  bench-ws-stream               [.] __sanitizer::StackDepotBase<__sanitizer::StackDepotNode, 1, 20>::Put(__sanitizer::StackTrace, bool*)                                                                                                                                                                                                                                    -      -            
+            |
+            ---__sanitizer::StackDepotBase<__sanitizer::StackDepotNode, 1, 20>::Put(__sanitizer::StackTrace, bool*)
+               __asan::Allocator::Allocate(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType, bool)
+               __asan::asan_calloc(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*)
+               ___interceptor_calloc
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] __sanitizer::mem_is_zero(char const*, unsigned long)                                                                                                                                                                                                                                                                                    -      -            
+            |
+            ---__sanitizer::mem_is_zero(char const*, unsigned long)
+               __asan_region_is_poisoned
+               MemcmpInterceptorCommon(void*, int (*)(void const*, void const*, unsigned long), void const*, void const*, unsigned long)
+               ___interceptor_bcmp
+               sp_bend_bytes_equal
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] sp_bend_bytes_equal                                                                                                                                                                                                                                                                                                                     -      -            
+            |
+            ---sp_bend_bytes (inlined)
+               sp_bend_bytes_equal
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] sp_bend_handle_new                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---sp_bend_handle_new
+               sp_bend_bytes_term (inlined)
+               sp_bend_bytes_equal
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  bench-ws-stream               [.] sp_bend_ws_more                                                                                                                                                                                                                                                                                                                         -      -            
+            |
+            ---sp_bend_ws_ready (inlined)
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libc.so.6                     [.] 0x00000000000ac802                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---0x79938daac802
+               0x79938daa039b
+               recv
+               __interceptor_recv (inlined)
+               cf_socket_recv
+               ossl_bio_cf_in_read
+               BIO_read
+               tls_read_buffer_extend_to (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libc.so.6                     [.] 0x0000000000197425                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---0x79938db97425
+               MemcmpInterceptorCommon(void*, int (*)(void const*, void const*, unsigned long), void const*, void const*, unsigned long)
+               ___interceptor_bcmp
+               sp_bend_bytes_equal
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libc.so.6                     [.] 0x0000000000198489                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---0x79938db98489
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] Curl_bufq_slurp                                                                                                                                                                                                                                                                                                                         -      -            
+            |
+            ---bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] Curl_conn_meta_get                                                                                                                                                                                                                                                                                                                      -      -            
+            |
+            ---Curl_conn_meta_get
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] EVP_AEAD_CTX_open                                                                                                                                                                                                                                                                                                                       -      -            
+            |
+            ---EVP_AEAD_CTX_open
+               Open (inlined)
+               tls_open_record (inlined)
+               tls_open_app_data (inlined)
+               ssl_open_app_data (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] aead_aes_gcm_openv_detached_impl((anonymous namespace)::aead_aes_gcm_ctx const*, bssl::Span<crypto_iovec_st const, 18446744073709551615ul>, bssl::Span<unsigned char const, 18446744073709551615ul>, bssl::Span<unsigned char const, 18446744073709551615ul>, bssl::Span<crypto_ivec_st const, 18446744073709551615ul>, unsigned long)  -      -            
+            |
+            ---aead_aes_gcm_openv_detached_impl (inlined)
+               EVP_AEAD_CTX_openv_detached
+               EVP_AEAD_CTX_open
+               Open (inlined)
+               tls_open_record (inlined)
+               tls_open_app_data (inlined)
+               ssl_open_app_data (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] bssl::SSLBuffer::EnsureCap(unsigned long, unsigned long)                                                                                                                                                                                                                                                                                -      -            
+            |
+            ---EnsureCap (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] bssl::ssl_read_buffer_extend_to(bssl::SSLImpl*, unsigned long)                                                                                                                                                                                                                                                                          -      -            
+            |
+            ---ssl_read_buffer_extend_to (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] prune_head                                                                                                                                                                                                                                                                                                                              -      -            
+            |
+            ---prune_head
+               ws_dec_read_head (inlined)
+               ws_dec_pass
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+     1.39%  libcurl-impersonate.so.4.8.0  [.] ssl_read_impl(bssl::SSLImpl*)                                                                                                                                                                                                                                                                                                           -      -            
+            |
+            ---data (inlined)
+               span (inlined)
+               ssl_read_impl (inlined)
+               SSL_peek (inlined)
+               SSL_read
+               ossl_recv
+               ssl_cf_recv
+               Curl_easy_recv
+               chunk_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               bufq_slurpn (inlined)
+               Curl_bufq_slurp
+               curl_ws_recv
+               sp_ws_io_advance (inlined)
+               sp_ws_io_step
+               sp_bend_ws_more
+               sp_bend_ws_start
+               sp_bend_ws_receive
+               io_exec
+               io_step (inlined)
+               io_loop
+               main
+               0x79938da2a600
+               __libc_start_main
+               _start
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

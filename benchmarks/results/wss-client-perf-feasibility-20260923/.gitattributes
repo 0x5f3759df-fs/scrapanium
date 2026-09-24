@@ -1,0 +1,7 @@
+perf.data -text
+perf.report.txt -text
+perf.script-ns.txt -text
+capture_attempt.py -text
+capture_failures.txt -text
+manifest.json -text
+README.md -text

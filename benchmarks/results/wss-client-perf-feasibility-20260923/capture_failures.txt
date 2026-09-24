@@ -1,0 +1,16 @@
+Retrospective session record reconstructed from the live harness exception and retained perf report; this is not a complete automatically captured attempt log. Only the raw profile and offline decoded output are preserved as files.
+
+Attempt 1 (setup failure, no profile): the client reached readiness, then the harness raised `AttributeError: module 'websocket_streaming' has no attribute 'mapped_backend'`. The sampling process had not started. The client was terminated during cleanup; this attempt contributes no measurement.
+
+Attempt 2 (one retained profile): after the import was corrected, perf attached to client PID 758 with `cpu-clock:u` disabled. The start command was enabled and acknowledged before sending the client's start byte. The client exited with status 0 and the harness parsed its two monotonic timing values, then the harness requested disable. Perf had already finalized as its target exited, so no disable acknowledgment was available. The harness raised `RuntimeError: perf exited before ack`. The perf stderr excerpt transcribed from that exception was:
+
+```text
+Events disabled
+Events enabled
+[ perf record: Woken up 8 times to write data ]
+[ perf record: Captured and wrote 1.227 MB /home/baidu/wss-perf-feasibility-20260923/wss-actual/run/perf.data (72 samples) ]
+```
+
+The raw `perf.data` remained intact and later decoded to 72 records with zero lost samples. Because the exception happened before the harness queried Go peer stats or wrote its final JSON, exact peer totals, client stdout timestamps, and a successful end-of-window disable acknowledgment are absent. The source client returned zero after its in-timing exact checks, but this feasibility record does not claim peer-counter verification.
+
+Offline decode only: `perf script --ns -G -F pid,tid,time,event,ip,sym,dso -i perf.data` and `perf report --stdio --no-children --sort=dso,symbol --percent-limit=0 -i perf.data`.
