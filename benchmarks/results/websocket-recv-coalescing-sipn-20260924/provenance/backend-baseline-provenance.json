@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "variant": "baseline-with-browser-controls-no-coalescing",
+  "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+  "build_command": "env -u LD_LIBRARY_PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ python3 scripts/build_backend.py --work build/wss-recv-coalescing/backend-work --prefix build/wss-recv-coalescing/backend-live --jobs 4",
+  "outer_commands": [
+    "cmake --build <backend-work>/build --parallel 1",
+    "cmake --install <backend-work>/build",
+    "cmake -P <backend-work>/build/CollectLicenses.cmake"
+  ],
+  "curl_build_command": "cmake --build <backend-work>/build/deps/build/curl --config Release --parallel 4 (invoked by outer ExternalProject build)",
+  "configure": [
+    "cmake",
+    "-S",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/source",
+    "-B",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build",
+    "-GNinja",
+    "-DCMAKE_INSTALL_PREFIX=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-live",
+    "-DCMAKE_INSTALL_LIBDIR=lib",
+    "-DCMAKE_C_COMPILER=/usr/bin/clang",
+    "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+    "-DSUBJOBS=4",
+    "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+    "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+    "-DUSE_LIBIDN2=ON"
+  ],
+  "curl_configure_cache_sha256": "6af7152d66b81edb2ddf079cfce59ebfb880f7da9a0013e0119f56db0e9e5a56",
+  "outer_cmake_cache_sha256": "a97f70c01262a75d3dfed24019b03d12189be61c614eebbcbffd3070de5a9a23",
+  "toolchain": {
+    "clang": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+  },
+  "source": {
+    "upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+    "lock_sha256": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+    "build_script_sha256": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed",
+    "cmake_isolation_patch_sha256": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+    "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+    "curl_archive": "build/wss-recv-coalescing/backend-work/build/curl-prefix/src/curl-8_22_0.tar.gz",
+    "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+    "curl_ws_source_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+    "curl_patch_applied_sha256": "f72995872a01402c21dbdba559cb41a35339163ac33ec63f8a9fe443cb421637",
+    "coalescing_patch_sha256": "47c2e108560c6ad35b77128ce49381e84b7e6ad70de0f6a144c98aef306b1973",
+    "coalescing_patch_applied": false
+  },
+  "curl_source_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl",
+  "curl_build_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl",
+  "curl_ws_compile_commands": [
+    "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_static.dir/ws.c.o -MF lib/CMakeFiles/libcurl_static.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_static.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c",
+    "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -Dlibcurl_shared_EXPORTS -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_shared.dir/ws.c.o -MF lib/CMakeFiles/libcurl_shared.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_shared.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c"
+  ],
+  "download_archives_sha256": {
+    "build/wss-recv-coalescing/backend-work/build/boringssl-prefix/src/156c7b75ae9b8c3b3f847acf264f17594c3859fb.zip": "450e169b284697c6eafe523cb7679f4221fbe1a0993f773a566c33b188762844",
+    "build/wss-recv-coalescing/backend-work/build/brotli-prefix/src/v1.2.0.tar.gz": "816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec",
+    "build/wss-recv-coalescing/backend-work/build/cares-prefix/src/c-ares-1.34.8.tar.gz": "c222b6d681096f9444d2c4863d2c1174019e27cacca0a4a5c114d36dd7d7bf78",
+    "build/wss-recv-coalescing/backend-work/build/curl-prefix/src/curl-8_22_0.tar.gz": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+    "build/wss-recv-coalescing/backend-work/build/nghttp2-prefix/src/nghttp2-1.63.0.tar.bz2": "607b174554d22a828bc532d1d734fe0f729b5d5ed207f2f12e96a62e83f29c55",
+    "build/wss-recv-coalescing/backend-work/build/nghttp3-prefix/src/nghttp3-1.15.0.tar.bz2": "c6c491a52804814098e446630e6efc459afc0d3da7952ffe6cbdc0b3f99b2b62",
+    "build/wss-recv-coalescing/backend-work/build/ngtcp2-prefix/src/ngtcp2-1.20.0.tar.bz2": "871ec97ad86803cf312901b0c393b0ee70163e25a87c9b2894d1234341ce4e97",
+    "build/wss-recv-coalescing/backend-work/build/zlib-prefix/src/zlib-1.3.1.tar.gz": "9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23",
+    "build/wss-recv-coalescing/backend-work/build/zstd-prefix/src/zstd-1.5.7.tar.gz": "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3"
+  },
+  "dependency_static_libraries_sha256": {
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcrypto.a": "df9fc1a26eeb7a94cbfca9cbc59f67eced313cf86347b0ef83288d9a1bc25820",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libidn2.a": "34a45534b9143e20113f3869bef052f05247241d875835b1e93f8833d0d62a6b",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp2.a": "0120a668f7fc162b7de3025d27dd4faf2023495c9a8cff04b26bb47f2b76b0ca",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp3.a": "b1a22e26d28e6d6453f925381221619b50d7c8a4558329f57740ee8dd68d1052",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2.a": "785e959ac435dd4bc95f3f33dee977e0c8eb4e36ce23a35bcb003d0ebf373a9c",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2_crypto_boringssl.a": "0fd0da8b69d8196206531ac22b4eb67f64375a9679cb102ef9fc9a560871231a",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libssl.a": "6e5a16117084ecd7ac6df348d8639ca3a55b812444b5e0a4f2babf3fb3103ebd",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+    "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+  },
+  "backend_prefix": "build/wss-recv-coalescing/backends/baseline",
+  "backend_library_sha256": "59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527",
+  "backend_version_output": "curl 8.22.0-IMPERSONATE (Linux) libcurl/8.22.0-IMPERSONATE BoringSSL zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 c-ares/1.34.8 libidn2/2.3.7 nghttp2/1.63.0 ngtcp2/1.20.0 nghttp3/1.15.0 curl-impersonate/2.2.3-scrapanium.1\nRelease-Date: 2026-09-24\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns mqtt mqtts pop3 pop3s rtsp smtp smtps telnet tftp ws wss\nFeatures: alt-svc AsynchDNS brotli ECH HSTS HTTP2 HTTP3 HTTPS-proxy HTTPSRR IDN IPv6 Largefile libz proxy-HTTP3 SSL SSLS-EXPORT threadsafe UnixSockets zstd",
+  "backend_manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+  "fresh_builder_manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+  "original_cache_stock_input_hashes_before_build": {
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/lib/libcurl-impersonate.so.4.8.0": "c09acf80854192341a3b46f8c25ea051a570ee47290a76f3cfe880fb316ff7ab",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/manifest.json": "3541aa493ffdb8227a4b23bf27d436ac06164b5fc13083ca302ac572f595c276",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/build/deps/src/curl/lib/ws.c": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/build/CMakeCache.txt": "3c423f1ab754bf25ac8f11a4a57ea20808f471dcfa79db227dd517f66be64479",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/CMakeLists.txt": "82de224c9af9d850c48d817087e70b40b8107c2d12a206039aa17609c6b4e416",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/patches/curl.patch": "5bb727591cc16c1977ff5fe26a5be8e1b42bca631cc2d19e67cd23ae04666f83",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/install/lib/libcurl-impersonate.so.4.8.0": "3e6f336dee15d05a32404a6d20f9e1241f5b007d5259c854373527b949dea12f",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e"
+  },
+  "original_cache_stock_input_hashes_after_baseline": {
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/lib/libcurl-impersonate.so.4.8.0": "c09acf80854192341a3b46f8c25ea051a570ee47290a76f3cfe880fb316ff7ab",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/manifest.json": "3541aa493ffdb8227a4b23bf27d436ac06164b5fc13083ca302ac572f595c276",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/build/deps/src/curl/lib/ws.c": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/build/CMakeCache.txt": "3c423f1ab754bf25ac8f11a4a57ea20808f471dcfa79db227dd517f66be64479",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/CMakeLists.txt": "82de224c9af9d850c48d817087e70b40b8107c2d12a206039aa17609c6b4e416",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/patches/curl.patch": "5bb727591cc16c1977ff5fe26a5be8e1b42bca631cc2d19e67cd23ae04666f83",
+    "/home/baidu/.cache/scrapanium-backend/2.2.3/install/lib/libcurl-impersonate.so.4.8.0": "3e6f336dee15d05a32404a6d20f9e1241f5b007d5259c854373527b949dea12f",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+    "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e"
+  }
+}

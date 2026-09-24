@@ -303,3 +303,8 @@ validation and peer timing measurements. The [WSS receive attribution diagnostic
 adds a labeled Go CPU profile and runtime trace for the 64 KiB workload. Both
 retain their correctness controls and limits separately from the throughput
 tables above.
+
+The separate [receive-coalescing experiment report](results/websocket-recv-coalescing-sipn-20260924/REPORT.md)
+shows fewer receive calls but fails both predeclared 64 KiB Bend throughput gates.
+The optional browser-controls candidate remains experimental. The report includes
+all six workloads, matched-client comparisons, and retained provenance.

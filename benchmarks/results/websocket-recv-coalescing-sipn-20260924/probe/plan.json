@@ -1,0 +1,88 @@
+{
+  "body_bytes": 65528,
+  "controls": "the preceding 32-row isolated stream smoke covered corrupt/swap negative controls for both clients and both backends; this count-only probe adds no new fault run",
+  "created_utc": "2026-09-24T05:05:35.645126+00:00",
+  "execution": "same sequence-tagged 1024-frame exact-check/release clients; TLS setup, corpus preparation, warmup and close outside client interval",
+  "kind": "diagnostic_only_curl_ws_recv_call_count",
+  "mode": "control; per-call clocks disabled, exact successful call/result/byte counters retained",
+  "payload_bytes_per_client": 67108864,
+  "planned_order": [
+    {
+      "backend": "baseline",
+      "batch": 1,
+      "client": "scrapanium-bend",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-01-baseline-scrapanium-bend-flush1"
+    },
+    {
+      "backend": "candidate",
+      "batch": 1,
+      "client": "scrapanium-bend",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-02-candidate-scrapanium-bend-flush1"
+    },
+    {
+      "backend": "baseline",
+      "batch": 1,
+      "client": "curl_cffi-matched",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-03-baseline-curl_cffi-matched-flush1"
+    },
+    {
+      "backend": "candidate",
+      "batch": 1,
+      "client": "curl_cffi-matched",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-04-candidate-curl_cffi-matched-flush1"
+    },
+    {
+      "backend": "candidate",
+      "batch": 64,
+      "client": "curl_cffi-matched",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-05-candidate-curl_cffi-matched-flush64"
+    },
+    {
+      "backend": "baseline",
+      "batch": 64,
+      "client": "curl_cffi-matched",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-06-baseline-curl_cffi-matched-flush64"
+    },
+    {
+      "backend": "candidate",
+      "batch": 64,
+      "client": "scrapanium-bend",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-07-candidate-scrapanium-bend-flush64"
+    },
+    {
+      "backend": "baseline",
+      "batch": 64,
+      "client": "scrapanium-bend",
+      "count": 1024,
+      "message_bytes": 65536,
+      "mode": "control",
+      "run_id": "recv-count-08-baseline-scrapanium-bend-flush64"
+    }
+  ],
+  "runs": 8,
+  "schedule": "fixed palindrome: baseline/candidate Bend, baseline/candidate curl_cffi at flush1, then reverse backend/client pairs at flush64",
+  "schema": 1,
+  "success_criteria": "eight successful rows, exact peer frames/bytes, exact successful curl_ws_recv bytes and internally consistent shim counters, expected mapped backend path/hash, stable TLS identity; call counts are reported without an adoption claim",
+  "timing_warning": "The preloaded shim and client interval clock affect timing. Elapsed values are contextual only and must not be compared with uninstrumented throughput samples."
+}

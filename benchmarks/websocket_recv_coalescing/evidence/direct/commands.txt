@@ -1,0 +1,42 @@
+Correctness-only evidence capture; no elapsed-time/performance collection.
+Repo: /mnt/c/Users/Baidu/Engrama/scrapanium
+Candidate ws.c SHA256: 9e67cfc98bd2e08de253fd9a09f57b06f1d6c5f5ab97780ac7e1da135946c058
+Candidate shared library SHA256: 242162132dde4cc83a9fb081bbaf2d9f4c12a15873bfa4b5c80f13f8c022e287
+Baseline shared library SHA256: 59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527
+
+Tool versions: gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0; Python 3.14.4.
+Compiler flags: gcc -std=c11 -O0 -g -Wall -Wextra -Werror
+
+Direct baseline build:
+gcc -std=c11 -O0 -g -Wall -Wextra -Werror -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/include /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv.c -L/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/lib -Wl,-rpath,/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/lib -lcurl-impersonate -o /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-baseline-final
+
+Direct candidate build:
+gcc -std=c11 -O0 -g -Wall -Wextra -Werror -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/include /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv.c -L/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/lib -Wl,-rpath,/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/lib -lcurl-impersonate -o /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-candidate-final
+
+Wrapped static candidate build:
+gcc -std=c11 -O0 -g -Wall -Wextra -Werror -Wno-unused-function -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/include /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/wrapped_recv_faults.c -Wl,--wrap=Curl_easy_recv -Wl,--wrap=Curl_conn_data_pending -Wl,--start-group /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/lib/libcurl-impersonate.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libssl.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcrypto.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libz.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libidn2.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcares.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlidec.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlicommon.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libzstd.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp2.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2_crypto_boringssl.a /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp3.a -Wl,--end-group -lstdc++ -ldl -lm -lpthread -o /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/wrapped_recv_faults-candidate-final
+
+Direct integration run:
+set -o pipefail
+python3 /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/run_direct_cases.py --binary /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-baseline-final --compare-binary /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-candidate-final --label baseline --compare-label candidate --cases all 2>&1 | tee /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/evidence-direct-20260923/direct-correctness.log
+
+Deterministic wrapped-reader integration run:
+set -o pipefail
+python3 /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/run_wrapped_faults.py --binary /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/wrapped_recv_faults-candidate-final 2>&1 | tee /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/evidence-direct-20260923/wrapped-faults.log
+
+Loader/interposition check:
+ldd /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-baseline-final
+ldd /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/direct_ws_recv-candidate-final
+nm /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/tests/wrapped_recv_faults-candidate-final
+
+Recorded hashes:
+direct_ws_recv.c 1bacab55ba4c028576ebec8cfab533a0870a27fc9daf7c2592ac8ebc4cc3e20e
+direct_recv_peer.py 91cc693137e7c3636674d7a02e03ea4d9b552370c4f5d4dbf82d01ec115c2e57
+run_direct_cases.py 5ff4eccfd1675eaa7daf4cad99ca96162a07a1d423747eeca5c89638ca5c7645
+wrapped_recv_faults.c f7a9c6e1b1dbe2caf07f8dc9fb09fa4d228201ad3a10b6d1ac6c7abb7943e164
+run_wrapped_faults.py ed013d58c8bf5242c113c9eef74bd6057042ee9411444e9563be47a82acb0626
+direct_ws_recv-baseline-final bad75a364b2a6ff88bf5179da5b0fb6210fe887f9441e08ff951bb685da4a51e
+direct_ws_recv-candidate-final 67fbf13028a89c633e1c32707334d1e50e4386e08a081312de9f167e8d412387
+wrapped_recv_faults-candidate-final 159266c519178e8b22376a8a8349be394a5b47573ec8859b45db80f91a1e8e36
+direct-correctness.log 1ef8f11c29219e3e2c16aa7f28ac1dd54dcee7524b583127c44a07e922dca4a0
+wrapped-faults.log b54ef3b83ce87e7b0480656afc8a7df45253972b037887aa9023d2110234a404

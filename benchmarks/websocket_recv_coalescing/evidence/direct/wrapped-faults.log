@@ -1,0 +1,15 @@
+[pending-false] exit=0
+wrapped-fault: mode=pending-false, pending=1/1, recv-wrap=1, real-data=1, again=0 eof=0 fatal=0; exact frame and close passed
+[pending-false] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[stale-again] exit=0
+wrapped-fault: mode=stale-again, pending=1/1, recv-wrap=2, real-data=1, again=1 eof=0 fatal=0; exact frame and close passed
+[stale-again] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[empty-eof] exit=0
+wrapped-fault: mode=empty-eof, pending=1/1, recv-wrap=3, real-data=1, again=0 eof=1 fatal=0; exact frame and close passed
+[empty-eof] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[fatal] exit=0
+wrapped-fault: mode=fatal, pending=1/1, recv-wrap=2, real-data=1, again=0 eof=0 fatal=1; exact frame and close passed
+[fatal] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[drain-bound] exit=0
+wrapped-drain: payload=128+1920, initial_wire=68, extra_reads=4, extra_calls=4, pending_checks=4, recv_calls_at_first_return=6; exact frame and close passed
+[drain-bound] peer_frames=[(8, b'\x03\xe8', True)]

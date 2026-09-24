@@ -1,0 +1,1638 @@
+{
+  "adoption_gate": {
+    "primary_64k_bend": "both 65,536-byte flush modes require median ratio >= 1.05 and paired 95% CI lower bound > 1.0",
+    "receive_call_counts": "candidate must reduce native curl_ws_recv calls in the separate fixed 8-run probe; not measured by this uninstrumented runner",
+    "small_and_medium_bend": "all four 30-byte/1,024-byte \u00d7 flush1/flush64 cells require paired 95% CI lower bound >= 0.95; curl_cffi cells are retained and reported separately",
+    "speed_ratio": "baseline elapsed / candidate elapsed; values greater than 1 favor candidate"
+  },
+  "attempts_completed": 32,
+  "attempts_failed": 0,
+  "backend_map_validation": "each ready client process must map exactly one backend; retained mapped path must be one of the libcurl SONAME aliases in the planned prefix/lib directory and its SHA256 must match the frozen library",
+  "backend_provenance": {
+    "baseline": {
+      "library_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/lib/libcurl-impersonate.so",
+      "library_sha256": "59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527",
+      "manifest_file_count": 76,
+      "manifest_matches_files": true,
+      "manifest_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/manifest.json",
+      "manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+      "prefix": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline",
+      "provenance": {
+        "backend_library_sha256": "59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527",
+        "backend_manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+        "backend_prefix": "build/wss-recv-coalescing/backends/baseline",
+        "backend_version_output": "curl 8.22.0-IMPERSONATE (Linux) libcurl/8.22.0-IMPERSONATE BoringSSL zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 c-ares/1.34.8 libidn2/2.3.7 nghttp2/1.63.0 ngtcp2/1.20.0 nghttp3/1.15.0 curl-impersonate/2.2.3-scrapanium.1\nRelease-Date: 2026-09-24\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns mqtt mqtts pop3 pop3s rtsp smtp smtps telnet tftp ws wss\nFeatures: alt-svc AsynchDNS brotli ECH HSTS HTTP2 HTTP3 HTTPS-proxy HTTPSRR IDN IPv6 Largefile libz proxy-HTTP3 SSL SSLS-EXPORT threadsafe UnixSockets zstd",
+        "build_command": "env -u LD_LIBRARY_PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ python3 scripts/build_backend.py --work build/wss-recv-coalescing/backend-work --prefix build/wss-recv-coalescing/backend-live --jobs 4",
+        "configure": [
+          "cmake",
+          "-S",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/source",
+          "-B",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build",
+          "-GNinja",
+          "-DCMAKE_INSTALL_PREFIX=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-live",
+          "-DCMAKE_INSTALL_LIBDIR=lib",
+          "-DCMAKE_C_COMPILER=/usr/bin/clang",
+          "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+          "-DSUBJOBS=4",
+          "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+          "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+          "-DUSE_LIBIDN2=ON"
+        ],
+        "curl_build_command": "cmake --build <backend-work>/build/deps/build/curl --config Release --parallel 4 (invoked by outer ExternalProject build)",
+        "curl_build_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl",
+        "curl_configure_cache_sha256": "6af7152d66b81edb2ddf079cfce59ebfb880f7da9a0013e0119f56db0e9e5a56",
+        "curl_source_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl",
+        "curl_ws_compile_commands": [
+          "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_static.dir/ws.c.o -MF lib/CMakeFiles/libcurl_static.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_static.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c",
+          "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -Dlibcurl_shared_EXPORTS -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_shared.dir/ws.c.o -MF lib/CMakeFiles/libcurl_shared.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_shared.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c"
+        ],
+        "dependency_static_libraries_sha256": {
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcrypto.a": "df9fc1a26eeb7a94cbfca9cbc59f67eced313cf86347b0ef83288d9a1bc25820",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libidn2.a": "34a45534b9143e20113f3869bef052f05247241d875835b1e93f8833d0d62a6b",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp2.a": "0120a668f7fc162b7de3025d27dd4faf2023495c9a8cff04b26bb47f2b76b0ca",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp3.a": "b1a22e26d28e6d6453f925381221619b50d7c8a4558329f57740ee8dd68d1052",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2.a": "785e959ac435dd4bc95f3f33dee977e0c8eb4e36ce23a35bcb003d0ebf373a9c",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2_crypto_boringssl.a": "0fd0da8b69d8196206531ac22b4eb67f64375a9679cb102ef9fc9a560871231a",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libssl.a": "6e5a16117084ecd7ac6df348d8639ca3a55b812444b5e0a4f2babf3fb3103ebd",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+        },
+        "download_archives_sha256": {
+          "build/wss-recv-coalescing/backend-work/build/boringssl-prefix/src/156c7b75ae9b8c3b3f847acf264f17594c3859fb.zip": "450e169b284697c6eafe523cb7679f4221fbe1a0993f773a566c33b188762844",
+          "build/wss-recv-coalescing/backend-work/build/brotli-prefix/src/v1.2.0.tar.gz": "816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec",
+          "build/wss-recv-coalescing/backend-work/build/cares-prefix/src/c-ares-1.34.8.tar.gz": "c222b6d681096f9444d2c4863d2c1174019e27cacca0a4a5c114d36dd7d7bf78",
+          "build/wss-recv-coalescing/backend-work/build/curl-prefix/src/curl-8_22_0.tar.gz": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+          "build/wss-recv-coalescing/backend-work/build/nghttp2-prefix/src/nghttp2-1.63.0.tar.bz2": "607b174554d22a828bc532d1d734fe0f729b5d5ed207f2f12e96a62e83f29c55",
+          "build/wss-recv-coalescing/backend-work/build/nghttp3-prefix/src/nghttp3-1.15.0.tar.bz2": "c6c491a52804814098e446630e6efc459afc0d3da7952ffe6cbdc0b3f99b2b62",
+          "build/wss-recv-coalescing/backend-work/build/ngtcp2-prefix/src/ngtcp2-1.20.0.tar.bz2": "871ec97ad86803cf312901b0c393b0ee70163e25a87c9b2894d1234341ce4e97",
+          "build/wss-recv-coalescing/backend-work/build/zlib-prefix/src/zlib-1.3.1.tar.gz": "9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23",
+          "build/wss-recv-coalescing/backend-work/build/zstd-prefix/src/zstd-1.5.7.tar.gz": "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3"
+        },
+        "fresh_builder_manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+        "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+        "original_cache_stock_input_hashes_after_baseline": {
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/build/CMakeCache.txt": "3c423f1ab754bf25ac8f11a4a57ea20808f471dcfa79db227dd517f66be64479",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/build/deps/src/curl/lib/ws.c": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/install/lib/libcurl-impersonate.so.4.8.0": "3e6f336dee15d05a32404a6d20f9e1241f5b007d5259c854373527b949dea12f",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/CMakeLists.txt": "82de224c9af9d850c48d817087e70b40b8107c2d12a206039aa17609c6b4e416",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/patches/curl.patch": "5bb727591cc16c1977ff5fe26a5be8e1b42bca631cc2d19e67cd23ae04666f83",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/lib/libcurl-impersonate.so.4.8.0": "c09acf80854192341a3b46f8c25ea051a570ee47290a76f3cfe880fb316ff7ab",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/manifest.json": "3541aa493ffdb8227a4b23bf27d436ac06164b5fc13083ca302ac572f595c276",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed"
+        },
+        "original_cache_stock_input_hashes_before_build": {
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/build/CMakeCache.txt": "3c423f1ab754bf25ac8f11a4a57ea20808f471dcfa79db227dd517f66be64479",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/build/deps/src/curl/lib/ws.c": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/install/lib/libcurl-impersonate.so.4.8.0": "3e6f336dee15d05a32404a6d20f9e1241f5b007d5259c854373527b949dea12f",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/CMakeLists.txt": "82de224c9af9d850c48d817087e70b40b8107c2d12a206039aa17609c6b4e416",
+          "/home/baidu/.cache/scrapanium-backend/2.2.3/upstream/patches/curl.patch": "5bb727591cc16c1977ff5fe26a5be8e1b42bca631cc2d19e67cd23ae04666f83",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/lib/libcurl-impersonate.so.4.8.0": "c09acf80854192341a3b46f8c25ea051a570ee47290a76f3cfe880fb316ff7ab",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl-browser/manifest.json": "3541aa493ffdb8227a4b23bf27d436ac06164b5fc13083ca302ac572f595c276",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/scripts/build_backend.py": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed"
+        },
+        "outer_cmake_cache_sha256": "a97f70c01262a75d3dfed24019b03d12189be61c614eebbcbffd3070de5a9a23",
+        "outer_commands": [
+          "cmake --build <backend-work>/build --parallel 1",
+          "cmake --install <backend-work>/build",
+          "cmake -P <backend-work>/build/CollectLicenses.cmake"
+        ],
+        "schema": 1,
+        "source": {
+          "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+          "build_script_sha256": "446d87fdef9bb9e495e5d03d2b8d803c140a5908c4e4a9f99c9f17e5184c0fed",
+          "cmake_isolation_patch_sha256": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+          "coalescing_patch_applied": false,
+          "coalescing_patch_sha256": "47c2e108560c6ad35b77128ce49381e84b7e6ad70de0f6a144c98aef306b1973",
+          "curl_archive": "build/wss-recv-coalescing/backend-work/build/curl-prefix/src/curl-8_22_0.tar.gz",
+          "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+          "curl_patch_applied_sha256": "f72995872a01402c21dbdba559cb41a35339163ac33ec63f8a9fe443cb421637",
+          "curl_ws_source_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+          "lock_sha256": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+          "upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243"
+        },
+        "toolchain": {
+          "clang": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+          "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+        },
+        "variant": "baseline-with-browser-controls-no-coalescing"
+      },
+      "provenance_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-baseline-provenance.json",
+      "provenance_sha256": "7d3d5dae0c19415f56959ca733ab2907fad20a8e8bcee215152fb867edde6d30"
+    },
+    "candidate": {
+      "library_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/lib/libcurl-impersonate.so",
+      "library_sha256": "242162132dde4cc83a9fb081bbaf2d9f4c12a15873bfa4b5c80f13f8c022e287",
+      "manifest_file_count": 78,
+      "manifest_matches_files": true,
+      "manifest_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/manifest.json",
+      "manifest_sha256": "26b3624fe864c2b608cdf29138902199212dc8739d2267331c65997940f1b930",
+      "prefix": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate",
+      "provenance": {
+        "added_drain_api": "Curl_bufq_sipn",
+        "added_reader_calls_max_per_curl_ws_recv": 4,
+        "added_reader_max_len_bytes": 131072,
+        "backend_patch_sha256": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+        "baseline_library_sha256": "59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527",
+        "baseline_provenance": "build/wss-recv-coalescing/backend-baseline-provenance.json",
+        "baseline_ws_sha256": "18ec1d509d44732fc94b26dbf8c5f39f3ddab32d0342df4fb20cc42e33726e80",
+        "browser_controls_patch_sha256": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+        "build_command": "cmake --build build/wss-recv-coalescing/backend-work/build/deps/build/curl --config Release --parallel 4 --verbose",
+        "build_log": "build/wss-recv-coalescing/candidate-curl-rebuild-sipn.log",
+        "build_log_sha256": "28f362fc8f47297eee3f067022b61da17ef77e2d51172625beb3f09136c7a427",
+        "build_relation": "Incremental curl rebuild in the exact fresh CMake project used for baseline. Initial Curl_bufq_slurp behavior remains unchanged; only added pending drains switch to at most four Curl_bufq_sipn reader calls. Other dependency libraries and both CMake caches remain unchanged.",
+        "candidate_library_sha256": "242162132dde4cc83a9fb081bbaf2d9f4c12a15873bfa4b5c80f13f8c022e287",
+        "candidate_ws_sha256": "9e67cfc98bd2e08de253fd9a09f57b06f1d6c5f5ab97780ac7e1da135946c058",
+        "combined_patch_sha256": "3dda0e771cb3965ee8ff5ad6cd874a16c61862bf537b6d1c1b643d8cf72a89c3",
+        "configuration": [
+          "cmake",
+          "-S",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/source",
+          "-B",
+          "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build",
+          "-GNinja",
+          "-DCMAKE_INSTALL_PREFIX=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-live",
+          "-DCMAKE_INSTALL_LIBDIR=lib",
+          "-DCMAKE_C_COMPILER=/usr/bin/clang",
+          "-DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+          "-DSUBJOBS=4",
+          "-DCURL_IMPERSONATE_VERSION=2.2.3-scrapanium.1",
+          "-DCURL_SUBPROJECT_FORCE_OPENSSL_PATHS=ON",
+          "-DUSE_LIBIDN2=ON"
+        ],
+        "configure_cache_sha256": {
+          "curl": "6af7152d66b81edb2ddf079cfce59ebfb880f7da9a0013e0119f56db0e9e5a56",
+          "outer": "a97f70c01262a75d3dfed24019b03d12189be61c614eebbcbffd3070de5a9a23"
+        },
+        "curl_archive_sha256": "222c6b5c1f368ac63aed59bce2774eb5def9e8e67e46e800be182e684d2845a3",
+        "dependency_static_libraries_sha256": {
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlicommon.a": "1b1cda931d123deb539bf093b97e63909b126941a70f9971e4c58041467dd452",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlidec.a": "367e876630eba092189a21f03f2996e7459284cd2a7e8f7ff49a26a39a9b2f28",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libbrotlienc.a": "1030bc122820b7eac4135a7543aa10f5c69249da8d6613e6e234743d82d734b7",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcares.a": "a9ac33b87ac8746e27b52cb637a435a275e2a66644eb82d8a53c2f590a134d4e",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libcrypto.a": "df9fc1a26eeb7a94cbfca9cbc59f67eced313cf86347b0ef83288d9a1bc25820",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libidn2.a": "34a45534b9143e20113f3869bef052f05247241d875835b1e93f8833d0d62a6b",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp2.a": "0120a668f7fc162b7de3025d27dd4faf2023495c9a8cff04b26bb47f2b76b0ca",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libnghttp3.a": "b1a22e26d28e6d6453f925381221619b50d7c8a4558329f57740ee8dd68d1052",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2.a": "785e959ac435dd4bc95f3f33dee977e0c8eb4e36ce23a35bcb003d0ebf373a9c",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libngtcp2_crypto_boringssl.a": "0fd0da8b69d8196206531ac22b4eb67f64375a9679cb102ef9fc9a560871231a",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libssl.a": "6e5a16117084ecd7ac6df348d8639ca3a55b812444b5e0a4f2babf3fb3103ebd",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libz.a": "9e51d0a165559e6c66915e07139e397b600ce2be4b0536282d467e265f3c4579",
+          "build/wss-recv-coalescing/backend-work/build/deps/install/lib/libzstd.a": "77f5bdcf8fdc343f126fca15727449cb9246bd7ecbc39e52e1a5434bbd26e4f0"
+        },
+        "initial_slurp_is_outside_added_call_bound": true,
+        "initial_slurp_unchanged": true,
+        "install_command": "cmake --install build/wss-recv-coalescing/backend-work/build",
+        "install_log": "build/wss-recv-coalescing/candidate-install-sipn.log",
+        "install_log_sha256": "3419ce7fde07f7d7e3f70b871f3916866dd8f555f41455b6ddee6a23d842d869",
+        "main_repo_head": "7b412fbaae907f4419b94085d0ae5bf81db94341",
+        "original_cached_and_stock_inputs_unchanged": true,
+        "original_input_hashes_sha256": "dd9f0b203d8b256628ee089b79716595cba54182bc5aca9ce493e4609d27322e",
+        "pending_predicate_is_hint_only": true,
+        "reproduction_note_path": "sources/COALESCING-REPRODUCTION.md",
+        "reproduction_note_sha256": "b13da4d1d6786e65c607512abcdbc1b8777efbd4f25792cff78d651e95a98d37",
+        "schema": 1,
+        "snapshot": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate",
+        "snapshot_file_count": 78,
+        "snapshot_manifest_matches_all_files": true,
+        "snapshot_manifest_sha256": "26b3624fe864c2b608cdf29138902199212dc8739d2267331c65997940f1b930",
+        "snapshot_symlink_count": 0,
+        "source_bundle_patch_path": "sources/backend/patches/curl-ws-recv-coalescing.patch",
+        "source_bundle_patch_sha256": "32a1dfc6d007e1b81234c3f92b7a8790bab292b569cd318dc7812d4487e9c87b",
+        "toolchain": {
+          "clang": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+          "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+        },
+        "upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+        "variant": "candidate-browser-controls-plus-bounded-ws-recv-coalescing",
+        "ws_c_compile_commands": [
+          "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_static.dir/ws.c.o -MF lib/CMakeFiles/libcurl_static.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_static.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c",
+          "/usr/bin/clang -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-09-24\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE -Dlibcurl_shared_EXPORTS -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/build/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/boringssl/include -I/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/install/include -O3 -DNDEBUG -fPIC -Werror-implicit-function-declaration -Wextra -Wall -Wpedantic -Wbad-function-cast -Wconversion -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Waddress -Wattributes -Wcast-align -Wcast-qual -Wdeclaration-after-statement -Wdiv-by-zero -Wempty-body -Wendif-labels -Wfloat-equal -Wformat-security -Wignored-qualifiers -Wmissing-field-initializers -Wmissing-noreturn -Wno-padded -Wno-sign-conversion -Wno-switch-default -Wno-switch-enum -Wno-system-headers -Wold-style-definition -Wredundant-decls -Wstrict-prototypes -Wtype-limits -Wunreachable-code -Wunused-parameter -Wvla -Wconditional-uninitialized -Wno-used-but-marked-unused -Wshift-sign-overflow -Wshorten-64-to-32 -Wformat=2 -Wlanguage-extension-token -Wno-covered-switch-default -Wno-disabled-macro-expansion -Wformat-non-iso -Wenum-conversion -Wmissing-variable-declarations -Wno-documentation-unknown-command -Wsometimes-uninitialized -Wdouble-promotion -Wheader-guard -Wpragmas -Wunused-const-variable -Wcomma -Wassign-enum -Wextra-semi-stmt -Wimplicit-fallthrough -Wxor-used-as-pow -Wcast-function-type -Wreserved-identifier -Wno-reserved-macro-identifier -Wno-unsafe-buffer-usage -Wcast-function-type-strict -Wformat-signedness -Warray-compare -Wc++-hidden-decl -Wimplicit-int-enum-cast -Wjump-misses-init -Wno-implicit-void-ptr-cast -Wtentative-definition-compat -Wc++-keyword -fvisibility=hidden -MD -MT lib/CMakeFiles/libcurl_shared.dir/ws.c.o -MF lib/CMakeFiles/libcurl_shared.dir/ws.c.o.d -o lib/CMakeFiles/libcurl_shared.dir/ws.c.o -c /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-work/build/deps/src/curl/lib/ws.c"
+        ]
+      },
+      "provenance_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backend-candidate-provenance.json",
+      "provenance_sha256": "f25f7dcdb351c5bd987e3189f074301683385138ee866014dd9c69d17d519fe7"
+    }
+  },
+  "backend_provenance_after": {
+    "baseline": {
+      "library_sha256": "59460540f8fd6eab8eff22244e071c3132d7073f5be5a6dd9702b7c991315527",
+      "manifest_sha256": "535f5c4ec0e5130494172fe7a8ad737d9a35106e874440c177bfc947c41d9e08",
+      "provenance_sha256": "7d3d5dae0c19415f56959ca733ab2907fad20a8e8bcee215152fb867edde6d30"
+    },
+    "candidate": {
+      "library_sha256": "242162132dde4cc83a9fb081bbaf2d9f4c12a15873bfa4b5c80f13f8c022e287",
+      "manifest_sha256": "26b3624fe864c2b608cdf29138902199212dc8739d2267331c65997940f1b930",
+      "provenance_sha256": "f25f7dcdb351c5bd987e3189f074301683385138ee866014dd9c69d17d519fe7"
+    }
+  },
+  "binary_sha256_after": {
+    "baseline-bend": "f3d1cfb295c3b0bfcf944f3ade08690c3de5b0b9350f9b60b56f0f8c7c98d0ba",
+    "baseline-bridge": "b2e6eed515d0fabad74ca7f3197ecb91ae6930d4a353ef38147ba7bfc09e1629",
+    "candidate-bend": "f60bd34b23dfcba759d856576f98eb71568e38bbb002f01230c4180ef56f1b09",
+    "candidate-bridge": "1091a4773286e7547ffb96334fba03a7bac6f1b4acd75b8e32b853f3455aa164",
+    "go_peer": "afd14fa369167ebb53598af27e0982d0f74bba339d17baa9dce5d2c34d8fb861"
+  },
+  "binary_sha256_before": {
+    "baseline-bend": "f3d1cfb295c3b0bfcf944f3ade08690c3de5b0b9350f9b60b56f0f8c7c98d0ba",
+    "baseline-bridge": "b2e6eed515d0fabad74ca7f3197ecb91ae6930d4a353ef38147ba7bfc09e1629",
+    "candidate-bend": "f60bd34b23dfcba759d856576f98eb71568e38bbb002f01230c4180ef56f1b09",
+    "candidate-bridge": "1091a4773286e7547ffb96334fba03a7bac6f1b4acd75b8e32b853f3455aa164",
+    "go_peer": "afd14fa369167ebb53598af27e0982d0f74bba339d17baa9dce5d2c34d8fb861"
+  },
+  "bootstrap_resamples": 10000,
+  "call_counts": "not measured here; this driver is uninstrumented",
+  "client_provenance": {
+    "baseline": {
+      "bridge_library": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/bridges/baseline/libscrapanium.so",
+      "bridge_library_sha256": "b2e6eed515d0fabad74ca7f3197ecb91ae6930d4a353ef38147ba7bfc09e1629",
+      "bridge_rpath_backend": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline/lib",
+      "native_websocket_sha256": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+      "root": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/baseline",
+      "stream_binary": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/baseline/build/websocket_stream",
+      "stream_binary_sha256": "f3d1cfb295c3b0bfcf944f3ade08690c3de5b0b9350f9b60b56f0f8c7c98d0ba",
+      "stream_build_command": "cd /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/baseline; env SCRAPANIUM_CURL_DIR=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/baseline BEND_SOURCE=/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend BUN=/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun CC=/usr/bin/clang python3 scripts/build.py benchmarks/websocket_stream.bend -o build/websocket_stream"
+    },
+    "candidate": {
+      "bridge_library": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/bridges/candidate/libscrapanium.so",
+      "bridge_library_sha256": "1091a4773286e7547ffb96334fba03a7bac6f1b4acd75b8e32b853f3455aa164",
+      "bridge_rpath_backend": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate/lib",
+      "native_websocket_sha256": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+      "root": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/candidate",
+      "stream_binary": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/candidate/build/websocket_stream",
+      "stream_binary_sha256": "f60bd34b23dfcba759d856576f98eb71568e38bbb002f01230c4180ef56f1b09",
+      "stream_build_command": "cd /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/client-roots/candidate; env SCRAPANIUM_CURL_DIR=/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/backends/candidate BEND_SOURCE=/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend BUN=/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun CC=/usr/bin/clang python3 scripts/build.py benchmarks/websocket_stream.bend -o build/websocket_stream"
+    }
+  },
+  "client_validation": "exact binary opcode, unique 8-digit sequence, full payload equality, order, and immediate release in both clients",
+  "created_utc": "2026-09-24T04:44:02.831677+00:00",
+  "environment": {
+    "LD_LIBRARY_PATH_set_per_condition": true,
+    "LD_PRELOAD_present": false,
+    "TLS": "WSS",
+    "profile": "chrome146",
+    "threads": 1
+  },
+  "execution_order_ids": [
+    "negative-swap-baseline-curl_cffi-matched",
+    "negative-swap-candidate-curl_cffi-matched",
+    "negative-corrupt-baseline-curl_cffi-matched",
+    "negative-swap-baseline-scrapanium-bend",
+    "negative-corrupt-candidate-scrapanium-bend",
+    "negative-swap-candidate-scrapanium-bend",
+    "negative-corrupt-candidate-curl_cffi-matched",
+    "negative-corrupt-baseline-scrapanium-bend",
+    "stream-65536b-flush64-r00-candidate-bend",
+    "stream-65536b-flush64-r00-candidate-curl-cffi",
+    "stream-65536b-flush64-r00-baseline-curl-cffi",
+    "stream-65536b-flush64-r00-baseline-bend",
+    "stream-30b-flush1-r00-candidate-curl-cffi",
+    "stream-30b-flush1-r00-baseline-bend",
+    "stream-30b-flush1-r00-candidate-bend",
+    "stream-30b-flush1-r00-baseline-curl-cffi",
+    "stream-65536b-flush1-r00-candidate-bend",
+    "stream-65536b-flush1-r00-candidate-curl-cffi",
+    "stream-65536b-flush1-r00-baseline-curl-cffi",
+    "stream-65536b-flush1-r00-baseline-bend",
+    "stream-1024b-flush1-r00-candidate-bend",
+    "stream-1024b-flush1-r00-candidate-curl-cffi",
+    "stream-1024b-flush1-r00-baseline-curl-cffi",
+    "stream-1024b-flush1-r00-baseline-bend",
+    "stream-1024b-flush64-r00-candidate-bend",
+    "stream-1024b-flush64-r00-candidate-curl-cffi",
+    "stream-1024b-flush64-r00-baseline-curl-cffi",
+    "stream-1024b-flush64-r00-baseline-bend",
+    "stream-30b-flush64-r00-candidate-curl-cffi",
+    "stream-30b-flush64-r00-baseline-bend",
+    "stream-30b-flush64-r00-candidate-bend",
+    "stream-30b-flush64-r00-baseline-curl-cffi"
+  ],
+  "finished_utc": "2026-09-24T04:44:30.580506+00:00",
+  "hashes_verified_after_run": true,
+  "matched_curl_cffi_binding": {
+    "baseline": {
+      "backend_context": "baseline",
+      "files": {
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    },
+    "candidate": {
+      "backend_context": "candidate",
+      "files": {
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    }
+  },
+  "matched_curl_cffi_binding_after": {
+    "baseline": {
+      "backend_context": "baseline",
+      "files": {
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    },
+    "candidate": {
+      "backend_context": "candidate",
+      "files": {
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "interpreter": "/usr/bin/python3.14",
+      "interpreter_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "package": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "version": "0.16.4b1"
+    }
+  },
+  "mode": "correctness-smoke-only",
+  "negative_controls": "corrupt and swapped sequence/payload inputs; all eight backend\u00d7client\u00d7fault cells execute before positives",
+  "negative_plan": [
+    {
+      "backend": "baseline",
+      "client": "curl_cffi-matched",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-baseline-curl_cffi-matched"
+    },
+    {
+      "backend": "candidate",
+      "client": "curl_cffi-matched",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-candidate-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "curl_cffi-matched",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-baseline-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "scrapanium-bend",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-baseline-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "scrapanium-bend",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-candidate-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "scrapanium-bend",
+      "fault": "swap",
+      "kind": "negative",
+      "run_id": "negative-swap-candidate-scrapanium-bend"
+    },
+    {
+      "backend": "candidate",
+      "client": "curl_cffi-matched",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-candidate-curl_cffi-matched"
+    },
+    {
+      "backend": "baseline",
+      "client": "scrapanium-bend",
+      "fault": "corrupt",
+      "kind": "negative",
+      "run_id": "negative-corrupt-baseline-scrapanium-bend"
+    }
+  ],
+  "peer_binary": {
+    "command": "go build -trimpath -o /mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/stream-smoke-sipn-final-20260924/websocket_stream_server /mnt/c/Users/Baidu/Engrama/scrapanium/benchmarks/websocket_stream_server.go",
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/build/wss-recv-coalescing/stream-smoke-sipn-final-20260924/websocket_stream_server",
+    "sha256": "afd14fa369167ebb53598af27e0982d0f74bba339d17baa9dce5d2c34d8fb861"
+  },
+  "peer_exit_code": 0,
+  "plan_counts": {
+    "adaptive_extension": false,
+    "adoption_gate": {
+      "primary_64k_bend": "both 65,536-byte flush modes require median ratio >= 1.05 and paired 95% CI lower bound > 1.0",
+      "receive_call_counts": "candidate must reduce native curl_ws_recv calls in the separate fixed 8-run probe; not measured by this uninstrumented runner",
+      "small_and_medium_bend": "all four 30-byte/1,024-byte \u00d7 flush1/flush64 cells require paired 95% CI lower bound >= 0.95; curl_cffi cells are retained and reported separately",
+      "speed_ratio": "baseline elapsed / candidate elapsed; values greater than 1 favor candidate"
+    },
+    "bootstrap_resamples": 10000,
+    "conditions": [
+      {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      }
+    ],
+    "negative_controls": 8,
+    "positive_measurements": 24,
+    "repeats_per_workload": 1,
+    "row_counts_by_workload": {
+      "stream-1024b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-1024b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-30b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1
+      },
+      "stream-30b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1
+      },
+      "stream-65536b-flush1": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "stream-65536b-flush64": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0
+      }
+    },
+    "schedule_description": "Smoke selects one seeded Williams row per workload. Full mode uses each of the four Williams rows five times per workload. Row order and workload order are generated from the fixed seed.",
+    "seed": 20260924,
+    "total_attempts": 32,
+    "williams_rows": [
+      [
+        "baseline-bend",
+        "baseline-curl-cffi",
+        "candidate-curl-cffi",
+        "candidate-bend"
+      ],
+      [
+        "baseline-curl-cffi",
+        "candidate-bend",
+        "baseline-bend",
+        "candidate-curl-cffi"
+      ],
+      [
+        "candidate-bend",
+        "candidate-curl-cffi",
+        "baseline-curl-cffi",
+        "baseline-bend"
+      ],
+      [
+        "candidate-curl-cffi",
+        "baseline-bend",
+        "candidate-bend",
+        "baseline-curl-cffi"
+      ]
+    ],
+    "workloads": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    ]
+  },
+  "positive_peer_validation": "one warmup and start, exact data frame/payload/frame-byte totals; no peer error",
+  "positive_plan": [
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-65536b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-candidate-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush1-r00-baseline-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-1024b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "curl_cffi-matched",
+        "id": "candidate-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-candidate-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "scrapanium-bend",
+        "id": "baseline-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-baseline-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "candidate",
+        "client": "scrapanium-bend",
+        "id": "candidate-bend"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-candidate-bend",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    },
+    {
+      "condition": {
+        "backend": "baseline",
+        "client": "curl_cffi-matched",
+        "id": "baseline-curl-cffi"
+      },
+      "kind": "positive",
+      "repeat": 0,
+      "run_id": "stream-30b-flush64-r00-baseline-curl-cffi",
+      "workload": {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      }
+    }
+  ],
+  "schema": 1,
+  "seed": 20260924,
+  "smoke_only": true,
+  "source_sha256_after": {
+    "client-roots/baseline/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/baseline/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/baseline/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/baseline/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/baseline/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/baseline/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/baseline/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/baseline/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/baseline/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/baseline/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/baseline/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/baseline/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/baseline/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/baseline/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/baseline/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "client-roots/baseline/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/baseline/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/baseline/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/baseline/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/baseline/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/baseline/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "client-roots/candidate/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/candidate/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/candidate/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/candidate/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/candidate/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/candidate/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/candidate/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/candidate/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/candidate/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/candidate/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/candidate/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/candidate/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/candidate/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/candidate/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/candidate/native/websocket.inc.c": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+    "client-roots/candidate/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/candidate/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/candidate/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/candidate/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/candidate/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/candidate/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "main/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "main/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "main/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "main/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "main/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "main/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "main/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "main/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "main/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "main/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "main/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "main/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "main/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "main/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "main/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "main/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "main/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "main/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "main/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "main/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "main/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "runner/build/wss-recv-coalescing/stream_four_condition.py": "0e13fef8779896d41f0249641a1cbfe1c2c7ce46952534fbd05a8d626fff9b6b"
+  },
+  "source_sha256_before": {
+    "client-roots/baseline/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/baseline/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/baseline/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/baseline/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/baseline/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/baseline/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/baseline/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/baseline/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/baseline/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/baseline/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/baseline/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/baseline/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/baseline/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/baseline/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/baseline/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "client-roots/baseline/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/baseline/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/baseline/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/baseline/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/baseline/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/baseline/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "client-roots/candidate/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "client-roots/candidate/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "client-roots/candidate/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "client-roots/candidate/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "client-roots/candidate/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "client-roots/candidate/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "client-roots/candidate/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "client-roots/candidate/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "client-roots/candidate/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "client-roots/candidate/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "client-roots/candidate/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "client-roots/candidate/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "client-roots/candidate/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "client-roots/candidate/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "client-roots/candidate/native/websocket.inc.c": "f051b39d89808f9db5a918471574db97a2e60dd4d601b256cc2714779e2de544",
+    "client-roots/candidate/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "client-roots/candidate/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "client-roots/candidate/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "client-roots/candidate/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "client-roots/candidate/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "client-roots/candidate/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "main/benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "main/benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "main/benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+    "main/benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+    "main/benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+    "main/benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+    "main/benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+    "main/dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "main/http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "main/native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "main/native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "main/native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "main/native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "main/native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "main/native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "main/native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "main/native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+    "main/scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "main/scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "main/tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "main/tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "runner/build/wss-recv-coalescing/stream_four_condition.py": "0e13fef8779896d41f0249641a1cbfe1c2c7ce46952534fbd05a8d626fff9b6b"
+  },
+  "status": "complete",
+  "summary": {
+    "workloads": {
+      "stream-1024b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.27199999999720603
+            },
+            "median_elapsed_ms": 0.27199999999720603,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.3997570000356063
+            },
+            "median_elapsed_ms": 0.3997570000356063,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.26300000003539026
+            },
+            "median_elapsed_ms": 0.26300000003539026,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.4151240000501275
+            },
+            "median_elapsed_ms": 0.4151240000501275,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.4696948530871787,
+            "samples": [
+              1.4696948530871787
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.5784182509287714,
+            "samples": [
+              1.5784182509287714
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.9629821450634857,
+            "samples": [
+              0.9629821450634857
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.0342205321695996,
+            "samples": [
+              1.0342205321695996
+            ]
+          }
+        }
+      },
+      "stream-1024b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.20899999991524965
+            },
+            "median_elapsed_ms": 0.20899999991524965,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.3857480000006035
+            },
+            "median_elapsed_ms": 0.3857480000006035,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.23899999994318932
+            },
+            "median_elapsed_ms": 0.23899999994318932,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.36713499994948506
+            },
+            "median_elapsed_ms": 0.36713499994948506,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.845684211277636,
+            "samples": [
+              1.845684211277636
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.5361297072667517,
+            "samples": [
+              1.5361297072667517
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.0506979722818022,
+            "samples": [
+              1.0506979722818022
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.8744769873009594,
+            "samples": [
+              0.8744769873009594
+            ]
+          }
+        }
+      },
+      "stream-30b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.25600000005215406
+            },
+            "median_elapsed_ms": 0.25600000005215406,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2916709999553859
+            },
+            "median_elapsed_ms": 0.2916709999553859,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.231000000028871
+            },
+            "median_elapsed_ms": 0.231000000028871,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2939569998998195
+            },
+            "median_elapsed_ms": 0.2939569998998195,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.1393398433436122,
+            "samples": [
+              1.1393398433436122
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.272541124948398,
+            "samples": [
+              1.272541124948398
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.992223352581457,
+            "samples": [
+              0.992223352581457
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.1082251083123744,
+            "samples": [
+              1.1082251083123744
+            ]
+          }
+        }
+      },
+      "stream-30b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.20199999993201345
+            },
+            "median_elapsed_ms": 0.20199999993201345,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.2386199999600649
+            },
+            "median_elapsed_ms": 0.2386199999600649,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.20900000003166497
+            },
+            "median_elapsed_ms": 0.20900000003166497,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.6536469999700785
+            },
+            "median_elapsed_ms": 0.6536469999700785,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.1812871289127551,
+            "samples": [
+              1.1812871289127551
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 3.1274976070384994,
+            "samples": [
+              3.1274976070384994
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.36505942805671565,
+            "samples": [
+              0.36505942805671565
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.9665071765617657,
+            "samples": [
+              0.9665071765617657
+            ]
+          }
+        }
+      },
+      "stream-65536b-flush1": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.162999999942258
+            },
+            "median_elapsed_ms": 1.162999999942258,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.286722999997437
+            },
+            "median_elapsed_ms": 1.286722999997437,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 0.9640000000363216
+            },
+            "median_elapsed_ms": 0.9640000000363216,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.1581830000504851
+            },
+            "median_elapsed_ms": 1.1581830000504851,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.1063826311791245,
+            "samples": [
+              1.1063826311791245
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.2014346473100075,
+            "samples": [
+              1.2014346473100075
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.1109841881130607,
+            "samples": [
+              1.1109841881130607
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 1.2064315351643553,
+            "samples": [
+              1.2064315351643553
+            ]
+          }
+        }
+      },
+      "stream-65536b-flush64": {
+        "conditions": {
+          "baseline-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 2.309999999939464
+            },
+            "median_elapsed_ms": 2.309999999939464,
+            "samples": 1
+          },
+          "baseline-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.1590859999414533
+            },
+            "median_elapsed_ms": 1.1590859999414533,
+            "samples": 1
+          },
+          "candidate-bend": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.1480000000447035
+            },
+            "median_elapsed_ms": 1.1480000000447035,
+            "samples": 1
+          },
+          "candidate-curl-cffi": {
+            "elapsed_ms_by_repeat": {
+              "0": 1.1857989999698475
+            },
+            "median_elapsed_ms": 1.1857989999698475,
+            "samples": 1
+          }
+        },
+        "matched_client_speed_ratios": {
+          "baseline": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 0.5017688311566356,
+            "samples": [
+              0.5017688311566356
+            ]
+          },
+          "candidate": {
+            "bootstrap_95_ci": null,
+            "definition": "curl_cffi elapsed / Bend elapsed; values > 1 favor Bend",
+            "median": 1.0329259581216657,
+            "samples": [
+              1.0329259581216657
+            ]
+          }
+        },
+        "paired_speed_ratios": {
+          "curl_cffi-matched": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 0.977472573320543,
+            "samples": [
+              0.977472573320543
+            ]
+          },
+          "scrapanium-bend": {
+            "bootstrap_95_ci": null,
+            "definition": "baseline elapsed / candidate elapsed; values > 1 favor candidate",
+            "inference": "correctness smoke; no performance inference",
+            "median": 2.0121951218201324,
+            "samples": [
+              2.0121951218201324
+            ]
+          }
+        }
+      }
+    }
+  },
+  "timing_method": "Reuses websocket_streaming.sample without modifying client code. Corpus creation, process startup, TLS upgrade, warmup, and close are outside the client interval; start signal and ordered exact opcode/sequence/full-byte checks with immediate expected/actual release are inside.",
+  "timings_are_performance_evidence": false,
+  "toolchain": {
+    "bend_source": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend",
+    "bend_source_dirty": "",
+    "bend_source_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "bun_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "clang_path": "/usr/lib/llvm-21/bin/clang",
+    "clang_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clang_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "clangxx_path": "/usr/lib/llvm-21/bin/clang",
+    "clangxx_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clangxx_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "cmake_version": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cpu_count": 12,
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "go_version": "go version go1.26.0 linux/amd64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]"
+  },
+  "toolchain_after": {
+    "bend_source": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend",
+    "bend_source_dirty": "",
+    "bend_source_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "bun_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "clang_path": "/usr/lib/llvm-21/bin/clang",
+    "clang_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clang_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "clangxx_path": "/usr/lib/llvm-21/bin/clang",
+    "clangxx_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "clangxx_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "cmake_version": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cpu_count": 12,
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "go_version": "go version go1.26.0 linux/amd64",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]"
+  },
+  "uncertainty": "paired repeat-level bootstrap 95% CI of median baseline_elapsed/candidate_elapsed ratios; raw rows retained"
+}

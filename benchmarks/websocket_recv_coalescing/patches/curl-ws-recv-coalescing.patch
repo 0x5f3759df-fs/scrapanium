@@ -1,0 +1,102 @@
+--- a/lib/ws.c
++++ b/lib/ws.c
+@@ -48,6 +48,7 @@
+ #include "curlx/base64.h"
+ #include "cf-recvbuf.h"
+ #include "connect.h"
++#include "cfilters.h"
+ #include "sendf.h"
+ #include "curl_trc.h"
+ #include "multiif.h"
+@@ -356,6 +357,7 @@
+   struct curl_ws_frame recvframe;  /* the current WS FRAME received */
+   struct ws_cntrl_frame pending; /* a control frame pending to be sent */
+   size_t sendbuf_payload; /* number of payload bytes in sendbuf */
++  CURLcode deferred_recv_error; /* surfaced after already-collected bytes */
+ };
+ 
+ #ifdef CURLVERBOSE
+@@ -1738,6 +1740,7 @@
+     Curl_bufq_reset(&ws->recvbuf);
+     ws_dec_reset(&ws->dec);
+     ws_enc_reset(&ws->enc);
++    ws->deferred_recv_error = CURLE_OK;
+   }
+   /* Verify the Sec-WebSocket-Accept response.
+ 
+@@ -1925,6 +1928,7 @@
+     struct connectdata *conn;
+     struct websocket *ws;
+     struct ws_collect ctx;
++    unsigned int pending_drains = 0;
+ 
+     if(buflen && !buffer) {
+       result = CURLE_BAD_FUNCTION_ARGUMENT;
+@@ -1961,15 +1965,44 @@
+     ctx.buflen = buflen;
+ 
+     while(1) {
++      /* A terminal read status after payload bytes is delivered on the next
++       * call, after any plaintext already buffered in recvbuf is decoded. */
++      if(Curl_bufq_is_empty(&ws->recvbuf) && ws->deferred_recv_error) {
++        if(ctx.written) {
++          result = CURLE_OK;
++          break;
++        }
++        result = ws->deferred_recv_error;
++        ws->deferred_recv_error = CURLE_OK;
++        goto out;
++      }
++
+       /* receive more when our buffer is empty */
+       if(Curl_bufq_is_empty(&ws->recvbuf)) {
+         size_t n;
+-        result = Curl_bufq_slurp(&ws->recvbuf, nw_in_recv, data, &n);
++        if(pending_drains)
++          result = Curl_bufq_sipn(&ws->recvbuf, WS_CHUNK_SIZE,
++                                  nw_in_recv, data, &n);
++        else
++          result = Curl_bufq_slurp(&ws->recvbuf, nw_in_recv, data, &n);
+-        if(result)
+-          goto out;
++        if(result) {
++          if(!ctx.written)
++            goto out;
++          if(result != CURLE_AGAIN)
++            ws->deferred_recv_error = result;
++          /* The caller already has payload bytes. Return them first; a stale
++           * pending hint or terminal read status must not discard them. */
++          result = CURLE_OK;
++          break;
++        }
+         else if(n == 0) {
+           /* connection closed */
+           infof(data, "[WS] connection expectedly closed?");
++          if(ctx.written) {
++            ws->deferred_recv_error = CURLE_GOT_NOTHING;
++            result = CURLE_OK;
++            break;
++          }
+           result = CURLE_GOT_NOTHING;
+           goto out;
+         }
+@@ -1983,6 +2012,19 @@
+         if(!ctx.written) {
+           ws_dec_info(&ws->dec, data, "need more input");
+           continue;  /* nothing written, try more input */
++        }
++        /* Continue only inside this incomplete frame, with caller room left,
++         * and when the connection filters report pending buffered input. This
++         * hint may be stale, so the following read remains nonblocking. */
++        if(ctx.bufidx < ctx.buflen &&
++           (ctx.frame_flags & (CURLWS_TEXT | CURLWS_BINARY)) &&
++           ws->dec.state == WS_DEC_PAYLOAD &&
++           ws->dec.payload_offset < ws->dec.payload_len &&
++           Curl_bufq_is_empty(&ws->recvbuf) && !ws->deferred_recv_error &&
++           pending_drains < 4 &&
++           Curl_conn_data_pending(data, FIRSTSOCKET)) {
++          ++pending_drains;
++          continue;
+         }
+         break;
+       }

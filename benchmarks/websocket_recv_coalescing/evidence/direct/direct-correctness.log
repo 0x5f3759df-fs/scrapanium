@@ -1,0 +1,52 @@
+[baseline/large] exit=0
+direct receive: capacities, metadata, canaries, empty frame, and frame boundary passed
+[baseline/large] peer_frames=[(2, b'next\x00\xff', True), (2, b'', True), (8, b'\x03\xe8', True)]
+[candidate/large] exit=0
+direct receive: capacities, metadata, canaries, empty frame, and frame boundary passed
+[candidate/large] peer_frames=[(2, b'next\x00\xff', True), (2, b'', True), (8, b'\x03\xe8', True)]
+[large] baseline/candidate peer observations match
+[baseline/fragmented] exit=0
+direct receive: fragmented data, split PING payloads, offsets, and PONG replies passed
+[baseline/fragmented] peer_frames=[(10, b'\x00\x00\xff', True), (10, b'\x01\x00\xff', True), (10, b'\x02\x00\xff', True), (10, b'\x03\x00\xff', True), (10, b'\x04\x00\xff', True), (10, b'\x05\x00\xff', True), (8, b'\x03\xe8', True)]
+[candidate/fragmented] exit=0
+direct receive: fragmented data, split PING payloads, offsets, and PONG replies passed
+[candidate/fragmented] peer_frames=[(10, b'\x00\x00\xff', True), (10, b'\x01\x00\xff', True), (10, b'\x02\x00\xff', True), (10, b'\x03\x00\xff', True), (10, b'\x04\x00\xff', True), (10, b'\x05\x00\xff', True), (8, b'\x03\xe8', True)]
+[fragmented] baseline/candidate peer observations match
+[baseline/queued] exit=0
+direct receive: two prequeued frames stay separate with spare caller capacity
+[baseline/queued] peer_frames=[(8, b'\x03\xe8', True)]
+[candidate/queued] exit=0
+direct receive: two prequeued frames stay separate with spare caller capacity
+[candidate/queued] peer_frames=[(8, b'\x03\xe8', True)]
+[queued] baseline/candidate peer observations match
+[baseline/autopong] exit=0
+direct receive: split-PING auto-PONG observation only (caller saw 6/10 PING bytes; no conformance claim)
+[baseline/autopong] peer_frames=[(10, b'ping', True), (8, b'\x03\xe8', True)]
+[baseline/autopong] observed auto-PONG payloads=['70696e67']
+[candidate/autopong] exit=0
+direct receive: split-PING auto-PONG observation only (caller saw 6/10 PING bytes; no conformance claim)
+[candidate/autopong] peer_frames=[(10, b'ping', True), (8, b'\x03\xe8', True)]
+[candidate/autopong] observed auto-PONG payloads=['70696e67']
+[autopong] baseline/candidate peer observations match
+[autopong] known split-PING auto-PONG limitation has parity only; this is not a protocol-conformance pass
+[baseline/stale] exit=0
+direct receive: stale pending→AGAIN returns partial bytes once and resumes cleanly
+[baseline/stale] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[candidate/stale] exit=0
+direct receive: stale pending→AGAIN returns partial bytes once and resumes cleanly
+[candidate/stale] peer_frames=[(9, b'resume', True), (8, b'\x03\xe8', True)]
+[stale] baseline/candidate peer observations match
+[baseline/truncated] exit=0
+direct receive: handler-close truncated frame delivered exact partial bytes; terminal=56 next=56
+[baseline/truncated] peer_frames=[]
+[candidate/truncated] exit=0
+direct receive: handler-close truncated frame delivered exact partial bytes; terminal=56 next=56
+[candidate/truncated] peer_frames=[]
+[truncated] baseline/candidate peer observations match
+[baseline/fatal] exit=0
+direct receive: handler-close truncated frame delivered exact partial bytes; terminal=56 next=56
+[baseline/fatal] peer_frames=[]
+[candidate/fatal] exit=0
+direct receive: handler-close truncated frame delivered exact partial bytes; terminal=56 next=56
+[candidate/fatal] peer_frames=[]
+[fatal] baseline/candidate peer observations match

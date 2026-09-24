@@ -1,0 +1,5 @@
+*.md text eol=lf
+*.py text eol=lf
+*.json -text
+*.jsonl -text
+audit-output.txt -text whitespace=cr-at-eol

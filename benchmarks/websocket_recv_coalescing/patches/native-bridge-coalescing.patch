@@ -1,0 +1,21 @@
+--- a/native/websocket.inc.c
++++ b/native/websocket.inc.c
+@@ -251,9 +251,15 @@
+     }
+     unsigned char scratch[16384]; size_t got = 0; const struct curl_ws_frame *meta = NULL;
+     sp_buffer *message = &io->message;
+-    int direct = message->cap - message->size >= sizeof scratch;
+-    unsigned char *chunk = direct ? message->data + message->size : scratch;
+-    CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, sizeof scratch, &got, &meta);
++    size_t available = message->cap - message->size;
++    int direct = available >= sizeof scratch;
++    size_t chunk_size = sizeof scratch;
++    unsigned char *chunk = scratch;
++    if (direct) {
++      chunk_size = available < 65536 ? available : 65536;
++      chunk = message->data + message->size;
++    }
++    CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, chunk_size, &got, &meta);
+     if (code == CURLE_AGAIN) { io->events = POLLIN; return SP_WS_PENDING; }
+     if (code || !meta) return sp_ws_io_end(io, code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT);
+     unsigned flags = meta->flags;

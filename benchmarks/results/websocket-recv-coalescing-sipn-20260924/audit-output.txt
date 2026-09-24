@@ -1,0 +1,18 @@
+AUDIT PASS: 488/488 retained rows; 8 controls first; 480 positives; 6 workloads × 20 repeats × 4 conditions.
+Each workload has five of every planned Williams order; client, peer, TLS, mapping and frozen-hash checks pass.
+Ratio definitions: baseline/candidate elapsed (>1 favors candidate); matched curl_cffi/Bend (>1 favors Bend).
+95% CIs are paired repeat-level median bootstraps, n=20, 10,000 resamples; seeds 20260924 (backend ratios) and 20260925 (matched clients).
+Workload | Bend ms B→C | Bend ratio [95% CI] | curl ms B→C | curl ratio [95% CI] | baseline curl/Bend [95% CI] | candidate curl/Bend [95% CI]
+stream-1024b-flush1 | 36.560→35.605 | 1.000 [0.988,1.046] | 52.352→51.680 | 1.020 [0.999,1.031] | 1.438 [1.403,1.504] | 1.445 [1.428,1.465]
+Small/medium Bend regression gate stream-1024b-flush1: True
+stream-1024b-flush64 | 16.915→16.689 | 1.014 [1.001,1.049] | 33.163→32.039 | 1.031 [1.009,1.055] | 1.930 [1.859,2.013] | 1.958 [1.911,2.022]
+Small/medium Bend regression gate stream-1024b-flush64: True
+stream-30b-flush1 | 114.625→114.290 | 1.000 [0.970,1.070] | 168.991→170.504 | 0.997 [0.980,1.018] | 1.482 [1.408,1.507] | 1.499 [1.407,1.529]
+Small/medium Bend regression gate stream-30b-flush1: True
+stream-30b-flush64 | 38.331→38.537 | 1.001 [0.975,1.020] | 92.489→92.993 | 0.984 [0.966,1.022] | 2.418 [2.337,2.446] | 2.466 [2.354,2.501]
+Small/medium Bend regression gate stream-30b-flush64: True
+stream-65536b-flush1 | 25.777→26.775 | 0.954 [0.893,1.017] | 32.186→27.014 | 1.175 [1.156,1.247] | 1.275 [1.209,1.309] | 1.010 [0.955,1.047]
+Primary 64KiB Bend gate stream-65536b-flush1: False
+stream-65536b-flush64 | 25.250→24.938 | 1.011 [0.969,1.052] | 31.362→26.328 | 1.213 [1.180,1.263] | 1.272 [1.170,1.345] | 1.035 [0.970,1.065]
+Primary 64KiB Bend gate stream-65536b-flush64: False
+raw_sha256 manifest=b5cd640a8122b4e6fa5196d8cc78be04f930fbe23eec085720cbdd1a8ae0851a samples=ae465c551d353a5d11aa6e201363a4dcc8dd0768443e9b2537266a82694a02c8

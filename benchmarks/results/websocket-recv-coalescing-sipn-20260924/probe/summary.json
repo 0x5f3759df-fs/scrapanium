@@ -1,0 +1,86 @@
+{
+  "backend_snapshots_unchanged": true,
+  "call_counts": [
+    {
+      "backend": "baseline",
+      "batch": 1,
+      "client": "scrapanium-bend",
+      "curl_ws_recv_calls": 5130,
+      "curl_ws_recv_curle_again": 6,
+      "curl_ws_recv_ok": 5124,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "candidate",
+      "batch": 1,
+      "client": "scrapanium-bend",
+      "curl_ws_recv_calls": 2166,
+      "curl_ws_recv_curle_again": 75,
+      "curl_ws_recv_ok": 2091,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "baseline",
+      "batch": 1,
+      "client": "curl_cffi-matched",
+      "curl_ws_recv_calls": 5188,
+      "curl_ws_recv_curle_again": 64,
+      "curl_ws_recv_ok": 5124,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "candidate",
+      "batch": 1,
+      "client": "curl_cffi-matched",
+      "curl_ws_recv_calls": 1031,
+      "curl_ws_recv_curle_again": 3,
+      "curl_ws_recv_ok": 1028,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "candidate",
+      "batch": 64,
+      "client": "curl_cffi-matched",
+      "curl_ws_recv_calls": 1027,
+      "curl_ws_recv_curle_again": 1,
+      "curl_ws_recv_ok": 1026,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "baseline",
+      "batch": 64,
+      "client": "curl_cffi-matched",
+      "curl_ws_recv_calls": 5163,
+      "curl_ws_recv_curle_again": 39,
+      "curl_ws_recv_ok": 5124,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "candidate",
+      "batch": 64,
+      "client": "scrapanium-bend",
+      "curl_ws_recv_calls": 2116,
+      "curl_ws_recv_curle_again": 30,
+      "curl_ws_recv_ok": 2086,
+      "curl_ws_recv_successful_bytes": 67108864
+    },
+    {
+      "backend": "baseline",
+      "batch": 64,
+      "client": "scrapanium-bend",
+      "curl_ws_recv_calls": 5128,
+      "curl_ws_recv_curle_again": 4,
+      "curl_ws_recv_ok": 5124,
+      "curl_ws_recv_successful_bytes": 67108864
+    }
+  ],
+  "client_and_helper_binary_hashes_unchanged": true,
+  "completed_rows": 8,
+  "interpretation": "Exact call counts only. Timing fields are interposed diagnostic context and are not throughput evidence.",
+  "source_sha256_unchanged": true,
+  "status": "complete",
+  "tls_identity": [
+    772,
+    4865
+  ]
+}

@@ -1,0 +1,2 @@
+# Retain captured source, patch, log, and JSONL bytes exactly as hashed.
+* -text
