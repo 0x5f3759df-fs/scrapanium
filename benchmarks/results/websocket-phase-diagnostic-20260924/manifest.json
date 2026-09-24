@@ -1,0 +1,1416 @@
+{
+  "schema": 1,
+  "status": "complete",
+  "created_utc": "2026-09-24T01:32:34.883171+00:00",
+  "diagnostic_kind": "performance_phase_diagnostic",
+  "smoke_only": false,
+  "repeat_count": 12,
+  "seed": 20260923,
+  "count_per_workload": 1024,
+  "message_bytes": 65536,
+  "profile": {
+    "bend": "chrome146",
+    "curl_cffi": "chrome146"
+  },
+  "conditions": [
+    "scrapanium-bend/control",
+    "scrapanium-bend/phase",
+    "curl_cffi-matched/control",
+    "curl_cffi-matched/phase"
+  ],
+  "timing_definitions": {
+    "total_elapsed_ns": "client monotonic interval starts immediately before sending the start control and ends after the final message check and release; setup, corpus preparation, TLS upgrade, warmup, and close are outside",
+    "receive_assembly_ns": "sum of intervals around each WebSocket receive API call; Bend includes result unwrapping, and both include blocking, TLS/socket work, parser/reassembly, and any library assembly/copy",
+    "validation_release_ns": "sum of opcode validation, ordered expected-byte equality over the full message, and immediate release of actual and expected buffers; the 8-byte decimal sequence prefix is part of exact equality",
+    "residual_ns": "total minus receive/assembly and validation/release; includes start-control send, loop/control work, and gaps between phase samples; not pure overhead or network time",
+    "control_mode": "same client validation/release code and common total timer, but no per-message phase clock calls",
+    "observer_effect": "paired phase/control total differences estimate the additional per-message phase clock calls within this diagnostic client skeleton, not against the historical client",
+    "peer_send_interval": "peer monotonic interval starts after decoding the start control and ends after the final TLS plaintext Write; client total includes sending the start control, so these intervals are not aligned or additive",
+    "peer_tls_write_wall": "sum of wall intervals around TLS Conn.Write calls; includes TLS work, blocking, and scheduling, and does not measure wire bytes",
+    "peer_process_cpu": "whole peer-process user/system CPU deltas sampled around the peer send interval; not thread-only CPU",
+    "peer_observer_effect": "peer timing instrumentation is held constant in all four client conditions; its observer effect is not separately isolated"
+  },
+  "corpus": {
+    "messages": "ordered binary messages of exactly 65,536 bytes",
+    "sequence": "zero-padded 8-digit decimal index at bytes 0..7",
+    "body": "remaining bytes use (index * 31) mod 128",
+    "flush_batches": [
+      1,
+      64
+    ],
+    "warmup": "one binary warmup echo, exact byte and opcode checked before total timer",
+    "body_sha256": "ba375692b65c6968b2730fe1fdff7b794b0110536c1c650b470a7a0709e189e4"
+  },
+  "negative_controls": "corrupt final byte in first payload and swap sequence messages 1 and 2; both clients must reject for both flush batches",
+  "execution_order": [
+    "negative-1-scrapanium-bend-control-corrupt-flush1",
+    "negative-2-scrapanium-bend-control-swap-flush1",
+    "negative-3-scrapanium-bend-phase-corrupt-flush1",
+    "negative-4-scrapanium-bend-phase-swap-flush1",
+    "negative-5-curl_cffi-matched-control-corrupt-flush1",
+    "negative-6-curl_cffi-matched-control-swap-flush1",
+    "negative-7-curl_cffi-matched-phase-corrupt-flush1",
+    "negative-8-curl_cffi-matched-phase-swap-flush1",
+    "negative-9-scrapanium-bend-control-corrupt-flush64",
+    "negative-10-scrapanium-bend-control-swap-flush64",
+    "negative-11-scrapanium-bend-phase-corrupt-flush64",
+    "negative-12-scrapanium-bend-phase-swap-flush64",
+    "negative-13-curl_cffi-matched-control-corrupt-flush64",
+    "negative-14-curl_cffi-matched-control-swap-flush64",
+    "negative-15-curl_cffi-matched-phase-corrupt-flush64",
+    "negative-16-curl_cffi-matched-phase-swap-flush64",
+    "websocket-phase-diagnostic-20260924-flush1-r1-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r1-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r1-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r1-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r2-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r2-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r2-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r2-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r3-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r3-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r3-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r3-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r4-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r4-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r4-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r4-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r5-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r5-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r5-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r5-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r6-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r6-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r6-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r6-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r7-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r7-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r7-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r7-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r8-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r8-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r8-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r8-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r9-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r9-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r9-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r9-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r10-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r10-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r10-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r10-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r11-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r11-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r11-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r11-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r12-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush1-r12-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush1-r12-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush1-r12-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r1-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r1-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r1-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r1-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r2-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r2-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r2-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r2-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r3-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r3-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r3-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r3-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r4-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r4-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r4-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r4-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r5-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r5-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r5-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r5-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r6-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r6-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r6-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r6-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r7-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r7-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r7-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r7-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r8-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r8-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r8-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r8-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r9-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r9-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r9-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r9-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r10-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r10-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r10-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r10-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r11-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r11-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r11-scrapanium-bend-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r11-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r12-curl_cffi-matched-phase",
+    "websocket-phase-diagnostic-20260924-flush64-r12-scrapanium-bend-control",
+    "websocket-phase-diagnostic-20260924-flush64-r12-curl_cffi-matched-control",
+    "websocket-phase-diagnostic-20260924-flush64-r12-scrapanium-bend-phase"
+  ],
+  "source_sha256": {
+    "scrapanium.bend": "01462cf0f90da51fbdaf874a5770c633bdde4d7a1cc84a0a856e22d174501c02",
+    "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+    "dependencies.json": "071704e1a10f2d1b4cc7d9afdaeb4f8ecf24ba6a3d7193959dc7fe2b3a14d747",
+    "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+    "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+    "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+    "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+    "benchmarks/websocket_phase_diagnostic.py": "bb5d6649d8d33b2cb75ba9869cd45b5aa6af65378c89b5594aa740b951e60f0c",
+    "benchmarks/websocket_phase_diagnostic.bend": "2c20a1cf50b823412e7722910ef0afa775d0e8dada7d573f21b724a14921321a",
+    "benchmarks/websocket_phase_diagnostic_python.py": "cce95e7d34d413bf9e44d7e7a3e8eda7ab135146e056438a8571ef5d960c3630",
+    "benchmarks/websocket_phase_clock.c": "f3abe6a54505005753e59c918320c72adf0bfed779f788b472b4dcb655446219",
+    "benchmarks/websocket_phase_server.go": "6dde9be2fa4a32c6fc12890fc713771f2034181d939044b567a894bf699fb068",
+    "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+    "native/bend_websocket.inc.c": "fedce531b5dd5ac60f9d76d80c577bfd48f49d11422609e52f3e21b6c6e3091a",
+    "native/profiles.inc.c": "2fac0fd92ec62c6d65e5e9dad782344e36f0011272d4d1a3a2f5106ca55514c1",
+    "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+    "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+    "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+    "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+    "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a"
+  },
+  "binary_sha256": {
+    "bend": "62e729121bcc1cbe6dad9098eef564c65be538835c21a2637051479b2eeaf697",
+    "phase_peer": "0124894516b58ee0308cc8f2b1f572b98388112d19a40995ff0ee80224f5026c"
+  },
+  "samples_file": "samples.jsonl",
+  "sample_count": 112,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "cpu_count": 12,
+  "cpu_model": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "compiler": {
+    "command": [
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend/bend2/main.ts"
+    ],
+    "bun_version": "1.3.11",
+    "bun_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "compiler_script": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/bend/bend2/main.ts",
+    "compiler_script_sha256": "16672e44cc43891dc2fc76e0f72fcd53b90584fc6f4a6b423ec25067d4f6d264",
+    "compiler_git_revision": "b2791abbfaba463ed67e81ca904523e31546682b",
+    "compiler_tracked_status": "clean"
+  },
+  "cc_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+  "go_version": "go version go1.26.0 linux/amd64",
+  "dependencies": {
+    "bend": {
+      "repository": "https://github.com/bendlang/bend.git",
+      "commit": "b2791abbfaba463ed67e81ca904523e31546682b",
+      "version": "2.0.17"
+    },
+    "curl_impersonate": {
+      "version": "2.2.3",
+      "url": "https://github.com/lexiforest/curl-impersonate/releases/download/v2.2.3/libcurl-impersonate-v2.2.3.x86_64-linux-gnu.tar.gz",
+      "sha256": "d5eb746c109be4d945cc5fcbe8a5c4940471041be4901439d50111cc3c83359d"
+    },
+    "curl_cffi_matched": {
+      "repository": "https://github.com/lexiforest/curl_cffi.git",
+      "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+      "version": "0.16.4b1"
+    },
+    "curl_cffi_release": "0.16.0",
+    "bun": "1.3.11",
+    "platform": "linux-x86_64-glibc"
+  },
+  "curl_cffi_binding": {
+    "version": "0.16.4b1",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "python_executable": "/usr/bin/python3.14",
+    "python_executable_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "files": {
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/__init__.py": "e9827081dfedf066ee1e4da6a9eecf58daa69185538e15fd802571cd323261d7",
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60",
+      "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/venv-matched/lib/python3.14/site-packages/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46"
+    }
+  },
+  "backend": {
+    "path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "library_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "built_by_this_run": true,
+  "sanitize_build": false,
+  "source_and_binary_hashes_frozen_before_first_control": true,
+  "source_hashes_checked_after_samples": true,
+  "planned_schedule": [
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-1-scrapanium-bend-control-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-2-scrapanium-bend-control-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-3-scrapanium-bend-phase-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-4-scrapanium-bend-phase-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-5-curl_cffi-matched-control-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-6-curl_cffi-matched-control-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-7-curl_cffi-matched-phase-corrupt-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-8-curl_cffi-matched-phase-swap-flush1",
+      "batch": 1,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-9-scrapanium-bend-control-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-10-scrapanium-bend-control-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-11-scrapanium-bend-phase-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-12-scrapanium-bend-phase-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-13-curl_cffi-matched-control-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-14-curl_cffi-matched-control-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control",
+      "fault": "swap"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-15-curl_cffi-matched-phase-corrupt-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "corrupt"
+    },
+    {
+      "kind": "negative_correctness_control",
+      "run_id": "negative-16-curl_cffi-matched-phase-swap-flush64",
+      "batch": 64,
+      "count": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase",
+      "fault": "swap"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r1-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r1-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r1-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r1-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r2-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 2,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r2-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 2,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r2-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 2,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r2-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 2,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r3-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 3,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r3-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 3,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r3-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 3,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r3-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 3,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r4-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 4,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r4-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 4,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r4-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 4,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r4-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 4,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r5-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 5,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r5-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 5,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r5-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 5,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r5-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 5,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r6-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 6,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r6-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 6,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r6-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 6,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r6-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 6,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r7-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 7,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r7-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 7,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r7-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 7,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r7-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 7,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r8-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r8-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 8,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r8-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r8-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r9-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 9,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r9-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 9,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r9-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 9,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r9-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 9,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r10-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 10,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r10-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 10,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r10-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 10,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r10-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 10,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r11-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 11,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r11-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 11,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r11-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 11,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r11-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 11,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r12-curl_cffi-matched-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 12,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r12-scrapanium-bend-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 12,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r12-curl_cffi-matched-control",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 12,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush1-r12-scrapanium-bend-phase",
+      "batch": 1,
+      "count": 1024,
+      "repeat": 12,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r1-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r1-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 1,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r1-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r1-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 1,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r2-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 2,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r2-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 2,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r2-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 2,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r2-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 2,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r3-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 3,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r3-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 3,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r3-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 3,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r3-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 3,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r4-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 4,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r4-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 4,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r4-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 4,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r4-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 4,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r5-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 5,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r5-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 5,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r5-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 5,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r5-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 5,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r6-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 6,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r6-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 6,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r6-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 6,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r6-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 6,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r7-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 7,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r7-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 7,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r7-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 7,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r7-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 7,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r8-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 8,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r8-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 8,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r8-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 8,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r8-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 8,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r9-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 9,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r9-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 9,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r9-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 9,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r9-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 9,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r10-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 10,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r10-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 10,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r10-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 10,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r10-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 10,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r11-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 11,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r11-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 11,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r11-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 11,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r11-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 11,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r12-curl_cffi-matched-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 12,
+      "client": "curl_cffi-matched",
+      "mode": "phase"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r12-scrapanium-bend-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 12,
+      "client": "scrapanium-bend",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r12-curl_cffi-matched-control",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 12,
+      "client": "curl_cffi-matched",
+      "mode": "control"
+    },
+    {
+      "kind": "performance_sample",
+      "run_id": "websocket-phase-diagnostic-20260924-flush64-r12-scrapanium-bend-phase",
+      "batch": 64,
+      "count": 1024,
+      "repeat": 12,
+      "client": "scrapanium-bend",
+      "mode": "phase"
+    }
+  ],
+  "schedule_method": "16 negative controls first (8 messages); then four-condition Williams orders with every condition once per repeat and each condition in every position once per four-repeat block",
+  "negative_control_count": 16,
+  "compiler_inputs_checked_after_samples": true,
+  "binding_inputs_checked_after_samples": true,
+  "completed_sample_count": 112,
+  "paired_observer_effect": {
+    "64KiB-flush1": {
+      "scrapanium-bend": {
+        "phase_over_control_total_ratios": [
+          1.1052467820682945,
+          1.0832269259366247,
+          1.148246367018295,
+          0.982495448138772,
+          0.9158962230969881,
+          1.7937373161094867,
+          0.9631735375369389,
+          1.0087378482118976,
+          0.9770520610691544,
+          0.5073645793596409,
+          1.4938772125461095,
+          1.0008425430445351
+        ],
+        "median_phase_over_control_total_ratio": 1.0047901956282164,
+        "paired_total_differences_ns": [
+          3182360,
+          2457331,
+          4591937,
+          -574924,
+          -2844355,
+          26720577,
+          -1168197,
+          283923,
+          -751571,
+          -37379518,
+          21333042,
+          28021
+        ],
+        "median_paired_total_difference_ns": 155972.0,
+        "interpretation": "effect of per-message clock calls within the diagnostic client skeleton; not a historical-client comparison"
+      },
+      "curl_cffi-matched": {
+        "phase_over_control_total_ratios": [
+          0.9524540892490244,
+          1.015850538577065,
+          1.106553670994241,
+          1.096432752460609,
+          1.1126697593258073,
+          0.9550105463685294,
+          1.1006559387753472,
+          0.851659785905983,
+          1.0481860240411616,
+          0.9377632494973862,
+          1.3011981188788062,
+          1.2362643950568641
+        ],
+        "median_phase_over_control_total_ratio": 1.0723093882508854,
+        "paired_total_differences_ns": [
+          -1881282,
+          646012,
+          4161624,
+          3706275,
+          4330255,
+          -1926105,
+          4207013,
+          -6540261,
+          1876314,
+          -2711515,
+          12758321,
+          10146137
+        ],
+        "median_paired_total_difference_ns": 2791294.5,
+        "interpretation": "effect of per-message clock calls within the diagnostic client skeleton; not a historical-client comparison"
+      }
+    },
+    "64KiB-flush64": {
+      "scrapanium-bend": {
+        "phase_over_control_total_ratios": [
+          1.0902925210975773,
+          0.9614518280245458,
+          0.8245516364069309,
+          0.8978504796290305,
+          0.898166906042321,
+          0.9466708371765606,
+          0.9911693915051014,
+          1.4388989283114026,
+          0.9842645505153984,
+          1.065423474831078,
+          1.1057691443740307,
+          0.8690405813345762
+        ],
+        "median_phase_over_control_total_ratio": 0.9728581892699721,
+        "paired_total_differences_ns": [
+          2590409,
+          -1120966,
+          -6049185,
+          -3208453,
+          -3307856,
+          -1687570,
+          -265668,
+          17340808,
+          -584143,
+          2253262,
+          3696287,
+          -4907922
+        ],
+        "median_paired_total_difference_ns": -852554.5,
+        "interpretation": "effect of per-message clock calls within the diagnostic client skeleton; not a historical-client comparison"
+      },
+      "curl_cffi-matched": {
+        "phase_over_control_total_ratios": [
+          1.0106697020175335,
+          1.0022664573511175,
+          0.7973243278157901,
+          1.0014073539925878,
+          0.9500100747059558,
+          0.8440869325719531,
+          1.123364294379545,
+          0.6971573679362493,
+          1.0556284975408694,
+          1.00323488052046,
+          1.2296275069479892,
+          1.0775214531129522
+        ],
+        "median_phase_over_control_total_ratio": 1.0027506689357888,
+        "paired_total_differences_ns": [
+          412950,
+          88203,
+          -10533518,
+          55008,
+          -2063168,
+          -7401019,
+          4935441,
+          -21566273,
+          2374989,
+          142201,
+          10022093,
+          3540256
+        ],
+        "median_paired_total_difference_ns": 115202.0,
+        "interpretation": "effect of per-message clock calls within the diagnostic client skeleton; not a historical-client comparison"
+      }
+    }
+  },
+  "performance_sample_count": 96,
+  "completed_utc": "2026-09-24T01:34:54.929958+00:00"
+}

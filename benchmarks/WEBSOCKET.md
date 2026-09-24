@@ -297,3 +297,7 @@ $python benchmarks/audit_websocket_operation_reuse.py \
 
 The audit helper validates report semantics and arithmetic; it does not rerun
 the timed benchmark or treat the instrumented probe as performance evidence.
+
+The separate [WSS phase diagnostic](WSS_PHASE_DIAGNOSTIC.md) reports receive,
+validation and peer timing measurements with their correctness controls and
+limits; these results are separate from the throughput tables above.
