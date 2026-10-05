@@ -1,0 +1,51 @@
+{
+  "alpn": "http/1.1",
+  "client_address": [
+    "127.0.0.1",
+    45100
+  ],
+  "client_close_frame": {
+    "fin": true,
+    "length": 6,
+    "masked": true,
+    "opcode": 8,
+    "payload_hex": "03e8646f6e65"
+  },
+  "client_data_frame": {
+    "fin": true,
+    "length": 11,
+    "masked": true,
+    "opcode": 2,
+    "payload_hex": "636c69656e742d64617461"
+  },
+  "coalesced_raw_octet": "02",
+  "connection": "upgrade",
+  "passed": true,
+  "pong_frame": {
+    "fin": true,
+    "length": 4,
+    "masked": true,
+    "opcode": 10,
+    "payload_hex": "70696e67"
+  },
+  "ready_frame": {
+    "fin": true,
+    "length": 5,
+    "masked": true,
+    "opcode": 2,
+    "payload_hex": "7265616479"
+  },
+  "request_line": "GET /probe HTTP/1.1",
+  "request_sha256": "4a547f13cd24fcd356fe0af7fb4383a781925d3329abd11c67d4e3655d60b51d",
+  "sent_close_echo": true,
+  "tls_cipher": [
+    "TLS_AES_256_GCM_SHA384",
+    "TLSv1.3",
+    256
+  ],
+  "tls_version": "TLSv1.3",
+  "upgrade": "websocket",
+  "upgrade_and_first_frame_same_sendall": true,
+  "websocket_key": "dGhlIHNhbXBsZSBub25jZQ==",
+  "websocket_version": "13"
+}

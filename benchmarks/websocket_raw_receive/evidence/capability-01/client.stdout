@@ -1,0 +1,12 @@
+response_code=101
+curl_version=libcurl/8.22.0-IMPERSONATE BoringSSL zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 c-ares/1.34.8 libidn2/2.3.7 nghttp2/1.63.0 ngtcp2/1.20.0 nghttp3/1.15.0 curl-impersonate/2.2.3
+backend_path=/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4
+profile=chrome146
+ws_options=NOAUTOPONG,RAW_MODE_OFF
+ssl_verify_result=0
+raw_frames=1_fragmented_binary+interleaved_ping+continuation+64KiB_binary+close
+client_frames=ready_binary+pong+client_binary+close
+all_exact_raw_bytes_verified=yes
+curl_easy_recv_calls=21
+curl_easy_recv_again=6
+gated_empty_recv=CURLE_AGAIN

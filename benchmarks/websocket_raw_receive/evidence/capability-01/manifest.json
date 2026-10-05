@@ -1,0 +1,120 @@
+{
+  "api_contract": {
+    "connect_only": 2,
+    "curlws_noautopong": true,
+    "curlws_raw_mode": false,
+    "hostname_verification": true,
+    "impersonation_profile": "chrome146",
+    "inbound_api": "curl_easy_recv",
+    "outbound_api": "curl_ws_send",
+    "tls_peer_verification": true
+  },
+  "backend": {
+    "configured_prefix": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+    "ldd_line": "\tlibcurl-impersonate.so.4 => /mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4 (0x00007fb71626a000)",
+    "ldd_resolved_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "resolved_dso": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "runtime_dladdr_path": "/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "runtime_path_matches": true,
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "client": {
+    "argv": [
+      "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/capability-01/raw_recv_probe",
+      "wss://localhost:37797/probe",
+      "/tmp/wss-raw-recv-probe-41m4n7j1/cert.pem"
+    ],
+    "executable_sha256": "37375b6a9d25a4c402859e821349bd4678b722c3bfb7159a42e7b9b3193082fc",
+    "return_code": 0,
+    "stderr_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/capability-01/client.stderr",
+    "stdout_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/capability-01/client.stdout"
+  },
+  "compiler": {
+    "argv": [
+      "/usr/bin/clang",
+      "-std=c11",
+      "-O2",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-D_FORTIFY_SOURCE=2",
+      "-I/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl/include",
+      "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/wss-raw-recv-probe/raw_recv_probe.c",
+      "-o",
+      "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/capability-01/raw_recv_probe",
+      "-L/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+      "-Wl,-rpath,/mnt/c/Users/Baidu/Engrama/scrapanium/.deps/curl",
+      "-lcurl-impersonate",
+      "-ldl"
+    ],
+    "exit_code": 0,
+    "path": "/usr/bin/clang",
+    "version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n"
+  },
+  "passed": true,
+  "probe_sources": {
+    "raw_recv_probe.c": "3be948291c369f37760d3c850f9ad68f30515316af94e76eed025df9ff7b1ca4",
+    "raw_recv_probe.py": "b08ca8d5715f99c59d651e8f224f6166074f5326816ab69490781bf0b4648738"
+  },
+  "repo": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+  "schema": "scrapanium-wss-raw-recv-capability-v1",
+  "scope": "correctness-only capability probe; no timing or throughput claim",
+  "source_revision": "c4927171753a3cdcb12986f06c598219bba6e5b4",
+  "tls_peer": {
+    "outcome": {
+      "alpn": "http/1.1",
+      "client_address": [
+        "127.0.0.1",
+        45100
+      ],
+      "client_close_frame": {
+        "fin": true,
+        "length": 6,
+        "masked": true,
+        "opcode": 8,
+        "payload_hex": "03e8646f6e65"
+      },
+      "client_data_frame": {
+        "fin": true,
+        "length": 11,
+        "masked": true,
+        "opcode": 2,
+        "payload_hex": "636c69656e742d64617461"
+      },
+      "coalesced_raw_octet": "02",
+      "connection": "upgrade",
+      "passed": true,
+      "pong_frame": {
+        "fin": true,
+        "length": 4,
+        "masked": true,
+        "opcode": 10,
+        "payload_hex": "70696e67"
+      },
+      "ready_frame": {
+        "fin": true,
+        "length": 5,
+        "masked": true,
+        "opcode": 2,
+        "payload_hex": "7265616479"
+      },
+      "request_line": "GET /probe HTTP/1.1",
+      "request_sha256": "4a547f13cd24fcd356fe0af7fb4383a781925d3329abd11c67d4e3655d60b51d",
+      "sent_close_echo": true,
+      "tls_cipher": [
+        "TLS_AES_256_GCM_SHA384",
+        "TLSv1.3",
+        256
+      ],
+      "tls_version": "TLSv1.3",
+      "upgrade": "websocket",
+      "upgrade_and_first_frame_same_sendall": true,
+      "websocket_key": "dGhlIHNhbXBsZSBub25jZQ==",
+      "websocket_version": "13"
+    },
+    "private_key_retained": false,
+    "public_certificate_sha256": "d059a831653c533c50bb39a98c0742a0a90e06d74e80659ad394895f84f3c668"
+  },
+  "tracked_worktree_clean": true
+}
