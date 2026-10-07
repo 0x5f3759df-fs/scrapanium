@@ -1,1 +1,10 @@
 * text=auto eol=lf
+# Preserve captured evidence bytes exactly; the CSV's recorded SHA covers CRLF.
+benchmarks/websocket_raw_receive_comparison/evidence/** -text
+
+# Retained historical probe copies end with a blank line; keep that source intact.
+benchmarks/websocket_raw_receive_comparison/evidence/diagnostics/**/diagnostic_probe.py whitespace=-blank-at-eof
+
+# The patch's context-only blank lines intentionally contain a space.
+benchmarks/websocket_raw_receive_comparison/experimental-native-websocket-inc.patch whitespace=-blank-at-eol
+benchmarks/websocket_raw_receive_comparison/evidence/measured-02/ratio-results.csv whitespace=cr-at-eol

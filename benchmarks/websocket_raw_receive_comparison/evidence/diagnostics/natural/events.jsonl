@@ -1,0 +1,17 @@
+{"monotonic_ns":354137936110640,"stage":"preflight_start","utc":"2026-10-06T06:45:47.760720+00:00"}
+{"client_sha256":"c18e28a46f79dfc9628bf0b64042a9a8a11eecb151509c2056b950c2c3ed641e","monotonic_ns":354138002318048,"source_count":12,"stage":"preflight_complete","utc":"2026-10-06T06:45:47.827295+00:00"}
+{"monotonic_ns":354138004705672,"stage":"attempt_start","utc":"2026-10-06T06:45:47.829682+00:00"}
+{"monotonic_ns":354138222375468,"socket_timeout_seconds":4,"stage":"peer_listening","url":"wss://127.0.0.1:41525","utc":"2026-10-06T06:45:48.047350+00:00"}
+{"command":["/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/candidate-roundtrip","--threads","1"],"monotonic_ns":354138225731625,"pid":1901222,"stage":"client_spawned","utc":"2026-10-06T06:45:48.050709+00:00"}
+{"child_exit_code":null,"monotonic_ns":354138318226829,"pid":1901222,"ready":true,"stage":"client_ready_observation","utc":"2026-10-06T06:45:48.143207+00:00"}
+{"monotonic_ns":354138318229897,"pid":1901222,"stage":"maps_read_start","utc":"2026-10-06T06:45:48.143214+00:00"}
+{"match_count":1,"monotonic_ns":354138318341755,"stage":"maps_read_complete","utc":"2026-10-06T06:45:48.143326+00:00"}
+{"monotonic_ns":354138319255553,"path":"/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0","stage":"dso_hash_start","utc":"2026-10-06T06:45:48.144236+00:00"}
+{"byte_count":31375208,"monotonic_ns":354138592471845,"path":"/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0","sha256":"bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3","stage":"dso_hash_complete","utc":"2026-10-06T06:45:48.417439+00:00"}
+{"monotonic_ns":354138592480295,"pid":1901222,"stage":"gate_write_start","utc":"2026-10-06T06:45:48.417464+00:00"}
+{"monotonic_ns":354138592524521,"pid":1901222,"stage":"gate_write_complete","utc":"2026-10-06T06:45:48.417508+00:00"}
+{"monotonic_ns":354138706366807,"pid":1901222,"returncode":0,"stage":"client_exit","utc":"2026-10-06T06:45:48.531336+00:00"}
+{"completed":true,"monotonic_ns":354138706374084,"stage":"peer_close_observation","utc":"2026-10-06T06:45:48.531358+00:00"}
+{"monotonic_ns":354138818299422,"stage":"postcheck_start","utc":"2026-10-06T06:45:48.643271+00:00"}
+{"errors":[],"monotonic_ns":354139002861293,"passed":true,"stage":"postcheck_complete","utc":"2026-10-06T06:45:48.827833+00:00"}
+{"monotonic_ns":354139017528083,"stage":"attempt_finish","utc":"2026-10-06T06:45:48.842491+00:00"}

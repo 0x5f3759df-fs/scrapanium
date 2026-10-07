@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="800" viewBox="0 0 620 800" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">Candidate / curl_cffi ratios · all 13 workloads</title>
+<desc id="chart-desc">Median paired throughput ratio for candidate / curl_cffi across all 13 workloads, with paired 95 percent bootstrap intervals over 12 samples. Orange dashed line is the 2× target; both 64 KiB stream targets fail.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="18" y="34" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#152536" text-anchor="start">Candidate / curl_cffi ratios · all 13 workloads</text>
+<text x="18" y="61" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="400" fill="#455A64" text-anchor="start">Median paired throughput ratio (candidate / curl_cffi) · paired 95% bootstrap CI · n=12</text>
+<line x1="20" y1="95" x2="55" y2="95" stroke="#00897b" stroke-width="3"/><circle cx="37" cy="95" r="5" fill="#00897b"/>
+<text x="64" y="100" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="600" fill="#263238" text-anchor="start">median</text>
+<line x1="145" y1="95" x2="180" y2="95" stroke="#66737b" stroke-width="2"/><line x1="145" y1="90" x2="145" y2="100" stroke="#66737b"/><line x1="180" y1="90" x2="180" y2="100" stroke="#66737b"/>
+<text x="188" y="100" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="600" fill="#263238" text-anchor="start">95% CI</text>
+<text x="18" y="141" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#152536" text-anchor="start">Workload</text>
+<text x="580" y="141" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#152536" text-anchor="middle">2×</text>
+<text x="18" y="212" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Python 30 B · C1</text>
+<text x="580" y="212" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="227" width="596" height="32" fill="#f6f8fa"/>
+<text x="18" y="248" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 30 B · C1</text>
+<text x="580" y="248" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="18" y="284" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 1 KiB · C1</text>
+<text x="580" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="299" width="596" height="32" fill="#f6f8fa"/>
+<text x="18" y="320" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 64 KiB · C1</text>
+<text x="580" y="320" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="18" y="356" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 30 B · C4</text>
+<text x="580" y="356" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="371" width="596" height="32" fill="#f6f8fa"/>
+<text x="18" y="392" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 1 KiB · C4</text>
+<text x="580" y="392" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="18" y="428" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">RT · Go 64 KiB · C4</text>
+<text x="580" y="428" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="443" width="596" height="32" fill="#f6f8fa"/>
+<line x1="12" y1="441.0" x2="608" y2="441.0" stroke="#b0bec5" stroke-width="1.5"/>
+<text x="18" y="464" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 30 B · flush 1</text>
+<text x="580" y="464" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="18" y="500" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 1 KiB · flush 1</text>
+<text x="580" y="500" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="515" width="596" height="32" fill="#f6f8fa"/>
+<text x="18" y="536" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 64 KiB · flush 1</text>
+<text x="580" y="536" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<text x="18" y="572" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 30 B · flush 64</text>
+<text x="580" y="572" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="12" y="587" width="596" height="32" fill="#f6f8fa"/>
+<text x="18" y="608" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 1 KiB · flush 64</text>
+<text x="580" y="608" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="18" y="644" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#263238" text-anchor="start">Stream · 64 KiB · flush 64</text>
+<text x="580" y="644" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<line x1="190.00" y1="184" x2="190.00" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="190.00" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">0.8</text>
+<line x1="221.45" y1="184" x2="221.45" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="221.45" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">1</text>
+<line x1="300.09" y1="184" x2="300.09" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="300.09" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">1.5</text>
+<line x1="378.73" y1="184" x2="378.73" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="378.73" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">2</text>
+<line x1="457.36" y1="184" x2="457.36" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="457.36" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">2.5</text>
+<line x1="536.00" y1="184" x2="536.00" y2="672" stroke="#e1e6e9" stroke-width="1"/>
+<text x="536.00" y="702" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#54636b" text-anchor="middle">3</text>
+<line x1="221.45" y1="184" x2="221.45" y2="672" stroke="#607d8b" stroke-width="1.4" stroke-dasharray="3 5"/>
+<line x1="378.73" y1="184" x2="378.73" y2="672" stroke="#c66a10" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="18" y="744" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#455A64" text-anchor="start">RT = round trip · C1/C4 = connections · Stream flush = frames per server TLS write</text>
+<text x="18" y="770" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="400" fill="#455A64" text-anchor="start">Ratios above 1.0 favor the candidate · 2.0× target for both 64 KiB stream rows</text>
+<line x1="235.38" y1="207" x2="271.60" y2="207" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="235.38" y1="202" x2="235.38" y2="212" stroke="#00897b" stroke-width="1.5"/>
+<line x1="271.60" y1="202" x2="271.60" y2="212" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="249.77" cy="207" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="213.64" y1="243" x2="235.34" y2="243" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="213.64" y1="238" x2="213.64" y2="248" stroke="#00897b" stroke-width="1.5"/>
+<line x1="235.34" y1="238" x2="235.34" y2="248" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="229.64" cy="243" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="226.23" y1="279" x2="241.23" y2="279" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="226.23" y1="274" x2="226.23" y2="284" stroke="#00897b" stroke-width="1.5"/>
+<line x1="241.23" y1="274" x2="241.23" y2="284" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="236.42" cy="279" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="258.49" y1="315" x2="269.03" y2="315" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="258.49" y1="310" x2="258.49" y2="320" stroke="#00897b" stroke-width="1.5"/>
+<line x1="269.03" y1="310" x2="269.03" y2="320" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="261.03" cy="315" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="253.54" y1="351" x2="279.40" y2="351" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="253.54" y1="346" x2="253.54" y2="356" stroke="#00897b" stroke-width="1.5"/>
+<line x1="279.40" y1="346" x2="279.40" y2="356" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="264.80" cy="351" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="250.03" y1="387" x2="286.77" y2="387" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="250.03" y1="382" x2="250.03" y2="392" stroke="#00897b" stroke-width="1.5"/>
+<line x1="286.77" y1="382" x2="286.77" y2="392" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="255.59" cy="387" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="261.82" y1="423" x2="295.41" y2="423" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="261.82" y1="418" x2="261.82" y2="428" stroke="#00897b" stroke-width="1.5"/>
+<line x1="295.41" y1="418" x2="295.41" y2="428" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="279.89" cy="423" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="214.12" y1="459" x2="310.48" y2="459" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="214.12" y1="454" x2="214.12" y2="464" stroke="#00897b" stroke-width="1.5"/>
+<line x1="310.48" y1="454" x2="310.48" y2="464" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="225.32" cy="459" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="247.85" y1="495" x2="280.38" y2="495" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="247.85" y1="490" x2="247.85" y2="500" stroke="#00897b" stroke-width="1.5"/>
+<line x1="280.38" y1="490" x2="280.38" y2="500" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="260.14" cy="495" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="261.68" y1="531" x2="303.17" y2="531" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="261.68" y1="526" x2="261.68" y2="536" stroke="#00897b" stroke-width="1.5"/>
+<line x1="303.17" y1="526" x2="303.17" y2="536" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="279.92" cy="531" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="504.22" y1="567" x2="518.50" y2="567" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="504.22" y1="562" x2="504.22" y2="572" stroke="#00897b" stroke-width="1.5"/>
+<line x1="518.50" y1="562" x2="518.50" y2="572" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="507.42" cy="567" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="409.13" y1="603" x2="436.77" y2="603" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="409.13" y1="598" x2="409.13" y2="608" stroke="#00897b" stroke-width="1.5"/>
+<line x1="436.77" y1="598" x2="436.77" y2="608" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="423.89" cy="603" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+<line x1="258.33" y1="639" x2="299.75" y2="639" stroke="#00897b" stroke-width="3" stroke-linecap="round"/>
+<line x1="258.33" y1="634" x2="258.33" y2="644" stroke="#00897b" stroke-width="1.5"/>
+<line x1="299.75" y1="634" x2="299.75" y2="644" stroke="#00897b" stroke-width="1.5"/>
+<circle cx="287.56" cy="639" r="5" fill="#00897b" stroke="#fff" stroke-width="1.2"/>
+</svg>

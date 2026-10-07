@@ -1,0 +1,15 @@
+{
+  "name": "roundtrip_peer",
+  "command": [
+    "/usr/lib/go-1.26/bin/go",
+    "build",
+    "-trimpath",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-02-20261006/build/roundtrip_peer",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_server.go"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

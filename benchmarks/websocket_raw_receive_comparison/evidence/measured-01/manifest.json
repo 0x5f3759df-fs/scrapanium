@@ -1,0 +1,367 @@
+{
+  "backend": {
+    "path": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl/libcurl-impersonate.so.4.8.0",
+    "sha256": "bec91922e5f79213bf0e4a6dbb2b4410e6cc92cbee4a72759d6b387f14cad3e3"
+  },
+  "backend_rule": "every client PID must map this exact DSO path and SHA-256",
+  "baseline": {
+    "branch": "",
+    "head": "c4927171753a3cdcb12986f06c598219bba6e5b4",
+    "path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+    "source_sha256": {
+      "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+      "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+      "benchmarks/websocket_python.py": "bb7a5f3ed1f80f60c6280f30fd6aad52101cd67082e7b41d9b7c79ec96ee37dc",
+      "benchmarks/websocket_server.go": "76be75a93bc51b243c6c9be7360b08e8e9f15757ce1358ae60ec78457f0d0d3b",
+      "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+      "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+      "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+      "dependencies.json": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+      "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+      "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+      "native/bend_websocket.inc.c": "0081eca4ca7303c3073c928502d7361816fc93c168a84c4ddf4f20c8b551c55b",
+      "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+      "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+      "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+      "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+      "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+      "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+      "scrapanium.bend": "fc2e7286cf5a9313fa9dcf116f39711740abd30fac8748630db50cb3a2d6ca5a",
+      "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+      "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+      "tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c"
+    },
+    "status": "",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "bend": {
+    "bun": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "cc": "clang",
+    "cc_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n",
+    "commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+    "path": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27"
+  },
+  "binary_sha256": {
+    "baseline_roundtrip": "b7cb1038463589d4a2d7263eec00e5576f2669ca05099209c3e8786c60c683ed",
+    "baseline_stream": "353f369914d5a9323b7cc20af8d409ee50efe1ad6ff0674d30acc5f7c22a5d33",
+    "candidate_roundtrip": "c18e28a46f79dfc9628bf0b64042a9a8a11eecb151509c2056b950c2c3ed641e",
+    "candidate_stream": "d64e20cab2c7ad7b0c07eed4386265f1f95b3bfeb85db52d9288888b01c1ff75",
+    "roundtrip_peer": "d9b2beb6c1a67c9ff13ff2c80ef2b45b06c76af7edb74a045bdd33a42a25b9d8",
+    "stream_peer": "29ba1143fabff39ac447ff07a9f5de7333cf04f7546ccfea6c61855fce025f7d"
+  },
+  "build_artifacts": [
+    {
+      "command": [
+        "/usr/bin/python3.14",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717/scripts/build.py",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717/benchmarks/websocket_stream.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/baseline-stream"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/baseline-stream.json",
+      "log_sha256": "3f08dc03714522d17f6b7361adce7ea2d36147215bfc3885ab33fdb4dbb70a62",
+      "name": "baseline-stream",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3.14",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717/scripts/build.py",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717/benchmarks/websocket.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/baseline-roundtrip"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/baseline-roundtrip.json",
+      "log_sha256": "5767502162f932b4b18647c461f7763fbfdd2c837571aa17e748843569e90535",
+      "name": "baseline-roundtrip",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3.14",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/scripts/build.py",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_stream.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/candidate-stream"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/candidate-stream.json",
+      "log_sha256": "52bb6c0665bb15d5c344f8ad41f80ec06c66dcbdabd9048810f623f47d51dbaf",
+      "name": "candidate-stream",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3.14",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/scripts/build.py",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/candidate-roundtrip"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/candidate-roundtrip.json",
+      "log_sha256": "ce0652f2a47c4cb1a1dd6973b2210e5a65b354d8be8c1eb512f58433c433abf9",
+      "name": "candidate-roundtrip",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/go-1.26/bin/go",
+        "build",
+        "-trimpath",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/stream_peer",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_stream_server.go"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/stream_peer.json",
+      "log_sha256": "f9eafb3b8ebd47261981e33c1763ff4402121b0084e9da35c04fc99c6f8872fc",
+      "name": "stream_peer",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/go-1.26/bin/go",
+        "build",
+        "-trimpath",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build/roundtrip_peer",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_server.go"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006/build-logs/roundtrip_peer.json",
+      "log_sha256": "92326edd74d88e1cbca43902c4d75e94b3ccf1a29c24682c7e18ab63bbb96318",
+      "name": "roundtrip_peer",
+      "returncode": 0
+    }
+  ],
+  "candidate": {
+    "branch": "",
+    "head": "c4927171753a3cdcb12986f06c598219bba6e5b4",
+    "path": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+    "source_sha256": {
+      "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+      "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+      "benchmarks/websocket_python.py": "bb7a5f3ed1f80f60c6280f30fd6aad52101cd67082e7b41d9b7c79ec96ee37dc",
+      "benchmarks/websocket_server.go": "76be75a93bc51b243c6c9be7360b08e8e9f15757ce1358ae60ec78457f0d0d3b",
+      "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+      "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+      "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+      "dependencies.json": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+      "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+      "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+      "native/bend_websocket.inc.c": "0081eca4ca7303c3073c928502d7361816fc93c168a84c4ddf4f20c8b551c55b",
+      "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+      "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+      "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+      "native/websocket.inc.c": "0f3c4e2c2844975f4bfd63adb1ba0bfb901f6b97deff640c6a80498653ad82f8",
+      "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+      "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+      "scrapanium.bend": "fc2e7286cf5a9313fa9dcf116f39711740abd30fac8748630db50cb3a2d6ca5a",
+      "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+      "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+      "tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c"
+    },
+    "status": "M benchmarks/websocket_attribution.py\n M benchmarks/websocket_attribution_shim.c\n M docs/WEBSOCKETS.md\n M docs/WEBSOCKET_INTERNALS.md\n M native/websocket.inc.c\n M tests/test_websocket_operation_reuse.py\n M tests/websocket_operation_reuse.c\n?? benchmarks/websocket_raw_receive_comparison/\n?? tests/test_websocket_attribution_validation.py",
+    "tracked_diff_sha256": "f5f68b02c6bea5fc0b7e27e4fc2693b4b76d6e032a950967afed8b17f5a12082"
+  },
+  "created_utc": "2026-10-06T05:52:46.607527+00:00",
+  "curl_cffi": {
+    "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+    "installed_binding": {
+      "executable": "/usr/bin/python3.14",
+      "executable_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "files": {
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/__init__.py": "e9827081dfedf066ee1e4da6a9eecf58daa69185538e15fd802571cd323261d7",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "module_root": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "sys_path": [
+        "",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005",
+        "/usr/lib/python314.zip",
+        "/usr/lib/python3.14",
+        "/usr/lib/python3.14/lib-dynload",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/.deps/venv-matched/lib/python3.14/site-packages"
+      ],
+      "version": "0.16.4b1"
+    },
+    "path": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "version": "0.16.4b1"
+  },
+  "curl_cffi_kind_check": "CurlWsFlag.BINARY bit in aggregate kind flags; complete payload equality and ordered sequence are checked",
+  "environment": {
+    "compiler_path": "/usr/lib/llvm-21/bin/clang",
+    "compiler_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "cpu": {
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "logical_count": 12,
+      "model": "13th Gen Intel(R) Core(TM) i5-13420H"
+    },
+    "go": "go version go1.26.0 linux/amd64",
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "inherited_runtime_paths": {
+      "BEND_SOURCE": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+      "BUN": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+      "CC": "clang",
+      "LD_LIBRARY_PATH": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl",
+      "LD_LIBRARY_PATH_inherited": "",
+      "PYTHONPATH": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005",
+      "SCRAPANIUM_CURL_DIR": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl"
+    },
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "python_executable": "/usr/bin/python3.14",
+    "python_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41"
+  },
+  "generated_c_sha256": {
+    "baseline_roundtrip": "0dc6aa27c81709d08d3af121444941703d90d49ceb28b039c8089972defa4f52",
+    "baseline_stream": "32bc29693f218e6ce2ba5ba4f9c834959fbc428fcfc01fa02165715e2bc3ceef",
+    "candidate_roundtrip": "0dc6aa27c81709d08d3af121444941703d90d49ceb28b039c8089972defa4f52",
+    "candidate_stream": "32bc29693f218e6ce2ba5ba4f9c834959fbc428fcfc01fa02165715e2bc3ceef"
+  },
+  "limitations": [
+    "loopback WSL/Linux only; no WAN inference",
+    "round-trip rows are a regression check, not a broad WebSocket superiority claim",
+    "all original workload counts, checkers and generated corpora are preserved",
+    "a failed checker, peer observation or DSO check aborts the run; errors remain in attempts.jsonl"
+  ],
+  "mode": "performance_comparison",
+  "output_directory": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006",
+  "plan_sha256": "81eb6da690372ddf584801f75d37be848fb28b54a358faabe112323286c253df",
+  "randomization": "for each workload, the six baseline/candidate/curl_cffi execution permutations are each used once per six repeats in seeded order; stream workload order uses cyclic rotations to balance positions",
+  "runner_sha256": "b5e8290cc73165b865e48f691065081950fff45b280922378a6377b8b8a8f4de",
+  "runs_per_workload_variant": 12,
+  "schema": 1,
+  "seed": 20261005,
+  "smoke_reduced_counts": null,
+  "smoke_rule": null,
+  "stream_timing": "warm verified WSS connection; timed client sends start signal then consumes/releases every full exact message in sequence; one connection; excludes startup, corpus creation, TLS, warmup and close",
+  "targets": {
+    "large_stream": "candidate/curl_cffi paired throughput-ratio 95% CI lower bound >= 2.0 for both 64KiB workloads",
+    "non_regression": "candidate/baseline paired throughput-ratio 95% CI lower bound >= 0.95 for all six stream workloads and all seven round-trip workloads"
+  },
+  "tls_rule": "Go peers require TLS version 772 and cipher 4865; the Python round-trip peer records negotiated version/cipher per connection and requires one stable identity across baseline/candidate/curl_cffi",
+  "workloads": {
+    "roundtrip": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 1000,
+        "name": "original-python-30b-c1",
+        "peer": "python"
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 5000,
+        "name": "go-30b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 2000,
+        "name": "go-1024b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 300,
+        "name": "go-65536b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 30,
+        "connections": 4,
+        "count": 5000,
+        "name": "go-30b-c4",
+        "peer": "go"
+      },
+      {
+        "bytes": 1024,
+        "connections": 4,
+        "count": 2000,
+        "name": "go-1024b-c4",
+        "peer": "go"
+      },
+      {
+        "bytes": 65536,
+        "connections": 4,
+        "count": 300,
+        "name": "go-65536b-c4",
+        "peer": "go"
+      }
+    ],
+    "stream": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 65536,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 16384,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 1024,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 65536,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 16384,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 1024,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    ]
+  }
+}

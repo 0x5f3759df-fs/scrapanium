@@ -1,0 +1,61 @@
+{
+  "attempts_started": true,
+  "build_started_utc": "2026-10-06T05:52:23.771717+00:00",
+  "builds_finished_utc": "2026-10-06T05:52:46.610654+00:00",
+  "builds_started": true,
+  "command": [
+    "/usr/bin/python3.14",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_raw_receive_comparison/run_comparison.py",
+    "--baseline",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+    "--candidate",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+    "--curl-cffi-checkout",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/.deps/curl_cffi",
+    "--bend-source",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "--bun",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "--curl-prefix",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/.deps/curl",
+    "--cc",
+    "clang",
+    "--runs",
+    "12",
+    "--seed",
+    "20261005",
+    "--output",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-01-20261006"
+  ],
+  "created_utc": "2026-10-06T05:52:11.276273+00:00",
+  "error": "transport failed\n",
+  "error_type": "RuntimeError",
+  "finished_utc": "2026-10-06T06:01:43.298787+00:00",
+  "first_attempt_started_utc": "2026-10-06T05:52:46.694708+00:00",
+  "inputs": {
+    "baseline": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+    "bend_source": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "bun": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "candidate": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+    "curl_cffi_checkout": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "curl_prefix": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl"
+  },
+  "options": {
+    "cc": "clang",
+    "runs": 12,
+    "seed": 20261005,
+    "smoke": false
+  },
+  "schema": 1,
+  "selected_environment": {
+    "BEND_SOURCE": "",
+    "BUN": "",
+    "CC": "",
+    "LD_LIBRARY_PATH": "",
+    "PYTHONPATH": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005",
+    "SCRAPANIUM_CURL_DIR": ""
+  },
+  "status": "failed",
+  "successful_build_count": 6,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_raw_receive_comparison/run_comparison.py\", line 761, in main\n    attempt(\"roundtrip\", workload, repeat, variant, pos, run_id, run_roundtrip)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_raw_receive_comparison/run_comparison.py\", line 552, in attempt\n    return record_attempt(attempts_path, attempts, phase, workload, repeat,\n                          variant, position, run_id, action, a.smoke)\n  File \"/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_raw_receive_comparison/run_comparison.py\", line 101, in record_attempt\n    result = action()\n  File \"/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket_raw_receive_comparison/run_comparison.py\", line 713, in run_roundtrip\n    result = rt.sample(client_label(v, rt), client_binary(v, \"roundtrip\"),\n        u, ca, p, w, rid, shared_env)\n  File \"/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket.py\", line 82, in sample\n    raise RuntimeError(output + errors)\nRuntimeError: transport failed\n\n"
+}

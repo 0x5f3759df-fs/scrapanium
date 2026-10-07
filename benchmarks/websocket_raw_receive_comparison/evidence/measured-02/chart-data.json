@@ -1,0 +1,352 @@
+{
+  "schema": 1,
+  "title": "Experimental WSS raw receive comparison",
+  "measurement_date": "2026-10-06",
+  "ratio_definition": "Paired throughput ratio; greater than 1.0 favors the candidate.",
+  "interval_definition": "Paired bootstrap 95% confidence interval over 12 matched samples.",
+  "non_regression_guard": {
+    "metric": "candidate_vs_baseline interval lower bound",
+    "minimum": 0.95
+  },
+  "large_stream_target": {
+    "metric": "candidate_vs_curl_cffi interval lower bound",
+    "minimum": 2.0,
+    "workloads": [
+      "stream-65536b-flush1",
+      "stream-65536b-flush64"
+    ]
+  },
+  "gate_summary": {
+    "passed": 6,
+    "total": 13,
+    "failed": 7
+  },
+  "report_sha256": "8ff1fe47c604883e8b30aa684f9b80d65d3fed938b892f2dd231341cd3484832",
+  "rows": [
+    {
+      "family": "roundtrip",
+      "workload": "original-python-30b-c1",
+      "label": "RT · Python · 30 B · 1 conn",
+      "candidate_vs_baseline": {
+        "median": 1.03,
+        "bootstrap_95_ci": [
+          0.9505464480874317,
+          1.0842068483577918
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.1800708151927268,
+        "bootstrap_95_ci": [
+          1.0885498556192528,
+          1.3188594629615547
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Python 30 B · C1"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-30b-c1",
+      "label": "RT · Go · 30 B · 1 conn",
+      "candidate_vs_baseline": {
+        "median": 1.026190476190476,
+        "bootstrap_95_ci": [
+          0.9229210227064304,
+          1.0650344746990767
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.0520576731148161,
+        "bootstrap_95_ci": [
+          0.9503106450174916,
+          1.0883188938876045
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 30 B · C1"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-1024b-c1",
+      "label": "RT · Go · 1 KiB · 1 conn",
+      "candidate_vs_baseline": {
+        "median": 1.0119047619047619,
+        "bootstrap_95_ci": [
+          0.9787889560374452,
+          1.0754679144385029
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.0951724361183075,
+        "bootstrap_95_ci": [
+          1.0303468519626349,
+          1.12572480996303
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 1 KiB · C1"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-65536b-c1",
+      "label": "RT · Go · 64 KiB · 1 conn",
+      "candidate_vs_baseline": {
+        "median": 0.9302325581395349,
+        "bootstrap_95_ci": [
+          0.9090439276485788,
+          0.9658730158730159
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.251627557500591,
+        "bootstrap_95_ci": [
+          1.2355012443176536,
+          1.3025161314710298
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 64 KiB · C1"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-30b-c4",
+      "label": "RT · Go · 30 B · 4 conn",
+      "candidate_vs_baseline": {
+        "median": 1.0275876423740726,
+        "bootstrap_95_ci": [
+          0.9222250764372713,
+          1.0880078337193013
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.275604094653515,
+        "bootstrap_95_ci": [
+          1.2039836149623144,
+          1.3684622630328562
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 30 B · C4"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-1024b-c4",
+      "label": "RT · Go · 1 KiB · 4 conn",
+      "candidate_vs_baseline": {
+        "median": 1.0478449444293847,
+        "bootstrap_95_ci": [
+          0.9124040920716112,
+          1.1439521013885008
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.2170760899681907,
+        "bootstrap_95_ci": [
+          1.1817151032479383,
+          1.415272793806443
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 1 KiB · C4"
+    },
+    {
+      "family": "roundtrip",
+      "workload": "go-65536b-c4",
+      "label": "RT · Go · 64 KiB · 4 conn",
+      "candidate_vs_baseline": {
+        "median": 0.9820694542877393,
+        "bootstrap_95_ci": [
+          0.9423890063424947,
+          1.0698765432098765
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.371533763229179,
+        "bootstrap_95_ci": [
+          1.2566385961365518,
+          1.470266542745283
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "RT · Go 64 KiB · C4"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-30b-flush1",
+      "label": "Stream · 30 B · 1 frame/write",
+      "candidate_vs_baseline": {
+        "median": 0.996753128523005,
+        "bootstrap_95_ci": [
+          0.847212946054504,
+          1.4521240687518726
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.0245980274555857,
+        "bootstrap_95_ci": [
+          0.9533691729779681,
+          1.5660590423883298
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "Stream · 30 B · flush 1"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-1024b-flush1",
+      "label": "Stream · 1 KiB · 1 frame/write",
+      "candidate_vs_baseline": {
+        "median": 0.9335703637324615,
+        "bootstrap_95_ci": [
+          0.8626855377167191,
+          1.1099234037779342
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.2459760147767516,
+        "bootstrap_95_ci": [
+          1.1678628848208017,
+          1.3746915667146364
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": false,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "Stream · 1 KiB · flush 1"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-65536b-flush1",
+      "label": "Stream · 64 KiB · 1 frame/write",
+      "candidate_vs_baseline": {
+        "median": 1.0666669003142202,
+        "bootstrap_95_ci": [
+          0.9971986057636779,
+          1.1004537104495071
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.371753777839828,
+        "bootstrap_95_ci": [
+          1.2557942310679362,
+          1.5195569184560567
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": true,
+      "huge_target_met": false,
+      "chart_label": "Stream · 64 KiB · flush 1"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-30b-flush64",
+      "label": "Stream · 30 B · 64 frames/write",
+      "candidate_vs_baseline": {
+        "median": 1.1999747549136273,
+        "bootstrap_95_ci": [
+          1.1753877110601874,
+          1.2290314794751125
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 2.8183046761237573,
+        "bootstrap_95_ci": [
+          2.7979399394311786,
+          2.8887064634082424
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "Stream · 30 B · flush 64"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-1024b-flush64",
+      "label": "Stream · 1 KiB · 64 frames/write",
+      "candidate_vs_baseline": {
+        "median": 1.1564778345703057,
+        "bootstrap_95_ci": [
+          1.1048602294305763,
+          1.2050082628855665
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 2.2871453537312822,
+        "bootstrap_95_ci": [
+          2.1932995369797097,
+          2.3690598245380805
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": false,
+      "huge_target_met": null,
+      "chart_label": "Stream · 1 KiB · flush 64"
+    },
+    {
+      "family": "stream",
+      "workload": "stream-65536b-flush64",
+      "label": "Stream · 64 KiB · 64 frames/write",
+      "candidate_vs_baseline": {
+        "median": 1.0345964553226543,
+        "bootstrap_95_ci": [
+          0.9579803675592156,
+          1.174837479438285
+        ],
+        "paired_sample_count": 12
+      },
+      "candidate_vs_curl_cffi": {
+        "median": 1.4203149408103388,
+        "bootstrap_95_ci": [
+          1.2344544949765195,
+          1.497828277995517
+        ],
+        "paired_sample_count": 12
+      },
+      "non_regression_pass": true,
+      "huge_target_applicable": true,
+      "huge_target_met": false,
+      "chart_label": "Stream · 64 KiB · flush 64"
+    }
+  ]
+}

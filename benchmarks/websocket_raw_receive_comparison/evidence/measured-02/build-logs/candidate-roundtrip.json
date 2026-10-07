@@ -1,0 +1,14 @@
+{
+  "name": "candidate-roundtrip",
+  "command": [
+    "/usr/bin/python3.14",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/scripts/build.py",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/benchmarks/websocket.bend",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-02-20261006/build/candidate-roundtrip"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree",
+  "returncode": 0,
+  "stdout": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/candidate-c492-wss-recv-measured-02-20261006/build/candidate-roundtrip\n",
+  "stderr": "All terms check, but 7 defs rely on unsafe or foreign code:\n- check_message\n- receive_done\n- send_done\n- repeat\n- release\n- timed\n- main\nbend 2.0.35 is available: run bend update\n"
+}

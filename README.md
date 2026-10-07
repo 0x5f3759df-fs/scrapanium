@@ -22,7 +22,7 @@
 
 ## Performance
 
-Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same stock curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately. The existing performance charts use Bend 2.0.17. Bend 2.0.27 has passed correctness compatibility checks; its performance is not measured here.
+Measured through the Bend API on Linux/WSL2. **Orange: Scrapanium (Bend). Purple: curl_cffi (Python).** Both use warm connections and the same stock curl-impersonate backend. The memory chart compares two modes of Scrapanium, labeled separately. The existing published charts use Bend 2.0.17.
 
 Batched 30-byte WSS streaming: **1.63M messages/s versus 694k — 2.35× throughput.** Both clients receive 64 frames per server write on one connection and check every byte. Round-trip gains are smaller; three 64 KiB comparisons remain inconclusive.
 
@@ -57,6 +57,24 @@ Batched 30-byte WSS streaming: **1.63M messages/s versus 694k — 2.35× through
 Local loopback medians, with startup and handshakes excluded from throughput. Memory is whole-process peak RSS. These measurements do not establish Internet performance or a process-wide memory bound.
 
 [HTTP results](benchmarks/RESULTS.md) · [WSS results](benchmarks/WEBSOCKET.md) · [Memory results](benchmarks/MEMORY.md) — methodology, raw data and reproduction commands.
+
+### Experimental Bend 2.0.27 raw receive parser
+
+The experimental patch remains unadopted. Six of 13 workloads passed the predeclared candidate/baseline guard, and both 64 KiB streaming cases missed the 2× target. [Full results](benchmarks/websocket_raw_receive_comparison/evidence/measured-02/README.md).
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-baseline-ratios-mobile.svg">
+    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-baseline-ratios.svg" alt="Experimental receive parser candidate divided by baseline paired throughput ratio and 95% confidence interval for all 13 workloads. The red dashed line marks the 0.95 non-regression guard; 6 of 13 pass." width="920">
+  </picture>
+</p>
+
+<p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-curl-cffi-ratios-mobile.svg">
+    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-curl-cffi-ratios.svg" alt="Experimental receive parser candidate divided by curl_cffi paired throughput ratio and 95% confidence interval for all 13 workloads. The orange dashed line marks the 2x target for both 64 KiB streaming workloads; both fail." width="920">
+  </picture>
+</p>
 
 ## Make your first request
 
