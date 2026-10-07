@@ -1,0 +1,20 @@
+All terms check, but 10 defs rely on unsafe or foreign code:
+- WsBench.now_us
+- prepare
+- prepared_body
+- checked
+- check_message
+- received
+- receive_all
+- timed
+- warmed
+- main
+bend 2.0.36 is available: run bend update
+Both clients rejected byte corruption and reordered sequence tags
+stream-30b-flush1: repeat 1/1
+stream-1024b-flush1: repeat 1/1
+stream-65536b-flush1: repeat 1/1
+stream-30b-flush64: repeat 1/1
+stream-1024b-flush64: repeat 1/1
+stream-65536b-flush64: repeat 1/1
+/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/evidence/stream-san-t1.json

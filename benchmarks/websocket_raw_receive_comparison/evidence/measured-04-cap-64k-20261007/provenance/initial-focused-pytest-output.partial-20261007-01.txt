@@ -1,0 +1,5 @@
+PARTIAL ORIGINAL OUTPUT RECORD (not verbatim; raw output unavailable)
+
+Retained execution summary: the initial focused pytest collection returned 133 passed and 1 failed in test_operation_state_reuse_lifecycle. The original stdout/stderr was not redirected and no complete output log was recovered from the isolated experiment directory. This file does not reconstruct or quote the missing traceback.
+
+This partial record is not a complete pytest log and is not evidence of a full pass. The later expanded lifecycle sanitizer result is recorded separately in targeted-validation-20261007-01.md and operation-reuse-final-sanitized-02.log.

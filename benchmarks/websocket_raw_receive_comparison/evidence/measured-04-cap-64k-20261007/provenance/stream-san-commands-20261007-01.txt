@@ -1,0 +1,24 @@
+# Real WSS stream sanitizer invocations (both completed with exit status 0)
+# Run directory: /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree
+# Both commands use the trial's native/websocket.inc.c SHA-256 94cb08c07c1db119c43028a9b0c3682e214e205ab8550b3ba991879980cbc446.
+# Thread 1 builds the sanitizer binary and Go peer; thread 4 reuses them with --no-build.
+
+cd /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree
+set -o pipefail
+BEND_SOURCE=/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27 \
+BUN=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun \
+CC=/usr/bin/clang \
+SCRAPANIUM_CURL_DIR=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl \
+LD_LIBRARY_PATH=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl \
+/usr/bin/python3.14 benchmarks/websocket_streaming.py --smoke --sanitize --runs 1 --threads 1 \
+  --output /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/evidence/stream-san-t1.json \
+  2>&1 | tee /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/evidence/stream-san-t1.log
+
+BEND_SOURCE=/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27 \
+BUN=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun \
+CC=/usr/bin/clang \
+SCRAPANIUM_CURL_DIR=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl \
+LD_LIBRARY_PATH=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl \
+/usr/bin/python3.14 benchmarks/websocket_streaming.py --smoke --sanitize --no-build --runs 1 --threads 4 \
+  --output /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/evidence/stream-san-t4.json \
+  2>&1 | tee /home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/evidence/stream-san-t4.log

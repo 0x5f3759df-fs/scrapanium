@@ -1,0 +1,59 @@
+{
+  "attempts_started": true,
+  "build_started_utc": "2026-10-07T20:16:29.245502+00:00",
+  "builds_finished_utc": "2026-10-07T20:16:45.718796+00:00",
+  "builds_started": true,
+  "command": [
+    "/usr/bin/python3.14",
+    "benchmarks/websocket_raw_receive_comparison/run_comparison.py",
+    "--baseline",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+    "--candidate",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree",
+    "--curl-cffi-checkout",
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "--bend-source",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "--bun",
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "--curl-prefix",
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl",
+    "--cc",
+    "clang",
+    "--runs",
+    "12",
+    "--seed",
+    "20261007",
+    "--output",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/campaigns/captrial-13workload-20261007-01"
+  ],
+  "created_utc": "2026-10-07T20:16:24.534262+00:00",
+  "finished_utc": "2026-10-07T20:21:43.948321+00:00",
+  "first_attempt_started_utc": "2026-10-07T20:16:45.894232+00:00",
+  "inputs": {
+    "baseline": "/home/baidu/scrapanium-experiments/wss-raw-recv-comparison-20261005/baseline-c492717",
+    "bend_source": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "bun": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "candidate": "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree",
+    "curl_cffi_checkout": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "curl_prefix": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl"
+  },
+  "options": {
+    "cc": "clang",
+    "runs": 12,
+    "seed": 20261007,
+    "smoke": false
+  },
+  "schema": 1,
+  "selected_environment": {
+    "BEND_SOURCE": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "BUN": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "CC": "clang",
+    "LD_LIBRARY_PATH": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl",
+    "PYTHONPATH": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005",
+    "SCRAPANIUM_CURL_DIR": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl"
+  },
+  "status": "complete",
+  "successful_attempts": 474,
+  "successful_build_count": 6
+}

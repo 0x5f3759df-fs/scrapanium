@@ -1,0 +1,12 @@
+--- a/native/websocket.inc.c
++++ b/native/websocket.inc.c
+@@ -403,7 +403,8 @@
+   sp_buffer *message = &io->message;
+   if (!sp_ws_input_available(w) &&
+       io->frame_payload_left >= SP_WS_RECV_CHUNK) {
+-    size_t want = SP_WS_RECV_CHUNK;
++    size_t want = io->frame_payload_left < 65536u
++      ? (size_t)io->frame_payload_left : 65536u;
+     int result = sp_ws_reserve(message, want,
+       message->size + (size_t)io->frame_payload_left,
+       io->frame_fin);

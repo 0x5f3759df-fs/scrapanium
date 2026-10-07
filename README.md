@@ -76,6 +76,8 @@ The experimental patch remains unadopted. Six of 13 workloads passed the predecl
   </picture>
 </p>
 
+The isolated 64 KiB receive-cap follow-up also remains experimental: 10 of 13 baseline guards passed, the Go 64 KiB one-connection round trip was slower than baseline, and neither 64 KiB stream met the 2× target. [Cap-trial results and evidence](benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/README.md).
+
 ## Make your first request
 
 After [installing the prerequisites and bootstrapping](docs/GETTING_STARTED.md), save this as `hello.bend` in the repository root:

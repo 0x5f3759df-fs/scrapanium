@@ -14,3 +14,8 @@ benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-202
 benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/**/perf.script.txt whitespace=-blank-at-eol,-blank-at-eof
 # The exact frozen schedule source retains its blank final line.
 benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/source-snapshot/schedule_unit.py whitespace=-blank-at-eof
+
+# Preserve measured cap-trial CSV CRLF and patch context whitespace.
+benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/ratio-results.csv whitespace=cr-at-eol
+benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/provenance/baseline-to-cap-source.patch whitespace=-blank-at-eol
+benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/provenance/cap-only-operation-reuse-test.patch whitespace=-blank-at-eol

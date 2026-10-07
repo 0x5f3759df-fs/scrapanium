@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="758" viewBox="0 0 920 758" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">Cap trial / production baseline · all 13 workloads</title>
+<desc id="chart-desc">Median paired throughput ratio and paired 95 percent bootstrap confidence interval for 12 matched samples across all 13 workloads. Ten of 13 baseline guards pass. A guard failure does not alone prove a regression. Both 64 KiB stream targets miss 2x.</desc>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="16" y="34" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#152536">Cap trial / production baseline · all 13 workloads</text>
+<text x="16" y="61" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#455A64">Median paired throughput ratio · paired 95% bootstrap CI · n=12</text>
+<line x1="18" y1="94" x2="52" y2="94" stroke="#2463a6" stroke-width="3"/><circle cx="35" cy="94" r="5" fill="#2463a6"/><text x="60" y="99" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="600" fill="#263238">median</text>
+<line x1="140" y1="94" x2="174" y2="94" stroke="#66737b" stroke-width="2"/><line x1="140" y1="89" x2="140" y2="99" stroke="#66737b"/><line x1="174" y1="89" x2="174" y2="99" stroke="#66737b"/><text x="182" y="99" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="600" fill="#263238">paired 95% CI</text>
+<text x="16" y="141" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#152536">Workload</text>
+<text x="878" y="141" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#152536" text-anchor="middle">0.95 guard</text>
+<text x="16" y="201" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Python · 30 B · C1</text>
+<text x="878" y="200" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<rect x="10" y="214" width="900" height="36" fill="#f6f8fa"/>
+<text x="16" y="237" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 30 B · C1</text>
+<text x="878" y="236" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<text x="16" y="273" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 1 KiB · C1</text>
+<text x="878" y="272" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<rect x="10" y="286" width="900" height="36" fill="#f6f8fa"/>
+<text x="16" y="309" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 64 KiB · C1</text>
+<text x="878" y="308" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<text x="16" y="345" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 30 B · C4</text>
+<text x="878" y="344" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<rect x="10" y="358" width="900" height="36" fill="#f6f8fa"/>
+<text x="16" y="381" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 1 KiB · C4</text>
+<text x="878" y="380" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<text x="16" y="417" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">RT · Go · 64 KiB · C4</text>
+<text x="878" y="416" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<rect x="10" y="430" width="900" height="36" fill="#f6f8fa"/>
+<line x1="10" y1="430" x2="910" y2="430" stroke="#b0bec5" stroke-width="1.5"/>
+<text x="16" y="453" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 30 B · flush 1</text>
+<text x="878" y="452" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<text x="16" y="489" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 1 KiB · flush 1</text>
+<text x="878" y="488" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<rect x="10" y="502" width="900" height="36" fill="#f6f8fa"/>
+<text x="16" y="525" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 64 KiB · flush 1</text>
+<text x="878" y="524" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<text x="16" y="561" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 30 B · flush 64</text>
+<text x="878" y="560" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<rect x="10" y="574" width="900" height="36" fill="#f6f8fa"/>
+<text x="16" y="597" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 1 KiB · flush 64</text>
+<text x="878" y="596" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<text x="16" y="633" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#263238">Stream · 64 KiB · flush 64</text>
+<text x="878" y="632" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">PASS</text>
+<line x1="250.00" y1="178" x2="250.00" y2="646" stroke="#e1e6e9"/>
+<text x="250.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">0.8</text>
+<line x1="321.25" y1="178" x2="321.25" y2="646" stroke="#e1e6e9"/>
+<text x="321.25" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">0.9</text>
+<line x1="392.50" y1="178" x2="392.50" y2="646" stroke="#e1e6e9"/>
+<text x="392.50" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1</text>
+<line x1="463.75" y1="178" x2="463.75" y2="646" stroke="#e1e6e9"/>
+<text x="463.75" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.1</text>
+<line x1="535.00" y1="178" x2="535.00" y2="646" stroke="#e1e6e9"/>
+<text x="535.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.2</text>
+<line x1="606.25" y1="178" x2="606.25" y2="646" stroke="#e1e6e9"/>
+<text x="606.25" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.3</text>
+<line x1="677.50" y1="178" x2="677.50" y2="646" stroke="#e1e6e9"/>
+<text x="677.50" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.4</text>
+<line x1="748.75" y1="178" x2="748.75" y2="646" stroke="#e1e6e9"/>
+<text x="748.75" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.5</text>
+<line x1="820.00" y1="178" x2="820.00" y2="646" stroke="#e1e6e9"/>
+<text x="820.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#54636b" text-anchor="middle">1.6</text>
+<line x1="392.50" y1="178" x2="392.50" y2="646" stroke="#607d8b" stroke-width="1.5" stroke-dasharray="3 5"/>
+<line x1="356.87" y1="178" x2="356.87" y2="646" stroke="#c62828" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="378.24" y1="196" x2="435.69" y2="196" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="378.24" y1="191" x2="378.24" y2="201" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="435.69" y1="191" x2="435.69" y2="201" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="392.50" cy="196" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="365.52" y1="232" x2="443.43" y2="232" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="365.52" y1="227" x2="365.52" y2="237" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="443.43" y1="227" x2="443.43" y2="237" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="409.26" cy="232" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="360.46" y1="268" x2="409.36" y2="268" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="360.46" y1="263" x2="360.46" y2="273" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="409.36" y1="263" x2="409.36" y2="273" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="380.07" cy="268" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="327.69" y1="304" x2="384.02" y2="304" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="327.69" y1="299" x2="327.69" y2="309" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="384.02" y1="299" x2="384.02" y2="309" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="349.68" cy="304" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="380.31" y1="340" x2="435.36" y2="340" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="380.31" y1="335" x2="380.31" y2="345" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="435.36" y1="335" x2="435.36" y2="345" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="411.88" cy="340" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="381.95" y1="376" x2="412.94" y2="376" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="381.95" y1="371" x2="381.95" y2="381" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="412.94" y1="371" x2="412.94" y2="381" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="400.42" cy="376" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="387.55" y1="412" x2="412.71" y2="412" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="387.55" y1="407" x2="387.55" y2="417" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="412.71" y1="407" x2="412.71" y2="417" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="412.43" cy="412" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="312.47" y1="448" x2="702.39" y2="448" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="312.47" y1="443" x2="312.47" y2="453" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="702.39" y1="443" x2="702.39" y2="453" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="421.07" cy="448" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="281.38" y1="484" x2="407.18" y2="484" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="281.38" y1="479" x2="281.38" y2="489" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="407.18" y1="479" x2="407.18" y2="489" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="356.99" cy="484" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="430.26" y1="520" x2="521.54" y2="520" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="430.26" y1="515" x2="430.26" y2="525" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="521.54" y1="515" x2="521.54" y2="525" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="457.56" cy="520" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="489.54" y1="556" x2="540.59" y2="556" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="489.54" y1="551" x2="489.54" y2="561" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="540.59" y1="551" x2="540.59" y2="561" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="515.31" cy="556" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="488.91" y1="592" x2="533.79" y2="592" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="488.91" y1="587" x2="488.91" y2="597" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="533.79" y1="587" x2="533.79" y2="597" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="520.08" cy="592" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="362.60" y1="628" x2="495.94" y2="628" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="362.60" y1="623" x2="362.60" y2="633" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="495.94" y1="623" x2="495.94" y2="633" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="417.10" cy="628" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<text x="16" y="700" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#455A64">RT = round trip · C1/C4 = connections · flush = frames per server TLS write</text>
+<text x="16" y="720" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#455A64">Ratios above 1 favor the candidate · Red dashed line = 0.95 guard; parity is 1.0. Only Go 64 KiB c1 is wholly below parity.</text>
+<text x="16" y="740" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#455A64">FAIL means the lower CI misses its predeclared threshold; other failed-guard direction may be inconclusive.</text>
+</svg>

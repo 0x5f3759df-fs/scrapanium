@@ -1,0 +1,14 @@
+family,workload,label,candidate_vs_baseline_median,candidate_vs_baseline_ci95_low,candidate_vs_baseline_ci95_high,baseline_guard,direction_vs_baseline,candidate_vs_curl_cffi_median,candidate_vs_curl_cffi_ci95_low,candidate_vs_curl_cffi_ci95_high,large_stream_2x_target
+roundtrip,original-python-30b-c1,RT · Python · 30 B · 1 conn,1.0000000000,0.9799919968,1.0606122449,PASS,direction_inconclusive,1.2315092000,1.1953949118,1.2562734998,not_applicable
+roundtrip,go-30b-c1,RT · Go · 30 B · 1 conn,1.0235228664,0.9621360375,1.0714737702,PASS,direction_inconclusive,1.0869266167,1.0187402111,1.1328807474,not_applicable
+roundtrip,go-1024b-c1,RT · Go · 1 KiB · 1 conn,0.9825581395,0.9550334723,1.0236694678,PASS,direction_inconclusive,1.0573414582,1.0406516658,1.1378740851,not_applicable
+roundtrip,go-65536b-c1,RT · Go · 64 KiB · 1 conn,0.9398954704,0.9090439276,0.9880952381,FAIL,slower_than_baseline,1.3275411217,1.2707668422,1.4526741596,not_applicable
+roundtrip,go-30b-c4,RT · Go · 30 B · 4 conn,1.0272030651,0.9828861126,1.0601494696,PASS,direction_inconclusive,1.2586725543,1.2282873211,1.3052265739,not_applicable
+roundtrip,go-1024b-c4,RT · Go · 1 KiB · 4 conn,1.0111114541,0.9851950199,1.0286914308,PASS,direction_inconclusive,1.2376397300,1.2160928923,1.2588492506,not_applicable
+roundtrip,go-65536b-c4,RT · Go · 64 KiB · 4 conn,1.0279733959,0.9930555556,1.0283702213,PASS,direction_inconclusive,1.3770887021,1.3469463472,1.3870047799,not_applicable
+stream,stream-30b-flush1,Stream · 30 B · flush 1,1.0400982032,0.8876817944,1.4349287779,FAIL,direction_inconclusive,1.2354520646,1.0028119099,1.5253525642,not_applicable
+stream,stream-1024b-flush1,Stream · 1 KiB · flush 1,0.9501671938,0.8440439336,1.0206091232,FAIL,direction_inconclusive,1.1404082544,1.0702102216,1.3410416872,not_applicable
+stream,stream-65536b-flush1,Stream · 64 KiB · flush 1,1.0913066268,1.0529967504,1.1811138705,PASS,faster_than_baseline,1.3981383716,1.2257111481,1.4322121755,FAIL
+stream,stream-30b-flush64,Stream · 30 B · flush 64,1.1723664472,1.1361916204,1.2078520998,PASS,faster_than_baseline,2.8758272080,2.8002060448,2.9611231707,not_applicable
+stream,stream-1024b-flush64,Stream · 1 KiB · flush 64,1.1790590850,1.1353087312,1.1983043222,PASS,faster_than_baseline,2.3639212422,2.2180222865,2.3933737395,not_applicable
+stream,stream-65536b-flush64,Stream · 64 KiB · flush 64,1.0345212932,0.9580340512,1.1451755190,PASS,direction_inconclusive,1.3977728746,1.2519160187,1.4618669526,FAIL

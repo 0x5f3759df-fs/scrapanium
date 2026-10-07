@@ -1,0 +1,15 @@
+{
+  "name": "stream_peer",
+  "command": [
+    "/usr/lib/go-1.26/bin/go",
+    "build",
+    "-trimpath",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/campaigns/captrial-13workload-20261007-01/build/stream_peer",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree/benchmarks/websocket_stream_server.go"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

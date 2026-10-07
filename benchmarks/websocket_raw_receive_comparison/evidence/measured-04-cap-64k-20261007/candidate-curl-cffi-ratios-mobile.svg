@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="758" viewBox="0 0 620 758" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">Cap trial / curl_cffi · all 13</title>
+<desc id="chart-desc">Median paired throughput ratio and paired 95 percent bootstrap confidence interval for 12 matched samples across all 13 workloads. Both 64 KiB stream rows miss the 2x target; that target is evaluated only for those two rows.</desc>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="16" y="34" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#152536">Cap trial / curl_cffi · all 13</text>
+<text x="16" y="61" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#455A64">Median paired throughput ratio · paired 95% bootstrap CI · n=12</text>
+<line x1="18" y1="94" x2="52" y2="94" stroke="#2463a6" stroke-width="3"/><circle cx="35" cy="94" r="5" fill="#2463a6"/><text x="60" y="99" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#263238">median</text>
+<line x1="140" y1="94" x2="174" y2="94" stroke="#66737b" stroke-width="2"/><line x1="140" y1="89" x2="140" y2="99" stroke="#66737b"/><line x1="174" y1="89" x2="174" y2="99" stroke="#66737b"/><text x="182" y="99" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#263238">paired 95% CI</text>
+<text x="16" y="141" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#152536">Workload</text>
+<text x="575" y="141" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#152536" text-anchor="middle">2× target</text>
+<text x="16" y="201" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Python · 30 B · C1</text>
+<text x="575" y="200" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="214" width="600" height="36" fill="#f6f8fa"/>
+<text x="16" y="237" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 30 B · C1</text>
+<text x="575" y="236" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="16" y="273" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 1 KiB · C1</text>
+<text x="575" y="272" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="286" width="600" height="36" fill="#f6f8fa"/>
+<text x="16" y="309" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 64 KiB · C1</text>
+<text x="575" y="308" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="16" y="345" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 30 B · C4</text>
+<text x="575" y="344" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="358" width="600" height="36" fill="#f6f8fa"/>
+<text x="16" y="381" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 1 KiB · C4</text>
+<text x="575" y="380" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="16" y="417" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">RT · Go · 64 KiB · C4</text>
+<text x="575" y="416" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="430" width="600" height="36" fill="#f6f8fa"/>
+<line x1="10" y1="430" x2="610" y2="430" stroke="#b0bec5" stroke-width="1.5"/>
+<text x="16" y="453" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 30 B · flush 1</text>
+<text x="575" y="452" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="16" y="489" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 1 KiB · flush 1</text>
+<text x="575" y="488" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="502" width="600" height="36" fill="#f6f8fa"/>
+<text x="16" y="525" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 64 KiB · flush 1</text>
+<text x="575" y="524" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<text x="16" y="561" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 30 B · flush 64</text>
+<text x="575" y="560" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<rect x="10" y="574" width="600" height="36" fill="#f6f8fa"/>
+<text x="16" y="597" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 1 KiB · flush 64</text>
+<text x="575" y="596" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#607d8b" text-anchor="middle">—</text>
+<text x="16" y="633" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#263238">Stream · 64 KiB · flush 64</text>
+<text x="575" y="632" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#b3261e" text-anchor="middle">FAIL</text>
+<line x1="198.00" y1="178" x2="198.00" y2="646" stroke="#e1e6e9"/>
+<text x="198.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">0.8</text>
+<line x1="224.00" y1="178" x2="224.00" y2="646" stroke="#e1e6e9"/>
+<text x="224.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">1</text>
+<line x1="289.00" y1="178" x2="289.00" y2="646" stroke="#e1e6e9"/>
+<text x="289.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">1.5</text>
+<line x1="354.00" y1="178" x2="354.00" y2="646" stroke="#e1e6e9"/>
+<text x="354.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">2</text>
+<line x1="419.00" y1="178" x2="419.00" y2="646" stroke="#e1e6e9"/>
+<text x="419.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">2.5</text>
+<line x1="484.00" y1="178" x2="484.00" y2="646" stroke="#e1e6e9"/>
+<text x="484.00" y="674" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#54636b" text-anchor="middle">3</text>
+<line x1="224.00" y1="178" x2="224.00" y2="646" stroke="#607d8b" stroke-width="1.5" stroke-dasharray="3 5"/>
+<line x1="354.00" y1="178" x2="354.00" y2="646" stroke="#ed8b00" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="249.40" y1="196" x2="257.32" y2="196" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="249.40" y1="191" x2="249.40" y2="201" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="257.32" y1="191" x2="257.32" y2="201" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="254.10" cy="196" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="226.44" y1="232" x2="241.27" y2="232" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="226.44" y1="227" x2="226.44" y2="237" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="241.27" y1="227" x2="241.27" y2="237" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="235.30" cy="232" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="229.28" y1="268" x2="241.92" y2="268" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="229.28" y1="263" x2="229.28" y2="273" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="241.92" y1="263" x2="241.92" y2="273" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="231.45" cy="268" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="259.20" y1="304" x2="282.85" y2="304" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="259.20" y1="299" x2="259.20" y2="309" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="282.85" y1="299" x2="282.85" y2="309" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="266.58" cy="304" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="253.68" y1="340" x2="263.68" y2="340" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="253.68" y1="335" x2="253.68" y2="345" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="263.68" y1="335" x2="263.68" y2="345" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="257.63" cy="340" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="252.09" y1="376" x2="257.65" y2="376" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="252.09" y1="371" x2="252.09" y2="381" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="257.65" y1="371" x2="257.65" y2="381" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="254.89" cy="376" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="269.10" y1="412" x2="274.31" y2="412" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="269.10" y1="407" x2="269.10" y2="417" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="274.31" y1="407" x2="274.31" y2="417" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="273.02" cy="412" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="224.37" y1="448" x2="292.30" y2="448" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="224.37" y1="443" x2="224.37" y2="453" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="292.30" y1="443" x2="292.30" y2="453" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="254.61" cy="448" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="233.13" y1="484" x2="268.34" y2="484" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="233.13" y1="479" x2="233.13" y2="489" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="268.34" y1="479" x2="268.34" y2="489" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="242.25" cy="484" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="253.34" y1="520" x2="280.19" y2="520" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="253.34" y1="515" x2="253.34" y2="525" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="280.19" y1="515" x2="280.19" y2="525" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="275.76" cy="520" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="458.03" y1="556" x2="478.95" y2="556" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="458.03" y1="551" x2="458.03" y2="561" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="478.95" y1="551" x2="478.95" y2="561" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="467.86" cy="556" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="382.34" y1="592" x2="405.14" y2="592" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="382.34" y1="587" x2="382.34" y2="597" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="405.14" y1="587" x2="405.14" y2="597" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="401.31" cy="592" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<line x1="256.75" y1="628" x2="284.04" y2="628" stroke="#2463a6" stroke-width="3" stroke-linecap="round"/>
+<line x1="256.75" y1="623" x2="256.75" y2="633" stroke="#2463a6" stroke-width="1.5"/>
+<line x1="284.04" y1="623" x2="284.04" y2="633" stroke="#2463a6" stroke-width="1.5"/>
+<circle cx="275.71" cy="628" r="5" fill="#2463a6" stroke="#fff" stroke-width="1.2"/>
+<text x="16" y="700" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#455A64">RT = round trip · C1/C4 = connections · flush = frames per server TLS write</text>
+<text x="16" y="720" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#455A64">Ratios above 1 favor the candidate · Orange dashed line = 2× target for the two 64 KiB stream rows; both miss it.</text>
+<text x="16" y="740" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#455A64">A dash in the target column means the 2x target was not evaluated; only the two 64 KiB stream rows have that target.</text>
+</svg>

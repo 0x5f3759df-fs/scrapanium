@@ -1,0 +1,88 @@
+--- a/tests/websocket_operation_reuse.c
++++ b/tests/websocket_operation_reuse.c
+@@ -20,7 +20,8 @@
+ typedef struct {
+   unsigned char wire[TEST_WIRE_CAPACITY];
+   size_t wire_size, wire_offset, recv_chunk_limit, recv_calls, pause_recv_call;
+-  size_t terminal_call, terminal_bytes, direct_recv_calls;
++  size_t terminal_call, terminal_bytes, direct_recv_calls, direct_short_reads;
++  size_t max_direct_capacity;
+   void *read_ahead_buffer;
+   CURLcode terminal_code;
+   const unsigned char *send_data;
+@@ -59,8 +60,13 @@
+   Transport *t = (Transport *)easy;
+   *received = 0;
+   size_t call = ++t->recv_calls;
++  int direct = 0;
+   if (!t->read_ahead_buffer) t->read_ahead_buffer = buffer;
+-  else if (buffer != t->read_ahead_buffer) t->direct_recv_calls++;
++  else if (buffer != t->read_ahead_buffer) {
++    direct = 1;
++    t->direct_recv_calls++;
++    if (capacity > t->max_direct_capacity) t->max_direct_capacity = capacity;
++  }
+   if (call == t->pause_recv_call) return CURLE_AGAIN;
+ 
+   if (call == t->terminal_call) {
+@@ -78,6 +84,7 @@
+   if (count > capacity) count = capacity;
+   if (t->recv_chunk_limit && count > t->recv_chunk_limit)
+     count = t->recv_chunk_limit;
++  if (direct && count < capacity) t->direct_short_reads++;
+   memcpy(buffer, t->wire + t->wire_offset, count);
+   t->wire_offset += count;
+   *received = count;
+@@ -368,6 +375,44 @@
+   dispose(io);
+   teardown(&f);
+ }
++static void direct_cap_again_and_frame_boundary(void) {
++  Fixture f; setup(&f);
++  static const size_t payload_size = 131073;
++  static const unsigned char tail[] = "next-frame";
++  unsigned char payload[payload_size];
++  for (size_t i = 0; i < sizeof payload; i++)
++    payload[i] = (unsigned char)(i * 131u + 17u);
++  append_frame(&f.transport, 2, payload, sizeof payload, 1);
++  size_t first_frame_wire_size = f.transport.wire_size;
++  append_frame(&f.transport, 1, tail, sizeof tail - 1, 1);
++
++  /* The read-ahead fill is call 1; pause call 2 inside the direct-body path. */
++  f.transport.pause_recv_call = 2;
++  sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING);
++  assert(!data && !size && io->message.size == 16374);
++  assert(io->frame_payload_left == payload_size - io->message.size);
++  assert(f.transport.recv_calls == 2 && f.transport.direct_recv_calls == 1);
++  assert(f.transport.max_direct_capacity == 65536u);
++  assert(f.transport.wire_offset == 16384u && io->events == POLLIN);
++
++  /* Resume with successful short reads, then finish exactly at this frame. */
++  f.transport.recv_chunk_limit = 32768u;
++  assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++  assert(kind == 2 && size == sizeof payload && !memcmp(data, payload, size));
++  assert(f.transport.direct_recv_calls >= 5);
++  assert(f.transport.direct_short_reads >= 3);
++  assert(f.transport.max_direct_capacity == 65536u);
++  /* The direct reads stop at the frame boundary; the following text frame remains. */
++  assert(f.transport.wire_offset == first_frame_wire_size);
++  free(data); dispose(io);
++
++  expect_message(&f, 1, tail, sizeof tail - 1);
++  assert(f.transport.wire_offset == f.transport.wire_size);
++  teardown(&f);
++}
++
+ int main(void) {
+   sp_ws_io_free(NULL);
+   for (unsigned i = 0; i < 32; i++) {
+@@ -375,6 +420,7 @@
+   }
+   cached_messages_and_malformed_tail();
+   one_byte_header_boundaries();
++  direct_cap_again_and_frame_boundary();
+   small_final_message_keeps_exact_capacity();
+   recv_error_bytes_are_never_returned(1, CURLE_GOT_NOTHING, SP_CLOSED, 0, 19);
+   recv_error_bytes_are_never_returned(1, CURLE_RECV_ERROR, SP_TRANSPORT, 0, 19);

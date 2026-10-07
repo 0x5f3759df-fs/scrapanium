@@ -1,0 +1,14 @@
+{
+  "name": "candidate-stream",
+  "command": [
+    "/usr/bin/python3.14",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree/scripts/build.py",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree/benchmarks/websocket_stream.bend",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/campaigns/captrial-13workload-20261007-01/build/candidate-stream"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/worktree",
+  "returncode": 0,
+  "stdout": "/home/baidu/scrapanium-experiments/wss-raw-recv-cap-64k-20261007/campaigns/captrial-13workload-20261007-01/build/candidate-stream\n",
+  "stderr": "All terms check, but 10 defs rely on unsafe or foreign code:\n- WsBench.now_us\n- prepare\n- prepared_body\n- checked\n- check_message\n- received\n- receive_all\n- timed\n- warmed\n- main\nbend 2.0.36 is available: run bend update\n"
+}

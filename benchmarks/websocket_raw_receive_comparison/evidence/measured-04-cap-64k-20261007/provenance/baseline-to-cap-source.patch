@@ -1,0 +1,915 @@
+diff --git a/native/websocket.inc.c b/native/websocket.inc.c
+index 4e1655a..3ba07f2 100644
+--- a/native/websocket.inc.c
++++ b/native/websocket.inc.c
+@@ -9,14 +9,15 @@
+ struct sp_ws_io {
+   sp_ws *socket;
+   sp_cancel *cancel;
+-  uint64_t deadline;
+-  unsigned operation, kind, message_kind, send_flags;
++  uint64_t deadline, frame_payload_left;
++  unsigned operation, kind, message_kind, send_flags, frame_opcode;
+   const unsigned char *out;
+-  size_t out_size, offset, control_size;
+-  unsigned char control[125];
++  size_t out_size, offset, control_size, header_have, header_need;
++  unsigned char control[125], header[14];
+   sp_buffer message;
+   short events;
+   int sending, after_send, done, error;
++  int header_base_checked, frame_ready, frame_fin;
+ };
+ 
+ struct sp_ws {
+@@ -24,6 +25,8 @@ struct sp_ws {
+   sp_response *handshake;
+   pthread_mutex_t gate;
+   curl_socket_t fd;
++  unsigned char *input;
++  size_t input_offset, input_size;
+   int broken, closing, closed;
+   sp_ws_io operation;
+ };
+@@ -60,7 +63,7 @@ static int sp_ws_close_valid(const unsigned char *p, size_t n) {
+ 
+ void sp_ws_free(sp_ws *w) {
+   if (!w) return;
+-  sp_session_free(w->session); sp_response_free(w->handshake);
++  free(w->input); sp_session_free(w->session); sp_response_free(w->handshake);
+   pthread_mutex_destroy(&w->gate); free(w);
+ }
+ 
+@@ -68,8 +71,9 @@ sp_ws *sp_ws_upgrade(sp_session *s, const sp_request *q, sp_cancel *cancel, int
+   int err = SP_INVALID;
+   sp_ws *w = NULL;
+   if (!s || !q || !q->method || strcmp(q->method, "GET") || q->body_size || q->body) goto fail;
+-  /* libcurl owns framing and negotiation. Extensions (including compression)
+-   * are not implemented; callers may request a subprotocol and set Origin. */
++  /* libcurl performs the HTTP upgrade and owns TLS. This implementation parses
++   * server frames itself; extensions (including compression) are not
++   * implemented. Callers may request a subprotocol and set Origin. */
+   for (size_t i = 0; i < q->header_count; i++) {
+     if (!q->headers || !q->headers[i]) goto fail;
+     const char *h = q->headers[i];
+@@ -127,9 +131,9 @@ fail:
+ }
+ 
+ /* The blocking C API and Bend's event loop drive this same state machine.
+- * A step never waits for a descriptor: libcurl owns framing, masking and TLS,
+- * and CURLE_AGAIN hands readiness back to the caller without losing offsets,
+- * fragments or an in-flight control reply. */
++ * A step never waits for a descriptor: libcurl owns TLS and outbound framing
++ * and masking, while this layer parses raw server frames. CURLE_AGAIN hands
++ * readiness back without losing offsets, fragments or an in-flight reply. */
+ static unsigned sp_ws_flags(unsigned kind) {
+   return kind == 1 ? CURLWS_TEXT : kind == 2 ? CURLWS_BINARY : kind == 8 ? CURLWS_CLOSE :
+     kind == 9 ? CURLWS_PING : CURLWS_PONG;
+@@ -199,6 +203,7 @@ sp_ws_io *sp_ws_io_start(sp_ws *w, unsigned operation, unsigned kind,
+   sp_ws_io *io = &w->operation;
+   memset(io, 0, sizeof *io);
+   io->socket = w; io->operation = operation; io->deadline = sp_ws_clock() + timeout;
++  io->header_need = 2;
+   io->message.limit = w->session->config.max_body_bytes; io->message.limit_error = SP_BODY_LIMIT;
+   io->cancel = cancel; sp_cancel_retain(cancel);
+   if (operation == SP_WS_CLOSE && w->closed) sp_ws_io_end(io, SP_OK);
+@@ -227,11 +232,264 @@ static int sp_ws_io_close_message(sp_ws_io *io) {
+   return sp_ws_io_end(io, SP_OK);
+ }
+ 
++#define SP_WS_RECV_CHUNK 16384u
++
++static size_t sp_ws_input_available(const sp_ws *w) {
++  return w->input_size - w->input_offset;
++}
++
++static int sp_ws_recv_error(sp_ws_io *io, CURLcode code) {
++  return sp_ws_io_end(io, code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT);
++}
++
++/* The per-socket read-ahead buffer amortizes small frames and survives message
++ * returns. It is allocated only if the peer sends bytes that need buffering. */
++static int sp_ws_raw_fill(sp_ws_io *io) {
++  sp_ws *w = io->socket;
++  if (sp_ws_input_available(w)) return SP_OK;
++  w->input_offset = w->input_size = 0;
++  if (!w->input) {
++    w->input = malloc(SP_WS_RECV_CHUNK);
++    if (!w->input) return sp_ws_io_end(io, SP_NOMEM);
++  }
++  size_t got = 0;
++  CURLcode code = curl_easy_recv(w->session->slots[0].easy,
++                                 w->input, SP_WS_RECV_CHUNK, &got);
++  if (code == CURLE_AGAIN) {
++    if (got) return sp_ws_io_end(io, SP_TRANSPORT);
++    io->events = POLLIN;
++    return SP_WS_PENDING;
++  }
++  if (code != CURLE_OK) return sp_ws_recv_error(io, code);
++  if (!got) return sp_ws_io_end(io, SP_CLOSED);
++  w->input_size = got;
++  return SP_OK;
++}
++
++/* Large payload tails bypass the read-ahead buffer when it is empty. */
++static int sp_ws_raw_direct(sp_ws_io *io, unsigned char *out, size_t want,
++                            size_t *got_out) {
++  sp_ws *w = io->socket;
++  *got_out = 0;
++  if (sp_ws_input_available(w)) return SP_INVALID;
++  size_t got = 0;
++  CURLcode code = curl_easy_recv(w->session->slots[0].easy, out, want, &got);
++  if (code == CURLE_AGAIN) {
++    if (got) return sp_ws_io_end(io, SP_TRANSPORT);
++    io->events = POLLIN;
++    return SP_WS_PENDING;
++  }
++  if (code != CURLE_OK) return sp_ws_recv_error(io, code);
++  if (!got) return sp_ws_io_end(io, SP_CLOSED);
++  *got_out = got;
++  return SP_OK;
++}
++
++static void sp_ws_raw_consume(sp_ws *w, size_t amount) {
++  w->input_offset += amount;
++  if (w->input_offset == w->input_size)
++    w->input_offset = w->input_size = 0;
++}
++
++static int sp_ws_reserve(sp_buffer *message, size_t minimum,
++                         size_t announced, int final) {
++  if (minimum > message->limit - message->size) return message->limit_error;
++  size_t need = message->size + minimum;
++  size_t target = need;
++  if (!message->cap || final) {
++    size_t hint = announced < 262144 ? announced : 262144;
++    if (hint > target) target = hint;
++  }
++  if (target <= message->cap) return SP_OK;
++  size_t cap;
++  if (final && announced <= 262144) cap = announced;
++  else {
++    cap = message->cap ? message->cap : (target > 256 ? target : 256);
++    while (cap < target) {
++      if (cap > SIZE_MAX / 2) { cap = target; break; }
++      cap *= 2;
++    }
++  }
++  if (cap > message->limit) cap = message->limit;
++  unsigned char *buffer = realloc(message->data, cap);
++  if (!buffer) return SP_NOMEM;
++  message->data = buffer;
++  message->cap = cap;
++  return SP_OK;
++}
++
++static int sp_ws_io_header(sp_ws_io *io) {
++  sp_ws *w = io->socket;
++  while (!io->frame_ready) {
++    while (io->header_have < io->header_need) {
++      int result = sp_ws_raw_fill(io);
++      if (result) return result;
++      size_t available = sp_ws_input_available(w);
++      size_t need = io->header_need - io->header_have;
++      size_t take = available < need ? available : need;
++      memcpy(io->header + io->header_have, w->input + w->input_offset, take);
++      io->header_have += take;
++      sp_ws_raw_consume(w, take);
++    }
++
++    if (!io->header_base_checked) {
++      unsigned char first = io->header[0], second = io->header[1];
++      unsigned opcode = first & 0x0f;
++      unsigned marker = second & 0x7f;
++      if ((first & 0x70) || (second & 0x80) ||
++          !(opcode == 0 || opcode == 1 || opcode == 2 ||
++            opcode == 8 || opcode == 9 || opcode == 10))
++        return sp_ws_io_end(io, SP_PROTOCOL);
++      io->frame_opcode = opcode;
++      io->frame_fin = !!(first & 0x80);
++      io->header_need = 2 + (marker == 126 ? 2 : marker == 127 ? 8 : 0);
++      io->header_base_checked = 1;
++      if (io->header_have < io->header_need) continue;
++    }
++
++    unsigned marker = io->header[1] & 0x7f;
++    uint64_t length = marker;
++    if (marker == 126) {
++      length = ((uint64_t)io->header[2] << 8) | io->header[3];
++      if (length < 126) return sp_ws_io_end(io, SP_PROTOCOL);
++    }
++    else if (marker == 127) {
++      if (io->header[2] & 0x80) return sp_ws_io_end(io, SP_PROTOCOL);
++      length = 0;
++      for (unsigned i = 2; i < 10; i++)
++        length = (length << 8) | io->header[i];
++      if (length <= 65535) return sp_ws_io_end(io, SP_PROTOCOL);
++    }
++
++    unsigned opcode = io->frame_opcode;
++    int control = opcode >= 8;
++    if (control) {
++      if (!io->frame_fin || marker > 125 || length > sizeof io->control)
++        return sp_ws_io_end(io, SP_PROTOCOL);
++      io->control_size = 0;
++    }
++    else {
++      if (opcode == 1 || opcode == 2) {
++        if (io->message_kind) return sp_ws_io_end(io, SP_PROTOCOL);
++        io->message_kind = opcode == 1 ? 1 : 2;
++      }
++      else if (!io->message_kind) return sp_ws_io_end(io, SP_PROTOCOL);
++      if (length > (uint64_t)(io->message.limit - io->message.size))
++        return sp_ws_io_end(io, SP_BODY_LIMIT);
++    }
++    io->frame_payload_left = length;
++    io->frame_ready = 1;
++  }
++  return SP_OK;
++}
++
++static int sp_ws_io_payload(sp_ws_io *io) {
++  sp_ws *w = io->socket;
++  if (!io->frame_payload_left) return SP_OK;
++  if (io->frame_opcode >= 8) {
++    int result = sp_ws_raw_fill(io);
++    if (result) return result;
++    size_t available = sp_ws_input_available(w);
++    size_t take = available;
++    if ((uint64_t)take > io->frame_payload_left)
++      take = (size_t)io->frame_payload_left;
++    memcpy(io->control + io->control_size, w->input + w->input_offset, take);
++    io->control_size += take;
++    io->frame_payload_left -= take;
++    sp_ws_raw_consume(w, take);
++    return SP_OK;
++  }
++
++  sp_buffer *message = &io->message;
++  if (!sp_ws_input_available(w) &&
++      io->frame_payload_left >= SP_WS_RECV_CHUNK) {
++    size_t want = io->frame_payload_left < 65536u
++      ? (size_t)io->frame_payload_left : 65536u;
++    int result = sp_ws_reserve(message, want,
++      message->size + (size_t)io->frame_payload_left,
++      io->frame_fin);
++    if (result) return sp_ws_io_end(io, result);
++    size_t got = 0;
++    result = sp_ws_raw_direct(io, message->data + message->size, want, &got);
++    if (result) return result;
++    message->size += got;
++    io->frame_payload_left -= got;
++    return SP_OK;
++  }
++
++  if (!sp_ws_input_available(w)) {
++    int result = sp_ws_raw_fill(io);
++    if (result) return result;
++  }
++  size_t available = sp_ws_input_available(w);
++  size_t take = available;
++  if ((uint64_t)take > io->frame_payload_left)
++    take = (size_t)io->frame_payload_left;
++  int result = sp_ws_reserve(message, take,
++    message->size + (size_t)io->frame_payload_left,
++    io->frame_fin);
++  if (result) return sp_ws_io_end(io, result);
++  memcpy(message->data + message->size, w->input + w->input_offset, take);
++  message->size += take;
++  io->frame_payload_left -= take;
++  sp_ws_raw_consume(w, take);
++  return SP_OK;
++}
++
++static void sp_ws_io_frame_reset(sp_ws_io *io) {
++  io->header_have = 0;
++  io->header_need = 2;
++  io->header_base_checked = 0;
++  io->frame_ready = 0;
++  io->frame_fin = 0;
++  io->frame_opcode = 0;
++  io->frame_payload_left = 0;
++}
++
++static int sp_ws_io_finish_frame(sp_ws_io *io) {
++  unsigned opcode = io->frame_opcode;
++  int fin = io->frame_fin;
++  sp_ws_io_frame_reset(io);
++
++  if (opcode == 9) {
++    sp_ws_io_send(io, 10, io->control, io->control_size, 1);
++    return SP_OK;
++  }
++  if (opcode == 10) return SP_OK;
++  if (opcode == 8) {
++    if (!sp_ws_close_valid(io->control, io->control_size))
++      return sp_ws_io_end(io, SP_PROTOCOL);
++    if (!io->socket->closing)
++      sp_ws_io_send(io, 8, io->control, io->control_size, 2);
++    else
++      return sp_ws_io_close_message(io);
++    return SP_OK;
++  }
++
++  if (fin) {
++    unsigned kind = io->message_kind;
++    if (kind == 1 && !sp_ws_utf8(io->message.data, io->message.size))
++      return sp_ws_io_end(io, SP_PROTOCOL);
++    io->message_kind = 0;
++    if (io->operation == SP_WS_CLOSE) {
++      free(io->message.data);
++      io->message = (sp_buffer){
++        .limit = io->socket->session->config.max_body_bytes,
++        .limit_error = SP_BODY_LIMIT
++      };
++    }
++    else {
++      io->kind = kind;
++      return sp_ws_io_end(io, SP_OK);
++    }
++  }
++  return SP_OK;
++}
++
+ static int sp_ws_io_advance(sp_ws_io *io) {
+   sp_ws *w = io->socket;
+-  /* Bound work per dispatch even with a peer that continuously supplies data.
+-   * The immediate wake below yields to other Bend activations; no helper is
+-   * needed and buffered TLS data is retried without requiring a fresh edge. */
++  /* Bound work per dispatch. Small frames share the per-socket 16 KiB
++   * read-ahead buffer; large payload tails go directly to owned message memory. */
+   for (unsigned steps = 0; steps < 64; steps++) {
+     int error = sp_ws_check(io->deadline, io->cancel);
+     if (error) return sp_ws_io_end(io, error);
+@@ -242,52 +500,32 @@ static int sp_ws_io_advance(sp_ws_io *io) {
+         io->out_size - io->offset, &sent, 0, io->send_flags);
+       io->offset += sent;
+       if (code && code != CURLE_AGAIN) return sp_ws_io_end(io, SP_TRANSPORT);
+-      if (code == CURLE_AGAIN || io->offset != io->out_size) { io->events = POLLOUT; return SP_WS_PENDING; }
++      if (code == CURLE_AGAIN || io->offset != io->out_size) {
++        io->events = POLLOUT;
++        return SP_WS_PENDING;
++      }
+       io->sending = 0;
+       if (!io->after_send) return sp_ws_io_end(io, SP_OK);
+       if (io->after_send == 2) return sp_ws_io_close_message(io);
+       if (io->operation == SP_WS_CLOSE) w->closing = 1;
+       continue;
+     }
+-    unsigned char scratch[16384]; size_t got = 0; const struct curl_ws_frame *meta = NULL;
+-    sp_buffer *message = &io->message;
+-    int direct = message->cap - message->size >= sizeof scratch;
+-    unsigned char *chunk = direct ? message->data + message->size : scratch;
+-    CURLcode code = curl_ws_recv(w->session->slots[0].easy, chunk, sizeof scratch, &got, &meta);
+-    if (code == CURLE_AGAIN) { io->events = POLLIN; return SP_WS_PENDING; }
+-    if (code || !meta) return sp_ws_io_end(io, code == CURLE_GOT_NOTHING ? SP_CLOSED : SP_TRANSPORT);
+-    unsigned flags = meta->flags;
+-    unsigned frame_kind = flags & CURLWS_CLOSE ? 8 : flags & CURLWS_PING ? 9 : flags & CURLWS_PONG ? 10 :
+-      flags & CURLWS_TEXT ? 1 : flags & CURLWS_BINARY ? 2 : 0;
+-    if (!frame_kind || meta->offset < 0 || meta->bytesleft < 0) return sp_ws_io_end(io, SP_PROTOCOL);
+-    if (frame_kind >= 8) {
+-      if (!meta->offset) io->control_size = 0;
+-      if ((flags & CURLWS_CONT) || got > sizeof io->control - io->control_size ||
+-          (uint64_t)meta->bytesleft > sizeof io->control - io->control_size - got) return sp_ws_io_end(io, SP_PROTOCOL);
+-      memcpy(io->control + io->control_size, chunk, got); io->control_size += got;
+-      if (meta->bytesleft) continue;
+-      if (frame_kind == 9) sp_ws_io_send(io, 10, io->control, io->control_size, 1);
+-      else if (frame_kind == 8) {
+-        if (!sp_ws_close_valid(io->control, io->control_size)) return sp_ws_io_end(io, SP_PROTOCOL);
+-        if (!w->closing) sp_ws_io_send(io, 8, io->control, io->control_size, 2);
+-        else return sp_ws_io_close_message(io);
+-      }
+-      continue;
++
++    if (!io->frame_ready) {
++      error = sp_ws_io_header(io);
++      if (error == SP_WS_PENDING) return error;
++      if (error) return error;
++      if (!io->frame_ready) continue;
+     }
+-    if (io->message_kind && io->message_kind != frame_kind) return sp_ws_io_end(io, SP_PROTOCOL);
+-    io->message_kind = frame_kind;
+-    if (got > message->limit - message->size || (uint64_t)meta->bytesleft > message->limit - message->size - got)
+-      return sp_ws_io_end(io, SP_BODY_LIMIT);
+-    error = sp_ws_append(message, chunk, got, (size_t)meta->bytesleft, !(flags & CURLWS_CONT), direct);
+-    if (error) return sp_ws_io_end(io, error);
+-    if (!meta->bytesleft && !(flags & CURLWS_CONT)) {
+-      if (frame_kind == 1 && !sp_ws_utf8(message->data, message->size)) return sp_ws_io_end(io, SP_PROTOCOL);
+-      if (io->operation == SP_WS_CLOSE) {
+-        /* A close handshake may pass complete data messages before its ack. */
+-        free(message->data); *message = (sp_buffer){.limit = w->session->config.max_body_bytes, .limit_error = SP_BODY_LIMIT};
+-        io->message_kind = 0;
+-      } else { io->kind = frame_kind; return sp_ws_io_end(io, SP_OK); }
++    if (io->frame_payload_left) {
++      error = sp_ws_io_payload(io);
++      if (error == SP_WS_PENDING) return error;
++      if (error) return error;
++      if (io->frame_payload_left) continue;
+     }
++    error = sp_ws_io_finish_frame(io);
++    if (error) return error;
++    if (io->done) return io->error;
+   }
+   io->events = 0;
+   return SP_WS_PENDING;
+diff --git a/tests/test_websocket_operation_reuse.py b/tests/test_websocket_operation_reuse.py
+index bbf1fdb..f2be416 100644
+--- a/tests/test_websocket_operation_reuse.py
++++ b/tests/test_websocket_operation_reuse.py
+@@ -18,4 +18,4 @@ def test_operation_state_reuse_lifecycle():
+         env={**os.environ, "LD_LIBRARY_PATH": str(library),
+              "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1", "UBSAN_OPTIONS": "halt_on_error=1"})
+     assert result.returncode == 0, result.stdout + result.stderr
+-    assert result.stdout.strip() == "operation reuse preserves parked state, ownership, busy gates, controls, and failure cleanup"
++    assert result.stdout.strip() == "raw receive preserves cache order, fragment/control state, error isolation, and message ownership"
+diff --git a/tests/websocket_operation_reuse.c b/tests/websocket_operation_reuse.c
+index ef85c8a..c6121c0 100644
+--- a/tests/websocket_operation_reuse.c
++++ b/tests/websocket_operation_reuse.c
+@@ -1,51 +1,99 @@
+-/* Drive the real operation lifecycle with deterministic nonblocking transport
+- * results. Network tests separately exercise framing/TLS and Bend callbacks. */
++/* Drive the real operation lifecycle with deterministic raw nonblocking input.
++ * Network tests separately exercise framing, TLS, and client masking. */
+ #define _POSIX_C_SOURCE 200809L
+ #include <stdlib.h>
+ #include <assert.h>
++
++#define TEST_WIRE_CAPACITY 140000u
+ static size_t calloc_calls;
+ static void *counted_calloc(size_t count, size_t size) {
+   calloc_calls++; return calloc(count, size);
+ }
+ #define calloc counted_calloc
+-#define curl_ws_recv controlled_ws_recv
++#define curl_easy_recv controlled_easy_recv
+ #define curl_ws_send controlled_ws_send
+ #include "../native/scrapanium.c"
+ #undef calloc
+-#undef curl_ws_recv
++#undef curl_easy_recv
+ #undef curl_ws_send
+ 
+-typedef struct { const unsigned char *data; size_t size; unsigned flags; } Frame;
+ typedef struct {
+-  const Frame *frames;
+-  size_t frame_count, frame_index, frame_offset, recv_calls, pause_recv_call;
++  unsigned char wire[TEST_WIRE_CAPACITY];
++  size_t wire_size, wire_offset, recv_chunk_limit, recv_calls, pause_recv_call;
++  size_t terminal_call, terminal_bytes, direct_recv_calls, direct_short_reads;
++  size_t max_direct_capacity;
++  void *read_ahead_buffer;
++  CURLcode terminal_code;
+   const unsigned char *send_data;
+   size_t send_size, sent, send_calls;
+   unsigned send_flags;
+   int pause_send;
+ } Transport;
+ 
+-CURLcode controlled_ws_recv(CURL *easy, void *buffer, size_t capacity,
+-                            size_t *received, const struct curl_ws_frame **metadata) {
++static void append_bytes(Transport *t, const unsigned char *data, size_t size) {
++  assert(size <= sizeof t->wire - t->wire_size);
++  if (size) memcpy(t->wire + t->wire_size, data, size);
++  t->wire_size += size;
++}
++
++static void append_frame(Transport *t, unsigned opcode, const unsigned char *data,
++                         size_t size, int final) {
++  unsigned char header[10];
++  size_t n = 0;
++  header[n++] = (unsigned char)((final ? 0x80 : 0) | opcode);
++  if (size < 126) header[n++] = (unsigned char)size;
++  else if (size <= 65535) {
++    header[n++] = 126;
++    header[n++] = (unsigned char)(size >> 8);
++    header[n++] = (unsigned char)size;
++  } else {
++    header[n++] = 127;
++    for (unsigned i = 0; i < 8; i++)
++      header[n++] = (unsigned char)((uint64_t)size >> (56 - 8 * i));
++  }
++  append_bytes(t, header, n);
++  append_bytes(t, data, size);
++}
++
++CURLcode controlled_easy_recv(CURL *easy, void *buffer, size_t capacity,
++                              size_t *received) {
+   Transport *t = (Transport *)easy;
+-  static struct curl_ws_frame meta;
+-  *received = 0; *metadata = NULL;
+-  if (++t->recv_calls == t->pause_recv_call) return CURLE_AGAIN;
+-  assert(t->frame_index < t->frame_count);
+-  const Frame *frame = t->frames + t->frame_index;
+-  size_t count = frame->size - t->frame_offset;
++  *received = 0;
++  size_t call = ++t->recv_calls;
++  int direct = 0;
++  if (!t->read_ahead_buffer) t->read_ahead_buffer = buffer;
++  else if (buffer != t->read_ahead_buffer) {
++    direct = 1;
++    t->direct_recv_calls++;
++    if (capacity > t->max_direct_capacity) t->max_direct_capacity = capacity;
++  }
++  if (call == t->pause_recv_call) return CURLE_AGAIN;
++
++  if (call == t->terminal_call) {
++    size_t count = t->terminal_bytes;
++    if (count > capacity) count = capacity;
++    if (count > t->wire_size - t->wire_offset) count = t->wire_size - t->wire_offset;
++    if (count) memcpy(buffer, t->wire + t->wire_offset, count);
++    t->wire_offset += count;
++    *received = count;
++    return t->terminal_code;
++  }
++
++  if (t->wire_offset == t->wire_size) return CURLE_AGAIN;
++  size_t count = t->wire_size - t->wire_offset;
+   if (count > capacity) count = capacity;
+-  memcpy(buffer, frame->data + t->frame_offset, count);
+-  meta = (struct curl_ws_frame){.flags = (int)frame->flags,
+-    .offset = (curl_off_t)t->frame_offset,
+-    .bytesleft = (curl_off_t)(frame->size - t->frame_offset - count), .len = count};
+-  t->frame_offset += count;
+-  if (t->frame_offset == frame->size) { t->frame_index++; t->frame_offset = 0; }
+-  *metadata = &meta; *received = count; return CURLE_OK;
++  if (t->recv_chunk_limit && count > t->recv_chunk_limit)
++    count = t->recv_chunk_limit;
++  if (direct && count < capacity) t->direct_short_reads++;
++  memcpy(buffer, t->wire + t->wire_offset, count);
++  t->wire_offset += count;
++  *received = count;
++  return CURLE_OK;
+ }
+ 
+ CURLcode controlled_ws_send(CURL *easy, const void *buffer, size_t size,
+-                            size_t *sent, curl_off_t fragment_size, unsigned int flags) {
++                            size_t *sent, curl_off_t fragment_size,
++                            unsigned int flags) {
+   (void)fragment_size;
+   Transport *t = (Transport *)easy;
+   assert(flags == t->send_flags && size == t->send_size - t->sent);
+@@ -66,43 +114,84 @@ static void setup(Fixture *f) {
+   f->socket.session = &f->session;
+   assert(!pthread_mutex_init(&f->socket.gate, NULL));
+ }
+-static void teardown(Fixture *f) { assert(!pthread_mutex_destroy(&f->socket.gate)); }
++static void teardown(Fixture *f) {
++  assert(!f->socket.operation.message.data);
++  free(f->socket.input);
++  assert(!pthread_mutex_destroy(&f->socket.gate));
++}
+ 
+ static sp_ws_io *start(Fixture *f, unsigned operation, unsigned kind,
+                        const unsigned char *data, size_t size, sp_cancel *cancel) {
+   size_t before = calloc_calls;
+   int error = -1;
+-  sp_ws_io *io = sp_ws_io_start(&f->socket, operation, kind, data, size, 5000, cancel, &error);
++  sp_ws_io *io = sp_ws_io_start(&f->socket, operation, kind, data, size, 5000,
++                                cancel, &error);
+   assert(io && error == SP_OK && calloc_calls == before);
+   assert(io == &f->socket.operation);
+-  assert(!io->offset && !io->message.size && !io->message.cap && !io->message.data && !io->message_kind);
++  assert(!io->offset && !io->message.size && !io->message.cap &&
++         !io->message.data && !io->message_kind);
+   if (operation != SP_WS_CLOSE) assert(!io->control_size && !io->after_send);
+   return io;
+ }
+ static void dispose(sp_ws_io *io) {
+   sp_ws *owner = io->socket;
+   sp_ws_io_free(io);
+-  assert(!owner->operation.message.data && !owner->operation.cancel && !owner->operation.out && !owner->operation.socket);
++  assert(!owner->operation.message.data && !owner->operation.cancel &&
++         !owner->operation.out && !owner->operation.socket);
+   assert(!pthread_mutex_trylock(&owner->gate));
+   pthread_mutex_unlock(&owner->gate);
+ }
++static int receive_step(sp_ws_io *io, unsigned *kind, unsigned char **data,
++                       size_t *size) {
++  return sp_ws_io_step(io, kind, data, size);
++}
++static int drain_receive(sp_ws_io *io, unsigned *kind, unsigned char **data,
++                         size_t *size) {
++  for (unsigned steps = 0; steps < 10000; steps++) {
++    int result = receive_step(io, kind, data, size);
++    if (result != SP_WS_PENDING) return result;
++  }
++  assert(!"raw receive did not finish within the deterministic test bound");
++  return SP_TRANSPORT;
++}
++static void expect_message(Fixture *f, unsigned expected_kind,
++                           const unsigned char *expected, size_t expected_size) {
++  sp_ws_io *io = start(f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++  assert(kind == expected_kind && size == expected_size);
++  assert(!size || !memcmp(data, expected, size));
++  free(data); dispose(io);
++}
+ static void busy_preserves(sp_ws_io *io) {
+   sp_ws_io snapshot; memcpy(&snapshot, io, sizeof snapshot);
+   int error = -1;
+-  assert(!sp_ws_io_start(io->socket, SP_WS_RECEIVE, 0, NULL, 0, 5000, NULL, &error));
++  assert(!sp_ws_io_start(io->socket, SP_WS_RECEIVE, 0, NULL, 0, 5000,
++                         NULL, &error));
+   assert(error == SP_BUSY && !memcmp(io, &snapshot, sizeof snapshot));
+ }
+-static int receive_step(sp_ws_io *io, unsigned *kind, unsigned char **data, size_t *size) {
+-  return sp_ws_io_step(io, kind, data, size);
+-}
+ 
+ static void successful_reuse(void) {
+   Fixture first, second; setup(&first); setup(&second);
+   const unsigned char sending[] = "send\0bytes";
+-  first.transport = (Transport){.send_data = sending, .send_size = sizeof sending - 1,
+-    .send_flags = CURLWS_BINARY, .pause_send = 1};
++  static const unsigned char left[] = "left", right[] = "right", next[] = "next";
++  static const unsigned char ping[] = {'p', 0, 255};
++  static const unsigned char closing[] = {3, 232, 'o', 'k'};
++  append_frame(&first.transport, 2, left, sizeof left - 1, 0);
++  append_frame(&first.transport, 9, ping, sizeof ping, 1);
++  append_frame(&first.transport, 0, right, sizeof right - 1, 1);
++  append_frame(&first.transport, 2, next, sizeof next - 1, 1);
++  append_frame(&first.transport, 8, closing, sizeof closing, 1);
++  first.transport.recv_chunk_limit = 6;
++  first.transport.pause_recv_call = 2;
++  first.transport.send_data = sending;
++  first.transport.send_size = sizeof sending - 1;
++  first.transport.send_flags = CURLWS_BINARY;
++  first.transport.pause_send = 1;
++
+   sp_cancel *cancel = sp_cancel_new(); assert(cancel);
+-  sp_ws_io *original = start(&first, SP_WS_SEND, 2, sending, sizeof sending - 1, cancel);
++  sp_ws_io *original = start(&first, SP_WS_SEND, 2, sending,
++                             sizeof sending - 1, cancel);
+   assert(atomic_load(&cancel->refs) == 2);
+   assert(sp_ws_io_step(original, NULL, NULL, NULL) == SP_WS_PENDING);
+   assert(original->offset == 1 && original->events == POLLOUT);
+@@ -110,59 +199,56 @@ static void successful_reuse(void) {
+   assert(sp_ws_io_step(original, NULL, NULL, NULL) == SP_OK);
+   assert(first.transport.sent == sizeof sending - 1);
+   dispose(original); assert(atomic_load(&cancel->refs) == 1);
++  first.transport.sent = 0; first.transport.send_calls = 0;
++  first.transport.send_data = ping; first.transport.send_size = sizeof ping;
++  first.transport.send_flags = CURLWS_PONG; first.transport.pause_send = 1;
+ 
+-  static const unsigned char ping[] = {'p', 0, 255};
+-  const Frame fragments[] = {
+-    {(const unsigned char *)"left", 4, CURLWS_BINARY | CURLWS_CONT},
+-    {ping, sizeof ping, CURLWS_PING}, {(const unsigned char *)"right", 5, CURLWS_BINARY}};
+-  first.transport = (Transport){.frames = fragments, .frame_count = 3, .pause_recv_call = 2,
+-    .send_data = ping, .send_size = sizeof ping, .send_flags = CURLWS_PONG, .pause_send = 1};
+   sp_ws_io *io = start(&first, SP_WS_RECEIVE, 0, NULL, 0, cancel);
+-  assert(io == original);
+   unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
+   assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING);
+   assert(io->message.size == 4 && io->events == POLLIN && !data);
+   busy_preserves(io);
+ 
+   /* A second socket may progress without moving or resetting the parked one. */
+-  const Frame other[] = {{(const unsigned char *)"other", 5, CURLWS_TEXT}};
+-  second.transport = (Transport){.frames = other, .frame_count = 1};
++  static const unsigned char other[] = "other";
++  append_frame(&second.transport, 1, other, sizeof other - 1, 1);
+   sp_ws_io snapshot; memcpy(&snapshot, io, sizeof snapshot);
+   sp_ws_io *parallel = start(&second, SP_WS_RECEIVE, 0, NULL, 0, NULL);
+   unsigned other_kind = 0; unsigned char *other_data = NULL; size_t other_size = 0;
+-  assert(parallel != io && receive_step(parallel, &other_kind, &other_data, &other_size) == SP_OK);
+-  assert(other_kind == 1 && other_size == 5 && !memcmp(other_data, "other", 5));
++  assert(drain_receive(parallel, &other_kind, &other_data, &other_size) == SP_OK);
++  assert(other_kind == 1 && other_size == sizeof other - 1 &&
++         !memcmp(other_data, other, sizeof other - 1));
+   dispose(parallel); free(other_data);
+   assert(!memcmp(io, &snapshot, sizeof snapshot));
+ 
+   assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING);
+-  assert(io->sending && io->offset == 1 && io->events == POLLOUT && io->out == io->control);
++  assert(io->sending && io->offset == 1 && io->events == POLLOUT &&
++         io->out == io->control);
+   busy_preserves(io);
+-  assert(receive_step(io, &kind, &data, &size) == SP_OK);
+-  assert(kind == 2 && size == 9 && !memcmp(data, "leftright", 9));
++  assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++  assert(kind == 2 && size == sizeof left + sizeof right - 2 &&
++         !memcmp(data, "leftright", size));
+   assert(first.transport.sent == sizeof ping && !io->message.data);
+   dispose(io); assert(atomic_load(&cancel->refs) == 1);
+ 
+-  /* Caller-owned bytes survive later reuse, including a different frame type. */
+-  const Frame text[] = {{(const unsigned char *)"next", 4, CURLWS_TEXT}};
+-  first.transport = (Transport){.frames = text, .frame_count = 1};
+-  io = start(&first, SP_WS_RECEIVE, 0, NULL, 0, NULL);
+-  unsigned next_kind = 0; unsigned char *next_data = NULL; size_t next_size = 0;
+-  assert(receive_step(io, &next_kind, &next_data, &next_size) == SP_OK);
+-  assert(next_kind == 1 && next_size == 4 && !memcmp(next_data, "next", 4));
+-  dispose(io);
+-  assert(!memcmp(data, "leftright", 9)); free(data); free(next_data);
++  /* The tail of the continuation header and the next full message were read
++   * ahead. The next operation must consume that cached message in order. */
++  unsigned char *first_message = data;
++  expect_message(&first, 2, next, sizeof next - 1);
++  assert(!memcmp(first_message, "leftright", sizeof left + sizeof right - 2));
++  free(first_message);
+ 
+   /* An invalid pre-I/O request neither locks nor marks the socket broken. */
+   int error;
+-  assert(!sp_ws_io_start(&first.socket, SP_WS_SEND, 0, NULL, 0, 5000, NULL, &error));
++  assert(!sp_ws_io_start(&first.socket, SP_WS_SEND, 0, NULL, 0, 5000,
++                         NULL, &error));
+   assert(error == SP_INVALID && !first.socket.broken);
+-  assert(!pthread_mutex_trylock(&first.socket.gate)); pthread_mutex_unlock(&first.socket.gate);
++  assert(!pthread_mutex_trylock(&first.socket.gate));
++  pthread_mutex_unlock(&first.socket.gate);
+ 
+-  const unsigned char closing[] = {3, 232, 'o', 'k'};
+-  const Frame ack[] = {{closing, sizeof closing, CURLWS_CLOSE}};
+-  first.transport = (Transport){.frames = ack, .frame_count = 1, .send_data = closing,
+-    .send_size = sizeof closing, .send_flags = CURLWS_CLOSE, .pause_send = 1};
++  first.transport.send_data = closing; first.transport.send_size = sizeof closing;
++  first.transport.sent = 0; first.transport.send_calls = 0;
++  first.transport.send_flags = CURLWS_CLOSE; first.transport.pause_send = 1;
+   io = start(&first, SP_WS_CLOSE, 1000, (const unsigned char *)"ok", 2, NULL);
+   assert(sp_ws_io_step(io, NULL, NULL, NULL) == SP_WS_PENDING);
+   assert(sp_ws_io_step(io, NULL, NULL, NULL) == SP_OK);
+@@ -170,20 +256,23 @@ static void successful_reuse(void) {
+   size_t recv_calls = first.transport.recv_calls, send_calls = first.transport.send_calls;
+   io = start(&first, SP_WS_CLOSE, 1000, NULL, 0, NULL);
+   assert(sp_ws_io_step(io, NULL, NULL, NULL) == SP_OK); dispose(io);
+-  assert(first.transport.recv_calls == recv_calls && first.transport.send_calls == send_calls);
++  assert(first.transport.recv_calls == recv_calls &&
++         first.transport.send_calls == send_calls);
+   sp_cancel_free(cancel); teardown(&first); teardown(&second);
+ }
+ 
+ static void failed_reuse(int cancellation) {
+   Fixture f; setup(&f);
+-  const Frame partial[] = {{(const unsigned char *)"partial", 7, CURLWS_BINARY | CURLWS_CONT}};
+-  f.transport = (Transport){.frames = partial, .frame_count = 1, .pause_recv_call = 2};
++  static const unsigned char partial[] = "partial";
++  append_frame(&f.transport, 2, partial, sizeof partial - 1, 0);
+   sp_cancel *cancel = sp_cancel_new(); assert(cancel);
+   sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, cancel);
+   unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
+-  assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING && io->message.data);
++  assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING &&
++         io->message.data);
+   if (cancellation) sp_cancel_trigger(cancel); else io->deadline = 0;
+-  assert(receive_step(io, &kind, &data, &size) == (cancellation ? SP_CANCELLED : SP_TIMEOUT));
++  assert(receive_step(io, &kind, &data, &size) ==
++         (cancellation ? SP_CANCELLED : SP_TIMEOUT));
+   assert(!data && !size && f.socket.broken);
+   dispose(io); assert(atomic_load(&cancel->refs) == 1);
+   size_t calls = f.transport.recv_calls;
+@@ -193,9 +282,150 @@ static void failed_reuse(int cancellation) {
+   sp_cancel_free(cancel); teardown(&f);
+ }
+ 
++static void cached_messages_and_malformed_tail(void) {
++  Fixture f; setup(&f);
++  static const unsigned char one[] = "one", two[] = "two", tiny[] = "x";
++  append_frame(&f.transport, 2, one, sizeof one - 1, 1);
++  append_frame(&f.transport, 1, two, sizeof two - 1, 1);
++  append_frame(&f.transport, 2, NULL, 0, 1);
++  append_frame(&f.transport, 2, tiny, sizeof tiny - 1, 1);
++  /* Noncanonical 126 encoding of length 125, immediately after valid frames. */
++  unsigned char malformed[4 + 125] = {0x82, 126, 0, 125};
++  memset(malformed + 4, 'm', 125);
++  append_bytes(&f.transport, malformed, sizeof malformed);
++
++  sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++  assert(kind == 2 && size == sizeof one - 1 && !memcmp(data, one, size));
++  assert(f.transport.recv_calls == 1);
++  free(data); dispose(io);
++
++  expect_message(&f, 1, two, sizeof two - 1);
++  assert(f.transport.recv_calls == 1);
++  expect_message(&f, 2, NULL, 0);
++  assert(f.transport.recv_calls == 1);
++  expect_message(&f, 2, tiny, sizeof tiny - 1);
++  assert(f.transport.recv_calls == 1);
++
++  io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  kind = 0; data = NULL; size = 0;
++  assert(drain_receive(io, &kind, &data, &size) == SP_PROTOCOL);
++  assert(!data && !size && f.socket.broken && f.transport.recv_calls == 1);
++  dispose(io);
++  io = start(&f, SP_WS_SEND, 2, tiny, sizeof tiny - 1, NULL);
++  assert(sp_ws_io_step(io, NULL, NULL, NULL) == SP_CLOSED);
++  assert(f.transport.send_calls == 0); dispose(io);
++  teardown(&f);
++}
++
++static void one_byte_header_boundaries(void) {
++  Fixture f; setup(&f);
++  static const size_t sizes[] = {0, 125, 126, 65535, 65536};
++  unsigned char payload[65536];
++  for (size_t i = 0; i < sizeof payload; i++)
++    payload[i] = (unsigned char)(i * 131u + 17u);
++  for (size_t i = 0; i < sizeof sizes / sizeof sizes[0]; i++)
++    append_frame(&f.transport, 2, payload, sizes[i], 1);
++  f.transport.recv_chunk_limit = 1;
++
++  for (size_t i = 0; i < sizeof sizes / sizeof sizes[0]; i++) {
++    sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++    unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++    assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++    assert(kind == 2 && size == sizes[i]);
++    assert(!size || !memcmp(data, payload, size));
++    free(data); dispose(io);
++  }
++  teardown(&f);
++}
++
++static void small_final_message_keeps_exact_capacity(void) {
++  Fixture f; setup(&f);
++  static const unsigned char payload[] = "x";
++  append_frame(&f.transport, 2, payload, sizeof payload - 1, 1);
++  sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  assert(sp_ws_io_advance(io) == SP_OK);
++  assert(io->message.size == 1 && io->message.cap == 1);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(sp_ws_io_step(io, &kind, &data, &size) == SP_OK);
++  assert(kind == 2 && size == 1 && data[0] == 'x');
++  dispose(io); free(data); teardown(&f);
++}
++
++static void recv_error_bytes_are_never_returned(size_t terminal_call,
++                                                CURLcode code,
++                                                int expected_error,
++                                                size_t prefix_bytes,
++                                                size_t payload_size) {
++  Fixture f; setup(&f);
++  unsigned char payload[32768];
++  memset(payload, 0x5a, sizeof payload);
++  assert(payload_size <= sizeof payload);
++  append_frame(&f.transport, 2, payload, payload_size, 1);
++  f.transport.recv_chunk_limit = terminal_call == 2 ? 4 : 0;
++  f.transport.terminal_call = terminal_call;
++  f.transport.terminal_code = code;
++  f.transport.terminal_bytes = prefix_bytes ? prefix_bytes : f.transport.wire_size;
++  sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(drain_receive(io, &kind, &data, &size) == expected_error);
++  assert(!kind && !data && !size && f.socket.broken);
++  if (terminal_call == 2) assert(f.transport.direct_recv_calls == 1);
++  dispose(io);
++  teardown(&f);
++}
++static void direct_cap_again_and_frame_boundary(void) {
++  Fixture f; setup(&f);
++  static const size_t payload_size = 131073;
++  static const unsigned char tail[] = "next-frame";
++  unsigned char payload[payload_size];
++  for (size_t i = 0; i < sizeof payload; i++)
++    payload[i] = (unsigned char)(i * 131u + 17u);
++  append_frame(&f.transport, 2, payload, sizeof payload, 1);
++  size_t first_frame_wire_size = f.transport.wire_size;
++  append_frame(&f.transport, 1, tail, sizeof tail - 1, 1);
++
++  /* The read-ahead fill is call 1; pause call 2 inside the direct-body path. */
++  f.transport.pause_recv_call = 2;
++  sp_ws_io *io = start(&f, SP_WS_RECEIVE, 0, NULL, 0, NULL);
++  unsigned kind = 0; unsigned char *data = NULL; size_t size = 0;
++  assert(receive_step(io, &kind, &data, &size) == SP_WS_PENDING);
++  assert(!data && !size && io->message.size == 16374);
++  assert(io->frame_payload_left == payload_size - io->message.size);
++  assert(f.transport.recv_calls == 2 && f.transport.direct_recv_calls == 1);
++  assert(f.transport.max_direct_capacity == 65536u);
++  assert(f.transport.wire_offset == 16384u && io->events == POLLIN);
++
++  /* Resume with successful short reads, then finish exactly at this frame. */
++  f.transport.recv_chunk_limit = 32768u;
++  assert(drain_receive(io, &kind, &data, &size) == SP_OK);
++  assert(kind == 2 && size == sizeof payload && !memcmp(data, payload, size));
++  assert(f.transport.direct_recv_calls >= 5);
++  assert(f.transport.direct_short_reads >= 3);
++  assert(f.transport.max_direct_capacity == 65536u);
++  /* The direct reads stop at the frame boundary; the following text frame remains. */
++  assert(f.transport.wire_offset == first_frame_wire_size);
++  free(data); dispose(io);
++
++  expect_message(&f, 1, tail, sizeof tail - 1);
++  assert(f.transport.wire_offset == f.transport.wire_size);
++  teardown(&f);
++}
++
+ int main(void) {
+   sp_ws_io_free(NULL);
+-  for (unsigned i = 0; i < 32; i++) { successful_reuse(); failed_reuse(0); failed_reuse(1); }
+-  puts("operation reuse preserves parked state, ownership, busy gates, controls, and failure cleanup");
++  for (unsigned i = 0; i < 32; i++) {
++    successful_reuse(); failed_reuse(0); failed_reuse(1);
++  }
++  cached_messages_and_malformed_tail();
++  one_byte_header_boundaries();
++  direct_cap_again_and_frame_boundary();
++  small_final_message_keeps_exact_capacity();
++  recv_error_bytes_are_never_returned(1, CURLE_GOT_NOTHING, SP_CLOSED, 0, 19);
++  recv_error_bytes_are_never_returned(1, CURLE_RECV_ERROR, SP_TRANSPORT, 0, 19);
++  recv_error_bytes_are_never_returned(1, CURLE_AGAIN, SP_TRANSPORT, 0, 19);
++  recv_error_bytes_are_never_returned(2, CURLE_RECV_ERROR, SP_TRANSPORT, 16384, 32768);
++  puts("raw receive preserves cache order, fragment/control state, error isolation, and message ownership");
+   return 0;
+ }
