@@ -1,0 +1,1374 @@
+# ========
+# captured on    : Wed Oct  7 12:30:11 2026
+# header version : 1
+# data offset    : 616
+# data size      : 8384
+# feat offset    : 9000
+# hostname : DESKTOP-QFHVKL9
+# os release : 6.18.33.2-microsoft-standard-WSL2
+# perf version : 7.0.14
+# arch : x86_64
+# nrcpus online : 12
+# nrcpus avail : 12
+# cpudesc : 13th Gen Intel(R) Core(TM) i5-13420H
+# cpuid : GenuineIntel,6,186,2
+# total memory : 7959184 kB
+# cmdline : /home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/perf-package/extracted/usr/bin/perf 
+# event desc: not available or unable to read
+# CPU_TOPOLOGY info available, use -I to display
+# NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: cpu = 4, breakpoint = 5, hwmon_ac1 = 4294901760, hwmon_bat1 = 4294901761, kprobe = 8, msr = 11, power = 10, software = 1, tool = 4294967294, tracepoint = 2, uprobe = 9
+# CACHE info available, use -I to display
+# time of first sample : 0.000000
+# time of last sample : 0.000000
+# sample duration :      0.000 ms
+# MEM_TOPOLOGY info available, use -I to display
+# clockid frequency: 1000 MHz
+# bpf_prog_info empty
+# btf info empty
+# cpu pmu capabilities: not available
+# clockid: monotonic (1)
+# reference time: 2026-10-07 12:30:11.343138 = 1791401411.343138 (TOD) = 5105.330661068 (monotonic)
+# CPU_DOMAIN_INFO info available, use -I to display
+# e_machine : 62
+#   e_flags : 0
+# missing features: TRACING_DATA BUILD_ID BRANCH_STACK GROUP_DESC AUXTRACE STAT DIR_FORMAT COMPRESSED HYBRID_TOPOLOGY 
+# ========
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 14  of event 'cpu-clock:u'
+# Event count (approx.): 28056112
+#
+# Children      Self  Command     Shared Object                                  Symbol                                                                                                                                                                                          
+# ........  ........  ..........  .............................................  ................................................................................................................................................................................................
+#
+   100.00%     0.00%  python3.14  python3.14                                     [.] _start
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  libc.so.6                                      [.] __libc_start_main
+            |
+            ---__libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  libc.so.6                                      [.] 0x00007dd01d82a601
+            |
+            ---0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] Py_BytesMain
+            |
+            ---Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] Py_RunMain
+            |
+            ---Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] 0x00000000006c6839
+            |
+            ---0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] 0x00000000006c6d6b
+            |
+            ---0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] 0x00000000006c76c1
+            |
+            ---0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] 0x00000000006cab01
+            |
+            ---0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] PyEval_EvalCode
+            |
+            ---PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+   100.00%     0.00%  python3.14  python3.14                                     [.] _PyEval_EvalFrameDefault
+            |
+            ---_PyEval_EvalFrameDefault
+               |          
+               |--42.86%--_PyObject_MakeTpCall
+               |          |          
+               |          |--35.71%--0x5775f9
+               |          |          _cffi_f_curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          |          
+               |          |          |--28.57%--curl_ws_recv
+               |          |          |          |          
+               |          |          |          |--14.29%--ws_dec_pass
+               |          |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          |          copyForwards (inlined)
+               |          |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          |          
+               |          |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |          |                     prune_head
+               |          |          |          |          
+               |          |          |           --14.29%--Curl_bufq_slurp
+               |          |          |                     bufq_slurpn (inlined)
+               |          |          |                     Curl_bufq_sipn (inlined)
+               |          |          |                     chunk_slurpn (inlined)
+               |          |          |                     Curl_easy_recv
+               |          |          |                     ssl_cf_recv
+               |          |          |                     |          
+               |          |          |                      --7.14%--ossl_recv
+               |          |          |                                SSL_read
+               |          |          |                                SSL_peek (inlined)
+               |          |          |                                ssl_read_impl (inlined)
+               |          |          |                                ssl_open_app_data (inlined)
+               |          |          |                                tls_open_record (inlined)
+               |          |          |          
+               |          |           --7.14%--wsattr_leave
+               |          |          
+               |           --7.14%--b_buffer_new
+               |                     minibuffer_new
+               |          
+               |--21.43%--PyObject_RichCompare
+               |          |          
+               |          |--14.29%--0x7dd01d997425
+               |          |          
+               |           --7.14%--0x7dd01d99743a
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+               |--7.14%--0x7dd01d997d07
+               |          
+               |--7.14%--0x6a0c34
+               |          
+                --7.14%--_PyEval_FrameClearAndPop
+
+    42.86%     0.00%  python3.14  python3.14                                     [.] _PyObject_MakeTpCall
+            |
+            ---_PyObject_MakeTpCall
+               |          
+               |--35.71%--0x5775f9
+               |          _cffi_f_curl_ws_recv
+               |          curl_ws_recv
+               |          |          
+               |          |--28.57%--curl_ws_recv
+               |          |          |          
+               |          |          |--14.29%--ws_dec_pass
+               |          |          |          ws_dec_pass_payload (inlined)
+               |          |          |          |          
+               |          |          |          |--7.14%--ws_client_collect
+               |          |          |          |          memcpyFast (inlined)
+               |          |          |          |          copyForwards (inlined)
+               |          |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          |          copyBlocks (inlined)
+               |          |          |          |          
+               |          |          |           --7.14%--Curl_bufq_skip
+               |          |          |                     prune_head
+               |          |          |          
+               |          |           --14.29%--Curl_bufq_slurp
+               |          |                     bufq_slurpn (inlined)
+               |          |                     Curl_bufq_sipn (inlined)
+               |          |                     chunk_slurpn (inlined)
+               |          |                     Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     |          
+               |          |                      --7.14%--ossl_recv
+               |          |                                SSL_read
+               |          |                                SSL_peek (inlined)
+               |          |                                ssl_read_impl (inlined)
+               |          |                                ssl_open_app_data (inlined)
+               |          |                                tls_open_record (inlined)
+               |          |          
+               |           --7.14%--wsattr_leave
+               |          
+                --7.14%--b_buffer_new
+                          minibuffer_new
+
+    35.71%     0.00%  python3.14  python3.14                                     [.] 0x00000000005775f9
+            |
+            ---0x5775f9
+               _cffi_f_curl_ws_recv
+               curl_ws_recv
+               |          
+               |--28.57%--curl_ws_recv
+               |          |          
+               |          |--14.29%--ws_dec_pass
+               |          |          ws_dec_pass_payload (inlined)
+               |          |          |          
+               |          |          |--7.14%--ws_client_collect
+               |          |          |          memcpyFast (inlined)
+               |          |          |          copyForwards (inlined)
+               |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          copyBlocks (inlined)
+               |          |          |          
+               |          |           --7.14%--Curl_bufq_skip
+               |          |                     prune_head
+               |          |          
+               |           --14.29%--Curl_bufq_slurp
+               |                     bufq_slurpn (inlined)
+               |                     Curl_bufq_sipn (inlined)
+               |                     chunk_slurpn (inlined)
+               |                     Curl_easy_recv
+               |                     ssl_cf_recv
+               |                     |          
+               |                      --7.14%--ossl_recv
+               |                                SSL_read
+               |                                SSL_peek (inlined)
+               |                                ssl_read_impl (inlined)
+               |                                ssl_open_app_data (inlined)
+               |                                tls_open_record (inlined)
+               |          
+                --7.14%--wsattr_leave
+
+    35.71%     0.00%  python3.14  _wrapper.abi3.so                               [.] _cffi_f_curl_ws_recv
+            |
+            ---_cffi_f_curl_ws_recv
+               curl_ws_recv
+               |          
+               |--28.57%--curl_ws_recv
+               |          |          
+               |          |--14.29%--ws_dec_pass
+               |          |          ws_dec_pass_payload (inlined)
+               |          |          |          
+               |          |          |--7.14%--ws_client_collect
+               |          |          |          memcpyFast (inlined)
+               |          |          |          copyForwards (inlined)
+               |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          copyBlocks (inlined)
+               |          |          |          
+               |          |           --7.14%--Curl_bufq_skip
+               |          |                     prune_head
+               |          |          
+               |           --14.29%--Curl_bufq_slurp
+               |                     bufq_slurpn (inlined)
+               |                     Curl_bufq_sipn (inlined)
+               |                     chunk_slurpn (inlined)
+               |                     Curl_easy_recv
+               |                     ssl_cf_recv
+               |                     |          
+               |                      --7.14%--ossl_recv
+               |                                SSL_read
+               |                                SSL_peek (inlined)
+               |                                ssl_read_impl (inlined)
+               |                                ssl_open_app_data (inlined)
+               |                                tls_open_record (inlined)
+               |          
+                --7.14%--wsattr_leave
+
+    35.71%     0.00%  python3.14  libwsperf-control.so                           [.] curl_ws_recv
+            |
+            ---curl_ws_recv
+               |          
+               |--28.57%--curl_ws_recv
+               |          |          
+               |          |--14.29%--ws_dec_pass
+               |          |          ws_dec_pass_payload (inlined)
+               |          |          |          
+               |          |          |--7.14%--ws_client_collect
+               |          |          |          memcpyFast (inlined)
+               |          |          |          copyForwards (inlined)
+               |          |          |          copyBlocksAlignedSource (inlined)
+               |          |          |          copyBlocks (inlined)
+               |          |          |          
+               |          |           --7.14%--Curl_bufq_skip
+               |          |                     prune_head
+               |          |          
+               |           --14.29%--Curl_bufq_slurp
+               |                     bufq_slurpn (inlined)
+               |                     Curl_bufq_sipn (inlined)
+               |                     chunk_slurpn (inlined)
+               |                     Curl_easy_recv
+               |                     ssl_cf_recv
+               |                     |          
+               |                      --7.14%--ossl_recv
+               |                                SSL_read
+               |                                SSL_peek (inlined)
+               |                                ssl_read_impl (inlined)
+               |                                ssl_open_app_data (inlined)
+               |                                tls_open_record (inlined)
+               |          
+                --7.14%--wsattr_leave
+
+    28.57%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] curl_ws_recv
+            |
+            ---curl_ws_recv
+               |          
+               |--14.29%--ws_dec_pass
+               |          ws_dec_pass_payload (inlined)
+               |          |          
+               |          |--7.14%--ws_client_collect
+               |          |          memcpyFast (inlined)
+               |          |          copyForwards (inlined)
+               |          |          copyBlocksAlignedSource (inlined)
+               |          |          copyBlocks (inlined)
+               |          |          
+               |           --7.14%--Curl_bufq_skip
+               |                     prune_head
+               |          
+                --14.29%--Curl_bufq_slurp
+                          bufq_slurpn (inlined)
+                          Curl_bufq_sipn (inlined)
+                          chunk_slurpn (inlined)
+                          Curl_easy_recv
+                          ssl_cf_recv
+                          |          
+                           --7.14%--ossl_recv
+                                     SSL_read
+                                     SSL_peek (inlined)
+                                     ssl_read_impl (inlined)
+                                     ssl_open_app_data (inlined)
+                                     tls_open_record (inlined)
+
+    21.43%    21.43%  python3.14  libc.so.6                                      [.] 0x0000000000197d07
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               |          
+               |--14.29%--mb_subscript
+               |          mb_slice
+               |          0x7dd01d997d07
+               |          
+                --7.14%--0x7dd01d997d07
+
+    21.43%     0.00%  python3.14  python3.14                                     [.] PyObject_RichCompare
+            |
+            ---PyObject_RichCompare
+               |          
+               |--14.29%--0x7dd01d997425
+               |          
+                --7.14%--0x7dd01d99743a
+
+    21.43%     0.00%  python3.14  libc.so.6                                      [.] 0x00007dd01d997d07
+            |
+            ---0x7dd01d997d07
+
+    14.29%     7.14%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ssl_cf_recv
+            |          
+            |--7.14%--ssl_cf_recv
+            |          ossl_recv
+            |          SSL_read
+            |          SSL_peek (inlined)
+            |          ssl_read_impl (inlined)
+            |          ssl_open_app_data (inlined)
+            |          tls_open_record (inlined)
+            |          
+             --7.14%--_start
+                       __libc_start_main
+                       0x7dd01d82a601
+                       Py_BytesMain
+                       Py_RunMain
+                       0x6c6839
+                       0x6c6d6b
+                       0x6c76c1
+                       0x6cab01
+                       PyEval_EvalCode
+                       _PyEval_EvalFrameDefault
+                       _PyObject_MakeTpCall
+                       0x5775f9
+                       _cffi_f_curl_ws_recv
+                       curl_ws_recv
+                       curl_ws_recv
+                       Curl_bufq_slurp
+                       bufq_slurpn (inlined)
+                       Curl_bufq_sipn (inlined)
+                       chunk_slurpn (inlined)
+                       Curl_easy_recv
+                       ssl_cf_recv
+
+    14.29%    14.29%  python3.14  libc.so.6                                      [.] 0x0000000000197425
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               PyObject_RichCompare
+               0x7dd01d997425
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] Curl_bufq_slurp
+            |
+            ---Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               |          
+                --7.14%--ossl_recv
+                          SSL_read
+                          SSL_peek (inlined)
+                          ssl_read_impl (inlined)
+                          ssl_open_app_data (inlined)
+                          tls_open_record (inlined)
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] bufq_slurpn (inlined)
+            |
+            ---bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               |          
+                --7.14%--ossl_recv
+                          SSL_read
+                          SSL_peek (inlined)
+                          ssl_read_impl (inlined)
+                          ssl_open_app_data (inlined)
+                          tls_open_record (inlined)
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] Curl_bufq_sipn (inlined)
+            |
+            ---Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               |          
+                --7.14%--ossl_recv
+                          SSL_read
+                          SSL_peek (inlined)
+                          ssl_read_impl (inlined)
+                          ssl_open_app_data (inlined)
+                          tls_open_record (inlined)
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] chunk_slurpn (inlined)
+            |
+            ---chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               |          
+                --7.14%--ossl_recv
+                          SSL_read
+                          SSL_peek (inlined)
+                          ssl_read_impl (inlined)
+                          ssl_open_app_data (inlined)
+                          tls_open_record (inlined)
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] Curl_easy_recv
+            |
+            ---Curl_easy_recv
+               ssl_cf_recv
+               |          
+                --7.14%--ossl_recv
+                          SSL_read
+                          SSL_peek (inlined)
+                          ssl_read_impl (inlined)
+                          ssl_open_app_data (inlined)
+                          tls_open_record (inlined)
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ws_dec_pass
+            |
+            ---ws_dec_pass
+               ws_dec_pass_payload (inlined)
+               |          
+               |--7.14%--ws_client_collect
+               |          memcpyFast (inlined)
+               |          copyForwards (inlined)
+               |          copyBlocksAlignedSource (inlined)
+               |          copyBlocks (inlined)
+               |          
+                --7.14%--Curl_bufq_skip
+                          prune_head
+
+    14.29%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ws_dec_pass_payload (inlined)
+            |
+            ---ws_dec_pass_payload (inlined)
+               |          
+               |--7.14%--ws_client_collect
+               |          memcpyFast (inlined)
+               |          copyForwards (inlined)
+               |          copyBlocksAlignedSource (inlined)
+               |          copyBlocks (inlined)
+               |          
+                --7.14%--Curl_bufq_skip
+                          prune_head
+
+    14.29%     0.00%  python3.14  _cffi_backend.cpython-314-x86_64-linux-gnu.so  [.] mb_subscript
+            |
+            ---mb_subscript
+               mb_slice
+               0x7dd01d997d07
+
+    14.29%     0.00%  python3.14  _cffi_backend.cpython-314-x86_64-linux-gnu.so  [.] mb_slice
+            |
+            ---mb_slice
+               0x7dd01d997d07
+
+    14.29%     0.00%  python3.14  libc.so.6                                      [.] 0x00007dd01d997425
+            |
+            ---0x7dd01d997425
+
+     7.14%     7.14%  python3.14  libcurl-impersonate.so.4.8.0                   [.] bssl::tls_open_record(bssl::SSLImpl*, unsigned char*, bssl::Span<unsigned char, 18446744073709551615ul>*, unsigned long*, unsigned char*, bssl::Span<unsigned char, 18446744073709551615ul>)
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyObject_MakeTpCall
+               0x5775f9
+               _cffi_f_curl_ws_recv
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     7.14%  python3.14  libcurl-impersonate.so.4.8.0                   [.] memcpy
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyObject_MakeTpCall
+               0x5775f9
+               _cffi_f_curl_ws_recv
+               curl_ws_recv
+               curl_ws_recv
+               ws_dec_pass
+               ws_dec_pass_payload (inlined)
+               ws_client_collect
+               memcpyFast (inlined)
+               copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+     7.14%     7.14%  python3.14  libcurl-impersonate.so.4.8.0                   [.] prune_head
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyObject_MakeTpCall
+               0x5775f9
+               _cffi_f_curl_ws_recv
+               curl_ws_recv
+               curl_ws_recv
+               ws_dec_pass
+               ws_dec_pass_payload (inlined)
+               Curl_bufq_skip
+               prune_head
+
+     7.14%     7.14%  python3.14  libwsperf-control.so                           [.] wsattr_leave
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyObject_MakeTpCall
+               0x5775f9
+               _cffi_f_curl_ws_recv
+               curl_ws_recv
+               wsattr_leave
+
+     7.14%     7.14%  python3.14  _cffi_backend.cpython-314-x86_64-linux-gnu.so  [.] minibuffer_new
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyObject_MakeTpCall
+               b_buffer_new
+               minibuffer_new
+
+     7.14%     7.14%  python3.14  libc.so.6                                      [.] 0x000000000019743a
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               PyObject_RichCompare
+               0x7dd01d99743a
+
+     7.14%     7.14%  python3.14  python3.14                                     [.] _PyEval_FrameClearAndPop
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               _PyEval_FrameClearAndPop
+
+     7.14%     7.14%  python3.14  python3.14                                     [.] 0x00000000002a0c34
+            |
+            ---_start
+               __libc_start_main
+               0x7dd01d82a601
+               Py_BytesMain
+               Py_RunMain
+               0x6c6839
+               0x6c6d6b
+               0x6c76c1
+               0x6cab01
+               PyEval_EvalCode
+               _PyEval_EvalFrameDefault
+               0x6a0c34
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ossl_recv
+            |
+            ---ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] SSL_read
+            |
+            ---SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ws_client_collect
+            |
+            ---ws_client_collect
+               memcpyFast (inlined)
+               copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] SSL_peek (inlined)
+            |
+            ---SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] memcpyFast (inlined)
+            |
+            ---memcpyFast (inlined)
+               copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] copyForwards (inlined)
+            |
+            ---copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ssl_read_impl (inlined)
+            |
+            ---ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  _cffi_backend.cpython-314-x86_64-linux-gnu.so  [.] b_buffer_new
+            |
+            ---b_buffer_new
+               minibuffer_new
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] Curl_bufq_skip
+            |
+            ---Curl_bufq_skip
+               prune_head
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] copyBlocksAlignedSource (inlined)
+            |
+            ---copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] ssl_open_app_data (inlined)
+            |
+            ---ssl_open_app_data (inlined)
+               tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  libc.so.6                                      [.] 0x00007dd01d99743a
+            |
+            ---0x7dd01d99743a
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] copyBlocks (inlined)
+            |
+            ---copyBlocks (inlined)
+
+     7.14%     0.00%  python3.14  libcurl-impersonate.so.4.8.0                   [.] tls_open_record (inlined)
+            |
+            ---tls_open_record (inlined)
+
+     7.14%     0.00%  python3.14  python3.14                                     [.] 0x00000000006a0c34
+            |
+            ---0x6a0c34
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
+Invalid HEADER_EVENT_DESC: nre=2 sz=144 (min 64)

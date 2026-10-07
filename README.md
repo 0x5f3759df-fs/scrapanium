@@ -60,7 +60,7 @@ Local loopback medians, with startup and handshakes excluded from throughput. Me
 
 ### Experimental Bend 2.0.27 raw receive parser
 
-The experimental patch remains unadopted. Six of 13 workloads passed the predeclared candidate/baseline guard, and both 64 KiB streaming cases missed the 2× target. [Full results](benchmarks/websocket_raw_receive_comparison/evidence/measured-02/README.md).
+The experimental patch remains unadopted. Six of 13 workloads passed the predeclared candidate/baseline guard, and both 64 KiB streaming cases missed the 2× target. [Full results](benchmarks/websocket_raw_receive_comparison/evidence/measured-02/README.md). A separate diagnostic processed 1,024 64 KiB messages per run (64 MiB payload), with 144 positive runs, 24 fault controls, and 72 profile captures. [Analysis and evidence](benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/README.md) document receive-path attribution.
 
 <p>
   <picture>

@@ -1,0 +1,1718 @@
+# ========
+# captured on    : Wed Oct  7 12:34:17 2026
+# header version : 1
+# data offset    : 808
+# data size      : 6504
+# feat offset    : 7312
+# hostname : DESKTOP-QFHVKL9
+# os release : 6.18.33.2-microsoft-standard-WSL2
+# perf version : 7.0.14
+# arch : x86_64
+# nrcpus online : 12
+# nrcpus avail : 12
+# cpudesc : 13th Gen Intel(R) Core(TM) i5-13420H
+# cpuid : GenuineIntel,6,186,2
+# total memory : 7959184 kB
+# cmdline : /home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/perf-package/extracted/usr/bin/perf 
+# event desc: not available or unable to read
+# CPU_TOPOLOGY info available, use -I to display
+# NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: cpu = 4, breakpoint = 5, hwmon_ac1 = 4294901760, hwmon_bat1 = 4294901761, kprobe = 8, msr = 11, power = 10, software = 1, tool = 4294967294, tracepoint = 2, uprobe = 9
+# CACHE info available, use -I to display
+# time of first sample : 0.000000
+# time of last sample : 0.000000
+# sample duration :      0.000 ms
+# MEM_TOPOLOGY info available, use -I to display
+# clockid frequency: 1000 MHz
+# bpf_prog_info empty
+# btf info empty
+# cpu pmu capabilities: not available
+# clockid: monotonic (1)
+# reference time: 2026-10-07 12:34:17.873389 = 1791401657.873389 (TOD) = 5351.860912088 (monotonic)
+# CPU_DOMAIN_INFO info available, use -I to display
+# e_machine : 62
+#   e_flags : 0
+# missing features: TRACING_DATA BUILD_ID BRANCH_STACK GROUP_DESC AUXTRACE STAT DIR_FORMAT COMPRESSED HYBRID_TOPOLOGY 
+# ========
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 15  of event 'cpu-clock:u'
+# Event count (approx.): 30060120
+#
+# Children      Self  Command          Shared Object                 Symbol                                                                                                                                 
+# ........  ........  ...............  ............................  .......................................................................................................................................
+#
+   100.00%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] _start
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+   100.00%     0.00%  bench-ws-baseli  libc.so.6                     [.] __libc_start_main
+            |
+            ---__libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+   100.00%     0.00%  bench-ws-baseli  libc.so.6                     [.] 0x000073227402a601
+            |
+            ---0x73227402a601
+               main
+               io_loop
+               io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+   100.00%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] main
+            |
+            ---main
+               io_loop
+               io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+   100.00%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] io_loop
+            |
+            ---io_loop
+               io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+   100.00%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] io_step
+            |
+            ---io_step
+               |          
+               |--93.33%--io_exec
+               |          |          
+               |          |--73.33%--sp_bend_ws_more
+               |          |          sp_ws_io_step
+               |          |          sp_ws_io_advance (inlined)
+               |          |          curl_ws_recv
+               |          |          curl_ws_recv
+               |          |          Curl_bufq_slurp
+               |          |          bufq_slurpn (inlined)
+               |          |          Curl_bufq_sipn (inlined)
+               |          |          chunk_slurpn (inlined)
+               |          |          |          
+               |          |           --66.67%--Curl_easy_recv
+               |          |                     ssl_cf_recv
+               |          |                     ossl_recv
+               |          |                     SSL_read
+               |          |                     |          
+               |          |                     |--53.33%--SSL_peek (inlined)
+               |          |                     |          ssl_read_impl (inlined)
+               |          |                     |          |          
+               |          |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |          |                     |          |          tls_open_app_data (inlined)
+               |          |                     |          |          |          
+               |          |                     |          |          |--40.00%--tls_open_record (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |          |--33.33%--Open (inlined)
+               |          |                     |          |          |          |          EVP_AEAD_CTX_open
+               |          |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |                     |          |          |          |          |          
+               |          |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |                     |          |          |          |          
+               |          |                     |          |          |           --6.67%--memset
+               |          |                     |          |          |          
+               |          |                     |          |           --6.67%--CBS_get_u8
+               |          |                     |          |                     cbs_get (inlined)
+               |          |                     |          |          
+               |          |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |          |                     |                     ssl_read_buffer_extend_to (inlined)
+               |          |                     |                     tls_read_buffer_extend_to (inlined)
+               |          |                     |                     BIO_read
+               |          |                     |          
+               |          |                      --13.33%--memcpyFast (inlined)
+               |          |                                copyForwards (inlined)
+               |          |                                copyBlocksAlignedSource (inlined)
+               |          |                                copyBlocks (inlined)
+               |          |          
+               |          |--13.33%--0x732274197445
+               |          |          
+               |           --6.67%--0x732274197425
+               |          
+                --6.67%--term_peek (inlined)
+                          term_loc (inlined)
+                          corpus_eval
+                          WL_FID_CLO_APPLY
+                          cls_fit (inlined)
+
+    93.33%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] io_exec
+            |
+            ---io_exec
+               |          
+               |--73.33%--sp_bend_ws_more
+               |          sp_ws_io_step
+               |          sp_ws_io_advance (inlined)
+               |          curl_ws_recv
+               |          curl_ws_recv
+               |          Curl_bufq_slurp
+               |          bufq_slurpn (inlined)
+               |          Curl_bufq_sipn (inlined)
+               |          chunk_slurpn (inlined)
+               |          |          
+               |           --66.67%--Curl_easy_recv
+               |                     ssl_cf_recv
+               |                     ossl_recv
+               |                     SSL_read
+               |                     |          
+               |                     |--53.33%--SSL_peek (inlined)
+               |                     |          ssl_read_impl (inlined)
+               |                     |          |          
+               |                     |          |--46.67%--ssl_open_app_data (inlined)
+               |                     |          |          tls_open_app_data (inlined)
+               |                     |          |          |          
+               |                     |          |          |--40.00%--tls_open_record (inlined)
+               |                     |          |          |          |          
+               |                     |          |          |          |--33.33%--Open (inlined)
+               |                     |          |          |          |          EVP_AEAD_CTX_open
+               |                     |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |                     |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |                     |          |          |          |          |          
+               |                     |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |                     |          |          |          |          |          
+               |                     |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |                     |          |          |          |          |          
+               |                     |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |                     |          |          |          |                     hw_gcm_decrypt (inlined)
+               |                     |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |                     |          |          |          |                     OPENSSL_memcpy (inlined)
+               |                     |          |          |          |          
+               |                     |          |          |           --6.67%--memset
+               |                     |          |          |          
+               |                     |          |           --6.67%--CBS_get_u8
+               |                     |          |                     cbs_get (inlined)
+               |                     |          |          
+               |                     |           --6.67%--ssl_handle_open_record (inlined)
+               |                     |                     ssl_read_buffer_extend_to (inlined)
+               |                     |                     tls_read_buffer_extend_to (inlined)
+               |                     |                     BIO_read
+               |                     |          
+               |                      --13.33%--memcpyFast (inlined)
+               |                                copyForwards (inlined)
+               |                                copyBlocksAlignedSource (inlined)
+               |                                copyBlocks (inlined)
+               |          
+               |--13.33%--0x732274197445
+               |          
+                --6.67%--0x732274197425
+
+    73.33%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] sp_bend_ws_more
+            |
+            ---sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] sp_ws_io_step
+            |
+            ---sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] sp_ws_io_advance (inlined)
+            |
+            ---sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  libwsperf-control.so          [.] curl_ws_recv
+            |
+            ---curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] curl_ws_recv
+            |
+            ---curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] Curl_bufq_slurp
+            |          
+            |--66.67%--Curl_bufq_slurp
+            |          bufq_slurpn (inlined)
+            |          Curl_bufq_sipn (inlined)
+            |          chunk_slurpn (inlined)
+            |          Curl_easy_recv
+            |          ssl_cf_recv
+            |          ossl_recv
+            |          SSL_read
+            |          |          
+            |          |--53.33%--SSL_peek (inlined)
+            |          |          ssl_read_impl (inlined)
+            |          |          |          
+            |          |          |--46.67%--ssl_open_app_data (inlined)
+            |          |          |          tls_open_app_data (inlined)
+            |          |          |          |          
+            |          |          |          |--40.00%--tls_open_record (inlined)
+            |          |          |          |          |          
+            |          |          |          |          |--33.33%--Open (inlined)
+            |          |          |          |          |          EVP_AEAD_CTX_open
+            |          |          |          |          |          EVP_AEAD_CTX_openv_detached
+            |          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+            |          |          |          |          |          |          
+            |          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+            |          |          |          |          |          |          
+            |          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+            |          |          |          |          |          |          
+            |          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+            |          |          |          |          |                     hw_gcm_decrypt (inlined)
+            |          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+            |          |          |          |          |                     OPENSSL_memcpy (inlined)
+            |          |          |          |          |          
+            |          |          |          |           --6.67%--memset
+            |          |          |          |          
+            |          |          |           --6.67%--CBS_get_u8
+            |          |          |                     cbs_get (inlined)
+            |          |          |          
+            |          |           --6.67%--ssl_handle_open_record (inlined)
+            |          |                     ssl_read_buffer_extend_to (inlined)
+            |          |                     tls_read_buffer_extend_to (inlined)
+            |          |                     BIO_read
+            |          |          
+            |           --13.33%--memcpyFast (inlined)
+            |                     copyForwards (inlined)
+            |                     copyBlocksAlignedSource (inlined)
+            |                     copyBlocks (inlined)
+            |          
+             --6.67%--_start
+                       __libc_start_main
+                       0x73227402a601
+                       main
+                       io_loop
+                       io_step
+                       io_exec
+                       sp_bend_ws_more
+                       sp_ws_io_step
+                       sp_ws_io_advance (inlined)
+                       curl_ws_recv
+                       curl_ws_recv
+                       Curl_bufq_slurp
+                       bufq_slurpn (inlined)
+                       Curl_bufq_sipn (inlined)
+                       chunk_slurpn (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] bufq_slurpn (inlined)
+            |
+            ---bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] Curl_bufq_sipn (inlined)
+            |
+            ---Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    73.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] chunk_slurpn (inlined)
+            |
+            ---chunk_slurpn (inlined)
+               |          
+                --66.67%--Curl_easy_recv
+                          ssl_cf_recv
+                          ossl_recv
+                          SSL_read
+                          |          
+                          |--53.33%--SSL_peek (inlined)
+                          |          ssl_read_impl (inlined)
+                          |          |          
+                          |          |--46.67%--ssl_open_app_data (inlined)
+                          |          |          tls_open_app_data (inlined)
+                          |          |          |          
+                          |          |          |--40.00%--tls_open_record (inlined)
+                          |          |          |          |          
+                          |          |          |          |--33.33%--Open (inlined)
+                          |          |          |          |          EVP_AEAD_CTX_open
+                          |          |          |          |          EVP_AEAD_CTX_openv_detached
+                          |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+                          |          |          |          |          |          
+                          |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+                          |          |          |          |          |          
+                          |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+                          |          |          |          |          |          
+                          |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          |          |          |          |                     hw_gcm_decrypt (inlined)
+                          |          |          |          |                     CRYPTO_load_u32_be (inlined)
+                          |          |          |          |                     OPENSSL_memcpy (inlined)
+                          |          |          |          |          
+                          |          |          |           --6.67%--memset
+                          |          |          |          
+                          |          |           --6.67%--CBS_get_u8
+                          |          |                     cbs_get (inlined)
+                          |          |          
+                          |           --6.67%--ssl_handle_open_record (inlined)
+                          |                     ssl_read_buffer_extend_to (inlined)
+                          |                     tls_read_buffer_extend_to (inlined)
+                          |                     BIO_read
+                          |          
+                           --13.33%--memcpyFast (inlined)
+                                     copyForwards (inlined)
+                                     copyBlocksAlignedSource (inlined)
+                                     copyBlocks (inlined)
+
+    66.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] Curl_easy_recv
+            |
+            ---Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               |          
+               |--53.33%--SSL_peek (inlined)
+               |          ssl_read_impl (inlined)
+               |          |          
+               |          |--46.67%--ssl_open_app_data (inlined)
+               |          |          tls_open_app_data (inlined)
+               |          |          |          
+               |          |          |--40.00%--tls_open_record (inlined)
+               |          |          |          |          
+               |          |          |          |--33.33%--Open (inlined)
+               |          |          |          |          EVP_AEAD_CTX_open
+               |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          |          
+               |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          |          
+               |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          |          
+               |          |          |           --6.67%--memset
+               |          |          |          
+               |          |           --6.67%--CBS_get_u8
+               |          |                     cbs_get (inlined)
+               |          |          
+               |           --6.67%--ssl_handle_open_record (inlined)
+               |                     ssl_read_buffer_extend_to (inlined)
+               |                     tls_read_buffer_extend_to (inlined)
+               |                     BIO_read
+               |          
+                --13.33%--memcpyFast (inlined)
+                          copyForwards (inlined)
+                          copyBlocksAlignedSource (inlined)
+                          copyBlocks (inlined)
+
+    66.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ssl_cf_recv
+            |
+            ---ssl_cf_recv
+               ossl_recv
+               SSL_read
+               |          
+               |--53.33%--SSL_peek (inlined)
+               |          ssl_read_impl (inlined)
+               |          |          
+               |          |--46.67%--ssl_open_app_data (inlined)
+               |          |          tls_open_app_data (inlined)
+               |          |          |          
+               |          |          |--40.00%--tls_open_record (inlined)
+               |          |          |          |          
+               |          |          |          |--33.33%--Open (inlined)
+               |          |          |          |          EVP_AEAD_CTX_open
+               |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          |          
+               |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          |          
+               |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          |          
+               |          |          |           --6.67%--memset
+               |          |          |          
+               |          |           --6.67%--CBS_get_u8
+               |          |                     cbs_get (inlined)
+               |          |          
+               |           --6.67%--ssl_handle_open_record (inlined)
+               |                     ssl_read_buffer_extend_to (inlined)
+               |                     tls_read_buffer_extend_to (inlined)
+               |                     BIO_read
+               |          
+                --13.33%--memcpyFast (inlined)
+                          copyForwards (inlined)
+                          copyBlocksAlignedSource (inlined)
+                          copyBlocks (inlined)
+
+    66.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ossl_recv
+            |
+            ---ossl_recv
+               SSL_read
+               |          
+               |--53.33%--SSL_peek (inlined)
+               |          ssl_read_impl (inlined)
+               |          |          
+               |          |--46.67%--ssl_open_app_data (inlined)
+               |          |          tls_open_app_data (inlined)
+               |          |          |          
+               |          |          |--40.00%--tls_open_record (inlined)
+               |          |          |          |          
+               |          |          |          |--33.33%--Open (inlined)
+               |          |          |          |          EVP_AEAD_CTX_open
+               |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          |          
+               |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          |          
+               |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          |          
+               |          |          |           --6.67%--memset
+               |          |          |          
+               |          |           --6.67%--CBS_get_u8
+               |          |                     cbs_get (inlined)
+               |          |          
+               |           --6.67%--ssl_handle_open_record (inlined)
+               |                     ssl_read_buffer_extend_to (inlined)
+               |                     tls_read_buffer_extend_to (inlined)
+               |                     BIO_read
+               |          
+                --13.33%--memcpyFast (inlined)
+                          copyForwards (inlined)
+                          copyBlocksAlignedSource (inlined)
+                          copyBlocks (inlined)
+
+    66.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] SSL_read
+            |
+            ---SSL_read
+               |          
+               |--53.33%--SSL_peek (inlined)
+               |          ssl_read_impl (inlined)
+               |          |          
+               |          |--46.67%--ssl_open_app_data (inlined)
+               |          |          tls_open_app_data (inlined)
+               |          |          |          
+               |          |          |--40.00%--tls_open_record (inlined)
+               |          |          |          |          
+               |          |          |          |--33.33%--Open (inlined)
+               |          |          |          |          EVP_AEAD_CTX_open
+               |          |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          |          
+               |          |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          |          
+               |          |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          |          
+               |          |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          |          
+               |          |          |           --6.67%--memset
+               |          |          |          
+               |          |           --6.67%--CBS_get_u8
+               |          |                     cbs_get (inlined)
+               |          |          
+               |           --6.67%--ssl_handle_open_record (inlined)
+               |                     ssl_read_buffer_extend_to (inlined)
+               |                     tls_read_buffer_extend_to (inlined)
+               |                     BIO_read
+               |          
+                --13.33%--memcpyFast (inlined)
+                          copyForwards (inlined)
+                          copyBlocksAlignedSource (inlined)
+                          copyBlocks (inlined)
+
+    53.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] SSL_peek (inlined)
+            |
+            ---SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               |          
+               |--46.67%--ssl_open_app_data (inlined)
+               |          tls_open_app_data (inlined)
+               |          |          
+               |          |--40.00%--tls_open_record (inlined)
+               |          |          |          
+               |          |          |--33.33%--Open (inlined)
+               |          |          |          EVP_AEAD_CTX_open
+               |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          
+               |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          
+               |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          
+               |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          
+               |          |           --6.67%--memset
+               |          |          
+               |           --6.67%--CBS_get_u8
+               |                     cbs_get (inlined)
+               |          
+                --6.67%--ssl_handle_open_record (inlined)
+                          ssl_read_buffer_extend_to (inlined)
+                          tls_read_buffer_extend_to (inlined)
+                          BIO_read
+
+    53.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ssl_read_impl (inlined)
+            |
+            ---ssl_read_impl (inlined)
+               |          
+               |--46.67%--ssl_open_app_data (inlined)
+               |          tls_open_app_data (inlined)
+               |          |          
+               |          |--40.00%--tls_open_record (inlined)
+               |          |          |          
+               |          |          |--33.33%--Open (inlined)
+               |          |          |          EVP_AEAD_CTX_open
+               |          |          |          EVP_AEAD_CTX_openv_detached
+               |          |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          |          
+               |          |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          |          
+               |          |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          |          
+               |          |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |          |                     hw_gcm_decrypt (inlined)
+               |          |          |                     CRYPTO_load_u32_be (inlined)
+               |          |          |                     OPENSSL_memcpy (inlined)
+               |          |          |          
+               |          |           --6.67%--memset
+               |          |          
+               |           --6.67%--CBS_get_u8
+               |                     cbs_get (inlined)
+               |          
+                --6.67%--ssl_handle_open_record (inlined)
+                          ssl_read_buffer_extend_to (inlined)
+                          tls_read_buffer_extend_to (inlined)
+                          BIO_read
+
+    46.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ssl_open_app_data (inlined)
+            |
+            ---ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               |          
+               |--40.00%--tls_open_record (inlined)
+               |          |          
+               |          |--33.33%--Open (inlined)
+               |          |          EVP_AEAD_CTX_open
+               |          |          EVP_AEAD_CTX_openv_detached
+               |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          
+               |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          
+               |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          
+               |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     hw_gcm_decrypt (inlined)
+               |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     OPENSSL_memcpy (inlined)
+               |          |          
+               |           --6.67%--memset
+               |          
+                --6.67%--CBS_get_u8
+                          cbs_get (inlined)
+
+    46.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] tls_open_app_data (inlined)
+            |
+            ---tls_open_app_data (inlined)
+               |          
+               |--40.00%--tls_open_record (inlined)
+               |          |          
+               |          |--33.33%--Open (inlined)
+               |          |          EVP_AEAD_CTX_open
+               |          |          EVP_AEAD_CTX_openv_detached
+               |          |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          |          
+               |          |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          |          
+               |          |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          |          
+               |          |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |          |                     hw_gcm_decrypt (inlined)
+               |          |                     CRYPTO_load_u32_be (inlined)
+               |          |                     OPENSSL_memcpy (inlined)
+               |          |          
+               |           --6.67%--memset
+               |          
+                --6.67%--CBS_get_u8
+                          cbs_get (inlined)
+
+    40.00%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] tls_open_record (inlined)
+            |
+            ---tls_open_record (inlined)
+               |          
+               |--33.33%--Open (inlined)
+               |          EVP_AEAD_CTX_open
+               |          EVP_AEAD_CTX_openv_detached
+               |          aead_aes_gcm_openv_detached_impl (inlined)
+               |          |          
+               |          |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          |          
+               |          |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          |          
+               |           --6.67%--CRYPTO_gcm128_decrypt (inlined)
+               |                     hw_gcm_decrypt (inlined)
+               |                     CRYPTO_load_u32_be (inlined)
+               |                     OPENSSL_memcpy (inlined)
+               |          
+                --6.67%--memset
+
+    33.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] Open (inlined)
+            |
+            ---Open (inlined)
+               EVP_AEAD_CTX_open
+               EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               |          
+               |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          
+               |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          
+                --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          hw_gcm_decrypt (inlined)
+                          CRYPTO_load_u32_be (inlined)
+                          OPENSSL_memcpy (inlined)
+
+    33.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] EVP_AEAD_CTX_open
+            |
+            ---EVP_AEAD_CTX_open
+               EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               |          
+               |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          
+               |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          
+                --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          hw_gcm_decrypt (inlined)
+                          CRYPTO_load_u32_be (inlined)
+                          OPENSSL_memcpy (inlined)
+
+    33.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] EVP_AEAD_CTX_openv_detached
+            |
+            ---EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               |          
+               |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          
+               |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          
+                --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          hw_gcm_decrypt (inlined)
+                          CRYPTO_load_u32_be (inlined)
+                          OPENSSL_memcpy (inlined)
+
+    33.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] aead_aes_gcm_openv_detached_impl (inlined)
+            |
+            ---aead_aes_gcm_openv_detached_impl (inlined)
+               |          
+               |--20.00%--aes_gcm_dec_update_vaes_avx2
+               |          
+               |--6.67%--gcm_gmult_vpclmulqdq_avx2
+               |          
+                --6.67%--CRYPTO_gcm128_decrypt (inlined)
+                          hw_gcm_decrypt (inlined)
+                          CRYPTO_load_u32_be (inlined)
+                          OPENSSL_memcpy (inlined)
+
+    20.00%    20.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] aes_gcm_dec_update_vaes_avx2
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               tls_open_record (inlined)
+               Open (inlined)
+               EVP_AEAD_CTX_open
+               EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               aes_gcm_dec_update_vaes_avx2
+
+    13.33%    13.33%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] memcpy
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               memcpyFast (inlined)
+               copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+    13.33%    13.33%  bench-ws-baseli  libc.so.6                     [.] 0x0000000000197445
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               0x732274197445
+
+    13.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] memcpyFast (inlined)
+            |
+            ---memcpyFast (inlined)
+               copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+    13.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] copyForwards (inlined)
+            |
+            ---copyForwards (inlined)
+               copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+    13.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] copyBlocksAlignedSource (inlined)
+            |
+            ---copyBlocksAlignedSource (inlined)
+               copyBlocks (inlined)
+
+    13.33%     0.00%  bench-ws-baseli  libc.so.6                     [.] 0x0000732274197445
+            |
+            ---0x732274197445
+
+    13.33%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] copyBlocks (inlined)
+            |
+            ---copyBlocks (inlined)
+
+     6.67%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] bssl::CRYPTO_gcm128_decrypt(bssl::gcm128_key_st const*, bssl::GCM128_CONTEXT*, unsigned char const*, unsigned char*, unsigned long)
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               tls_open_record (inlined)
+               Open (inlined)
+               EVP_AEAD_CTX_open
+               EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               CRYPTO_gcm128_decrypt (inlined)
+               hw_gcm_decrypt (inlined)
+               CRYPTO_load_u32_be (inlined)
+               OPENSSL_memcpy (inlined)
+
+     6.67%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] gcm_gmult_vpclmulqdq_avx2
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               tls_open_record (inlined)
+               Open (inlined)
+               EVP_AEAD_CTX_open
+               EVP_AEAD_CTX_openv_detached
+               aead_aes_gcm_openv_detached_impl (inlined)
+               gcm_gmult_vpclmulqdq_avx2
+
+     6.67%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] BIO_read
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_handle_open_record (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               tls_read_buffer_extend_to (inlined)
+               BIO_read
+
+     6.67%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] CBS_get_u8
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               CBS_get_u8
+               cbs_get (inlined)
+
+     6.67%     6.67%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] memset
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               sp_bend_ws_more
+               sp_ws_io_step
+               sp_ws_io_advance (inlined)
+               curl_ws_recv
+               curl_ws_recv
+               Curl_bufq_slurp
+               bufq_slurpn (inlined)
+               Curl_bufq_sipn (inlined)
+               chunk_slurpn (inlined)
+               Curl_easy_recv
+               ssl_cf_recv
+               ossl_recv
+               SSL_read
+               SSL_peek (inlined)
+               ssl_read_impl (inlined)
+               ssl_open_app_data (inlined)
+               tls_open_app_data (inlined)
+               tls_open_record (inlined)
+               memset
+
+     6.67%     6.67%  bench-ws-baseli  bench-ws-baseline-bend        [.] WL_FID_CLO_APPLY
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               term_peek (inlined)
+               term_loc (inlined)
+               corpus_eval
+               WL_FID_CLO_APPLY
+               cls_fit (inlined)
+
+     6.67%     6.67%  bench-ws-baseli  libc.so.6                     [.] 0x0000000000197425
+            |
+            ---_start
+               __libc_start_main
+               0x73227402a601
+               main
+               io_loop
+               io_step
+               io_exec
+               0x732274197425
+
+     6.67%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] term_peek (inlined)
+            |
+            ---term_peek (inlined)
+               term_loc (inlined)
+               corpus_eval
+               WL_FID_CLO_APPLY
+               cls_fit (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] term_loc (inlined)
+            |
+            ---term_loc (inlined)
+               corpus_eval
+               WL_FID_CLO_APPLY
+               cls_fit (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] CRYPTO_gcm128_decrypt (inlined)
+            |
+            ---CRYPTO_gcm128_decrypt (inlined)
+               hw_gcm_decrypt (inlined)
+               CRYPTO_load_u32_be (inlined)
+               OPENSSL_memcpy (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ssl_handle_open_record (inlined)
+            |
+            ---ssl_handle_open_record (inlined)
+               ssl_read_buffer_extend_to (inlined)
+               tls_read_buffer_extend_to (inlined)
+               BIO_read
+
+     6.67%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] corpus_eval
+            |
+            ---corpus_eval
+               WL_FID_CLO_APPLY
+               cls_fit (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] hw_gcm_decrypt (inlined)
+            |
+            ---hw_gcm_decrypt (inlined)
+               CRYPTO_load_u32_be (inlined)
+               OPENSSL_memcpy (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] ssl_read_buffer_extend_to (inlined)
+            |
+            ---ssl_read_buffer_extend_to (inlined)
+               tls_read_buffer_extend_to (inlined)
+               BIO_read
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] CRYPTO_load_u32_be (inlined)
+            |
+            ---CRYPTO_load_u32_be (inlined)
+               OPENSSL_memcpy (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] tls_read_buffer_extend_to (inlined)
+            |
+            ---tls_read_buffer_extend_to (inlined)
+               BIO_read
+
+     6.67%     0.00%  bench-ws-baseli  bench-ws-baseline-bend        [.] cls_fit (inlined)
+            |
+            ---cls_fit (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libc.so.6                     [.] 0x0000732274197425
+            |
+            ---0x732274197425
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] OPENSSL_memcpy (inlined)
+            |
+            ---OPENSSL_memcpy (inlined)
+
+     6.67%     0.00%  bench-ws-baseli  libcurl-impersonate.so.4.8.0  [.] cbs_get (inlined)
+            |
+            ---cbs_get (inlined)
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
+Invalid HEADER_EVENT_DESC: nre=2 sz=144 (min 64)

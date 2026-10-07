@@ -1,0 +1,5 @@
+Events disabled
+Events disabled
+Events enabled
+[ perf record: Woken up 4 times to write data ]
+[ perf record: Captured and wrote 0.004 MB /home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/perf-window-proof-20261007-05/perf.data ]

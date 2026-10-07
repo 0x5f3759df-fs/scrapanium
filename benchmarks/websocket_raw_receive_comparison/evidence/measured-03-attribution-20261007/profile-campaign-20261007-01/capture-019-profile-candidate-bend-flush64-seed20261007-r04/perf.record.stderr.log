@@ -1,0 +1,6 @@
+Events disabled
+Events disabled
+Events enabled
+Events disabled
+[ perf record: Woken up 5 times to write data ]
+[ perf record: Captured and wrote 0.009 MB /home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/profile-campaign-20261007-01/capture-019-profile-candidate-bend-flush64-seed20261007-r04/perf.data ]

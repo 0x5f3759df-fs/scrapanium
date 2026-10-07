@@ -1,0 +1,102 @@
+{
+  "source": "profile-campaign-20261007-01 pooled perf report rows",
+  "captures_per_cell": 12,
+  "sample_floor_per_cell": 100,
+  "sample_period_each": 2004008,
+  "total_samples": 1260,
+  "total_period": 2525050080,
+  "interpretation": "retained Self sample/event-period shares; not CPU-time percentages",
+  "flush_definition": "peer flushes after 1 or 64 complete workload messages, one WebSocket frame per message",
+  "other_bin_definition": "remaining Self rows including unresolved non-libc IPs; no symbol guesses",
+  "categories": [
+    {
+      "key": "aes_gcm",
+      "label": "AES-GCM",
+      "color": "#286090"
+    },
+    {
+      "key": "memcpy",
+      "label": "memcpy",
+      "color": "#D87924"
+    },
+    {
+      "key": "python_vm",
+      "label": "Python VM",
+      "color": "#7056A8"
+    },
+    {
+      "key": "unresolved_libc_ip",
+      "label": "Unresolved libc IPs",
+      "color": "#747B84"
+    },
+    {
+      "key": "other_self_rows",
+      "label": "Other Self rows*",
+      "color": "#4F9676"
+    }
+  ],
+  "cells": [
+    {
+      "client": "Baseline Bend",
+      "flush_messages": 1,
+      "samples": 170,
+      "aes_gcm": 45,
+      "memcpy": 26,
+      "python_vm": 0,
+      "unresolved_libc_ip": 39,
+      "other_self_rows": 60
+    },
+    {
+      "client": "Baseline Bend",
+      "flush_messages": 64,
+      "samples": 178,
+      "aes_gcm": 42,
+      "memcpy": 25,
+      "python_vm": 0,
+      "unresolved_libc_ip": 48,
+      "other_self_rows": 63
+    },
+    {
+      "client": "Candidate Bend",
+      "flush_messages": 1,
+      "samples": 176,
+      "aes_gcm": 48,
+      "memcpy": 10,
+      "python_vm": 0,
+      "unresolved_libc_ip": 67,
+      "other_self_rows": 51
+    },
+    {
+      "client": "Candidate Bend",
+      "flush_messages": 64,
+      "samples": 166,
+      "aes_gcm": 48,
+      "memcpy": 15,
+      "python_vm": 0,
+      "unresolved_libc_ip": 46,
+      "other_self_rows": 57
+    },
+    {
+      "client": "Matched curl_cffi",
+      "flush_messages": 1,
+      "samples": 297,
+      "aes_gcm": 47,
+      "memcpy": 30,
+      "python_vm": 36,
+      "unresolved_libc_ip": 94,
+      "other_self_rows": 90
+    },
+    {
+      "client": "Matched curl_cffi",
+      "flush_messages": 64,
+      "samples": 273,
+      "aes_gcm": 34,
+      "memcpy": 25,
+      "python_vm": 27,
+      "unresolved_libc_ip": 98,
+      "other_self_rows": 89
+    }
+  ],
+  "bar_labels": "sample counts",
+  "axis": "percent of retained Self samples within each cell"
+}

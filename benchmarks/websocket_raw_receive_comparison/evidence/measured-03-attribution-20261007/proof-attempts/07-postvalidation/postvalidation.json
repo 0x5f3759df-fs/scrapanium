@@ -1,0 +1,38 @@
+{
+  "binary_hashes_match_manifest": true,
+  "capture_artifact": "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/perf-window-proof-20261007-07",
+  "capture_manifest_sha256": "c689c37125b1228360c110e6ec763600f1d89d926300f73161e8be0780bef8ac",
+  "clock_print_resolution_tolerance_ns": 1000,
+  "created_utc": "2026-10-07T19:09:09.505577+00:00",
+  "current_source_difference_after_run": [
+    "perf_window_smoke.py"
+  ],
+  "initial_disable_ack_before_interval": true,
+  "offline_postvalidation": true,
+  "ordered_window_timestamps_ns": [
+    3714179074396,
+    3714179080328,
+    3714179994179,
+    3714211858855,
+    3714212890464,
+    3714212892461
+  ],
+  "outside_interval_samples": 0,
+  "perf_control_configured": true,
+  "perf_control_error": false,
+  "perf_lost_samples": 0,
+  "perf_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/perf-package/extracted/usr/bin/perf",
+  "perf_report_sample_count": 5,
+  "perf_report_sha256": "c9089c2a40d20ac8b2f670011a89f8ce5ac5f7b3b87e399fd223770abc9e7879",
+  "perf_sha256": "1371ae5cb9fa59632d1d0e34b877d7251df4029810ba67dc56e946545e87b531",
+  "sample_count": 5,
+  "sample_range_ns": [
+    3714182211000,
+    3714211538000
+  ],
+  "saved_record_sha256": "7e8bd9fbcbb08a286a0322a047e41c45bcebe1ff1c731c3c6f53654e9de83bcf",
+  "schema": 1,
+  "source_capture_failure": "RuntimeError: perf data contains no cpu-clock:u samples",
+  "source_capture_manifest_status": "failed",
+  "source_hashes_before_and_after_failed_run_match": true
+}

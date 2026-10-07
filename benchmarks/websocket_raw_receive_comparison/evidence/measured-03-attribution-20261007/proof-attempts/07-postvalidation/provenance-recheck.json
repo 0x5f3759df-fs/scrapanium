@@ -1,0 +1,29 @@
+{
+  "all_match": true,
+  "checks": {
+    "backend_sha256": true,
+    "clang_builtin_headers": true,
+    "clang_executable": true,
+    "compiler": true,
+    "curl_binding": true,
+    "curl_include_headers": true,
+    "go_build_inputs": true,
+    "go_executable": true,
+    "perf_tool_and_libraries": true
+  },
+  "go_build_environment": {
+    "CGO_ENABLED": "0",
+    "GO111MODULE": "off",
+    "GOAMD64": "v1",
+    "GOARCH": "amd64",
+    "GOCACHE": "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/perf-window-proof-20261007-07/build/go-cache",
+    "GOENV": "off",
+    "GOEXPERIMENT": "",
+    "GOFLAGS": "",
+    "GOOS": "linux",
+    "GOPROXY": "off",
+    "GOTOOLCHAIN": "local"
+  },
+  "offline_provenance_recheck": true,
+  "schema": 1
+}

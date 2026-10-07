@@ -1,0 +1,42 @@
+{
+  "acks": [
+    {
+      "bytes_hex": "61636b0a00",
+      "bytes_repr": "b'ack\\n\\x00'",
+      "command": "disable",
+      "matches_five_byte_tag": true
+    },
+    {
+      "bytes_hex": "61636b0a00",
+      "bytes_repr": "b'ack\\n\\x00'",
+      "command": "enable",
+      "matches_five_byte_tag": true
+    }
+  ],
+  "command": [
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/perf-package/extracted/usr/bin/perf",
+    "record",
+    "-D",
+    "-1",
+    "-p",
+    "35903",
+    "--control",
+    "fd:3,6",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "99",
+    "--clockid",
+    "mono",
+    "-N",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/perf-ack-probe-20261007-02/perf.data"
+  ],
+  "created_utc": "2026-10-07T19:03:13.890355+00:00",
+  "perf_data_sha256": "2d7ab55820db35c6ca7ade685d07a3a3996ad5965c8fa96509092f8adf90ffcb",
+  "perf_path": "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/perf-package/extracted/usr/bin/perf",
+  "perf_returncode_after_sigint": -2,
+  "perf_sha256": "1371ae5cb9fa59632d1d0e34b877d7251df4029810ba67dc56e946545e87b531",
+  "perf_version": "perf version 7.0.14",
+  "schema": 1
+}

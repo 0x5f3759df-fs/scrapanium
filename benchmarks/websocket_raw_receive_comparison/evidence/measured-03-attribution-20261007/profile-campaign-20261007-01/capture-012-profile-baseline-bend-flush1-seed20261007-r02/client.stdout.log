@@ -1,0 +1,7 @@
+ready
+client_interval_wall_ns=49718448
+total_elapsed_ns=63971029
+receive_assembly_ns=0
+validation_release_ns=0
+start_monotonic_us=4781986385
+end_monotonic_us=4782050356

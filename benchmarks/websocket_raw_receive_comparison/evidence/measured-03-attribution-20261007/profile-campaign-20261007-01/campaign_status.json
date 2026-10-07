@@ -1,0 +1,77 @@
+{
+  "attempted_captures": 72,
+  "cells": {
+    "baseline-bend/flush1": {
+      "client": "baseline-bend",
+      "completed": 12,
+      "flush_batch": 1,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 170,
+      "sample_floor": 100,
+      "status": "floor_met"
+    },
+    "baseline-bend/flush64": {
+      "client": "baseline-bend",
+      "completed": 12,
+      "flush_batch": 64,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 178,
+      "sample_floor": 100,
+      "status": "floor_met"
+    },
+    "candidate-bend/flush1": {
+      "client": "candidate-bend",
+      "completed": 12,
+      "flush_batch": 1,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 176,
+      "sample_floor": 100,
+      "status": "floor_met"
+    },
+    "candidate-bend/flush64": {
+      "client": "candidate-bend",
+      "completed": 12,
+      "flush_batch": 64,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 166,
+      "sample_floor": 100,
+      "status": "floor_met"
+    },
+    "curl_cffi-matched/flush1": {
+      "client": "curl_cffi-matched",
+      "completed": 12,
+      "flush_batch": 1,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 297,
+      "sample_floor": 100,
+      "status": "floor_met"
+    },
+    "curl_cffi-matched/flush64": {
+      "client": "curl_cffi-matched",
+      "completed": 12,
+      "flush_batch": 64,
+      "lost_samples": 0,
+      "planned": 12,
+      "retained_samples": 273,
+      "sample_floor": 100,
+      "status": "floor_met"
+    }
+  },
+  "complete_captures": 72,
+  "failed_captures": 0,
+  "fatal_error": null,
+  "finished_utc": "2026-10-07T19:34:41.821282+00:00",
+  "planned_captures": 72,
+  "schema": 1,
+  "shared_build_directory": "/home/baidu/scrapanium-experiments/wss-raw-recv-diagnostic-20261007/artifacts/profile-campaign-20261007-01/capture-001-profile-baseline-bend-flush64-seed20261007-r01/build",
+  "shared_build_manifest_sha256": "3a9558037e369baad5a86f679b33489a7896e6a8957cad8a9acbe9c6d7ca2d43",
+  "source_inputs_unchanged": true,
+  "status": "complete",
+  "throughput_or_adoption_claim": false,
+  "unattempted_captures": 0
+}

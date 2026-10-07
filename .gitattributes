@@ -8,3 +8,9 @@ benchmarks/websocket_raw_receive_comparison/evidence/diagnostics/**/diagnostic_p
 # The patch's context-only blank lines intentionally contain a space.
 benchmarks/websocket_raw_receive_comparison/experimental-native-websocket-inc.patch whitespace=-blank-at-eol
 benchmarks/websocket_raw_receive_comparison/evidence/measured-02/ratio-results.csv whitespace=cr-at-eol
+
+# Preserve whitespace in the new captured perf reports and scripts; they are raw outputs.
+benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/**/perf.report.txt whitespace=-blank-at-eol
+benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/**/perf.script.txt whitespace=-blank-at-eol,-blank-at-eof
+# The exact frozen schedule source retains its blank final line.
+benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/source-snapshot/schedule_unit.py whitespace=-blank-at-eof
