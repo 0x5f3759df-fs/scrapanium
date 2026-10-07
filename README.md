@@ -58,25 +58,25 @@ Local loopback medians, with startup and handshakes excluded from throughput. Me
 
 [HTTP results](benchmarks/RESULTS.md) · [WSS results](benchmarks/WEBSOCKET.md) · [Memory results](benchmarks/MEMORY.md) — methodology, raw data and reproduction commands.
 
-### Experimental Bend 2.0.27 raw receive parser
+### Experimental Bend 2.0.27 64 KiB receive-cap trial
 
-The experimental patch remains unadopted. Six of 13 workloads passed the predeclared candidate/baseline guard, and both 64 KiB streaming cases missed the 2× target. [Full results](benchmarks/websocket_raw_receive_comparison/evidence/measured-02/README.md). A separate diagnostic processed 1,024 64 KiB messages per run (64 MiB payload), with 144 positive runs, 24 fault controls, and 72 profile captures. [Analysis and evidence](benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/README.md) document receive-path attribution.
+The parser and cap trial remain experimental and unadopted. The cap trial passed 10/13 baseline guards; both 64 KiB streams versus curl_cffi were about 1.40x, below the 2x target. The Go 64 KiB one-connection round trip was slower than baseline (0.9399x).
+
+[Cap-trial results and reproduction](benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/README.md) | [Earlier parser-only results](benchmarks/websocket_raw_receive_comparison/evidence/measured-02/README.md) | [Receive-path attribution](benchmarks/websocket_raw_receive_comparison/evidence/measured-03-attribution-20261007/README.md)
 
 <p>
   <picture>
-    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-baseline-ratios-mobile.svg">
-    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-baseline-ratios.svg" alt="Experimental receive parser candidate divided by baseline paired throughput ratio and 95% confidence interval for all 13 workloads. The red dashed line marks the 0.95 non-regression guard; 6 of 13 pass." width="920">
+    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/candidate-baseline-ratios-mobile.svg">
+    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/candidate-baseline-ratios.svg" alt="Cap-trial candidate divided by production baseline paired throughput ratio and paired 95% bootstrap confidence interval for all 13 workloads. The red dashed line is the 0.95 guard and the dotted line is parity at 1.0; 10 of 13 guards pass. The Go 64 KiB, one-connection round trip is 0.9399 [0.9090, 0.9881], wholly below parity." width="920">
   </picture>
 </p>
 
 <p>
   <picture>
-    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-curl-cffi-ratios-mobile.svg">
-    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-02/candidate-curl-cffi-ratios.svg" alt="Experimental receive parser candidate divided by curl_cffi paired throughput ratio and 95% confidence interval for all 13 workloads. The orange dashed line marks the 2x target for both 64 KiB streaming workloads; both fail." width="920">
+    <source media="(max-width: 600px)" srcset="benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/candidate-curl-cffi-ratios-mobile.svg">
+    <img src="benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/candidate-curl-cffi-ratios.svg" alt="Cap-trial candidate divided by matched curl_cffi paired throughput ratio and paired 95% bootstrap confidence interval for all 13 workloads. The orange dashed line is the 2x target, which applies to the two 64 KiB stream workloads; ratios 1.3981 [1.2257, 1.4322] and 1.3978 [1.2519, 1.4619] both miss it." width="920">
   </picture>
 </p>
-
-The isolated 64 KiB receive-cap follow-up also remains experimental: 10 of 13 baseline guards passed, the Go 64 KiB one-connection round trip was slower than baseline, and neither 64 KiB stream met the 2× target. [Cap-trial results and evidence](benchmarks/websocket_raw_receive_comparison/evidence/measured-04-cap-64k-20261007/README.md).
 
 ## Make your first request
 
