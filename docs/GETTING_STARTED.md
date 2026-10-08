@@ -25,7 +25,7 @@ If an existing checkout already has a different compiler in `.deps/bend`, bootst
 refuses to replace it. Use a fresh checkout with its own `.deps` for the upgrade,
 and retain the older compiler tree when you need to reproduce earlier results.
 
-For the additional Chrome 153/154 and Firefox 156 profiles, follow the optional
+For the additional Chrome 153-155 and Firefox 156-157 profiles, follow the optional
 [browser-backend build](../backend/README.md). It compiles a separate transport
 from pinned sources; the normal install and benchmark defaults remain stock.
 

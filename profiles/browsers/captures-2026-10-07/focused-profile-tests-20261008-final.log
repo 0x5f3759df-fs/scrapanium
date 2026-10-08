@@ -1,0 +1,23 @@
+Focused profile tests, 2026-10-08
+Optional backend via SCRAPANIUM_CURL_DIR=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl-browser
+17 tests: metadata/runtime 2; HTTPS new profiles 3; new ClientHello/H2 cells 8; ordinary WSS payload/certificate checks 3; saved H2/WSS source snapshot and WSS close validator 1.
+
+$ /usr/bin/python3.14 -m pytest -q tests/test_profiles.py::test_profile_catalog_matches_runtime tests/test_profiles.py::test_2026_10_07_capture_catalog_metadata
+..                                                                       [100%]
+2 passed in 0.12s
+
+$ /usr/bin/python3.14 -m pytest -q tests/test_profiles.py::test_every_profile_connects_with_verification -k chrome155 or chrome155_headless or firefox157
+...                                                                      [100%]
+3 passed, 46 deselected in 0.94s
+
+$ /usr/bin/python3.14 -m pytest -q tests/test_browser_profiles.py::test_profile_clienthello_matches_real_browser tests/test_browser_profiles.py::test_profile_http2_matches_real_browser -k chrome155 or chrome155_headless or firefox157
+........                                                                 [100%]
+8 passed, 16 deselected in 3.98s
+
+$ /usr/bin/python3.14 -m pytest -q tests/test_browser_profiles.py::test_profile_verified_wss_preserves_binary_and_utf8 -k chrome155 or chrome155_headless or firefox157
+...                                                                      [100%]
+3 passed, 5 deselected in 0.94s
+
+$ /usr/bin/python3.14 -m pytest -q tests/test_browser_profiles.py::test_2026_10_07_browser_wss_captures_validate_clean_close
+.                                                                        [100%]
+1 passed in 0.05s

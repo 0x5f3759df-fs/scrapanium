@@ -90,3 +90,35 @@ The `firefox156` TLS and HTTP/2 structures and observed `rv:156.0` headers also
 match the earlier capture, so Firefox 156.0.1 confirms the existing profile
 rather than requiring a new ID. Three samples do not estimate an ECH payload
 length distribution or prove version-wide equivalence.
+
+## Current release captures (2026-10-07)
+
+The official release metadata and three-sample Linux captures are retained in
+[releases-2026-10-07.json](releases-2026-10-07.json),
+[captures-2026-10-07/linux-headed.json](captures-2026-10-07/linux-headed.json),
+and [captures-2026-10-07/linux-headless.json](captures-2026-10-07/linux-headless.json).
+They cover Google Chrome 155.0.8059.39, Chrome for Testing 155.0.8059.39, and
+Firefox 157.0.1. The new profiles match these samples' fresh TCP ClientHello
+structure and HTTP/2 navigation. Chrome's Accept now includes image/jxl, and
+Firefox's observed user agent uses rv:157.0. The stock default remains unchanged.
+
+| Profile | Browser build | Mode | Compared behavior |
+| --- | --- | --- | --- |
+| chrome155 | Google Chrome 155.0.8059.39 | Headed | Initial TCP ClientHello and HTTP/2 navigation. |
+| chrome155_headless | Chrome for Testing 155.0.8059.39 | Headless | Initial TCP ClientHello and HTTP/2 navigation. |
+| firefox157 | Firefox 157.0.1 | Headed and headless | Initial TCP ClientHello and HTTP/2 navigation. |
+
+WSS was captured separately in [wss-headed.json](captures-2026-10-07/wss-headed.json)
+and [wss-headless.json](captures-2026-10-07/wss-headless.json): 15 samples across
+five browser/mode cells. Each opened through the browser WebSocket API and closed
+cleanly with code 1000 and reason capture; the peer recorded the matching close
+frame. The recorded 101 is the loopback peer's configured response, with browser
+onopen validating the upgrade. The new navigation profiles have no native WSS
+parity claim. Chrome 155 WSS offers only http/1.1 in ALPN and omits ALPS extension
+17613; navigation offers h2,http/1.1 and includes ALPS. Firefox 157 WSS offers
+h2,http/1.1 plus extensions 27 and 35, absent from the older native firefox156
+control. Both browsers offer permessage-deflate; the peer did not negotiate it,
+and Scrapanium does not implement WebSocket compression. See the
+[dated source and protocol audit](captures-2026-10-07/CAPTURE-AUDIT.md). Exact
+capture-time source bytes and report pins are retained in the [source map](captures-2026-10-07/source-map.json)
+and [checksum manifest](captures-2026-10-07/SHA256SUMS-2026-10-07.txt). It covers each dated package file plus the release lock, excluding the manifest itself; verify from the repository root with sha256sum -c profiles/browsers/captures-2026-10-07/SHA256SUMS-2026-10-07.txt.

@@ -1,0 +1,4090 @@
+{
+  "schema": 1,
+  "captured_utc": "2026-10-07T21:27:02.580427+00:00",
+  "platform": {
+    "system": "Linux",
+    "release": "6.18.33.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.43"
+    ]
+  },
+  "mode": "headed",
+  "scope": "actual browser WebSocket API over local TLS; one RFC 6455 Upgrade per fresh temporary profile",
+  "release_manifest": {
+    "path": "profiles/browsers/releases-2026-10-07.json",
+    "sha256": "82ea58d96820f2b8176b9ff32671b677b936f60b32ccf7b5eb792553ec582958"
+  },
+  "source_sha256": {
+    "profiles/browsers/captures-2026-10-07/capture_browser_wss.py": "baa97dd07479f37d24e4bd358882c5d7cdc771e96163b70340d7ec13109d71fb",
+    "scripts/capture_browsers.py": "98d21304695fbfb40f26faae417091a1cdfcfaf62f6536a58f6c11424e71d8a5",
+    "tests/fingerprint.py": "4f23e74c4b39b3965d473d23e3abf7c6ee5c9aac86bc26a329605adad394c835",
+    "tests/browser_lab.py": "72c5defb296f54eec97bac109275d44f5f38f2a9f8399331313b3a6ae4396282",
+    "tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+    "profiles/browsers/releases-2026-10-07.json": "82ea58d96820f2b8176b9ff32671b677b936f60b32ccf7b5eb792553ec582958"
+  },
+  "browsers": {
+    "chrome": {
+      "version_output": "Google Chrome for Testing 155.0.8059.39",
+      "executable_sha256": "ed05e73a2cdf875326fcfa438b31c71a6a885a353610731dd52090dfc476f778",
+      "samples": [
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "16030107d2010007ce03038cf26dbc7c7e04cfb42bcc0f20bd036f098497c5343ae06c08776e61bfed5ba420e3644926c641cba067f4392ed4e877cc9e4b1db7926054700c227746260a3a8900208a8a130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f0035010007652a2a000000050005010000000000120000000a000c000aeaea11ec001d00170018003304ef04edeaea00010011ec04c0229201da1a4a70a86ea2ba87b26ab3639a16c6c9a5d0d64149c3228a155bba6a34a2fa386af992f78c053cb1c667fa2486e485f6e1b0d2b1000ef788b4423af5776104eb4964f429416bba7284b704052d614b0c911824aa38904c23458b491541abb029f18b15311b388570a8681f81468385485fdc152b918cbce6aa467f6a271e652d69ca467874759b54989fa707cbf2cf74e280f34ace57f8ba5ebc12e5416d5bfb3ee1b47483867082030502172075180a4873176cb62cd263301645c01df49b7919009403b525fc4bae5b05e894719de07c31252f8917510dc71243d004938c6a7f90a77ffc61d6d38b861794520b58b0075274883c1ef36ab7683ed866367684a4f792cd57109e1197affbdcb0d5a692a6930e25310461174ae9d32a0fab8146fc2ba90b289f53a5c95a33da326347252973b52263b320ed55760996b2cfa7ab82361a0c4357f7132772705bb935abd8a00c5e3abcb657aaa5503e38da0738785c0863c55ce6c830568ea39acf34701fee7ca1e8488949f765f0c0c87bcac200f22b68f79c16bbbeccaac83ac685d20ba30b63ca27f57400300a420479b4e6bea6098f488023e0fa4605c4459af4890912bc51e18a8f7381cbbc2b81502967a515a2dbb3e7a95214fc40a31a3005481549a34fab8678dbd7921362208eb37ebf4a2b8e68a62f321973e80ce1e917e9d5431f3047db88c58583c7f20a3db5b50038c82846ccb15dd8aa09465e6f1ab746454a915599c864c2bc2485fb9784bbc45ef6385de3582551540f0cf25851222c56ec501e4459ef069f58fa3f3c12ad17780c9ca457b3dbbe30a85a11f60efe77c63411375ba31054c633fb627a799725453292a3c44c3d1856738166e1baadbd931cd3249a65dc64eee90971905a93d661ea4a9a18425566fc6e6044ab2d562f1af8467e3cc853056b2830b60f840e9abc4848298f9f268a38d1168e73c028c62568aa059158ceb6a98cf75c3eb35215cd1624ae4a7d57480029ecad0190a2db346412a4c02f405d21705e7d476f006287688825be1a5071d33e18f39b0f9234441379ace67b89c441eeb45bd76bcaf876af96e5ce3ae55aa3c46bf1e68dd7d30d9b65ca7e43c81165b2e8f1afb3883c900959df089319e6683c9a9e85c88506aa82eb43c4454c08d0db5035d835f8614da5c27ae8b16a4259a682187c1f27c76114ba8ee7acf1fc46cdf351b812bd93a402fbb3017fdb6b0da0a0f87604d31b2b722617b80151eca81161733f13c78ab0081648a341f7d2cd083b8831825adb5a4b7cd606aee58bce0015c87a60ba528bac8a673ba65deb6b19517a54313c16171506c1362853627ac29cc0f7545c6f34bb48304b76f8bcaedc0b547c05180cb162828e4b57b5678bb3204b74d2f3a05874066d363957c6a4d730389142577be1a493dabf30218fc3251135b0234ceaa91b91aa5e4aba74c50882d993f9617d25729f620a4cdf10ae6f957c92d22563e64c0fe7940de6ac94745cbcc32772679700f960d6b0b92dd12c4c5777d44914b94b4a7402c06ae0007bd6a43f59b7f5d183843bc837881cc8000602114fe9b8503399b26b407a5657a34fd519550490b80bbe81eab6f3f6c084307d2873c7c7818230254424a58715924b605494e48adf5270fda9fcdff093657a88858f3aa2b44a0a328bb61982098c6e93df814760cf38dba15756fc7f4009d521001d002022a1d3ae10525d6adba6638df71647837839e1637f524f0a6b9a2047d1d24904002300000010000b000908687474702f312e31ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090f00170000000d001a00186a6a09040905090604030804040105030805050108060601001b0003020002000b00020100002d00020101002b0007061a1a0304030312e000020000ff010001000000000e000c0000096c6f63616c686f7374fe0d011a00000100012b0020b4dcbc666570de4d5e36ea2b5ea9d4adee7d107b219f3e64d504d8172f4e891300f0efab14664617235e3acc250466934f1a94eaa1a51145675c18c4cebdef57ce716bab0934b717f4fa319830ac0441fc05339a4adec2dd0bd53d92d367d2d545f490b12cbd3a471e3f195372e50a16f50ab7e65d5cb9c143ba0ea6d5ad4047ddf1432b24583582a27a7e6b14ecebc7ff1bbc85b62d44ff48c885aa451e7a1274812fb4a48f942e96d97e6167c6e469a63243167e2e13e423ff5f7d045928795128f990e89fbce9c68d8fbfa490b6c30a509a4b315d0080e4fb2bfff8498336b33d35eb3a85d4ed90a7ec6439d2975d839075d8524bb7d4fab6ea1ff98066c67992b9542bedbf34206910d951904f96ea889a9a000100"
+            ],
+            "clienthello_sha256": "5d6cfc33f54ce9ae6e01ffa0fca3834ca096e662d25b4832da2ca001f77f8463",
+            "clienthello_bytes": 2002,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                5,
+                18,
+                10,
+                51,
+                35,
+                16,
+                51764,
+                23,
+                13,
+                27,
+                11,
+                45,
+                43,
+                4832,
+                65281,
+                0,
+                65037
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "27": "020002",
+                "11": "0100",
+                "45": "0101",
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "27": "020002",
+                "11": "0100",
+                "45": "0101",
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "27": "020002",
+                "11": "0100",
+                "45": "0101",
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "5": "0100000000",
+                "18": "",
+                "35": "",
+                "16": "000908687474702f312e31",
+                "23": "",
+                "27": "020002",
+                "11": "0100",
+                "45": "0101",
+                "4832": "0000",
+                "65281": "00"
+              },
+              "grease_vector_positions": {
+                "10": [
+                  0
+                ],
+                "13": [
+                  0
+                ],
+                "43": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:38031"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:40995"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "6VEM8lwtI11cVHqX9tUpjw=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=u5BXMPrdkbUukhPQUjTX7gFOcRmwh4Tr35RGqwdu9J4="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "16030107d2010007ce030344d40ef7a1d55abe59e8db9c4745a8ff91fa31e8952c11e53eb504747913a7f020f3c2a3311433ef0b33fffacd8d616f5b53276412f1d651b21af36957b824aa9b00206a6a130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f0035010007654a4a0000fe0d011a00000100013a0020ed76e03fb2d2f7ad65a7df2d50284d7286148a6b9b179d4d26d7ffd7536dff4300f0e34407fa71897fafd47943ba7961109d92f84a0c53c641ed8959110dd64e7e8c6c15c6366c717787232bd5de3ebcabf8fc81119f12adeb5f894aa72213c8d7d50c9c6477435c1d02065396acf0591700b461b7782de2524996ac3dea6a55b06f8ffdee8fdb49073fba4e9aa118cdb4d5bb194e171975cd9b349457f564f62cba3b9f4c362899c7164690ccf3143dbd394998df56e9a9ea582a104b476e32f2bf384e6b0477566986ae0cb7114fdb598f8a59fef7fb23f976aece9e789323b2e915096663857a935c2195cce49c8763e130d3f308561ce151bea6a86d8e09452fe3fdaee5a4dd0878c100ffffef88ad75001b00030200020023000000170000ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090fff01000100003304ef04edfafa00010011ec04c06759112966579be03218d994be4b9cd8307a6b0431886a5776c50512ac605fa86598f321493464d43a328778231295c6ab1715acf912f6315786fc9824e82e7f9088578b8fd86b760297b6d85839b9d93b78f3b375a68f37f39257ba4064502bdb635b01d50d8f5c557fa7bf8c56aa137683407087fc833bf2648c0903adbf52b69149712a6b089b41669cd82dd602371e2a46656318d9536919a59dcbe818197c44b8306934c86f9a1441b406651351901aa8154c802c2b103bacf7a6de48a76d6ca332e0a74637093b765f10f96a21d9992e5900713a1fa8c15f9413b4ffe19a9d3230001b24ce73bdc9a46de11a8c3e82a0b0757c99e7bde5ab851e0ac7891a6e96d28a28bb32ac9132d9ea08e6ea4c9b24b806893f1576c94e5baf6472c924cb04e6d39e67671ecd98106dc0a811334360b22f8025687efc3713cc3deb8c1011f8a6619148132548292985c3b797c6f6cc6f11cb8c68a206e3ad8bb1b00a75aedec7aafeb879909c4923314ac2b2c3eb2419b7489b63a5aff7310df852cd91da0447f716962127e5c60416f5a5d2c445d5c79cf3c874d1268f98f0cebd602dfbd360a2f884711abfeff65bd8d177c1609c9fcccfcc26c7140856a62939891ac706cbc36c7a9e159413ff29448b13a8ff3b14274273ebf6444efb572d5bc9f9b56246669566d754770835138301cbc6c7c2b6c3190899e2146a61f5435bba7e7cb9584f420c7d07c5303a6974b432ab08b508b42af1a573b5282dea0b22aa3581ccb085813bb21c01a4aa6058c0dc2e4865523ac01b98711c5581a6efec0dd6604108522001cc3a93c738dcdc71d34845879209e5a495eba566b1d4c373d7a3d32b5ab51b5a7e9bba0029037013012d710f36246661613096940798f04fe70c52b4a6bc6c2023fa65064a5c0f22c7ce23a6c661235f803562509270c57396f7d0b96d2720401b302f566928f2082a43cd6fcab79f8a3d2e9c7026f718e1d71a35f598ee13a22f111128093deea0b36e173c8c4034a586cc4c6465c7c339b8f255e2f16299e5aa5d0852ecf074d83c4bf948700c435ec8c544fbfbbb84fcb6d02c4d88b1b935282d5dc8b3612a18138428aac674e0468206bc18002273a1660710f0c5642033a61050d90a2886853f8d0a1591dbc8123618f8166021608dd2c8cc30fb41e1e8ce33f1b043c365cd996f6e6bb9c21569176810a4f353f61bbbff045ea1f80043bcbb22274da15b73181cc41e30504bf703de89472cf97e2d752ff174b816b9bd2d10bd98496e2bb16fbc5c61cffb079a58290a96c9b952c74a69651c3a26d7c5a71c7b98b2563d33c84e003da7cbf38c8ff0848b79a59c826dda2849d2843a08c2561faa3d59a6a567c41456f5253b529572b91f454b9143f7010f51cd65d16a5493c4c9db96af062b71f70984599c53a230a3f993310671a605ac9b820a4fb87288e12db56572ebd97fa9751c4f148dd50160cc25a439b1a31c83cc4a9c280c96b434b38856c42616b2850517a1b7229ad06829930420e5da8b45e954e7a1a6d2da168312348fb6af93182a86877331ac57f8b36dd39c956258717fb0b27eaa1731712b304ab04ea830a989bb280c6c15f237d3248d3fb7bb13560c52c4f2345966903b520e50e12fa4b47e876c715bf53c94107ee583832432cde1faec48c5fb4e96ffd27ee617ec6503aff7946cea1fc689c61e2d0df058001d0020ce9742bf5a4913e5bf01846c1e76adce78d2098ae23b8015c30c3d9acf90143f000d001a00180a0a09040905090604030804040105030805050108060601000b00020100002d0002010112e000020000000a000c000afafa11ec001d001700180000000e000c0000096c6f63616c686f7374001200000005000501000000000010000b000908687474702f312e31002b0007060a0a03040303fafa000100"
+            ],
+            "clienthello_sha256": "9a2f23406d320e8a04019a20ac4b8832b51d97de0cdbb095012469dbe3b9837c",
+            "clienthello_bytes": 2002,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                65037,
+                27,
+                35,
+                23,
+                51764,
+                65281,
+                51,
+                13,
+                11,
+                45,
+                4832,
+                10,
+                0,
+                18,
+                5,
+                16,
+                43
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "35": "",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "65281": "00",
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "11": "0100",
+                "45": "0101",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "16": "000908687474702f312e31",
+                "43": [
+                  772,
+                  771
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "35": "",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "65281": "00",
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "11": "0100",
+                "45": "0101",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "16": "000908687474702f312e31",
+                "43": [
+                  772,
+                  771
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "35": "",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "65281": "00",
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "11": "0100",
+                "45": "0101",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "16": "000908687474702f312e31",
+                "43": [
+                  772,
+                  771
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "27": "020002",
+                "35": "",
+                "23": "",
+                "65281": "00",
+                "11": "0100",
+                "45": "0101",
+                "4832": "0000",
+                "18": "",
+                "5": "0100000000",
+                "16": "000908687474702f312e31"
+              },
+              "grease_vector_positions": {
+                "13": [
+                  0
+                ],
+                "10": [
+                  0
+                ],
+                "43": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:40349"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:35237"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "UmFJHW1u5p7QRuHzv6jimw=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=FVFQRze78K3j2eWML+yUOGy2FTt3ggZvt2WisnEXUVw="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "16030107720100076e0303f86105db74aa1db41c603e2820a7b9d277bbadd3f7330fd31944ba7480312af120e35f8ad999610fef7cf970d136bc8f24df01cc360eb0b6a1ed87e6366768682500204a4a130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f0035010007052a2a0000001b0003020002002b000706eaea03040303ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090f00170000002300000010000b000908687474702f312e31002d00020101ff0100010012e000020000001200000000000e000c0000096c6f63616c686f7374000b00020100000a000c000acaca11ec001d00170018000500050100000000003304ef04edcaca00010011ec04c09cca11dac1036961a70cf248a971302a4227fc6b6aadcb80788098f86882ed0cac4ac2511a799d11474a989a2f7fba457d686acdabc60f227410f6a56e04856241bf8b2b7505fa8295e12b21471c67a6059e816825894217db7d2e245233405e9558aa5356a286e0096ed9b151da1f1dc8304b86673a49c1f66a83d8f13a770b715ba9c20ce189cd11c91bb9ada3b47234c759177152e1e1301a0881a5c1593f8ab5d5f70727ac7bb380504e23558039523e6118998124dd60c315f4499832a0309b96e7f53a3783aa56e84c49d396115cb970350b47376994a60fd4e788dfd91ac59c297e7c88d7811b307cce560394143b16077938ff74772940625b9113826620e48725568317a7b000caf7bd7a2a3029320a644213133952910740dd034d7dc0ada07330c9d4aa7464518b03237e3a78f5f9b72371627a0a31002d3c22a30abb876517d358c9f171388ca4e02c45b4538b51e6826ff5ad6c680557ba8848219eb0caac7f69141d668b9bc33d60c9229d588fc39a2479059621e946929459beea989d99825d69558891c67b432a367254c1ab85e90922825209bfa1be065229f9d65012f0b484a22e57a39b1ec5c768c88b72f06097d31b8b376c882bb71172780163b2afa3bd350797cc711afc501f640874a178739044676a9792b80201f6132d4cd279b1222dbeb24575850d29020cfae2366761b7a0546d552c5c707c03b23a850054ab90eb58e5834ec4b926f9c588c99748c4c1c33397790f905a0d952ea550031d064e3d743353f8b4de128c8a515de6fc45637ac2890c72ab870e012357b7529d79251543027bd8f88615527f4ad197f5a8b742f2c16f28509fa9271f2cafda994bf48c38450716a743cfe6564f7fe5518092904accaa29a21338d228876537f35285b368944a586fad21bd688b8078f7c721088f8784b01188c7974587d7f607adf7b4c2101c33db922082737e2a48ee4b8f94aaa177836af6475d8e78c2766813efe34f1a96a0281bb23fda023f10adeb094fccd17a2a89ae1adb95dd20136b831d337a22e1c1cd7e732dfd7584ae07c453c686973c9261618c67f91bf7e14f1c57b9a5aa2cae9461b425c663b19fde3541eebb4de67a4164427c42a3c24b6c41d970994272c1276cbea1592a58e0381d29c6d638b33adc932306c86de41245f9a20bac984af4a0f8d7c9e96a2a165494a4f90844464350c7c9798b2da28caa93a8b022cb7d33d719f0703888d33f81a527ce6525abb397fbb37ec68ab9dd361a1e2a3ac5278e29c6945ccb4d0f94b81870593534264f74cda8b28ab08357ef637e45ab6c8444a704233ded9a64eeda4f7772948626a46da0cfa9a6c105778b7d830efce89f51fa198ef533991451038ccb7d11ab2d9541f0506bde069187502754851e0a683f98a06f39f97825481c1c89b13ea78b7582618730abe367c70f36548e1439cf40b815b0bb7eaa8eb89144cb217eca286d240575a264c042d445a6f340c0638cdb8c32ac4c8bd2e8a359e96cf2051033481d66bc0e999c62cd0acf0802952dc5a271aa31bab06e2a91c0f13726d366b3d52552b51b45de520a296818a683316860c942b2228df5890591b98f974bb6f61710f0bfccf8c2a5ce7d15505d1882cf93b00498db9a14189cd8ef671cffdd5cb1415fae86b5cc70efde85d2dca1c61c953828a7482bb99fe2011cda34e943d7af864a42001d00208ad5f81fafa728324b62b3ff2b4e2eb3475fa18be5092e3290f791c4ad94383b000d001a00180a0a09040905090604030804040105030805050108060601fe0d00ba0000010001890020a497fb7c797046e0cf4098cf4c084f770d9a9ba97fffd61eaa97c3edc1e2e4240090ae313e698063cb3a5e8c0f698fba9e95d8cc9927296d583fffd19b40d3b93fef236cec66d1f233bedb70940cf778a923d02c4c45144c7cd3d3e22fd642ef57adb296fb80b1d3a72b6be917c7a31e9bc76783e836d4a9de7c64c195aabbd7f1f1b0714f1e935d367b0168c9ca07b5347e4f15de6674f2bca2f59c59c5a03c340d905186b85224b46fa9685f388bc2d2a63a3a000100"
+            ],
+            "clienthello_sha256": "974e3da1a9eb6ef662720065d9fa98f8cddedb8587d77af4b50d70a784119a60",
+            "clienthello_bytes": 1906,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                27,
+                43,
+                51764,
+                23,
+                35,
+                16,
+                45,
+                65281,
+                4832,
+                18,
+                0,
+                11,
+                10,
+                5,
+                51,
+                13,
+                65037
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "45": "0101",
+                "65281": "00",
+                "11": "0100",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "45": "0101",
+                "65281": "00",
+                "11": "0100",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                4832,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "35": "",
+                "16": "000908687474702f312e31",
+                "45": "0101",
+                "65281": "00",
+                "11": "0100",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "27": "020002",
+                "23": "",
+                "35": "",
+                "16": "000908687474702f312e31",
+                "45": "0101",
+                "65281": "00",
+                "4832": "0000",
+                "18": "",
+                "11": "0100",
+                "5": "0100000000"
+              },
+              "grease_vector_positions": {
+                "43": [
+                  0
+                ],
+                "10": [
+                  0
+                ],
+                "13": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:38561"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:43705"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "HUG/HU38E6CuMu2M7yvReQ=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=fosQD30d0NGcU8sQtm4NYFSyz/4V0Y21HzrPRLErIFA="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        }
+      ],
+      "download": {
+        "version": "155.0.8059.39",
+        "revision": "1697595",
+        "release_source": "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json",
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/155.0.8059.39/linux64/chrome-linux64.zip",
+        "archive": "chrome-linux64-155.0.8059.39.zip",
+        "sha256": "55672d1f392fd3e7b7a08621b6e804e6bcb39d40cf155504abb74b3a021ea8ea",
+        "upstream_checksum": {
+          "algorithm": "GCS object metadata",
+          "source_url": "https://storage.googleapis.com/storage/v1/b/chrome-for-testing-public/o/155.0.8059.39%2Flinux64%2Fchrome-linux64.zip?alt=json",
+          "generation": "1791250380097835",
+          "size": "198195769",
+          "md5Hash": "lK7krcvsKsrVgyUPt+qhEA==",
+          "crc32c": "vpjgUg==",
+          "timeCreated": "2026-10-06T01:33:00.168Z",
+          "timeFinalized": "2026-10-06T01:33:00.168Z",
+          "sha256_note": "CfT JSON does not publish SHA-256; archive SHA-256 is computed locally after download."
+        },
+        "executable": "chrome-linux64/chrome"
+      }
+    },
+    "google_chrome": {
+      "version_output": "Google Chrome 155.0.8059.39",
+      "executable_sha256": "9bfb381296dffe75f3419d07b6cc64525105ed117d1453a4ef3b291cb97d2b58",
+      "samples": [
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "160301076c01000768030398f3c7c9bae65ef085916d2ac59c21949d8ef6f3e3e4098570277580b27418a420a03015734c2fe85e36d60dc6c00cedaf42e01567c416dfdd306b94d884f6de3900204a4a130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f0035010006fffafa00000017000000120000000d001a00183a3a09040905090604030804040105030805050108060601ff01000100002b0007067a7a03040303ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090f0000000e000c0000096c6f63616c686f7374000b00020100002d000201010010000b000908687474702f312e31000a000c000a5a5a11ec001d0017001800230000003304ef04ed5a5a00010011ec04c076e40fc39b9fc8297b02a8725e5c2f2148901a61216e955546f785b5f7bfea8b4ade0709ddac3944cabe574a3f7b9a4bf87c0c99013c563426e066955d4a73c1e232f81655e6f67b711c8a23f300389c9bc2d45250c91513e91289f25281753e5c1613c1c21bf82150056813a387038ebcac1da66cf875b7592341f6113f70a2552389c55d839bf85a057f611fedc1699bf71e85c59c811013f2ea26af477edc7435fea14844a83cdff1197af3a549e5c407244804e1199249445fa33aaf488b4c8bcc680b3e8d8953be276d3fa07135a745b89a37a998469923aeb75b11c72b5e10f696df8abfbe77349ada5a26f14461949b3f57bf855466e49a4a90824bf4509be0b336de7177d54258ed15140eec472ecb118195a0692b4a34c6157b890e65f19d3dc94a2a247060a8b4ec30af810c1ad2e9a6cbeaac61b8c60568961d824073624b8d069889056e33e314e3365326295546211cc4512b422b4ff1e549118c58cdfa8292805964e6a7d8ec25e7498aa33a342f837eb0c366c9629aede81f871b5636431e90652b63f4a876b3470679976ba8a0b2a500b2648f507c15216634e2418a9a1a2b10350b576641ee413389238802222654c2064e91b5b68ccf077c536291886f9cbf3b199653542d72293ec956bad8f49db577c591c5b37fc34ae6186055c5a714a1ba1fb415326a172c1251d9f1c1bc38543121aef9eb5d87d6a449d7156e9518e525585829b2faea140d25551d79c8fa11be5978602b84a283895442eb2664876e3dc766f8c0971280ca96597f9ac63126463add09199e85c52bf0bbe3c55d8994747c16b425302fd528ae1de865f16b055636658107b1823739abc0282de3a3039276f6410a27da5e45bb9aaa568ff61484da11c334657c37e9b8aeb709dd30aee03766e6f9ac32a234c3b664f46537e2b05c9fb857d6b602d84a1148316967ca5946a10006563389036838300d59b64aa44a3fa73038c9565fb855af96f6a9bcdc0a8120a2a20156ced4730eb4ad9e2c1edd344642292f6a8a10f8551a6279c3af288c74792074746c07869e037c4430a0c9ab68bd4da44e0ba5cd3f043b0820a1982c108422060d72a84334a4320820a4076a3bda4f4d927130d89016578805878264974704fc041282a8db1014755c98deba8672799c83b838bd9b939be390bd439487f7cd70370ed01043f0e6940db030dfd966f8982c960b449efa6ce51ab0e0225413fc9255c5440c7214c4623817e059c2d4c55df71099423c68cab3c17998dbcbae8b54a6db371bc85945856cb2d4f95cc91c2667290258711c2258509abb70edcb95b19085b9868f798569dc28c8c71a2a8805aad63825a2ac2b17b2ad82c59dbc7a000f438aebc61cc543ae8abccd9b512344c8a88fe59145eacdfd52229e2c34d6dcaf31d685d2337caf289029f0c5cc81085441cd8e1ab65cf15bb2892815a1aeb511c3fc6bafd84415ec6aa397dc55f9691332f92afe76896271cbc1c46c71d946215c87cdca5dd445587bc73362150314b0284ca58251c15e3f070cba1b8f55a48c1786c1e7e2996a8697648295a73241932c23e5874b5ce01252f4ca20932484e3771cb0213ffa0a5608463ff069bd307a767918cb467e427d9c28f627df6a0a90199b1232129a50fa1e0429c0e085e271b4e588f2ba8954d8d9514e6967e43f8b1a6c38ad956f4b01cd70fe7509a17937001d002031461e0382a5b6a85b8570f4030bb7540aeaf5fe3a6c3ca95a3b9e6d65896d0ffe0d00ba0000010001bd0020d98426bbb100bf12d8d8adfacd73008eb4a84a482446f0e2ac21d7e6641f793100906606cc1dcb26f72c4dd9efd7b1a1268fc531c7ddee5865687ffc5f4106f5a82ef1be6502400ec77cabe98e227270710a5bdd35cdd44fb9ceb44488470cdd386dc9ef8b15ee1887a4d4b7b22a02ee581c97ac73f5ad19424a9d50f1b75c188beb50023d13688a0e86594c11faa2e87319ddd6270dc5f388751a4a9e4d8f2a8e24c63882dadc848e4b78db86b9a84405cb000500050100000000001b00030200022a2a000100"
+            ],
+            "clienthello_sha256": "50b2718d0b22d5beac310fb0ab086223a1c223f27dac14c93fe61c4fdea296cd",
+            "clienthello_bytes": 1900,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                23,
+                18,
+                13,
+                65281,
+                43,
+                51764,
+                0,
+                11,
+                45,
+                16,
+                10,
+                35,
+                51,
+                65037,
+                5,
+                27
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "65281": "00",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "11": "0100",
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "35": "",
+                "51": [
+                  4588,
+                  29
+                ],
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "65281": "00",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "11": "0100",
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "35": "",
+                "51": [
+                  4588,
+                  29
+                ],
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "65281": "00",
+                "43": [
+                  772,
+                  771
+                ],
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "11": "0100",
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "35": "",
+                "51": [
+                  4588,
+                  29
+                ],
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "23": "",
+                "18": "",
+                "65281": "00",
+                "11": "0100",
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "35": "",
+                "5": "0100000000",
+                "27": "020002"
+              },
+              "grease_vector_positions": {
+                "13": [
+                  0
+                ],
+                "43": [
+                  0
+                ],
+                "10": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:39411"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:34471"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "1YfqZNJTKmhwJW62SQdCZA=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=lHLjsGaMDDvxVXZov+V2EKpCF7S7vwj/x1qjfmf9AP0="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "160301078c0100078803032401d940edfbe1fe518c6224452b4324f9243293410a57cb61a6300b02ec9f7420bb394a3f070c2b3da827d05eae27a3c2d6ff46daaf6bb0a084d5ae59a1c976ac0020caca130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f00350100071fbaba0000000b00020100ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090f00120000003304ef04edbaba00010011ec04c03fcb80f6a75825c7c87b8b41e2f4c0260a84108695f4f373fa8c3cce008e74799abcf2ce0e174696766c07137307f0144eb8c3fb56a647580d88e77c305a9d3930084a9c87513849f81b98503816249a5932261b380bc92c18c3413597a2218c19823ce0667b25705c5de3ba8bd5642fd44d03563e3da1174e024379689fa347c9d5bcaed0c9c59e7384d56ba95c342a0ccb30d581ba2f609a0c961bc5453588e53674077b84f2a16b09856d5c4c1e0805300c074496ad6e402adf8832aa96164fec0ba464350a866a8438358f40ba233508427615866565a1431c99d361b7811f407c38f2ec958d99a6b093c9093b4c6498b3ea5667b5f8957b2b48c89732ec44460f2bc4cb52bffc273073aa7b42c12ddae9cb12aacbc9719b8936bea9730187bb50e79a6aca94b5bbf69f7cc494000b98e17460e9c1ceb4e3145c3c19d341c08cfc0a755322584639378cae4faa863499c378b12c2b287b4c740704ba315eecad9d96b4c63280a4f848df140dce5483694bc8f47c64ea23bcdfea8e9664ba1c799bc4ac28860a360525555eb910999b941f20cdc8014a00c322c6935afbda76cb6c516d721bfc4771bf11c41fec8fa5263f6da9540f031909f1a986499db68ac2e31438fb151c8c96096d9a8bfbb00ef4217c07362488274dd4baab00cb5ec8ca26d5e4918fa5cef9c9845d1b108f31653272400111250153240c756c1b5485d6271e16cc2421196be673bb760707d7dac5a0504141112f50f00bb99c06c910b35abb8bd86796eda8a756602ae207457af9744e04b819953e11a23892f81c4d38377bdc040e9c761edbc5c77444dd8b3245295a714a4df3311a4b56c71cc1626a2b18dad5960470a4eb2b47b2306f53d57a6379abb7185d079943422379b8086cd7b40da7037ba76ba540bac3a02892e169b215d93c992842473a24abc3b27145a059169e79873da867577f68368ce794836845e1513406d31a7ba25e268b3f22180bd7ba015b644dacc84f35c26f3c2a7e77b832a8b5b0e91791b30ca97ee78b77263fa3b1a204604f28e4226280986dc5b588763edc941751c161e4d989a3034bdd891631bc0b6724b66b51033730b2a4844b0dbc38c0601cd6558583616a6e07859b6c099a67af23306598c7cd066c9d53cc4cb5d32450957adff06d2069971ba655e3134767b0599e0330ec5119d4b07b4e7c34c083c62cac4580d8891786b31420369b9b4be4b046eb2536f006576393cda4c4651f91b6e366b8a1e971c402adb4d02e4df7ce7366868ac072d3a34015297339f379423257f8e22133d06b6ac3a934843e2e136451a86a31cb5c928a6d7c87930f451c2e99938a0a0ee3d8c78c538919c8c24a0a0b22d934cbf15c398037aea9c912e64696d223f6db1359b7a512b5a60881882706307aba096098bca864665beb0c5de3384137053c0531c4107643ea9d63e9618883c4c61b4ad2008194c37a898c3c8f8a258aa2aab5da2f17f7262e9b3797396111d62b77861c5c09073d251f6a532ac60968b5703811cbbcd89161dc482a5a10838c3743f509bee50434bf13655c86a7eb5a429ae780020615e6633cde822e8812cb4120969380214573349d4ba23d823d5361471ae181ed053c4ea6d539554bf105144b1398e34145fdae3ba6e4e59d76ac41d0079475c58c61ae04f77e46e8bd8c538dd986a7adfdffc92133299ce087c7a040001d002081915de7def92d01976ed2ca36a9bba81d0da885f2e18f02b9a2dcfff6a15b32000500050100000000fe0d00da0000010001560020876f79ba4395a9d38fe189f70acae036c8cae6b14e24a20768d23f11e78d681700b00034df7f1b559e57d1eed122f3a5b551c39eb36551d0061b2a59f35189c720369e85f1137e39b2b90c5d8e963c4fa3f4c8b05a0bcfc7adc20fade42d5a95df323f0fc021c62109b7a359538fcfbf4761aadb6f236371acf35e1a7e9a29097f9121fb43996fe09fd856597f154315a0b84868ab3e51d00f5b3f55417d181419d6e8283ba9aeef5f5bf4fbbd7e6400e02ec07ed5623588e32b7e5d9c2dff5535a701b188bab92323967caec63f6f52a908000a000c000ababa11ec001d00170018002b000706fafa030403030000000e000c0000096c6f63616c686f7374ff010001000023000000170000000d001a00180a0a09040905090604030804040105030805050108060601002d000201010010000b000908687474702f312e31001b0003020002fafa000100"
+            ],
+            "clienthello_sha256": "8481973d0451a6ab3ca7aa16cafc7d25cd23e2ce8f6e0cbd40101ab666958f89",
+            "clienthello_bytes": 1932,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                11,
+                51764,
+                18,
+                51,
+                5,
+                65037,
+                10,
+                43,
+                0,
+                65281,
+                35,
+                23,
+                13,
+                45,
+                16,
+                27
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "11": "0100",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00",
+                "35": "",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "11": "0100",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00",
+                "35": "",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "11": "0100",
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "51": [
+                  4588,
+                  29
+                ],
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "65281": "00",
+                "35": "",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "27": "020002"
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "11": "0100",
+                "18": "",
+                "5": "0100000000",
+                "65281": "00",
+                "35": "",
+                "23": "",
+                "45": "0101",
+                "16": "000908687474702f312e31",
+                "27": "020002"
+              },
+              "grease_vector_positions": {
+                "10": [
+                  0
+                ],
+                "43": [
+                  0
+                ],
+                "13": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:38361"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:44357"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "G8HQA3i2zJJ3chLemAxnzQ=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=1HsdqpWRcPS6/lFGkMid1g2N323GN/Woi9sEPxhcy5M="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "16030107ac010007a8030315ab72ad701721e018b2c3cbdcb63bd82b0b3cde432aacfa5d3380a72257ea5120eb9ad2b14d4ec5290d54717e70a77b54892453c96701a39424d77f86f58b8cd700200a0a130113021303c02bc02fc02cc030cca9cca8c013c014009c009d002f00350100073f7a7a0000ca3400ba00b80582df1302010582df1302060582df13020d0582df13020e0582df13020f0582df1302120582df1302130582df13021408839a648c9b2d010708839a648c9b2d010808839a648c9b2d010908839a648c9b2d010a08839a648c9b2d010b08839a648c9b2d010c08839a648c9b2d010d08839a648c9b2d011208839a648c9b2d011304d679090104d679090404d679090504d679090604d679090704d679090804d679090a04d679090b04d679090c04d679090d04d679090f0010000b000908687474702f312e31fe0d00fa0000010001dc002029809b18fa27f8cfd10ffae0f16b51f764d5f7e525d0ff196a1ea728dc37d23c00d04e21870e9b987de20fb9489f52b5263114d19af7027db16b75df953a944bf98ee73c86fc982e4a349008c4f735402624420832093541f9376512da64e973c95f10caa3e781830e71320e091c7cf288dd4b584141a234c7df5fb541c19bf34cd60fe21dc09a905ce5af9e9ab9ee2279ac2170da590c3b66966e681ce98a47ff860a4b8646ffd7c401aca449cb6d0614084276d0dc0f08775d785f19b27b05156c18c67da7fbab5c94ddb4ce8a57e680e44e77345ccbcad6364d6ea0fd4ed4fee8e7a458ad30e3d1354b43747c9301cd3f000d001a00182a2a0904090509060403080404010503080505010806060100230000000a000c000acaca11ec001d00170018002d00020101000b000201000000000e000c0000096c6f63616c686f7374ff0100010000120000001b000302000200170000000500050100000000002b000706fafa03040303003304ef04edcaca00010011ec04c0fb9b55230278acc053a82a5e67f589bc12c4ce126d66d8439849089f1a1ad42583408c2ad2391b69a29433620a1dd8bfa9b15ed2a9033c1827bb101d38bc3140c3b54171017098081994180f04490d6b48a80a8e7835258c110d401a5bec86336d0aac58eb73a3422561a14b80278f94fa864966a7f4424c9a68407ea02154a17fe36112655cbb699496f8583a312b3dd8036b3d0cbde802a51dca2fd41004a3353270ec1707c43568abb661d586b446b1e0fb56775c6adb3763d088051f796c8ea4b99ce157955319c5f5043bab5eeb798d58056364d97506fb64bf227c75d7a873f57ec5a8136c329a5907850002b5f157b55339119f72bfa456c935c2290dec45bd45b00bac58d7642b46824fa7943a21ec628ec3b42691c8cb245c4d76bb63cb1936c4306702917990beb7904447eaad9350a7d1592f1838656b9202a06733eafb064010ba30fb3dc999181e995cbdc03359466ad3dc2f5c03a8c2c873c3543487ac2a862bc8b8dc2bdb637188358ed93a70539044378b4ae8d69a5e82ba67f49795cc991211958aba1203437983b96c95b3c76ca51356b56e05946fe6a669a2583ecaf12f68e725c562b1bc38249fb6ac1a550249649d2ec886335b938a8c6b3237afb8d10ac4915e29485006e9b11b943b25f208221085cd893978386fc9464d2535c00066a01f96cef3a45fb43347f74645407847337116091648de7b47db88498a33b2a2d28a91a9ae04c7843191a1903a25060b271b6c8ebb670524a51fd3c8699cbb9f8fe06d1108b494459dedba6d3e287e62629478b7cfede69e8001712f5ca9027a077e808313312fad9904b34c3aa2c28b21a928832527a947a6f3426a51917cc9e6a11ff99de1e04bf54b57b39969da29bc2b3a89fee88ef17067f206b0aaa1839a93413b9ab606ba9638ba9511b90b5c2a13e14b2085f91e9b11345a138539d62ccaa7360c59c8a4d70564aa25ea297c7c5bb0ec3618f40ba30bc80833a47fb32b00a9518cda9b3cecf366303347ab4a313d67607ab46e00b95a11808e2df6cf19e339c89c840f04943d3a5b999c0963623aa601b3083c4ff402b9fe61b6a45907fdb955e89b4c4d48b6b0967f5d70211d5a8289c86e53524c0ba801e934c52ab278bd9b45602a8a4e11a7d5c0a2254666e0c18574bb60e81ca4e6a6227a7540a7097f6f484a1fd629f2b72d85fb8b890960dfa05a30513a4ba76208d469cdd7bcd1dcb9d526a8030acd7b4ab3c1f6c74f5583620b6610231110917690fbac454860d427019c366d3b16cc2b866a776a0695373a73dc1283a4005a50937e70819f519c84a2851a9a03377961354bc185535bd6017b4570a5c4f228774a849e737f7fd3aa9558796e044d2f87438bb7b6bf7b52863b5b26f72cda62af449950e9296755ab918e470b5be609bfe775fad9a9e929ca1e16be6f380515076f2328b0e0630cb7e41f3b8933e8d7231606af4cf847a0b2b094e225c03b58f1215150245f5f23aef49a1a90a523127506fb2250dffbc9522a45a6bbb9297724a9c68b5ac902078085c1a89f1782ba8d0bce125057158ba3d1a33267cb92b3bb976cc0c3adb388c424b60ad8acdbc1a8cba884e8a08cd527774590bde2005d266142675681a160fd55a789a1cdf6775fca2795d6a4d26723e09d1163eba212c9b12ef278c212f8eaf1093a0fa4b52fb12562309b344ae409e5737748001d0020f6f3c0589e3a61612c392115a9495234c23c7a5c255e8095d64e478b92cb2229aaaa000100"
+            ],
+            "clienthello_sha256": "51e5126170070f4e47bababad3a515397a3d13aafc4dbf9521cdd07f2de14b27",
+            "clienthello_bytes": 1964,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                51764,
+                16,
+                65037,
+                13,
+                35,
+                10,
+                45,
+                11,
+                0,
+                65281,
+                18,
+                27,
+                23,
+                5,
+                43,
+                51
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "16": "000908687474702f312e31",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "35": "",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "45": "0101",
+                "11": "0100",
+                "65281": "00",
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51": [
+                  4588,
+                  29
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "16": "000908687474702f312e31",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "35": "",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "45": "0101",
+                "11": "0100",
+                "65281": "00",
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51": [
+                  4588,
+                  29
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4866,
+                4867,
+                49195,
+                49199,
+                49196,
+                49200,
+                52393,
+                52392,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                35,
+                43,
+                45,
+                51,
+                51764,
+                65037,
+                65281
+              ],
+              "details": {
+                "51764": [
+                  "82df130201",
+                  "82df130206",
+                  "82df13020d",
+                  "82df13020e",
+                  "82df13020f",
+                  "82df130212",
+                  "82df130213",
+                  "82df130214",
+                  "839a648c9b2d0107",
+                  "839a648c9b2d0108",
+                  "839a648c9b2d0109",
+                  "839a648c9b2d010a",
+                  "839a648c9b2d010b",
+                  "839a648c9b2d010c",
+                  "839a648c9b2d010d",
+                  "839a648c9b2d0112",
+                  "839a648c9b2d0113",
+                  "d6790901",
+                  "d6790904",
+                  "d6790905",
+                  "d6790906",
+                  "d6790907",
+                  "d6790908",
+                  "d679090a",
+                  "d679090b",
+                  "d679090c",
+                  "d679090d",
+                  "d679090f"
+                ],
+                "16": "000908687474702f312e31",
+                "13": [
+                  2308,
+                  2309,
+                  2310,
+                  1027,
+                  2052,
+                  1025,
+                  1283,
+                  2053,
+                  1281,
+                  2054,
+                  1537
+                ],
+                "35": "",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24
+                ],
+                "45": "0101",
+                "11": "0100",
+                "65281": "00",
+                "27": "020002",
+                "43": [
+                  772,
+                  771
+                ],
+                "51": [
+                  4588,
+                  29
+                ]
+              },
+              "grease_ciphers": 1,
+              "grease_extensions": 2,
+              "grease_signature_algorithms": 1,
+              "static_extension_payloads": {
+                "16": "000908687474702f312e31",
+                "35": "",
+                "45": "0101",
+                "11": "0100",
+                "65281": "00",
+                "18": "",
+                "27": "020002",
+                "23": "",
+                "5": "0100000000"
+              },
+              "grease_vector_positions": {
+                "13": [
+                  0
+                ],
+                "10": [
+                  0
+                ],
+                "43": [
+                  0
+                ]
+              },
+              "key_share_sizes": [
+                [
+                  "GREASE",
+                  1
+                ],
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:45441"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:45145"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "XOH1hOGSgdE+6Hia3OPBvQ=="
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate; client_max_window_bits"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--user-data-dir=<temporary-profile>",
+            "--ignore-certificate-errors-spki-list=QoNiFeb9rLA6Gj02oQwQSUmZt7dHbKuTjzIttHLUUxA="
+          ],
+          "preferences": {},
+          "certificate_setup": "local SPKI allowlist"
+        }
+      ],
+      "download": {
+        "version": "155.0.8059.39",
+        "release_source": "https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz",
+        "url": "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_155.0.8059.39-1_amd64.deb",
+        "archive": "google-chrome-stable_155.0.8059.39-1_amd64.deb",
+        "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+        "upstream_checksum": {
+          "algorithm": "SHA256",
+          "value": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+          "source_url": "https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz",
+          "package_version": "155.0.8059.39-1",
+          "filename": "pool/main/g/google-chrome-stable/google-chrome-stable_155.0.8059.39-1_amd64.deb",
+          "size": 143552428
+        },
+        "executable": "google-chrome/opt/google/chrome/chrome"
+      }
+    },
+    "firefox": {
+      "version_output": "Mozilla Firefox 157.0.1",
+      "executable_sha256": "3ba77228cea10dd8797724d1979dfe4bf8083122d5f5342c2e477d9a1c506979",
+      "samples": [
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "160301075a010007560303054ddd76aa3cda7526b758dc08248229889b59dd6f27e5fa9d6b16d386167eb4205fac89ffa9e5bf345a1169454d71f31ca43f9875e40bf0ea87f208db6177f5a9001e130113031302c02bc02fcca9cca8c02cc030c013c014009c009d002f0035010006ef0000000e000c0000096c6f63616c686f737400170000ff01000100000a000c000a11ec001d001700180019000b00020100002300000010000e000c02683208687474702f312e310005000501000000000022000a00080403050306030203001200000033052f052d11ec04c0971cc2afd6ae9227205945a10720b0b99b475c093f1e395fef816cce111540444394e42d91a085db1c0efe85854384c292093ca5554fe635a8dac4b62eccb729246ea2a21087461963ec8ffac34e31d440ca7596fa0056f3762a0146b5846135a72b938c6695b433b2fb9a4e2494c0122796c3a37077420cefd200427080f14b5b9c855f3df30068728801d55d34b77eaba75440357e00a246f8741cacd4cfeb9cca60ab4c1b4b7cfa190b428b03924342a6626ef71c7df55ab904d6545cbcb4436a4d9a24948974caf6dc6ac6408624012836b429da3b5500f49e6e00b6ad7a6b06ea098ccac7c7d543186606d99bbfa37a8e4859a31914a2da04c1b9444838983c4ac627ecf54b9e186821629b5e207a38487264b237d83b4d57cb9dfa0c0c1e3761e4d913191a1998ab5d34423b4c8472e6f6b520717308431479c3b4f05b9b0bca8910737b4423c52db10d45c59b275c017e2c3a41437c31fba93160876a910926152a81425abf9625ba744c095431e4da806506d04f0637126514d5466bca7aac2c1931323471d85b560ee7c44df039fb41b7ddd5856d191c72c71264670a3dc0610a1b3895b9013c166ca8a988236abb579c6a37f96804f120cc2324a3c49aa944798aec9e0654128df44be95310c06273f238c13f0658a2e56842097e939a2dd0c55c3aba4a9e012df3d92b763a27f1dac8a2004e82c490ed08bf8230bead93299510cf1d7614ebea928f319e7dfc85cc842051a861ff9b1fe081535db41cf22497c1f139943c653466ce9a3417c361895859949727a291cc2bd572a00a6957fb0a0b7d7293147b1d429b553b73b1ae856c0db6b85b7836c7567a8577033e38765f72b2a3b72d5004ae669b2ebc87cf6994909bdc0724e453242772064cbbb9442c94b171ecb6c8753520a45c3800d67b727c4075d94207b23b0628a570010f1be2ce11f9cd6b8265486084078856c964a73033296ea8bb5797869a370e6a706ad2620f0f52951c2c8abc58c3d0566995ca4d13ea42bb1b0792cc360b122c8da2c71438138112860da5451ef62543a30e64ecac898b587a4baeffa610dee86c455946c6c88ebb07b3c9ec6d819922177396d5b7aa583a12efc69700e39f910204bc587881039dcaa7573339a38c2b3d34b9280b17847ae8a727212de93900d56a12ad17b95fe9419db19f0db2b83ec9a70da5b689a28a26629331572085e294529299a4611e1393137d737b7dc9883c362383e13f67b40bc3310169247ab20c770d8967c02b877b5071a9e06ad50024af1639c1fc8934f93863cb60ee258db6714f1475952036cba9d3c2d763a8dadaa19395bc413498ef61a7bb387b82d782fa5b4ebb883da63a9ca38678a4031ae82a1c91d17a662563a1864507c445d37aac3a453b34d36d3852c8c63a45af4a0b4b90a8a52017e5a5a2f0e8813af8cacf03559f08cdd821bc9d56295ad593ae9192b7d26988d7774da9b712d28ceae7876b028d5dc59422767e51ba254ec4879e60a620a3665f125af211452ec072635162a2b238f11793e500cd1af831d5f1a80a7a54fe2bc9fda36afb0b43da8740a92837fb61025c1712912bad0eca35e45b7cf9e87d560b10530a0868127a8cef62747690477a4a77f9c28e1857e7006ac6be7398d250b8c3ea0dcd78e4eecb0bb9bbd0a3845c534bb4bd83a45605d68ef41cb49b856e810f588f8fc2e060001d0020cb0bb9bbd0a3845c534bb4bd83a45605d68ef41cb49b856e810f588f8fc2e06000170041049bb24bf29b3030527a00434d92a5e579309f161ad26953dc1eb24731efd22d320181ea8aa6bb7e89f4c6dc2c56fc3cd12e24eeb17ac545b68d2354ebaf1c3ba1002b00050403040303000d0018001604030503060308040805080604010501060102030201002d00020101001c00024001001b000706000100020003fe0d011a0000010003c8002034a3bf6fdebee71ef64dd044c6401d8899f89bc8a5f0cdf6edd949d8064fe21f00f0a6f6f62e5e8f35e8861a6bf1093b05d9a5229b99b438eae049f554f6c324dcc3f927bdfe49078bf517a8607678a8d299e715818ba97d6a16ffce6d5f130fc7e60766b24d88dccade9428cfa249fd224c4de25fe9713a7366247e21b8753d55db575011292b152ccaee46bc1fb9adea5c80bed3c7f95c5ebba628fd2ed4424f75c63c2f64d52ac9ac707dd46299fc91fac99d068369f78e14a0021da828c89b518aa50fe7229b5259b18fe9951966de67e5b7f249658c975c403163a67c1a24048bab2e1bae03a900ba69ef4c66c501cdfbc09394c5081d2965256c61ec49f54aa4032558d78ce6c1121b510f0cfd0d9e"
+            ],
+            "clienthello_sha256": "35a44ea84f6152e5a2437dd75497a96181cf89e07d18e06629bc58159cc112e7",
+            "clienthello_bytes": 1882,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                0,
+                23,
+                65281,
+                10,
+                11,
+                35,
+                16,
+                5,
+                34,
+                18,
+                51,
+                43,
+                13,
+                45,
+                28,
+                27,
+                65037
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0,
+              "static_extension_payloads": {
+                "23": "",
+                "65281": "00",
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "5": "0100000000",
+                "34": "00080403050306030203",
+                "18": "",
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_vector_positions": {
+                "10": [],
+                "43": [],
+                "13": []
+              },
+              "key_share_sizes": [
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ],
+                [
+                  23,
+                  65
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:37781"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0"
+              ],
+              [
+                "Accept",
+                "*/*"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:33257"
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "BMTAQOwQchRbbfISQiNiGQ=="
+              ],
+              [
+                "Sec-Fetch-Storage-Access",
+                "none"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Sec-Fetch-Dest",
+                "empty"
+              ],
+              [
+                "Sec-Fetch-Mode",
+                "websocket"
+              ],
+              [
+                "Sec-Fetch-Site",
+                "cross-site"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-remote",
+            "--profile",
+            "<temporary-profile>"
+          ],
+          "preferences": {
+            "app.update.auto": false,
+            "browser.shell.checkDefaultBrowser": false,
+            "datareporting.policy.dataSubmissionEnabled": false,
+            "toolkit.telemetry.enabled": false,
+            "network.captive-portal-service.enabled": false,
+            "network.connectivity-service.enabled": false
+          },
+          "certificate_setup": "local CA imported into fresh NSS profile"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "160301075a010007560303c54bd6213bef6c92bf9099739b33f7dc3c42814b49117118a3e79ba53e65985f201f6a40619c8bf78948d871e47fb2a985c10384cf18299ab2553cd77cba1fb716001e130113031302c02bc02fcca9cca8c02cc030c013c014009c009d002f0035010006ef0000000e000c0000096c6f63616c686f737400170000ff01000100000a000c000a11ec001d001700180019000b00020100002300000010000e000c02683208687474702f312e310005000501000000000022000a00080403050306030203001200000033052f052d11ec04c0addc37d7329a33fabbf3f2a2b6708f9994662d8b48b924325698729eec4555eca37155a3d92108b476868b310abe16a03b0a9b3143ad36998d6ee505e7e48811bb55dd0b4efde140e73cc047e60e27a69eaad76475e921da091c7d6c7a61686a1b981db324c0e64995d63220e912aa6c279caf292e08e144d89988be712fb96a6100573619ec0851a36a5ae102797a0bf16017b9db2bf3477cbc52a338d59cffdb61f089377db2a1a3d4aad8398097c30f82b86d2abc2d059987e5d27c0c3b3d24b8c8db87a038027f4900399359578b1c317761ab54e89fc63a9c5413152eeba80ff9a12d3b8654910981d29811744863b4c53855643d6acd879a8c2a806dad72be9ff8412564239be00ad3f23e768bcc20c43bdcc016155c8c2ee00660b8cb3cb78864a031c475c153fb4e37928797660ec6c55528f1b7af756341265b310a6621950b2fe196eec0812a763e6b0a4e9fc891e88a41cefc39abfc23d70b183708bee2d10124d05793f78e998c902359c3995b2a83d530d4b43cdde96c06916694a73c97fa8d7d2353abc107fd3555c09a71fde6a23a034924e78127d940d0d2087a83520ed2063c2351f1a6aac3573d8701720d47624b1a0c61ba4c4bf0c46ff25a167ac8d09a83b984980dac262f43663e2c9b391537a7f90e27379ba2f2c52bf94a68b51666ab560aaa820b72215525b7f1bc8623b5887ba881e049b62a116e07b1912f695a38cb094bbb10399279d2562279556024f9bbb95041d6e3c1bcc8bae487ce97974d21f35a5597b60002cb36163b494c3e46764785623202e97fab52a5ab6b508f851eccea7f96776552f5909afa11c9f8b225b79f7a78154d722d95f00670d63319b36c84852bd3649340d3a8fff130ee568aac070ee7e0c3d949517f5b01817c9b1998572f296191963288ea122ea6764cc3af4099a3fd5780eab5898bac96c3a194aaa322355786040a4ac05388ae9192c91550e2a506b320b7ca649622c47eae65931be01c1671510a126f3db19a542b10b07a2cd97c95556caf5af953362c168b49879bec9720f44b82593ecee5697d87a7f5844fc6873b41311352b30a4bf08aaa30c032769b5ea88007669a302606bd782680ab897e664be7749076ac6c257ba2700163e46b0e43d7734188310f799d01f14397911e0c59c6ef404d36e012cafc20c66bb5f3ca53870b7cff4b5da972262c833aa00bb9eb266de76c4d748c89ae953d99f5c8d054390c44bf9ef03d5f3266cbe80aedc53131d238be66c9e9a03e4297a2c86439eafba661aa58bd6879826075268248eee1b063dac2de8a03c7126b5c61ab8fec9d52a26d0a0791fc564ce38b3c8dda3d085285fb516d109b94127a9cefb504a5f14272e0ca80109dc6b06163402a30e99efa993c0f184ce3e153c02b767e694cbffa4550e0a06161465bc96b212c22efcb1ef0865763f6646136a131c50baeba9648cb700a4896d5598217f18bcb8633129793df1109913904c10b4468e4a51990454c0425980b7a64f87f4a8a63458ab284a19843f59ee37980191b750214378b0b4f116599a1723f0a282c2c789f0f193056aa6a638b0a179160ff198911e26082f917812047c607b868678fbeec0828128cf8391da00939e626ff25087b731f6bc7acb7e82e3f2da3b8448f061de74acbb1f6b2494e50f9449a40e12591db0693b7df89182980fade2e0d701e7c36001d00204acbb1f6b2494e50f9449a40e12591db0693b7df89182980fade2e0d701e7c3600170041049422a4a60a7c0c639a2c4fac713dfc8bf18e437cb1385454456b3cfc18fd7baa255e04c8a368e56501c0d76653ba077c6fbd45d872261ad8fa80d4a04b9764cf002b00050403040303000d0018001604030503060308040805080604010501060102030201002d00020101001c00024001001b000706000100020003fe0d011a000001000376002054ae9bc668c715d059387882e077dde9c67c1a87ba43f50588212944b77f67fa00f08118f67bad789c1508e3c69203366df8d5b2a9a1be36ad838ca9dafe3e13f05997b99223762d4601df2421205cb64f4d08159c0087ad406da6ed22cc81a003bdee253aa17efe99393312d4403f2beef5e6c91335b466c4f219ba20677a7142250c8190b62b85388ea8fdaa923e23d6e1345feb37708f6e2cd3e3a6fc29c0de874e01d3d3da06004e9b5d5e2d0ab4c969115111df11fa889d2ecc60e99bb16536219363e76afaa4f896b3f979fb1382e24ba63bf68a9b43e514fbe6d8452b724f42873b535099b049b926339247a7c5735eaf5c32cb46abc174b5dc252cca3c0c70563a4b2b9961afd697ee6012c60c5a"
+            ],
+            "clienthello_sha256": "c417f52628d30d09badfdf62cf04dfa994dc1c1d4069bc03b22b6d07f5cb2a58",
+            "clienthello_bytes": 1882,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                0,
+                23,
+                65281,
+                10,
+                11,
+                35,
+                16,
+                5,
+                34,
+                18,
+                51,
+                43,
+                13,
+                45,
+                28,
+                27,
+                65037
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0,
+              "static_extension_payloads": {
+                "23": "",
+                "65281": "00",
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "5": "0100000000",
+                "34": "00080403050306030203",
+                "18": "",
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_vector_positions": {
+                "10": [],
+                "43": [],
+                "13": []
+              },
+              "key_share_sizes": [
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ],
+                [
+                  23,
+                  65
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:40723"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0"
+              ],
+              [
+                "Accept",
+                "*/*"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:39001"
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "L+xjhc6xi0fdKe9AynzXww=="
+              ],
+              [
+                "Sec-Fetch-Storage-Access",
+                "none"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Sec-Fetch-Dest",
+                "empty"
+              ],
+              [
+                "Sec-Fetch-Mode",
+                "websocket"
+              ],
+              [
+                "Sec-Fetch-Site",
+                "cross-site"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-remote",
+            "--profile",
+            "<temporary-profile>"
+          ],
+          "preferences": {
+            "app.update.auto": false,
+            "browser.shell.checkDefaultBrowser": false,
+            "datareporting.policy.dataSubmissionEnabled": false,
+            "toolkit.telemetry.enabled": false,
+            "network.captive-portal-service.enabled": false,
+            "network.connectivity-service.enabled": false
+          },
+          "certificate_setup": "local CA imported into fresh NSS profile"
+        },
+        {
+          "browser_page_result": {
+            "state": "open",
+            "close_code": "1000",
+            "was_clean": "true"
+          },
+          "tls": {
+            "tls_records_hex": [
+              "160301075a010007560303ef1ef24416fc9ebab0b948d75392cd12b2d2295746199ccdc4c1b4af024fb2e4204967599db3af4d07b770b88fe274415305d700579db6521fe3a4580709580aee001e130113031302c02bc02fcca9cca8c02cc030c013c014009c009d002f0035010006ef0000000e000c0000096c6f63616c686f737400170000ff01000100000a000c000a11ec001d001700180019000b00020100002300000010000e000c02683208687474702f312e310005000501000000000022000a00080403050306030203001200000033052f052d11ec04c0812c260ba4bc6a604c6f721f1d9aa129fb87dfa70cc431b79565845467c619ac3970d2bd5bf4683aa43072b5267e385a902a21cb8c9edb8922f0693aed2946eac76f31e8b3b1f61cfa4885ca487f0c01ce56c672097076d8fb26a534a6b490909a7bb9862baaf7571884a418952c51b93c061274b35dd45373865840b506615cb72371b1d39a36cb4723b2d692f0e077f895bc929180d09211aa2a040544be70235ca4bc7031cc9efda8a0f8f69450425e36a678ea0bc0e06b4a5148836d4803c7633043217fc5a55dc5508328e51d81f2321d6cbe6bc1bf51864025b21651467dfc8b6b331626909a58a1f132a98c0fbca52626720d3f52881f00a1d495293891983adbc97b289d77e7bb7e84b854c71fac562706921047557109f805e1d24a84d54e27203d5c5309556c23d52a57e8496fce2ab7a8657cc8c702ab547b21394f5536b71d94b86bd09031b9bb676250800805f2e643cd075845f881d72aaf0822351b27bd00f79d38aacba43cc263f96e2ddc70458ba70715bb224552b82caf982067e33848ae447603c526311abb58124565120aaae4b71071baf816b1d9043f68aa0958bab3dad66736e01dae03a1fa84093f46608aaa321e421dc1bb4d4023a3cc899f3488ccf71a869bc99b34a45cc7d132dd4664ab9180d0390fe9478307d28ed2d039cba65974f4ba4300b7edc857365b100625bbf9908424712e2bb34044e70239536f355b84500073afe7b4b60092ccba9d0624675d345506f2034ca96352516f0037151f62cef3232387e7ac8727aab14c39e6b7ad647734778b9d5443caa8117776a6b7dd7841046a9dffca7e42229278074cf65954b50a4c284bcf3859691c057670136e3dfb95029a0940dc3adf651fe3b118c3083d12134aa2520d572853658472f24344bf60a877965c5953290d486de57b2e89a8c60dd0aaceb36c324bb74cf52010890122c0cdc834c3041017a5f913e54305eaa9566785a985c257a0b12c5cd1b349a21da911573fa3a94e9aa0251cce3b133cdfbc509f262daa696bee93c3dc232d336b4252556d6ec6a1d7d6bf0118a790791d4515412f891d8a9a7c0b2116ef4849b9c07a6a5241f571a10651c69d85193c2a14f682325bb66a220a96a9d82f9cd28c33c20730c94680b9abc5aa090dd2874a818edf662b6fe29f65ebb06dbbad400989f7a99fb0f465db799df6b1397c29914ef858f5813d467c23cb733e262a8a7fa79c8c407fbacb8a1c4c6354a985d8863f77a9a7468a7218669f0b06a8f23236ba94a539065c1170afee96ce1bd4bc7d3ac5e16a872d3161b5d680f6d74e0a29cc9938875e2a521c10524e55441af01f5c302b0ac0cdc898b60aaba32f38268d681b82863ff7e318e280306a694e08b19b9afb993a864c01a1bc75b49fc74a1bbe89b8d9c53554e5759d120ad134cc6ecc3ba998b9a620afc071ad2443b8daaa99da04a85c48325fe085bb741a0dc98ce3132390a2218382bb26745c5ba99c695979565aa5b651b7c88785275229231a5e28b44838d92fdbac7b2bc12b645b2cae6a4cf91c117dc208e1ba04f5d950f7d11dd5357a68a7cbc440adcf8503337ac38ca9419c018337809004c82e79cb6748b40c5e01ba42bea8d3a8da9e6234f5674e5dc2b3da3e584438d7afb05374c24b9b0eb4d63701bdb61443dfbd9b6782d44526634390e6dc90744af8562b60838ab97f001d0020b4d63701bdb61443dfbd9b6782d44526634390e6dc90744af8562b60838ab97f0017004104ed9076a61628bd39d0328e0683839aadb7aad94241f869d7aadacb94052386d945c1f0e62bf53031646c28dbff9697fc7dd1b1a167ae24307ebe90b053d513b3002b00050403040303000d0018001604030503060308040805080604010501060102030201002d00020101001c00024001001b000706000100020003fe0d011a0000010001920020034ea95c12fd552614d47ff73dbd4efac5247c5d2a4862943b8619ede50bb63500f08a0c7b12cd82af6959b763542fb018376c60e98de4bfbffe1a4049c8a9e7a6021a247ba53113037ae6c80d62cfb58bc8f7386ca60b8413cf40c45b92574dd91562fb5096d18ded263c2f34d45e5c3b4478a21c50d5ba7ad5c5342e9b564295ce3a8712211a6158e52a60342963cbb462b9773865ba94267f7b15c84e0456294407fb16d1cebeac44bd999dd17b27945e7c3fb57156b918432dbdafaa1680be7dac3424b0c266afbf02f41174ae1d5e266ca548205f6f3cdb0843e18ef8d2293cf90bc0de615d3221da94d1880ab9873956ec271c77b99bb6d72e38de539b21fa843b684f7085ee23686aa1b56df78f71"
+            ],
+            "clienthello_sha256": "ba34e6217b2555fdabc4aee80372a6e150995b2b7ccb58af06815770928d0907",
+            "clienthello_bytes": 1882,
+            "parsed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extension_order": [
+                0,
+                23,
+                65281,
+                10,
+                11,
+                35,
+                16,
+                5,
+                34,
+                18,
+                51,
+                43,
+                13,
+                45,
+                28,
+                27,
+                65037
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "normalized_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0
+            },
+            "detailed_clienthello": {
+              "legacy_version": 771,
+              "ciphers": [
+                4865,
+                4867,
+                4866,
+                49195,
+                49199,
+                52393,
+                52392,
+                49196,
+                49200,
+                49171,
+                49172,
+                156,
+                157,
+                47,
+                53
+              ],
+              "extensions": [
+                0,
+                5,
+                10,
+                11,
+                13,
+                16,
+                18,
+                23,
+                27,
+                28,
+                34,
+                35,
+                43,
+                45,
+                51,
+                65037,
+                65281
+              ],
+              "details": {
+                "65281": "00",
+                "10": [
+                  4588,
+                  29,
+                  23,
+                  24,
+                  25
+                ],
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "51": [
+                  4588,
+                  29,
+                  23
+                ],
+                "43": [
+                  772,
+                  771
+                ],
+                "13": [
+                  1027,
+                  1283,
+                  1539,
+                  2052,
+                  2053,
+                  2054,
+                  1025,
+                  1281,
+                  1537,
+                  515,
+                  513
+                ],
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_ciphers": 0,
+              "grease_extensions": 0,
+              "static_extension_payloads": {
+                "23": "",
+                "65281": "00",
+                "11": "0100",
+                "35": "",
+                "16": "000c02683208687474702f312e31",
+                "5": "0100000000",
+                "34": "00080403050306030203",
+                "18": "",
+                "45": "0101",
+                "28": "4001",
+                "27": "06000100020003"
+              },
+              "grease_vector_positions": {
+                "10": [],
+                "43": [],
+                "13": []
+              },
+              "key_share_sizes": [
+                [
+                  4588,
+                  1216
+                ],
+                [
+                  29,
+                  32
+                ],
+                [
+                  23,
+                  65
+                ]
+              ]
+            }
+          },
+          "websocket": {
+            "http_version": "HTTP/1.1",
+            "path": "/echo",
+            "tls_version": "TLSv1.3",
+            "alpn": "http/1.1",
+            "headers": [
+              [
+                "Host",
+                "localhost:43391"
+              ],
+              [
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0"
+              ],
+              [
+                "Accept",
+                "*/*"
+              ],
+              [
+                "Accept-Language",
+                "en-US,en;q=0.9"
+              ],
+              [
+                "Accept-Encoding",
+                "gzip, deflate, br, zstd"
+              ],
+              [
+                "Sec-WebSocket-Version",
+                "13"
+              ],
+              [
+                "Origin",
+                "http://127.0.0.1:33009"
+              ],
+              [
+                "Sec-WebSocket-Extensions",
+                "permessage-deflate"
+              ],
+              [
+                "Sec-WebSocket-Key",
+                "NmtiiTdnNR2zSK0GJXP1uw=="
+              ],
+              [
+                "Sec-Fetch-Storage-Access",
+                "none"
+              ],
+              [
+                "Connection",
+                "Upgrade"
+              ],
+              [
+                "Sec-Fetch-Dest",
+                "empty"
+              ],
+              [
+                "Sec-Fetch-Mode",
+                "websocket"
+              ],
+              [
+                "Sec-Fetch-Site",
+                "cross-site"
+              ],
+              [
+                "Pragma",
+                "no-cache"
+              ],
+              [
+                "Cache-Control",
+                "no-cache"
+              ],
+              [
+                "Upgrade",
+                "websocket"
+              ]
+            ],
+            "status": 101,
+            "validated_by_browser_onopen": true,
+            "client_frames": [
+              {
+                "opcode": 8,
+                "payload_hex": "03e863617074757265",
+                "final": true
+              }
+            ]
+          },
+          "launch_flags": [
+            "--no-remote",
+            "--profile",
+            "<temporary-profile>"
+          ],
+          "preferences": {
+            "app.update.auto": false,
+            "browser.shell.checkDefaultBrowser": false,
+            "datareporting.policy.dataSubmissionEnabled": false,
+            "toolkit.telemetry.enabled": false,
+            "network.captive-portal-service.enabled": false,
+            "network.connectivity-service.enabled": false
+          },
+          "certificate_setup": "local CA imported into fresh NSS profile"
+        }
+      ],
+      "download": {
+        "version": "157.0.1",
+        "release_source": "https://product-details.mozilla.org/1.0/firefox_versions.json",
+        "url": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/en-US/firefox-157.0.1.tar.xz",
+        "archive": "firefox-157.0.1.tar.xz",
+        "sha256": "0d92bf39cdd174f5f361008509310bdefbce72a57ca10523a43b32d62dc699b6",
+        "upstream_checksums": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/SHA512SUMS",
+        "upstream_checksum": {
+          "algorithm": "SHA512",
+          "value": "ebec5e5c91a7c954a0f276928748bb4249e2b44bccdcfe6c7d7b4ed9c64ca6891a56cc8a016546bfbf1ca537dfe6084dba8f2746037c62fae0acc13a542421f3",
+          "filename": "linux-x86_64/en-US/firefox-157.0.1.tar.xz",
+          "source_url": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/SHA512SUMS"
+        },
+        "executable": "firefox/firefox"
+      },
+      "libxul_sha256": "96b1b568e55608dfce1ed690b5c7300ffd1d94063a56744d254f30d253791a04"
+    }
+  },
+  "failures": []
+}

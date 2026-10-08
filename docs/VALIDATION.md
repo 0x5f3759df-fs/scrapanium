@@ -66,13 +66,13 @@ JUnit detail is generated at `build/test-results.xml` (ignored as a build artifa
 
 Counts shown as stock/browser differ by backend; a single count applies to both.
 The optional build skips the one stock-only unsupported-profile check. The
-full-suite results above and unchanged group counts below are historical and
-predate the Chrome 154 profiles. The Profile catalog and Actual browser captures
-rows report the focused current run (47/51 and 4/25, stock/browser); the current
-WebSocket collection has
-138 cases: 134 from the four targeted files above plus four close-reason scalar
-cases. This count includes eight generated WS/WSS sequences and the WebSocket
-operation-state reuse lifecycle regression.
+full-suite results above and group counts in the table are historical; the
+profile and capture rows predate the October 2026 Chrome 155 and Firefox 157
+refresh. They are not current totals. The earlier WebSocket collection had
+138 cases: 134 from four targeted files plus four close-reason scalar cases,
+including eight generated WS/WSS sequences and the operation-state reuse
+lifecycle regression. Focused validation for the new profiles is listed below;
+no full suite was rerun on 2026-10-08.
 
 | Group | Tests | Evidence |
 | --- | ---: | --- |
@@ -83,12 +83,27 @@ operation-state reuse lifecycle regression.
 | Request builders | 44 | Differential UTF-8 query/form encoding, invalid scalars, duplicate/query/fragment handling, header validation and compiled wire requests. |
 | Binary buffers | 15 | Exact file uploads, input limits, regular-file checks, byte access, zero-copy response transfer/reupload, affine rejection, exact length/byte equality with retained ownership, and checked Unicode conversion. |
 | Structured response headers | 7 | Final blocks after redirects/CONNECT/103, case/order/duplicates/empty values, OWS trimming, unfolded fields and separate HTTP/1 and HTTP/2 trailers. |
-| Profile catalog | 47 / 51 | Runtime catalog agreement, all 41 / 46 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, explicit unsupported-name failure and rejection of optional profiles on stock builds. |
-| Actual browser captures | 4 / 25 | Reparse historical and dated browser TLS/HTTP/2 artifacts; compare Chrome 153, CfT headless 153, Google Chrome 154, CfT headless 154, and Firefox 156 against both 156.0 and 156.0.1 captures; verify binary/UTF-8 WSS round trips and certificate rejection for all five profiles. |
+| Profile catalog (historical) | 47 / 51 | Historical run: runtime catalog agreement, then-current 41 / 46 targets against verified HTTPS, Firefox 148/Chrome 152 preview comparisons with independent Go captures, unsupported-name failure and stock-build rejection. |
+| Actual browser captures (historical) | 4 / 25 | Historical run: reparse captures through Firefox 156.0.1 and verify binary/UTF-8 WSS round trips and certificate rejection for the five then-current optional profiles. |
 | Backend controls | 0 / 7 | Option bounds, TLS handle duplication/reset, cache-safe connection reuse, and rejection of a stream window below the advertised initial setting before request headers. |
 | Browser flow control | 0 / 2 | Three simultaneous 13 MiB+17-byte streams on one connection, exact contents and stream IDs, repeated with different per-request windows to check stream ownership. |
 | Backend installation | 0 / 2 | Input/output manifest hashes and retained notices/source; load the moved installation in a fresh process with its original search path removed. |
 | WS/WSS | 138 | Text/binary/empty/large frames, masking, ordered changing payloads and frame-length boundaries, fragmented UTF-8/binary with interleaved pings, bytewise network input, message limits, close, timeouts, cancellation/busy ownership, malformed handshakes, protocol errors, TLS trust/hostname/expiry and proxies. Eight generated sequences (four deterministic seeds over each of WS and WSS) check 18 messages apiece, arbitrary frame/write cuts and ping/pong ordering. Compiled Bend runs under sanitizers with 1/4 threads, including idle cancellation, 8 MiB blocked sends, exact payloads through 1 MiB, direct receive followed by allocation growth, checked close-reason scalars and fairness to timers. |
+
+## Chrome 155 and Firefox 157 focused validation
+
+On 2026-10-08, the optional backend passed 17 focused checks for the dated Linux
+navigation captures and new profile IDs: catalog/runtime metadata, three HTTPS
+profile connections, four ClientHello comparisons, four HTTP/2 comparisons,
+three binary/UTF-8 WSS round trips with untrusted-certificate rejection, and
+one saved WSS capture/provenance/close validator. These focused WSS API checks
+do not establish real-browser WebSocket fingerprint parity. The dated browser
+capture campaign ran on 2026-10-07; no broad suite or additional browser capture
+was run on 2026-10-08. A separate stock-only native build confirmed that the
+runtime exposes 41 of the 49 catalog entries and rejects chrome155,
+chrome155_headless, and firefox157; see the [stock check record](../profiles/browsers/captures-2026-10-07/stock-profile-check-20261008.json).
+
+### Retained earlier WebSocket lifecycle validation
 
 The change adds a native lifecycle sanitizer regression for the embedded state.
 It checks parked-state stability, busy-gate preservation, transferred-buffer

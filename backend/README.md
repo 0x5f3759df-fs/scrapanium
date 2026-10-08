@@ -1,10 +1,10 @@
 # Browser backend
 
-An optional source build adds five capture-tested Linux profiles:
-`chrome153`, `chrome153_headless`, `chrome154`, `chrome154_headless`, and
-`firefox156`.
+An optional source build adds eight capture-tested Linux navigation profiles:
+`chrome153`, `chrome153_headless`, `chrome154`, `chrome154_headless`,
+`firefox156`, `chrome155`, `chrome155_headless`, and `firefox157`.
 The normal install keeps the stock transport and its 41 profiles. The browser
-build exposes 46 profiles; unknown names fail on either build.
+build exposes 49 profiles; unknown names fail on either build.
 
 ## Build and use
 
@@ -39,9 +39,9 @@ a repeatable source recipe, not a claim of bit-identical builds across toolchain
 
 | Control | Purpose |
 | --- | --- |
-| TLS ClientHello controls | Captured Chrome 153 and 154 include signature GREASE in headed and headless modes. CfT headless sends a two-byte server-padding request with value 0; extension 4832 appears in CfT captures and is absent in Google Chrome captures. |
-| HTTP/2 stream receive window | Firefox 156 grows each stream from 128 KiB to 12 MiB after HEADERS. |
-| HTTP/2 initial stream ID | Firefox 156 starts navigation on stream 3. |
+| TLS ClientHello controls | Chrome 153-155 captures include signature GREASE in headed and headless modes. CfT headless sends a two-byte server-padding request with value 0; extension 4832 appears in CfT captures and is absent in Google Chrome captures. |
+| HTTP/2 stream receive window | Firefox 156/157 captures grow each stream from 128 KiB to 12 MiB after HEADERS. |
+| HTTP/2 initial stream ID | Firefox 156/157 captures start navigation on stream 3. |
 
 The TLS controls participate in connection and session-cache keys and survive
 handle duplication. They apply to TCP TLS. The stream-window callback looks up
@@ -56,9 +56,10 @@ isolates BoringSSL and the other transport dependencies from system OpenSSL.
 
 [Browser captures](../profiles/browsers/README.md) retain raw TLS records and
 HTTP/2 frames, binary hashes, launch settings, and three samples per mode.
-Tests compare normalized ClientHello fields and ordered HTTP/2 navigation;
-they also check option ranges, handle reset/duplication, connection reuse,
-and byte-exact transfers beyond Firefox's initial stream window.
+Chrome 155 and Firefox 157 were checked against fresh Linux navigation captures;
+the dated report separately documents WSS differences. Focused profile tests
+cover ClientHello, HTTP/2, binary/UTF-8 WebSocket transfers, and certificate
+rejection. Broader historical validation counts predate these profiles.
 
 This does not establish browser equivalence for session resumption, accepted
 ECH, HTTP/3, other operating systems, browser field trials, or WebSocket request

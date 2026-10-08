@@ -34,6 +34,16 @@ def test_every_profile_connects_with_verification(profile, https):
         if profile == "chrome154_headless":
             assert headers["sec-ch-ua"] == '"Not A(Brand";v="99", "Chromium";v="154"'
             assert "HeadlessChrome/154.0.0.0" in headers["user-agent"]
+        if profile == "chrome155":
+            assert headers["sec-ch-ua"] == '"Google Chrome";v="155", "Chromium";v="155", "Not(A:Brand";v="24"'
+            assert "Chrome/155.0.0.0" in headers["user-agent"]
+            assert "image/jxl" in headers["accept"]
+        if profile == "chrome155_headless":
+            assert headers["sec-ch-ua"] == '"Chromium";v="155", "Not(A:Brand";v="24"'
+            assert "HeadlessChrome/155.0.0.0" in headers["user-agent"]
+            assert "image/jxl" in headers["accept"]
+        if profile == "firefox157":
+            assert headers["user-agent"] == "Mozilla/5.0 (X11; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0"
 
 
 @pytest.fixture(scope="module")
@@ -59,13 +69,14 @@ def test_new_profile_wire_against_independent_go(go_probe, profile, reference):
 
 
 def test_unknown_current_browser_names_do_not_fall_back():
-    for profile in ("chrome152", "chrome155", "chrome999", "safari999"):
+    for profile in ("chrome152", "chrome999", "firefox999", "safari999"):
         with pytest.raises(ValueError): Session(profile=profile)
 
 
 @pytest.mark.skipif(b'2.2.3-scrapanium.1' in lib.sp_backend_version(), reason='stock-only rejection check')
 def test_optional_profiles_require_the_browser_backend():
-    for profile in ('chrome153', 'chrome153_headless', 'chrome154', 'chrome154_headless', 'firefox156'):
+    for profile in ('chrome153', 'chrome153_headless', 'chrome154', 'chrome154_headless', 'firefox156',
+                    'chrome155', 'chrome155_headless', 'firefox157'):
         with pytest.raises(ValueError):
             Session(profile=profile)
 
@@ -98,3 +109,27 @@ def test_current_capture_catalog_metadata():
         assert report['browser_mode'] == mode
         assert actual['download']['version'] == firefox['current_browser_version']
         assert actual['version_output'].endswith(firefox['current_browser_version'])
+
+
+def test_2026_10_07_capture_catalog_metadata():
+    profiles = {entry['id']: entry for entry in CATALOG['profiles']}
+    targets = [
+        ('chrome155', 'chrome150', 'headed', 'google_chrome', '155.0.8059.39'),
+        ('chrome155_headless', 'chrome150', 'headless', 'chrome', '155.0.8059.39'),
+        ('firefox157', 'firefox147', 'headed', 'firefox', '157.0.1'),
+        ('firefox157', 'firefox147', 'headless', 'firefox', '157.0.1'),
+    ]
+    for profile, base, mode, browser, version in targets:
+        entry = profiles[profile]
+        assert entry['base'] == base
+        report_path = entry.get('headless_capture', entry['capture']) if mode == 'headless' else entry['capture']
+        report = json.loads((ROOT / report_path).read_text())
+        actual = report['browsers'][browser]
+        assert entry['release_lock'] == 'profiles/browsers/releases-2026-10-07.json'
+        assert entry['browser_version'] == actual['download']['version'] == version
+        assert actual['version_output'].endswith(version)
+        assert report['browser_mode'] == mode
+        assert len(actual['samples']) == len(actual['http2_samples']) == 3
+    assert profiles['chrome155']['capture'].endswith('linux-headed.json')
+    assert profiles['chrome155_headless']['capture'].endswith('linux-headless.json')
+    assert profiles['firefox157']['capture'] != profiles['firefox157']['headless_capture']

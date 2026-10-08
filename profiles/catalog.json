@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-09-24",
+  "checked_utc": "2026-10-07",
   "backend": "curl-impersonate 2.2.3",
   "source": "https://github.com/lexiforest/curl-impersonate/tree/6e8f87760a4dd96771e96fc9d55440dcd8845243",
   "profiles": [
@@ -293,6 +293,58 @@
         "Other platforms and browser field-trial configurations are not covered.",
         "Three samples do not establish the distribution of ECH GREASE payload lengths."
       ]
+    },
+    {
+      "origin": "scrapanium-browser-capture",
+      "base": "firefox147",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "release_lock": "profiles/browsers/releases-2026-10-07.json",
+      "known_gaps": [
+        "Resumption, accepted ECH, HTTP/3 and WebSocket profile parity are not validated by this navigation capture.",
+        "Other platforms and browser field-trial configurations are not covered.",
+        "Three samples do not establish the distribution of ECH GREASE payload lengths."
+      ],
+      "id": "firefox157",
+      "capture": "profiles/browsers/captures-2026-10-07/linux-headed.json",
+      "headless_capture": "profiles/browsers/captures-2026-10-07/linux-headless.json",
+      "browser": "firefox",
+      "browser_version": "157.0.1"
+    },
+    {
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "release_lock": "profiles/browsers/releases-2026-10-07.json",
+      "known_gaps": [
+        "Resumption, accepted ECH, HTTP/3 and WebSocket profile parity are not validated by this navigation capture.",
+        "Other platforms and browser field-trial configurations are not covered.",
+        "Three samples do not establish the distribution of ECH GREASE payload lengths."
+      ],
+      "id": "chrome155_headless",
+      "capture": "profiles/browsers/captures-2026-10-07/linux-headless.json",
+      "browser": "chrome",
+      "browser_version": "155.0.8059.39"
+    },
+    {
+      "origin": "scrapanium-browser-capture",
+      "base": "chrome150",
+      "requires_backend": "2.2.3-scrapanium.1",
+      "real_browser_verified": true,
+      "verification_scope": "Linux x86_64, fresh TCP ClientHello structure and HTTP/2 navigation only",
+      "release_lock": "profiles/browsers/releases-2026-10-07.json",
+      "known_gaps": [
+        "Resumption, accepted ECH, HTTP/3 and WebSocket profile parity are not validated by this navigation capture.",
+        "Other platforms and browser field-trial configurations are not covered.",
+        "Three samples do not establish the distribution of ECH GREASE payload lengths."
+      ],
+      "id": "chrome155",
+      "capture": "profiles/browsers/captures-2026-10-07/linux-headed.json",
+      "browser": "google_chrome",
+      "browser_version": "155.0.8059.39"
     }
   ],
   "optional_backend": "2.2.3-scrapanium.1"

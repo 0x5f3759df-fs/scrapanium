@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "captured_inputs": "Exact source bytes named by the 2026-10-07 HTTP/2 and WSS reports.",
+  "source_commit": "7b52d7f1cbbfe4c21b1abf1ad71e8e3061c47c17",
+  "sources": {
+    "profiles/browsers/captures-2026-10-07/capture_browser_wss.py": {
+      "snapshot": "source-snapshot/capture-2026-10-07/profiles/browsers/captures-2026-10-07/capture_browser_wss.py",
+      "sha256": "baa97dd07479f37d24e4bd358882c5d7cdc771e96163b70340d7ec13109d71fb",
+      "provenance": "dated capture input"
+    },
+    "profiles/browsers/releases-2026-10-07.json": {
+      "snapshot": "source-snapshot/capture-2026-10-07/profiles/browsers/releases-2026-10-07.json",
+      "sha256": "82ea58d96820f2b8176b9ff32671b677b936f60b32ccf7b5eb792553ec582958",
+      "provenance": "dated capture input"
+    },
+    "scripts/capture_browsers.py": {
+      "snapshot": "source-snapshot/tree-7b52d7f1/scripts/capture_browsers.py",
+      "sha256": "98d21304695fbfb40f26faae417091a1cdfcfaf62f6536a58f6c11424e71d8a5",
+      "provenance": "unchanged at source commit 7b52d7f1"
+    },
+    "tests/browser_lab.py": {
+      "snapshot": "source-snapshot/tree-7b52d7f1/tests/browser_lab.py",
+      "sha256": "72c5defb296f54eec97bac109275d44f5f38f2a9f8399331313b3a6ae4396282",
+      "provenance": "unchanged at source commit 7b52d7f1"
+    },
+    "tests/fingerprint.py": {
+      "snapshot": "source-snapshot/tree-7b52d7f1/tests/fingerprint.py",
+      "sha256": "4f23e74c4b39b3965d473d23e3abf7c6ee5c9aac86bc26a329605adad394c835",
+      "provenance": "unchanged at source commit 7b52d7f1"
+    },
+    "tests/lab.py": {
+      "snapshot": "source-snapshot/tree-7b52d7f1/tests/lab.py",
+      "sha256": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+      "provenance": "unchanged at source commit 7b52d7f1"
+    },
+    "tests/ws_lab.py": {
+      "snapshot": "source-snapshot/tree-7b52d7f1/tests/ws_lab.py",
+      "sha256": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+      "provenance": "unchanged at source commit 7b52d7f1"
+    }
+  }
+}

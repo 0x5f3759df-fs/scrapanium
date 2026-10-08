@@ -1,43 +1,41 @@
 # Browser profile coverage
 
-The versioned [catalog](../profiles/catalog.json) records **46 named profiles**.
+The versioned [catalog](../profiles/catalog.json) records **49 named profiles**.
 The normal install exposes 41. The optional [browser backend](../backend/README.md)
-adds five capture-tested profiles. Use `S.profiles()` to enumerate the profiles
+adds eight capture-tested profiles. Use `S.profiles()` to enumerate the profiles
 in your build.
 Unknown names fail; `chrome152` does not silently select the preview. The default
 remains the pinned `chrome150`.
 
 | Family | Newest included target | Evidence / limitation |
 | --- | --- | --- |
-| Chrome desktop | `chrome154` (optional), `chrome153` | Google Chrome 154.0.8037.57 and 153.0.8010.52, Linux headed captures: initial TCP ClientHello and HTTP/2 navigation. Stock default remains `chrome150`. |
-| Chrome for Testing | `chrome154_headless` (optional), `chrome153_headless` | CfT 154.0.8037.57 and 153.0.8010.52, Linux headless captures. Its TLS padding control and headers differ from Google Chrome. |
+| Chrome desktop | `chrome155` (optional), `chrome154`, `chrome153` | Google Chrome 155.0.8059.39, 154.0.8037.57 and 153.0.8010.52, Linux headed captures: initial TCP ClientHello and HTTP/2 navigation. Stock default remains `chrome150`. |
+| Chrome for Testing | `chrome155_headless` (optional), `chrome154_headless`, `chrome153_headless` | CfT 155.0.8059.39, 154.0.8037.57 and 153.0.8010.52, Linux headless captures. Its TLS padding control and headers differ from Google Chrome. |
 | Chrome 152 preview | `chrome152_preview` | Chrome 150 plus 28 source-derived trust anchors and versioned headers. Known signature GREASE gap. |
 | Chrome Android | `chrome131_android` | Newest Android-specific stock target in this backend. |
-| Firefox | `firefox156` (optional) | Firefox 156.0 and 156.0.1, Linux headed/headless captures: initial TCP ClientHello and HTTP/2 navigation. Stock newest: `firefox148`. |
+| Firefox | `firefox157` (optional), `firefox156` | Firefox 157.0.1 and 156.0.1, Linux headed/headless captures: initial TCP ClientHello and HTTP/2 navigation. Stock newest: `firefox148`. |
 | Safari macOS | `safari2601` | Stock Safari 26.0.1; curl_cffi ClientHello parity. |
 | Safari iOS | `safari260_ios` | Stock Safari 26.0; curl_cffi ClientHello parity. |
 | Tor | `tor145` | Stock Tor 14.5; curl_cffi ClientHello parity. |
 
 Older profiles and Edge/OkHttp targets remain available for reproducible clients.
 The catalog is a transport inventory, not a list of currently released browsers.
-All five optional profiles pass our scoped [real-browser capture gate](../profiles/browsers/README.md).
+All eight optional profiles pass our scoped [real-browser capture gate](../profiles/browsers/README.md).
 Each capture set retains three raw samples per tested mode. Coverage is fresh
 TCP TLS and HTTP/2 navigation on the specified Linux builds. Reference-library parity
 and capture agreement do not prove indistinguishability across platforms,
 resumption, HTTP/3, WebSocket handshakes, field trials or application behavior.
 
-## Freshness gap, checked 2026-09-24
+## Freshness gap, checked 2026-10-07
 
-The browser releases have advanced beyond these reference libraries:
-[Chrome 154](https://chromereleases.googleblog.com/2026/09/stable-channel-update-for-desktop_0856730748.html),
-[Firefox 156](https://www.firefox.com/en-US/firefox/156.0/releasenotes/) and
-[Safari 27](https://webkit.org/blog/18325/webkit-features-for-safari-27-0/) are
-released. Chrome and Firefox now have capture-tested Linux targets in the
-optional backend. Safari 27, current Android/iOS and macOS captures remain
-outstanding. The catalog does **not** yet satisfy the complete latest-browser
-coverage goal. The current three-sample captures do not estimate the distribution
-of ECH GREASE payload lengths or establish raw-byte browser parity; see the
-[dated comparison](../profiles/browsers/captures-2026-09-24/COMPARISON.md).
+Official release metadata listed Chrome Stable 155.0.8059.39 and Firefox 157.0.1 on
+2026-10-07 ([Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json),
+[Mozilla versions](https://product-details.mozilla.org/1.0/firefox_versions.json)).
+These releases now have dated Linux capture profiles. This does not update Safari,
+macOS, Android or iOS coverage. Three capture samples do not estimate ECH GREASE
+payload-length distributions or establish raw-byte browser parity. The new HTTP/2
+navigation profiles do not establish WebSocket profile parity; separate WSS captures
+record current gaps in [the dated browser report](../profiles/browsers/README.md#current-release-captures-2026-10-07).
 
 ## Chrome 152 preview
 

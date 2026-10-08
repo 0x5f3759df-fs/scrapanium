@@ -1,0 +1,62 @@
+{
+  "checked_utc": "2026-10-07",
+  "platform": "linux-x86_64",
+  "google_chrome": {
+    "version": "155.0.8059.39",
+    "release_source": "https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz",
+    "url": "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_155.0.8059.39-1_amd64.deb",
+    "archive": "google-chrome-stable_155.0.8059.39-1_amd64.deb",
+    "sha256": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+    "upstream_checksum": {
+      "algorithm": "SHA256",
+      "value": "c58aa0f2cd66179c9f050e062c882d27aa9b9f8c2b7c73fee3498560b5ed0b38",
+      "source_url": "https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages.gz",
+      "package_version": "155.0.8059.39-1",
+      "filename": "pool/main/g/google-chrome-stable/google-chrome-stable_155.0.8059.39-1_amd64.deb",
+      "size": 143552428
+    },
+    "executable": "google-chrome/opt/google/chrome/chrome"
+  },
+  "chrome": {
+    "version": "155.0.8059.39",
+    "revision": "1697595",
+    "release_source": "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json",
+    "url": "https://storage.googleapis.com/chrome-for-testing-public/155.0.8059.39/linux64/chrome-linux64.zip",
+    "archive": "chrome-linux64-155.0.8059.39.zip",
+    "sha256": "55672d1f392fd3e7b7a08621b6e804e6bcb39d40cf155504abb74b3a021ea8ea",
+    "upstream_checksum": {
+      "algorithm": "GCS object metadata",
+      "source_url": "https://storage.googleapis.com/storage/v1/b/chrome-for-testing-public/o/155.0.8059.39%2Flinux64%2Fchrome-linux64.zip?alt=json",
+      "generation": "1791250380097835",
+      "size": "198195769",
+      "md5Hash": "lK7krcvsKsrVgyUPt+qhEA==",
+      "crc32c": "vpjgUg==",
+      "timeCreated": "2026-10-06T01:33:00.168Z",
+      "timeFinalized": "2026-10-06T01:33:00.168Z",
+      "sha256_note": "CfT JSON does not publish SHA-256; archive SHA-256 is computed locally after download."
+    },
+    "executable": "chrome-linux64/chrome"
+  },
+  "firefox": {
+    "version": "157.0.1",
+    "release_source": "https://product-details.mozilla.org/1.0/firefox_versions.json",
+    "url": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/en-US/firefox-157.0.1.tar.xz",
+    "archive": "firefox-157.0.1.tar.xz",
+    "sha256": "0d92bf39cdd174f5f361008509310bdefbce72a57ca10523a43b32d62dc699b6",
+    "upstream_checksums": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/SHA512SUMS",
+    "upstream_checksum": {
+      "algorithm": "SHA512",
+      "value": "ebec5e5c91a7c954a0f276928748bb4249e2b44bccdcfe6c7d7b4ed9c64ca6891a56cc8a016546bfbf1ca537dfe6084dba8f2746037c62fae0acc13a542421f3",
+      "filename": "linux-x86_64/en-US/firefox-157.0.1.tar.xz",
+      "source_url": "https://archive.mozilla.org/pub/firefox/releases/157.0.1/SHA512SUMS"
+    },
+    "executable": "firefox/firefox"
+  },
+  "upstream_metadata_sha256": {
+    "chrome-for-testing-last-known-good.json": "0aa95997168ec1ea826bb5015f201ebe3156da0ba20135669801f25bce36c8bc",
+    "chrome-for-testing-object.json": "840d704243d783562a7d9bef85289c4fe2948c9e98d49aea1e746e29e2e6cd68",
+    "firefox-157.0.1-SHA512SUMS": "f65c723c345dbd48254f8d5c8e262a36a96689c8f819b813f58ba1cd1072ec44",
+    "firefox_versions.json": "f512fb56832e45e4351f171ac28f500d21dc7d89c0e5094cc0a34e0d11774a44",
+    "google-chrome-stable-Packages.gz": "e7b8fbcc855cbf95abe731785a625b5729ecbbbc97a4d8afadbc5544469b975a"
+  }
+}
