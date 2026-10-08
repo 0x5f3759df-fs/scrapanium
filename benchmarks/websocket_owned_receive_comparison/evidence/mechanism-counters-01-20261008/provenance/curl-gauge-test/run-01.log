@@ -1,0 +1,39 @@
+prefix=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix
+dso=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0
+dso_sha256_before=e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9
+websockets_header=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/include/curl/websockets.h
+websockets_header_sha256=a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad
+gauge_client_source_sha256=0b285220c779dc9db4d8a278dac56aebbded6d633f47bd41e3ca7937c6a7101e
+compiler=/usr/bin/x86_64-linux-gnu-gcc-15
+compiler_sha256_before=b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88
+compiler_include_library_and_loader_overrides=cleared
+ld_library_path=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib
+scope=loopback WSS correctness only; no timing or performance claims
+temporary self-signed localhost certificate and private key are deleted at exit
+compile=/usr/bin/x86_64-linux-gnu-gcc-15 -std=c11 -O0 -g -Wall -Wextra -Werror -I/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/include /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0 -Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib -ldl -o /tmp/curl-owned-gauge-pu426pmf/gauge_client
+compiler_version_exit=0
+compiler_version_begin
+x86_64-linux-gnu-gcc-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+compiler_version_end
+compile_exit=1
+compile_output_begin
+/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c: In function ‘main’:
+/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c:290:3: error: ‘verify_held_payloads’ reading 4096 bytes from a region of size 4064 [-Werror=stringop-overread]
+  290 |   verify_held_payloads(held + 1, held_count - 1);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c:290:3: note: referencing argument 1 of type ‘const struct held_payload[128]’
+/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c:158:13: note: in a call to function ‘verify_held_payloads’
+  158 | static void verify_held_payloads(const struct held_payload held[MAX_HELD],
+      |             ^~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+compile_output_end
+driver_error=RuntimeError: test client compilation failed
+dso_sha256_after=e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9
+dso_unchanged=True
+compiler_sha256_after=b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88
+compiler_unchanged=True
+temporary_certificate_sha256=14995b7305d65506097c670eba3dac8b67e4861f084d4bfd1467e5cd6282b8dd
+status=failed

@@ -1,0 +1,2 @@
+cd /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02
+/usr/bin/python3.14 run_mechanism_counters.py --mode preflight --pins source-pins.json --pins-sha256 edcb4bfa2ba7239144d72d8d709081f44640cd4e68773b852f53acb7dcd0f0bf --output /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/preflight-run-20261008-01

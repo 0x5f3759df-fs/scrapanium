@@ -1,0 +1,683 @@
+--- a/include/curl/websockets.h
++++ b/include/curl/websockets.h
+@@ -1,5 +1,7 @@
+ #ifndef CURLINC_WEBSOCKETS_H
+ #define CURLINC_WEBSOCKETS_H
++
++#include <stdint.h>
+ /***************************************************************************
+  *                                  _   _ ____  _
+  *  Project                     ___| | | |  _ \| |
+@@ -75,6 +77,15 @@
+   const struct curl_ws_payload *payload);
+ CURL_EXTERN void curl_ws_payload_free(struct curl_ws_payload *payload);
+ 
++/* Private diagnostic extension for the isolated owned-receive census.
++ * Counters are process-wide cumulative totals. The snapshot has
++ * curl_ws_diag_snapshot_count() unsigned 64-bit values; names are stable by
++ * index for this instrumented backend build. Snapshot values are read
++ * independently and are not a transactional freeze during concurrent use. */
++CURL_EXTERN size_t curl_ws_diag_snapshot_count(void);
++CURL_EXTERN const char *curl_ws_diag_counter_name(size_t index);
++CURL_EXTERN void curl_ws_diag_snapshot(uint64_t *values, size_t capacity);
++
+ /* flags for curl_ws_send() */
+ #define CURLWS_PONG       (1 << 6)
+ 
+--- a/lib/bufq.c
++++ b/lib/bufq.c
+@@ -24,11 +24,13 @@
+ #include "curl_setup.h"
+ 
+ #include "bufq.h"
++#include "ws_diag.h"
+ 
+ struct bufq_pin {
+   struct buf_chunk *owner;
+   const uint8_t *data;
+   size_t len;
++  bool diag_ws_recv;
+ };
+ 
+ static void chunk_ref_init(struct buf_chunk *chunk)
+@@ -55,8 +57,16 @@
+ 
+ static void chunk_ref_release(struct buf_chunk *chunk)
+ {
+-  if(atomic_fetch_sub_explicit(&chunk->refs, 1, memory_order_acq_rel) == 1)
++  if(atomic_fetch_sub_explicit(&chunk->refs, 1, memory_order_acq_rel) == 1) {
++    if(chunk->diag_ws_recv_chunk) {
++      uint64_t bytes = sizeof(*chunk) + chunk->dlen;
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_PHYSICAL_FREES, 1);
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_PHYSICAL_FREE_REQUEST_BYTES, bytes);
++      Curl_ws_diag_sub(CURL_WS_DIAG_CHUNKS_LIVE, 1);
++      Curl_ws_diag_sub(CURL_WS_DIAG_CHUNKS_LIVE_REQUEST_BYTES, bytes);
++    }
+     curlx_free(chunk);
++  }
+ }
+ 
+ static bool chunk_is_empty(const struct buf_chunk *chunk)
+@@ -269,6 +279,13 @@
+ 
+ void Curl_bufq_free(struct bufq *q)
+ {
++  if(q->diag_ws_recv) {
++    const struct buf_chunk *chunk;
++    for(chunk = q->head; chunk; chunk = chunk->next)
++      Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_FREE_CHUNK_REFS, 1);
++    for(chunk = q->spare; chunk; chunk = chunk->next)
++      Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_FREE_CHUNK_REFS, 1);
++  }
+   chunk_list_free(&q->head);
+   chunk_list_free(&q->spare);
+   q->tail = NULL;
+@@ -282,10 +299,14 @@
+     chunk = q->head;
+     q->head = chunk->next;
+     if(q->pins_enabled && chunk_ref_shared(chunk)) {
++      if(q->diag_ws_recv)
++        Curl_ws_diag_add(CURL_WS_DIAG_SHARED_DETACH_RESET, 1);
+       chunk_ref_release(chunk);
+       --q->chunk_count;
+     }
+     else {
++      if(q->diag_ws_recv)
++        Curl_ws_diag_add(CURL_WS_DIAG_SPARE_RETURN, 1);
+       chunk->next = q->spare;
+       q->spare = chunk;
+     }
+@@ -328,6 +349,9 @@
+   if(q->spare) {
+     chunk = q->spare;
+     q->spare = chunk->next;
++    chunk->diag_ws_recv_chunk = q->diag_ws_recv;
++    if(q->diag_ws_recv)
++      Curl_ws_diag_add(CURL_WS_DIAG_SPARE_REUSE, 1);
+     chunk_reset(chunk);
+     return chunk;
+   }
+@@ -338,21 +362,34 @@
+   if(q->pool) {
+     if(bufcp_take(q->pool, &chunk))
+       return NULL;
++    chunk->diag_ws_recv_chunk = q->diag_ws_recv;
+     ++q->chunk_count;
+     return chunk;
+   }
+   else {
++    size_t alloc_size;
+     /* Check for integer overflow before allocation */
+     if(q->chunk_size > SIZE_MAX - sizeof(*chunk)) {
+       return NULL;
+     }
+-
+-    chunk = curlx_calloc(1, sizeof(*chunk) + q->chunk_size);
++    alloc_size = sizeof(*chunk) + q->chunk_size;
++    if(q->diag_ws_recv) {
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_ALLOC_ATTEMPTS, 1);
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_ALLOC_REQUEST_BYTES, alloc_size);
++    }
++    chunk = curlx_calloc(1, alloc_size);
+     if(!chunk)
+       return NULL;
+     chunk->dlen = q->chunk_size;
++    chunk->diag_ws_recv_chunk = q->diag_ws_recv;
+     chunk_ref_init(chunk);
+     ++q->chunk_count;
++    if(q->diag_ws_recv) {
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_ALLOC_SUCCESSES, 1);
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNK_ALLOC_SUCCESS_BYTES, alloc_size);
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNKS_LIVE, 1);
++      Curl_ws_diag_add(CURL_WS_DIAG_CHUNKS_LIVE_REQUEST_BYTES, alloc_size);
++    }
+     return chunk;
+   }
+ }
+@@ -367,6 +404,8 @@
+     if(q->tail == chunk)
+       q->tail = q->head;
+     if(q->pins_enabled && chunk_ref_shared(chunk)) {
++      if(q->diag_ws_recv)
++        Curl_ws_diag_add(CURL_WS_DIAG_SHARED_DETACH_PRUNE, 1);
+       chunk_ref_release(chunk);
+       --q->chunk_count;
+     }
+@@ -376,6 +415,8 @@
+     }
+     else if((q->chunk_count > q->max_chunks) ||
+             (q->opts & BUFQ_OPT_NO_SPARES)) {
++      if(q->diag_ws_recv)
++        Curl_ws_diag_add(CURL_WS_DIAG_UNSHARED_DROP, 1);
+       /* SOFT_LIMIT allowed us more than max. free spares until
+        * we are at max again. Or free them if we are configured
+        * to not use spares. */
+@@ -383,6 +424,8 @@
+       --q->chunk_count;
+     }
+     else {
++      if(q->diag_ws_recv)
++        Curl_ws_diag_add(CURL_WS_DIAG_SPARE_RETURN, 1);
+       chunk->next = q->spare;
+       q->spare = chunk;
+     }
+@@ -393,8 +436,11 @@
+ {
+   struct buf_chunk *chunk;
+ 
+-  if(q->tail && !chunk_is_full(q->tail))
++  if(q->tail && !chunk_is_full(q->tail)) {
++    if(q->diag_ws_recv)
++      Curl_ws_diag_add(CURL_WS_DIAG_TAIL_REUSE, 1);
+     return q->tail;
++  }
+   chunk = get_spare(q);
+   if(chunk) {
+     /* new tail, and possibly new head */
+@@ -507,7 +553,12 @@
+ void Curl_bufq_skip(struct bufq *q, size_t amount)
+ {
+   size_t n;
+-
++  size_t requested = amount;
++
++  if(q->diag_ws_recv) {
++    Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_SKIP_CALLS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_SKIP_REQUEST_BYTES, requested);
++  }
+   while(amount && q->head) {
+     n = chunk_skip(q->head, amount);
+     amount -= n;
+@@ -520,6 +571,7 @@
+   if(!q || q->head || q->tail)
+     return FALSE;
+   q->pins_enabled = TRUE;
++  q->diag_ws_recv = TRUE;
+   return TRUE;
+ }
+ 
+@@ -534,10 +586,26 @@
+   if(!q || !ppin || !q->pins_enabled || !len ||
+      !Curl_bufq_peek(q, &data, &available) || len > available)
+     return CURLE_BAD_FUNCTION_ARGUMENT;
++  if(q->diag_ws_recv) {
++    Curl_ws_diag_add(CURL_WS_DIAG_PIN_ALLOC_ATTEMPTS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_PIN_ALLOC_REQUEST_BYTES, sizeof(*pin));
++  }
+   pin = curlx_calloc(1, sizeof(*pin));
+-  if(!pin)
++  if(!pin) {
++    if(q->diag_ws_recv)
++      Curl_ws_diag_add(CURL_WS_DIAG_PIN_ALLOC_FAILURES, 1);
+     return CURLE_OUT_OF_MEMORY;
++  }
++  if(q->diag_ws_recv) {
++    pin->diag_ws_recv = TRUE;
++    Curl_ws_diag_add(CURL_WS_DIAG_PIN_ALLOC_SUCCESSES, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_PINS_LIVE, 1);
++  }
+   if(!chunk_ref_acquire(q->head)) {
++    if(q->diag_ws_recv) {
++      Curl_ws_diag_add(CURL_WS_DIAG_PIN_ACQUIRE_FAILURES, 1);
++      Curl_ws_diag_sub(CURL_WS_DIAG_PINS_LIVE, 1);
++    }
+     curlx_free(pin);
+     return CURLE_OUT_OF_MEMORY;
+   }
+@@ -574,9 +642,18 @@
+ void Curl_bufq_pin_release(struct bufq_pin *pin)
+ {
+   if(pin) {
++    if(pin->diag_ws_recv) {
++      Curl_ws_diag_add(CURL_WS_DIAG_PIN_RELEASES, 1);
++      Curl_ws_diag_sub(CURL_WS_DIAG_PINS_LIVE, 1);
++    }
+     chunk_ref_release(pin->owner);
+     curlx_free(pin);
+   }
++}
++
++size_t Curl_bufq_pin_struct_size(void)
++{
++  return sizeof(struct bufq_pin);
+ }
+ 
+ CURLcode Curl_bufq_pass(struct bufq *q, Curl_bufq_writer *writer,
+@@ -725,5 +802,11 @@
+ CURLcode Curl_bufq_slurp(struct bufq *q, Curl_bufq_reader *reader,
+                          void *reader_ctx, size_t *pnread)
+ {
+-  return bufq_slurpn(q, 0, reader, reader_ctx, pnread);
+-}
++  CURLcode result = bufq_slurpn(q, 0, reader, reader_ctx, pnread);
++  if(q->diag_ws_recv) {
++    Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_SLURP_CALLS, 1);
++    if(!result && pnread)
++      Curl_ws_diag_add(CURL_WS_DIAG_QUEUE_SLURP_RETURN_BYTES, *pnread);
++  }
++  return result;
++}
+--- a/lib/bufq.h
++++ b/lib/bufq.h
+@@ -37,6 +37,7 @@
+   size_t r_offset;         /* first unread bytes */
+   size_t w_offset;         /* one after last written byte */
+   atomic_uint refs;        /* queue/pool owner plus immutable pins */
++  bool diag_ws_recv_chunk; /* tagged receive-queue allocation for diagnostics */
+   union {
+     uint8_t data[1];       /* the buffer for `dlen` bytes */
+     void *dummy;           /* alignment */
+@@ -100,6 +101,7 @@
+   size_t chunk_size;            /* size of chunks to manage */
+   int opts;                     /* options for handling queue, see below */
+   bool pins_enabled;            /* experimental immutable head pins */
++  bool diag_ws_recv;            /* tagged WebSocket recvbuf, not sendbuf */
+ };
+ 
+ /**
+--- a/lib/ws.c
++++ b/lib/ws.c
+@@ -43,6 +43,7 @@
+ 
+ #include "url.h"
+ #include "bufq.h"
++#include "ws_diag.h"
+ #include "curlx/dynbuf.h"
+ #include "rand.h"
+ #include "curlx/base64.h"
+@@ -1862,6 +1863,96 @@
+   size_t allocation_size;
+ };
+ 
++atomic_uint_fast64_t Curl_ws_diag_counters[CURL_WS_DIAG_COUNTER_COUNT];
++
++static const char *const ws_diag_names[CURL_WS_DIAG_SNAPSHOT_COUNT] = {
++  "recv_api_calls",
++  "owned_api_calls",
++  "recv_api_bytes",
++  "owned_api_bytes",
++  "recv_collect_copy_calls",
++  "recv_collect_copy_bytes",
++  "reader_calls",
++  "reader_request_bytes",
++  "reader_success_calls",
++  "reader_return_bytes",
++  "reader_again_calls",
++  "reader_error_calls",
++  "tls_recv_read_calls",
++  "tls_recv_request_bytes",
++  "tls_recv_positive_calls",
++  "tls_recv_return_bytes",
++  "tls_recv_want_read",
++  "tls_recv_want_write",
++  "tls_recv_zero_result",
++  "tls_recv_syscall_again",
++  "tls_recv_other_failure",
++  "reservation_calls",
++  "reservation_bytes",
++  "pin_alloc_attempts",
++  "pin_alloc_request_bytes",
++  "pin_alloc_successes",
++  "pin_alloc_failures",
++  "pin_acquire_failures",
++  "pin_releases",
++  "pins_live",
++  "payload_alloc_attempts",
++  "payload_alloc_request_bytes",
++  "payload_alloc_successes",
++  "payload_alloc_failures",
++  "payload_frees",
++  "payloads_live",
++  "chunk_alloc_attempts",
++  "chunk_alloc_request_bytes",
++  "chunk_alloc_successes",
++  "chunk_alloc_success_bytes",
++  "chunks_live",
++  "chunks_live_request_bytes",
++  "tail_reuse",
++  "spare_reuse",
++  "spare_return",
++  "shared_detach_prune",
++  "shared_detach_reset",
++  "unshared_drop",
++  "queue_free_chunk_refs",
++  "chunk_physical_frees",
++  "chunk_physical_free_request_bytes",
++  "queue_skip_calls",
++  "queue_skip_request_bytes",
++  "queue_slurp_calls",
++  "queue_slurp_return_bytes",
++  "layout_chunk_size",
++  "layout_bufq_size",
++  "layout_pin_size",
++  "layout_payload_size",
++  "layout_recv_chunk_size"
++};
++
++CURL_EXTERN size_t curl_ws_diag_snapshot_count(void)
++{
++  return CURL_WS_DIAG_SNAPSHOT_COUNT;
++}
++
++CURL_EXTERN const char *curl_ws_diag_counter_name(size_t index)
++{
++  return index < CURL_WS_DIAG_SNAPSHOT_COUNT ? ws_diag_names[index] : NULL;
++}
++
++CURL_EXTERN void curl_ws_diag_snapshot(uint64_t *values, size_t capacity)
++{
++  size_t i;
++  if(!values || capacity < CURL_WS_DIAG_SNAPSHOT_COUNT)
++    return;
++  for(i = 0; i < CURL_WS_DIAG_COUNTER_COUNT; ++i)
++    values[i] = atomic_load_explicit(&Curl_ws_diag_counters[i],
++                                     memory_order_relaxed);
++  values[CURL_WS_DIAG_LAYOUT_CHUNK_SIZE] = sizeof(struct buf_chunk);
++  values[CURL_WS_DIAG_LAYOUT_BUFQ_SIZE] = sizeof(struct bufq);
++  values[CURL_WS_DIAG_LAYOUT_PIN_SIZE] = Curl_bufq_pin_struct_size();
++  values[CURL_WS_DIAG_LAYOUT_PAYLOAD_SIZE] = sizeof(struct curl_ws_payload);
++  values[CURL_WS_DIAG_LAYOUT_RECV_CHUNK_SIZE] = WS_CHUNK_SIZE;
++}
++
+ struct ws_collect {
+   struct Curl_easy *data;
+   struct websocket *ws;
+@@ -1938,11 +2029,16 @@
+       Curl_bufq_pin_release(pin);
+       return CURLE_OUT_OF_MEMORY;
+     }
++    Curl_ws_diag_add(CURL_WS_DIAG_PAYLOAD_ALLOC_ATTEMPTS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_PAYLOAD_ALLOC_REQUEST_BYTES, sizeof(*payload));
+     payload = curlx_calloc(1, sizeof(*payload));
+     if(!payload) {
++      Curl_ws_diag_add(CURL_WS_DIAG_PAYLOAD_ALLOC_FAILURES, 1);
+       Curl_bufq_pin_release(pin);
+       return CURLE_OUT_OF_MEMORY;
+     }
++    Curl_ws_diag_add(CURL_WS_DIAG_PAYLOAD_ALLOC_SUCCESSES, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_PAYLOADS_LIVE, 1);
+     payload->pin = pin;
+     payload->data = buf;
+     payload->len = buflen;
+@@ -1964,6 +2060,8 @@
+       return CURLE_AGAIN;  /* no more space */
+     }
+     memcpy(ctx->buffer + ctx->bufidx, buf, write_len);
++    Curl_ws_diag_add(CURL_WS_DIAG_RECV_COLLECT_COPY_CALLS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_RECV_COLLECT_COPY_BYTES, write_len);
+     ctx->bufidx += write_len;
+     *pnwritten = write_len;
+   }
+@@ -1975,7 +2073,19 @@
+                            size_t *pnread)
+ {
+   struct Curl_easy *data = reader_ctx;
+-  return Curl_easy_recv(data, buf, buflen, pnread);
++  CURLcode result;
++  Curl_ws_diag_add(CURL_WS_DIAG_READER_CALLS, 1);
++  Curl_ws_diag_add(CURL_WS_DIAG_READER_REQUEST_BYTES, buflen);
++  result = Curl_easy_recv(data, buf, buflen, pnread);
++  if(result == CURLE_AGAIN)
++    Curl_ws_diag_add(CURL_WS_DIAG_READER_AGAIN_CALLS, 1);
++  else if(result)
++    Curl_ws_diag_add(CURL_WS_DIAG_READER_ERROR_CALLS, 1);
++  else {
++    Curl_ws_diag_add(CURL_WS_DIAG_READER_SUCCESS_CALLS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_READER_RETURN_BYTES, *pnread);
++  }
++  return result;
+ }
+ 
+ CURLcode curl_ws_recv(CURL *curl, void *buffer,
+@@ -1984,6 +2094,7 @@
+ {
+   struct Curl_eapi_guard guard;
+   CURLcode result = CURLE_OK;
++  Curl_ws_diag_add(CURL_WS_DIAG_RECV_API_CALLS, 1);
+ 
+   *recv = 0;
+   *metap = NULL;
+@@ -2069,6 +2180,7 @@
+                 ctx.payload_len, ctx.bufidx);
+     *metap = &ws->recvframe;
+     *recv = ws->recvframe.len;
++    Curl_ws_diag_add(CURL_WS_DIAG_RECV_API_BYTES, *recv);
+     CURL_TRC_WS(data, "curl_ws_recv(len=%zu) -> %zu bytes (frame at %"
+                 FMT_OFF_T ", %" FMT_OFF_T " left)",
+                 buflen, *recv, ws->recvframe.offset,
+@@ -2092,6 +2204,7 @@
+ {
+   struct Curl_eapi_guard guard;
+   CURLcode result = CURLE_OK;
++  Curl_ws_diag_add(CURL_WS_DIAG_OWNED_API_CALLS, 1);
+ 
+   if(!payload || !metap)
+     return CURLE_BAD_FUNCTION_ARGUMENT;
+@@ -2175,6 +2288,7 @@
+     update_meta(ws, ctx.frame_age, ctx.frame_flags, ctx.payload_offset,
+                 ctx.payload_len, ctx.bufidx);
+     *metap = &ws->recvframe;
++    Curl_ws_diag_add(CURL_WS_DIAG_OWNED_API_BYTES, ws->recvframe.len);
+     CURL_TRC_WS(data, "curl_ws_recv_owned -> %zu bytes (frame at %"
+                 FMT_OFF_T ", %" FMT_OFF_T " left)",
+                 ws->recvframe.len, ws->recvframe.offset,
+@@ -2203,6 +2317,7 @@
+   struct Curl_eapi_guard guard;
+   CURLcode result = CURLE_OK;
+   size_t reservation = 0;
++  Curl_ws_diag_add(CURL_WS_DIAG_RESERVATION_CALLS, 1);
+   if(CURL_EAPI_ENTER(&guard, curl, ws_recv, &result)) {
+     struct Curl_easy *data = curl;
+     struct connectdata *conn = data->conn;
+@@ -2220,6 +2335,7 @@
+       }
+     }
+   }
++  Curl_ws_diag_add(CURL_WS_DIAG_RESERVATION_BYTES, reservation);
+   CURL_EAPI_LEAVE(&guard);
+   return reservation;
+ }
+@@ -2242,6 +2358,8 @@
+ void curl_ws_payload_free(struct curl_ws_payload *payload)
+ {
+   if(payload) {
++    Curl_ws_diag_add(CURL_WS_DIAG_PAYLOAD_FREES, 1);
++    Curl_ws_diag_sub(CURL_WS_DIAG_PAYLOADS_LIVE, 1);
+     Curl_bufq_pin_release(payload->pin);
+     curlx_free(payload);
+   }
+--- a/lib/vtls/openssl.c
++++ b/lib/vtls/openssl.c
+@@ -30,6 +30,7 @@
+ #ifdef USE_OPENSSL
+ 
+ #include "urldata.h"
++#include "../ws_diag.h"
+ #include "curl_trc.h"
+ #include "formdata.h" /* for the boundary function */
+ #include "url.h" /* for the SSL config check function */
+@@ -5826,18 +5827,25 @@
+ 
+   connssl->io_need = CURL_SSL_IO_NEED_NONE;
+   buffsize = (buffersize > (size_t)INT_MAX) ? INT_MAX : (int)buffersize;
++  Curl_ws_diag_add(CURL_WS_DIAG_TLS_READ_CALLS, 1);
++  Curl_ws_diag_add(CURL_WS_DIAG_TLS_REQUEST_BYTES, (uint64_t)buffsize);
+   nread = SSL_read(octx->ssl, buf, buffsize);
+ 
+-  if(nread > 0)
++  if(nread > 0) {
++    Curl_ws_diag_add(CURL_WS_DIAG_TLS_POSITIVE_CALLS, 1);
++    Curl_ws_diag_add(CURL_WS_DIAG_TLS_RETURN_BYTES, (uint64_t)nread);
+     *pnread = (size_t)nread;
++  }
+   else {
+     /* failed SSL_read */
+     int err = SSL_get_error(octx->ssl, nread);
+ 
+     switch(err) {
+-    case SSL_ERROR_NONE: /* this is not an error */
++    case SSL_ERROR_NONE: /* grouped in tls_recv_zero_result */
++      Curl_ws_diag_add(CURL_WS_DIAG_TLS_ZERO_RESULT, 1);
+       break;
+     case SSL_ERROR_ZERO_RETURN: /* no more data */
++      Curl_ws_diag_add(CURL_WS_DIAG_TLS_ZERO_RESULT, 1);
+       /* close_notify alert */
+       if(cf->sockindex == FIRSTSOCKET)
+         /* mark the connection for close if it is indeed the control
+@@ -5845,10 +5853,12 @@
+         CURL_TRC_CF(data, cf, "TLS close_notify");
+       break;
+     case SSL_ERROR_WANT_READ:
++      Curl_ws_diag_add(CURL_WS_DIAG_TLS_WANT_READ, 1);
+       connssl->io_need = CURL_SSL_IO_NEED_RECV;
+       result = CURLE_AGAIN;
+       goto out;
+     case SSL_ERROR_WANT_WRITE:
++      Curl_ws_diag_add(CURL_WS_DIAG_TLS_WANT_WRITE, 1);
+       connssl->io_need = CURL_SSL_IO_NEED_SEND;
+       result = CURLE_AGAIN;
+       goto out;
+@@ -5857,11 +5867,13 @@
+          value/errno" */
+       /* https://docs.openssl.org/master/man3/ERR_get_error/ */
+       if(octx->io_result == CURLE_AGAIN) {
++        Curl_ws_diag_add(CURL_WS_DIAG_TLS_SYSCALL_AGAIN, 1);
+         result = CURLE_AGAIN;
+         goto out;
+       }
+       sslerror = ERR_get_error();
+       if((nread < 0) || sslerror) {
++        Curl_ws_diag_add(CURL_WS_DIAG_TLS_OTHER_FAILURE, 1);
+         /* If the return code was negative or there actually is an error in the
+            queue */
+         int sockerr = SOCKERRNO;
+@@ -5879,14 +5891,17 @@
+       }
+       else if(err == SSL_ERROR_SYSCALL) {
+         if(octx->io_result) {
++          Curl_ws_diag_add(CURL_WS_DIAG_TLS_OTHER_FAILURE, 1);
+           /* logging handling in underlying filter already */
+           result = octx->io_result;
+         }
+         else if(connssl->peer_closed) {
++          Curl_ws_diag_add(CURL_WS_DIAG_TLS_OTHER_FAILURE, 1);
+           failf(data, "Connection closed abruptly");
+           result = CURLE_RECV_ERROR;
+         }
+         else {
++          Curl_ws_diag_add(CURL_WS_DIAG_TLS_OTHER_FAILURE, 1);
+           /* We should no longer get here nowadays, but handle
+            * the error in case of some weirdness in the OSSL stack */
+           int sockerr = SOCKERRNO;
+--- /dev/null
++++ b/lib/ws_diag.h
+@@ -0,0 +1,109 @@
++/* SPDX-License-Identifier: curl */
++#ifndef HEADER_CURL_WS_DIAG_H
++#define HEADER_CURL_WS_DIAG_H
++#include "curl_setup.h"
++#include <stdatomic.h>
++#include <stdint.h>
++
++/* Private process-wide counters for the owned-receive mechanism census.
++ * Queue/chunk/pin counters are enabled only on the WebSocket recvbuf tagged
++ * by Curl_bufq_enable_pins(); they do not include other curl bufqs. The TLS
++ * counters instrument ossl_recv SSL_read calls and therefore cover
++ * transport reads in the instrumented client process, not only WebSocket
++ * payload reads. Values are cumulative until the DSO unloads; snapshot reads
++ * each atomic value independently and is not a transactional freeze. */
++
++/* This order is consumed by the diagnostic event writer; append only. */
++enum curl_ws_diag_index {
++  CURL_WS_DIAG_RECV_API_CALLS,
++  CURL_WS_DIAG_OWNED_API_CALLS,
++  CURL_WS_DIAG_RECV_API_BYTES,
++  CURL_WS_DIAG_OWNED_API_BYTES,
++  CURL_WS_DIAG_RECV_COLLECT_COPY_CALLS,
++  CURL_WS_DIAG_RECV_COLLECT_COPY_BYTES,
++  CURL_WS_DIAG_READER_CALLS,
++  CURL_WS_DIAG_READER_REQUEST_BYTES,
++  CURL_WS_DIAG_READER_SUCCESS_CALLS,
++  CURL_WS_DIAG_READER_RETURN_BYTES,
++  CURL_WS_DIAG_READER_AGAIN_CALLS,
++  CURL_WS_DIAG_READER_ERROR_CALLS,
++  CURL_WS_DIAG_TLS_READ_CALLS,
++  CURL_WS_DIAG_TLS_REQUEST_BYTES,
++  CURL_WS_DIAG_TLS_POSITIVE_CALLS,
++  CURL_WS_DIAG_TLS_RETURN_BYTES,
++  CURL_WS_DIAG_TLS_WANT_READ,
++  CURL_WS_DIAG_TLS_WANT_WRITE,
++  /* Combines SSL_ERROR_NONE and SSL_ERROR_ZERO_RETURN outcomes. */
++  CURL_WS_DIAG_TLS_ZERO_RESULT,
++  CURL_WS_DIAG_TLS_SYSCALL_AGAIN,
++  CURL_WS_DIAG_TLS_OTHER_FAILURE,
++  CURL_WS_DIAG_RESERVATION_CALLS,
++  CURL_WS_DIAG_RESERVATION_BYTES,
++  CURL_WS_DIAG_PIN_ALLOC_ATTEMPTS,
++  CURL_WS_DIAG_PIN_ALLOC_REQUEST_BYTES,
++  CURL_WS_DIAG_PIN_ALLOC_SUCCESSES,
++  CURL_WS_DIAG_PIN_ALLOC_FAILURES,
++  CURL_WS_DIAG_PIN_ACQUIRE_FAILURES,
++  CURL_WS_DIAG_PIN_RELEASES,
++  CURL_WS_DIAG_PINS_LIVE,
++  CURL_WS_DIAG_PAYLOAD_ALLOC_ATTEMPTS,
++  CURL_WS_DIAG_PAYLOAD_ALLOC_REQUEST_BYTES,
++  CURL_WS_DIAG_PAYLOAD_ALLOC_SUCCESSES,
++  CURL_WS_DIAG_PAYLOAD_ALLOC_FAILURES,
++  CURL_WS_DIAG_PAYLOAD_FREES,
++  CURL_WS_DIAG_PAYLOADS_LIVE,
++  CURL_WS_DIAG_CHUNK_ALLOC_ATTEMPTS,
++  CURL_WS_DIAG_CHUNK_ALLOC_REQUEST_BYTES,
++  CURL_WS_DIAG_CHUNK_ALLOC_SUCCESSES,
++  CURL_WS_DIAG_CHUNK_ALLOC_SUCCESS_BYTES,
++  CURL_WS_DIAG_CHUNKS_LIVE,
++  CURL_WS_DIAG_CHUNKS_LIVE_REQUEST_BYTES,
++  CURL_WS_DIAG_TAIL_REUSE,
++  CURL_WS_DIAG_SPARE_REUSE,
++  CURL_WS_DIAG_SPARE_RETURN,
++  CURL_WS_DIAG_SHARED_DETACH_PRUNE,
++  CURL_WS_DIAG_SHARED_DETACH_RESET,
++  CURL_WS_DIAG_UNSHARED_DROP,
++  /* Queue references released at teardown; pins may keep chunks alive. */
++  CURL_WS_DIAG_QUEUE_FREE_CHUNK_REFS,
++  CURL_WS_DIAG_CHUNK_PHYSICAL_FREES,
++  CURL_WS_DIAG_CHUNK_PHYSICAL_FREE_REQUEST_BYTES,
++  CURL_WS_DIAG_QUEUE_SKIP_CALLS,
++  CURL_WS_DIAG_QUEUE_SKIP_REQUEST_BYTES,
++  CURL_WS_DIAG_QUEUE_SLURP_CALLS,
++  CURL_WS_DIAG_QUEUE_SLURP_RETURN_BYTES,
++  CURL_WS_DIAG_COUNTER_COUNT
++};
++
++/* Snapshot layout slots follow the fixed counter slots. */
++enum {
++  CURL_WS_DIAG_LAYOUT_CHUNK_SIZE = CURL_WS_DIAG_COUNTER_COUNT,
++  CURL_WS_DIAG_LAYOUT_BUFQ_SIZE,
++  CURL_WS_DIAG_LAYOUT_PIN_SIZE,
++  CURL_WS_DIAG_LAYOUT_PAYLOAD_SIZE,
++  CURL_WS_DIAG_LAYOUT_RECV_CHUNK_SIZE,
++  CURL_WS_DIAG_SNAPSHOT_COUNT
++};
++
++extern atomic_uint_fast64_t Curl_ws_diag_counters[CURL_WS_DIAG_COUNTER_COUNT];
++
++static inline void Curl_ws_diag_add(enum curl_ws_diag_index index,
++                                    uint64_t amount)
++{
++  atomic_fetch_add_explicit(&Curl_ws_diag_counters[index], amount,
++                            memory_order_relaxed);
++}
++
++static inline void Curl_ws_diag_sub(enum curl_ws_diag_index index,
++                                    uint64_t amount)
++{
++  atomic_fetch_sub_explicit(&Curl_ws_diag_counters[index], amount,
++                            memory_order_relaxed);
++}
++
++size_t Curl_bufq_pin_struct_size(void);
++CURL_EXTERN size_t curl_ws_diag_snapshot_count(void);
++CURL_EXTERN const char *curl_ws_diag_counter_name(size_t index);
++CURL_EXTERN void curl_ws_diag_snapshot(uint64_t *values, size_t capacity);
++
++#endif

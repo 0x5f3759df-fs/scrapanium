@@ -1,0 +1,20 @@
+Repeated documented verifier check (2026-10-08)
+cwd: /home/baidu/scrapanium-experiments/owned-receive-evidence-20261008/worktree
+argv: ["python3", "benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/audit/verify_saved_census.py", "--self-test"] (run twice)
+verifier_sha256: 1a733f7ee515b10798bf8e9d6db9399d23d9fd3c56324f9607b4b92d9685bbc1
+package_file_count_before_and_after: 157
+package_inventory_sha256_before_and_after: 9d725ef4917bb901655729ec0bf3848467614405baf21e73506fd0860f783947
+run_1_exit_code: 0
+run_1_stdout:
+SELFTEST PASS: original saved census (16 attempts)
+SELFTEST PASS: reordered rows rejected by frozen schedule: fixed schedule mismatch at attempt 0 field attempt_index
+SELFTEST PASS: missing pinned source snapshot rejected: baseline source snapshot missing: native/scrapanium.h
+run_1_stderr:
+
+run_2_exit_code: 0
+run_2_stdout:
+SELFTEST PASS: original saved census (16 attempts)
+SELFTEST PASS: reordered rows rejected by frozen schedule: fixed schedule mismatch at attempt 0 field attempt_index
+SELFTEST PASS: missing pinned source snapshot rejected: baseline source snapshot missing: native/scrapanium.h
+run_2_stderr:
+

@@ -78,7 +78,7 @@ The parser and cap trial remain experimental and unadopted. The cap trial passed
   </picture>
 </p>
 
-A separate owned-segment receive prototype remains experimental and unadopted: it failed all six stream non-regression guards, passed only two of seven round-trip guards, and neither 64 KiB stream met the 2x target. [Results and evidence](benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/README.md).
+A separate owned-segment receive prototype remains experimental and unadopted: it failed all six stream non-regression guards, passed only two of seven round-trip guards, and neither 64 KiB stream met the 2x target. [Results and evidence](benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/README.md). The later 16-attempt follow-up records counters only, with no timing claim: [counter audit](benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/README.md).
 
 ## Make your first request
 

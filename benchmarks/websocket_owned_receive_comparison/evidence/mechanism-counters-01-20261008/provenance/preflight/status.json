@@ -1,0 +1,11 @@
+{
+  "acceptance_claims": false,
+  "attempt_count": 0,
+  "attempts_started": false,
+  "builds_started": false,
+  "performance_claims": false,
+  "preflight_sha256": "996f19d0fb5e6b3e11080a45e12e5d9939652b84347cb867fae9f7930178322f",
+  "schema": 1,
+  "source_pins_stable": true,
+  "status": "preflight_passed"
+}

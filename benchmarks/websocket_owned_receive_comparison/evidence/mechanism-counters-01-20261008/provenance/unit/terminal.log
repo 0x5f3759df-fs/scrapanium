@@ -1,0 +1,21 @@
+test_checker_failure_fails (test_mechanism_validation.MechanismValidationTests.test_checker_failure_fails) ... ok
+test_cumulative_counter_decrease_fails (test_mechanism_validation.MechanismValidationTests.test_cumulative_counter_decrease_fails) ... ok
+test_final_live_chunk_fails_release_gate (test_mechanism_validation.MechanismValidationTests.test_final_live_chunk_fails_release_gate) ... ok
+test_fixed_matrix_has_eight_workloads_and_alternates_arms (test_mechanism_validation.MechanismValidationTests.test_fixed_matrix_has_eight_workloads_and_alternates_arms) ... ok
+test_full_schema_fixture_accounting_passes (test_mechanism_validation.MechanismValidationTests.test_full_schema_fixture_accounting_passes) ... ok
+test_missing_phase_fails (test_mechanism_validation.MechanismValidationTests.test_missing_phase_fails) ... ok
+test_native_layout_may_differ_by_arm_but_not_within_arm (test_mechanism_validation.MechanismValidationTests.test_native_layout_may_differ_by_arm_but_not_within_arm) ... ok
+test_peer_log_checksum_fails (test_mechanism_validation.MechanismValidationTests.test_peer_log_checksum_fails) ... ok
+test_peer_missing_file_fails (test_mechanism_validation.MechanismValidationTests.test_peer_missing_file_fails) ... ok
+test_peer_nonzero_exit_fails (test_mechanism_validation.MechanismValidationTests.test_peer_nonzero_exit_fails) ... ok
+test_peer_tls_mismatch_fails (test_mechanism_validation.MechanismValidationTests.test_peer_tls_mismatch_fails) ... ok
+test_receive_class_partition_fails_closed (test_mechanism_validation.MechanismValidationTests.test_receive_class_partition_fails_closed) ... ok
+test_reordered_attempt_fails_fixed_order_check (test_mechanism_validation.MechanismValidationTests.test_reordered_attempt_fails_fixed_order_check) ... ok
+test_rt_full_warmup_and_owned_flatten_census (test_mechanism_validation.MechanismValidationTests.test_rt_full_warmup_and_owned_flatten_census) ... ok
+test_stream_owned_body_must_be_released_by_work_end (test_mechanism_validation.MechanismValidationTests.test_stream_owned_body_must_be_released_by_work_end) ... ok
+test_timing_field_fails_closed (test_mechanism_validation.MechanismValidationTests.test_timing_field_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.061s
+
+OK

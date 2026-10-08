@@ -1,0 +1,181 @@
+{
+  "build_command_sha256": "46ea949b3a4ee58cb407b6fc73439c4a0ef7104fcb59cce1f9d59be44975369f",
+  "build_console_sha256": "36ebd26b97708b47c7a2f68e4528f7f27ea50287180aeaeb5ac88b60c6d0468f",
+  "build_exit_code": 0,
+  "build_exit_code_file_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+  "build_preflight_sha256": "b3d52af30030bedbcddc67da26ded2bc89f894c94d0124ad561d5413c7fe4a52",
+  "campaign_started": false,
+  "chunk_configuration": {
+    "curl_enable_debug": "OFF",
+    "override_debugbuild_guarded": true,
+    "source_default": 131072
+  },
+  "cmake_caches": [
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/CMakeCache.txt",
+      "sha256": "04c97ecd7137286574733ac594f3230159204a82a66c679d2b598de60dd9728a",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/boringssl/CMakeCache.txt",
+      "sha256": "1a8b454e0a43c42f21abb00382eceaeef2461e14903a1a5bba63ffe653beef90",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/brotli/CMakeCache.txt",
+      "sha256": "b261b7f8eb3465506fd4ff55a8ef64728119a9ece23f9a0ff14188e09dbdbe9b",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/cares/CMakeCache.txt",
+      "sha256": "67e7eb6a0c1ba23ecc1b91dcc0c971f632fff0060b0ac96af43bdab40c7d6c30",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/curl/CMakeCache.txt",
+      "sha256": "7e60b76736a8204743fc7c02605de90a3bc64c92f1ee1f680a7ff97ec0b02cf5",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "ENABLE_DEBUG": "OFF"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/nghttp2/CMakeCache.txt",
+      "sha256": "7f49c6cc768a48d30d79d777d8da1864b45e73b3f85757be4b7ad25b0bc02e0f",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "ENABLE_DEBUG": "OFF"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/nghttp3/CMakeCache.txt",
+      "sha256": "a16ec05edc64910c5be93913e01bdb81e9c526d4686c2848b6a203be906ac707",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "ENABLE_DEBUG": "OFF"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/ngtcp2/CMakeCache.txt",
+      "sha256": "ce8c662922ee63f9d77648a0fd1e851bb4bcb85fe7bbc26e209a03c8ccbc044f",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "ENABLE_DEBUG": "OFF"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/zlib/CMakeCache.txt",
+      "sha256": "72233676479c0128034578b49642bcd712c7329ab00eee30f71a01f58f91cdad",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    },
+    {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/build/zstd/CMakeCache.txt",
+      "sha256": "f2562b57b253037e521b131be33da53fcf133256a662e886f6321ef064bf6c1f",
+      "values": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+        "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG"
+      }
+    }
+  ],
+  "curl_object_rules": {
+    "bufq.c": {
+      "config": "Release",
+      "debugbuild_absent": true,
+      "defines": "DEFINES = -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-10-08\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE",
+      "flags_include_O3_DNDEBUG": true
+    },
+    "ws.c": {
+      "config": "Release",
+      "debugbuild_absent": true,
+      "defines": "DEFINES = -DBUILDING_LIBCURL -DCURL_HIDDEN_SYMBOLS -DCURL_IMPERSONATE_BUILD_DATE=\\\"2026-10-08\\\" -DCURL_IMPERSONATE_VERSION=\\\"2.2.3-scrapanium.1\\\" -DHAVE_CONFIG_H -D_GNU_SOURCE",
+      "flags_include_O3_DNDEBUG": true
+    }
+  },
+  "curl_version_output": "curl 8.22.0-IMPERSONATE (Linux) libcurl/8.22.0-IMPERSONATE BoringSSL zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 c-ares/1.34.8 libidn2/2.3.7 nghttp2/1.63.0 ngtcp2/1.20.0 nghttp3/1.15.0 curl-impersonate/2.2.3-scrapanium.1\nRelease-Date: 2026-10-08\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns mqtt mqtts pop3 pop3s rtsp smtp smtps telnet tftp ws wss\nFeatures: alt-svc AsynchDNS brotli ECH HSTS HTTP2 HTTP3 HTTPS-proxy HTTPSRR IDN IPv6 Largefile libz proxy-HTTP3 SSL SSLS-EXPORT threadsafe UnixSockets zstd\n",
+  "diagnostic_clients_built": false,
+  "diagnostic_overlay_sha256": "2dec87802c8e0fe708fbe35f76952f01ede74d5e80d16418cf8b48091376aa53",
+  "dso": {
+    "realpath": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0",
+    "sha256": "e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9",
+    "symlink": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so"
+  },
+  "dynamic_dependencies": [
+    "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+    "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+    "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+    "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+  ],
+  "exported_diagnostic_symbols": [
+    "curl_ws_diag_counter_name",
+    "curl_ws_diag_snapshot",
+    "curl_ws_diag_snapshot_count"
+  ],
+  "installed_curl_public_headers_sha256": {
+    "curl/curl.h": "a5729acd1857bf02dd4e6986057c0a0c45cca1623851d5d02b6ed19242cd771e",
+    "curl/curlver.h": "8d7f91a31c61bcc732d1ea3845baceac496632a1fbd35a33916fc75715203d05",
+    "curl/easy.h": "4d6b49ab29850dfbb26f5accb6c55e6cf292410e8998cc7404fa759f7cf744c9",
+    "curl/header.h": "e92525a91bb1119034dd45dd42d255ff9b6a49d964ca7105964e0107671b3395",
+    "curl/mprintf.h": "a79657fa15db71e732bcb58bc4645ab65bdb3222767f34be5bab56aa0d4f4cc9",
+    "curl/multi.h": "0466a7c91067cb11c98f37e16103b992b66e84221467c2a70ef951877502f77a",
+    "curl/options.h": "32fe87f843367d25a9db91a47386652402f08c9668617b4c51295ef31d93f8b0",
+    "curl/stdcheaders.h": "d7588b86814a35ffc3766ff6242e6f6705e04401fc9c208a195caff3503af81c",
+    "curl/system.h": "edb2c507a084448a5e3c7e2b9c65c408e22ffeaca5ab0c1ee2e76d82a21113fa",
+    "curl/typecheck-gcc.h": "a447f2b2802e484a2db49c36d9eeda7b98d8cd40cd85269f567d79960f52fd68",
+    "curl/urlapi.h": "d888326d5bdebb84b5fe133d7ef7703d4e88732757ce4d6b0476f0c668d38a6e",
+    "curl/websockets.h": "a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad"
+  },
+  "patched_curl_source_path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work/build/deps/src/curl",
+  "patched_curl_source_sha256": {
+    "include/curl/websockets.h": "a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad",
+    "lib/bufq.c": "596a94189776caf7c2f1f701c5da097245d456c051f32ba89ba6233f69802c96",
+    "lib/bufq.h": "1c7c9d6380876c6e782188b15ea109d1c25d74ee65ab9e95150fcac83ec2bd81",
+    "lib/vtls/openssl.c": "78388f7a65ed847386b19c7e616eaa03af6b0ba3102681ba65a8b7738f514e66",
+    "lib/ws.c": "3c5dcc7fa6f775730c04b0cf0009a368fcb79dc0d7f59f45ba30fe433aa7f4d9",
+    "lib/ws_diag.h": "0d10f2ec2de952694625f54442eccd64c8de72810f433914a016d54b13a9e82e"
+  },
+  "prefix": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix",
+  "prefix_manifest_files_checked": 78,
+  "prefix_manifest_sha256": "67cc2ce42ddb524ff1b76d64c0f633aea025609b907d1181ec1296645c334640",
+  "required_exports": [
+    "curl_ws_diag_snapshot",
+    "curl_ws_diag_snapshot_count",
+    "curl_ws_diag_counter_name"
+  ],
+  "schema": 1,
+  "scope": "post-build private diagnostic DSO validation only; no client, workload, profile, timing, or census",
+  "status": "pass",
+  "validator_sha256": "f4566ce3299f8a16e0c4308762170eee77e206117fb192e87ac5481ca1d79df5",
+  "workspace_inputs_sha256": {
+    "LICENSE": "a591a39cf7f45d7e665ddd55fc7d64baa85874b3da101b1faffaf21ea9799cbd",
+    "backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+    "backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+    "backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+    "backend/patches/curl-ws-canonical-length.patch": "03f086396347a042f1f37fa59027ada769dfdab883fe1c0453341ff1df4236e6",
+    "backend/patches/curl-ws-owned-chunks.patch": "0b8fc954f8f009b60b94b3735a76d0aa7122fd049e7ec989f1c94bccd2e12b61",
+    "backend/patches/curl-ws-owned-receive-diagnostics.patch": "2dec87802c8e0fe708fbe35f76952f01ede74d5e80d16418cf8b48091376aa53",
+    "scripts/build_backend.py": "9d2496ea117bd24f34eb6b9bfda10223ad8ef1a82489e4b9e70846f2af43c9d4"
+  }
+}

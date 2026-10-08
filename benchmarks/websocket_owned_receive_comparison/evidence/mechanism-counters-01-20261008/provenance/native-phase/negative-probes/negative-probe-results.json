@@ -1,0 +1,30 @@
+{
+  "binaries": {
+    "phase_hook_out_of_order_sha256": "6ea7b5d32cf64ae150f022121c8917c07d0ba6371888968e9be50dc635d95315",
+    "phase_hook_probe_sha256": "258f40b500b6dde89463b3b6010ea387b073457511cb47d79e1a2f2b689960d0"
+  },
+  "existing_counter_path": {
+    "after_sha256": "349aa4d8df178704a35fa125a9e9aae4dd139d9997bf1c383165fe9e689b0767",
+    "before_sha256": "349aa4d8df178704a35fa125a9e9aae4dd139d9997bf1c383165fe9e689b0767",
+    "bytes_unchanged": true,
+    "exit_code": 8,
+    "expected_error_seen": "could not exclusively create mechanism counter file",
+    "log": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/phase-hook-negative-probes-20261008-02/capture-01/existing-counter.log"
+  },
+  "missing_environment": {
+    "counter_file_created": false,
+    "exit_code": 8,
+    "expected_error_seen": "SCRAPANIUM_MECHANISM_COUNTERS is required",
+    "log": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/phase-hook-negative-probes-20261008-02/capture-01/missing-env.log"
+  },
+  "ordered_source_sha256": "1b79817c6b25273190af099d4de570894b99214d374a122fb37b889aa67c22b3",
+  "out_of_order_first_phase": {
+    "counter_file_created": false,
+    "exit_code": 8,
+    "expected_error_seen": "mechanism diagnostic snapshots out of order",
+    "log": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/phase-hook-negative-probes-20261008-02/capture-01/out-of-order.log",
+    "second_marker_not_reached": true
+  },
+  "scope": "three no-socket phase-hook failure probes; no WebSocket, peer, payload, timing, or census",
+  "status": "pass"
+}

@@ -1,0 +1,3 @@
+cd /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02
+/usr/bin/python3.14 -m py_compile run_mechanism_counters.py mechanism_validation.py test_mechanism_validation.py
+/usr/bin/python3.14 -m unittest -v test_mechanism_validation

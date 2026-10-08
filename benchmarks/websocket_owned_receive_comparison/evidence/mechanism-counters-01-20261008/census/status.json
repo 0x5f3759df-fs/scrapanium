@@ -1,0 +1,12 @@
+{
+  "acceptance_claims": false,
+  "attempt_count": 16,
+  "attempts_started": true,
+  "builds_started": false,
+  "performance_claims": false,
+  "planned_attempts": 16,
+  "report_sha256": "7efce3131644ceda3eddbd6ede2f54e13bbaf0105b9196768b93d3ae9fa5e906",
+  "schema": 1,
+  "source_pins_stable": true,
+  "status": "complete"
+}

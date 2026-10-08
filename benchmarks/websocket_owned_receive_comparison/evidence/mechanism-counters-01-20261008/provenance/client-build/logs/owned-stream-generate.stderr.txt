@@ -1,0 +1,14 @@
+All terms check, but 12 defs rely on unsafe or foreign code:
+- WsBench.now_us
+- WsBenchDiag.mark
+- WsBenchDiag.checked_mark
+- prepare
+- prepared_body
+- checked
+- check_message
+- received
+- receive_all
+- timed
+- warmed
+- main
+bend 2.0.36 is available: run bend update

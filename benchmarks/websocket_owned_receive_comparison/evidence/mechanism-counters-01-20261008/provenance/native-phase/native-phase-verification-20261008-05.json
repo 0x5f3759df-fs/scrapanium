@@ -1,0 +1,194 @@
+{
+  "client_marker_removal": {
+    "baseline:benchmarks/websocket_mechanism_roundtrip.bend": {
+      "diagnostic": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/benchmarks/websocket_mechanism_roundtrip.bend",
+      "diagnostic_sha256": "ebbdf875c23dea3cce5793344aaea054e2f0f7a5250c826c2d52e68ceb878e14",
+      "execution_flow_order_checked": true,
+      "marker_phases_in_text_order": [
+        "gate",
+        "work_end",
+        "released",
+        "cold"
+      ],
+      "original": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/benchmarks/websocket.bend",
+      "original_sha256": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "source_matches_after_exact_marker_removal": true
+    },
+    "baseline:benchmarks/websocket_mechanism_stream.bend": {
+      "diagnostic": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/benchmarks/websocket_mechanism_stream.bend",
+      "diagnostic_sha256": "054036afea68d590cf7aea2b5459a9be5d6cca90c19ef7ed4bf1e7763caa0a5e",
+      "execution_flow_order_checked": true,
+      "marker_phases_in_text_order": [
+        "gate",
+        "work_end",
+        "released",
+        "cold"
+      ],
+      "original": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/benchmarks/websocket_stream.bend",
+      "original_sha256": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "source_matches_after_exact_marker_removal": true
+    },
+    "owned:benchmarks/websocket_mechanism_roundtrip.bend": {
+      "diagnostic": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/benchmarks/websocket_mechanism_roundtrip.bend",
+      "diagnostic_sha256": "ebbdf875c23dea3cce5793344aaea054e2f0f7a5250c826c2d52e68ceb878e14",
+      "execution_flow_order_checked": true,
+      "marker_phases_in_text_order": [
+        "gate",
+        "work_end",
+        "released",
+        "cold"
+      ],
+      "original": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/benchmarks/websocket.bend",
+      "original_sha256": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "source_matches_after_exact_marker_removal": true
+    },
+    "owned:benchmarks/websocket_mechanism_stream.bend": {
+      "diagnostic": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/benchmarks/websocket_mechanism_stream.bend",
+      "diagnostic_sha256": "054036afea68d590cf7aea2b5459a9be5d6cca90c19ef7ed4bf1e7763caa0a5e",
+      "execution_flow_order_checked": true,
+      "marker_phases_in_text_order": [
+        "gate",
+        "work_end",
+        "released",
+        "cold"
+      ],
+      "original": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/benchmarks/websocket_stream.bend",
+      "original_sha256": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "source_matches_after_exact_marker_removal": true
+    }
+  },
+  "counter_order_matches_between_arms": true,
+  "foreign_effect_identity": {
+    "bend_foreign_definition": "WsBenchDiag.checked_mark",
+    "bend_result_type": "IO(Result<&1, &1, U32 & String, Unit>)",
+    "compiler_cid_normalization": "CID_ + uppercase(qualified name with punctuation normalized to underscores)",
+    "compiler_commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+    "compiler_source": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/comp.ts",
+    "compiler_source_sha256": "10afb08dd55a52bfbb88fdf84534cebdc000bdf7820c69cee1d6bb3fcfaf7d7b",
+    "expected_cid": "CID_WSBENCHDIAG_CHECKED_MARK",
+    "generated_c_path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/phase-hook-probe.generated.c",
+    "generated_c_sha256": "f120d882cef129520536b18bb66de4f6d09deb04b7961ad7d2aced6b6ed4a57f",
+    "generated_definition_cid_macro_and_call_present": true,
+    "generated_registration_matches_imported_definition": true
+  },
+  "metric_scope": {
+    "copies": "only explicit source-site memcpy/memcmp bytes; no allocator, mmap, implicit realloc movement, SSL-internal-copy, or process-wide copy census",
+    "framed_recv": "clean baseline uses curl_ws_recv; owned counts fallback calls to the same framed API, not a raw parser",
+    "receive_api_outcomes": "framed and owned success/AGAIN/error classes are counted at the public API return sites; lower Curl reader_AGAIN remains separate",
+    "wait": "Bend-loop step and readiness-query counts only; no blocking poll-result or kernel wait-duration counters"
+  },
+  "native_and_phase_sources": {
+    "baseline:benchmarks/websocket_mechanism_diag.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/benchmarks/websocket_mechanism_diag.c",
+      "sha256": "715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb"
+    },
+    "baseline:native/bend_bridge.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/native/bend_bridge.c",
+      "sha256": "30002e4142c77629ad32e0f3e4b58dfc46ed6c9d59592edc65b73beae4ff9ca5"
+    },
+    "baseline:native/scrapanium.h": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/native/scrapanium.h",
+      "sha256": "03613253fe4cd0331de8f846d7a5f36ab10263656e3c36aaf23ad6bc8713734a"
+    },
+    "baseline:native/websocket.inc.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline/native/websocket.inc.c",
+      "sha256": "c48119f4c6f40e4ff9747bd678c9d2486538a2943c0b37629d3aaca1a7d77dbd"
+    },
+    "owned:benchmarks/websocket_mechanism_diag.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/benchmarks/websocket_mechanism_diag.c",
+      "sha256": "715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb"
+    },
+    "owned:native/bend_bridge.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/native/bend_bridge.c",
+      "sha256": "3961ef37668d42f190bb296fc8625b999caea4a4a7dfb2b056e76f5fc91e46eb"
+    },
+    "owned:native/scrapanium.h": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/native/scrapanium.h",
+      "sha256": "d01d7334733a1a129333a7a8bdb03ce500bcd409955ba1c676902b38d614d2c9"
+    },
+    "owned:native/websocket.inc.c": {
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned/native/websocket.inc.c",
+      "sha256": "5c6b6cdeb9e780a971f348298bfba3ea7ee09857de7f245f9c8f3b51162993c2"
+    }
+  },
+  "native_counter_count": 58,
+  "native_counter_names": [
+    "framed_recv_calls",
+    "framed_recv_bytes",
+    "owned_recv_calls",
+    "owned_recv_bytes",
+    "direct_recv_calls",
+    "direct_recv_request_bytes",
+    "direct_recv_success",
+    "direct_recv_return_bytes",
+    "scratch_recv_calls",
+    "scratch_recv_request_bytes",
+    "scratch_recv_success",
+    "scratch_recv_return_bytes",
+    "message_append_copy_calls",
+    "message_append_copy_bytes",
+    "message_realloc_calls",
+    "message_realloc_old_capacity_bytes",
+    "message_realloc_request_bytes",
+    "message_realloc_successes",
+    "message_realloc_failures",
+    "message_realloc_address_changed",
+    "segment_alloc_attempts",
+    "segment_alloc_successes",
+    "segment_alloc_failures",
+    "segment_alloc_request_bytes",
+    "segment_frees",
+    "segment_free_request_bytes",
+    "segments_live",
+    "segments_live_request_bytes",
+    "segment_live_payload_bytes",
+    "ws_flatten_calls",
+    "ws_flatten_alloc_attempts",
+    "ws_flatten_alloc_successes",
+    "ws_flatten_alloc_failures",
+    "ws_flatten_alloc_bytes",
+    "ws_flatten_copy_bytes",
+    "bend_bytes_flatten_calls",
+    "bend_bytes_flatten_alloc_attempts",
+    "bend_bytes_flatten_alloc_successes",
+    "bend_bytes_flatten_alloc_failures",
+    "bend_bytes_flatten_alloc_bytes",
+    "bend_bytes_flatten_copy_bytes",
+    "bytes_equal_calls",
+    "bytes_equal_bytes",
+    "bytes_equal_memcmp_spans",
+    "ws_send_calls",
+    "ws_send_request_bytes",
+    "ws_send_success_calls",
+    "ws_send_return_bytes",
+    "ws_send_again_calls",
+    "ws_send_error_calls",
+    "ws_step_calls",
+    "ws_ready_query_calls",
+    "framed_recv_success_calls",
+    "framed_recv_again_calls",
+    "framed_recv_error_calls",
+    "owned_recv_success_calls",
+    "owned_recv_again_calls",
+    "owned_recv_error_calls"
+  ],
+  "phase_contract": {
+    "execution_flow": "cold after connect/handshake and before warmup; gate after warmup and external gate; work_end after full original receive/equality workload and end timestamp; released after original resource release",
+    "file_contract": "one O_EXCL JSONL per client; fsync only at four phase markers",
+    "marker_phases_in_text_order_is_not_runtime_order": true,
+    "snapshot_model": "cumulative atomic fields; synchronous markers on one Bend IO loop reach quiescent boundaries after earlier effects; no reset and no simultaneous multi-field atomic snapshot claim"
+  },
+  "purpose": "read-only source/layout verification plus one Bend C generation; no C compile/link, peer, workload, or timing",
+  "schema": 1,
+  "status": "pass",
+  "worktrees": {
+    "baseline": {
+      "head": "7b52d7f1cbbfe4c21b1abf1ad71e8e3061c47c17",
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline"
+    },
+    "owned": {
+      "head": "7b52d7f1cbbfe4c21b1abf1ad71e8e3061c47c17",
+      "path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/owned"
+    }
+  }
+}

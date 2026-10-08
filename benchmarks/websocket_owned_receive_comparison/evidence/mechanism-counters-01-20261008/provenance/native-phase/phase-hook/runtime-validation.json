@@ -1,0 +1,47 @@
+{
+  "actual_dso_mapping_evidence": "separate curl-gauge-test-01 run-02 captured and verified the client process mapping",
+  "all_nonlayout_counters_zero": true,
+  "binary_sha256": "258f40b500b6dde89463b3b6010ea387b073457511cb47d79e1a2f2b689960d0",
+  "counter_file_sha256": "112bcd19aca562f5c852c85a08bb22893f074ab469a5f26b744c1ff6473e67ae",
+  "diag_helper_sha256": "715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb",
+  "exit_code": 0,
+  "generated_imported_cid_checked": true,
+  "generated_sha256": "ba42eba7882ff491556a13d85ceea96467071b2ac6ba12f3e2e885012629e275",
+  "layout": {
+    "curl": {
+      "layout_bufq_size": 64,
+      "layout_chunk_size": 48,
+      "layout_payload_size": 32,
+      "layout_pin_size": 32,
+      "layout_recv_chunk_size": 131072
+    },
+    "native": {
+      "layout_buffer_size": 48,
+      "layout_segment_size": 0,
+      "layout_ws_io_size": 272
+    }
+  },
+  "ldd_prospective_resolution": {
+    "canonical_path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0",
+    "canonical_sha256": "e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9",
+    "library_name": "libcurl-impersonate.so.4",
+    "meaning": "ldd prospective dependency resolution only; not an in-process mapping capture",
+    "symlink_path": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4"
+  },
+  "phase_rows": [
+    "cold",
+    "gate",
+    "work_end",
+    "released"
+  ],
+  "scope": "linked foreign-effect hook probe only; no socket, WebSocket, payload, peer, timing, or census",
+  "snapshot_slots": {
+    "curl": 60,
+    "curl_counters": 55,
+    "curl_layout": 5,
+    "native": 61,
+    "native_counters": 58,
+    "native_layout": 3
+  },
+  "status": "pass"
+}

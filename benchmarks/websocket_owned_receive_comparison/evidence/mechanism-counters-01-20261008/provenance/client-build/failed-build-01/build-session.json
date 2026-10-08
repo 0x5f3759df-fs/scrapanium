@@ -1,0 +1,19 @@
+{
+  "backend_build_validation_file": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/build-validation-20261008-01.json",
+  "backend_build_validation_sha256": "996b5b2361eacc0daaa14750529ccbaf00c3f460320766f4b898a5cecb84811a",
+  "campaign_started": false,
+  "client_invocations": false,
+  "commands": [],
+  "commands_file": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/build-commands.json",
+  "commands_sha256": "25555e984110d5387f97e3a1b5f8812068075ee0043f869e379bfbbee554c0b3",
+  "driver": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/prepare_client_builds_20261008_01.py",
+  "driver_sha256": "9a40ffc09eb0502f3987511862689afbc3222dc99f12b509b6c7f12a4c932bea",
+  "peer_invocations": false,
+  "performance_claims": false,
+  "preflight_error": "FileNotFoundError(2, 'No such file or directory')",
+  "scope": "six build targets only: 4 Bend generate/link pairs and 2 Go peer builds; no clients/peers executed, no workloads, no timing/performance claim",
+  "source_preflight_file": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/source-preflight-03/source-preflight.json",
+  "source_preflight_sha256": "ce944cf6ac5251bf00865744f3e2712b2ed3965852de7f897b45e6ee852e38e0",
+  "status": "preflight-failed",
+  "workload_attempts": false
+}

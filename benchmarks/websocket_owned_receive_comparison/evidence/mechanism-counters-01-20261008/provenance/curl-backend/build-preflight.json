@@ -1,0 +1,69 @@
+{
+  "build_command": "cd /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/workspace && env -u LD_LIBRARY_PATH -u CPATH -u C_INCLUDE_PATH -u CPLUS_INCLUDE_PATH -u LIBRARY_PATH -u PKG_CONFIG_PATH -u CFLAGS -u CXXFLAGS -u LDFLAGS CC=/usr/bin/clang-21 CXX=/usr/bin/clang++-21 /usr/bin/python3.14 scripts/build_backend.py --work /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work --prefix /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix --jobs 4",
+  "campaign_started": false,
+  "configuration": {
+    "CMAKE_BUILD_TYPE": "Release",
+    "CMAKE_CXX_FLAGS_RELEASE": "CMake default -O3 -DNDEBUG",
+    "CMAKE_C_FLAGS_RELEASE": "CMake default -O3 -DNDEBUG",
+    "jobs": 4
+  },
+  "diagnostic_overlay_patch": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/workspace/backend/patches/curl-ws-owned-receive-diagnostics.patch",
+  "diagnostic_overlay_sha256": "2dec87802c8e0fe708fbe35f76952f01ede74d5e80d16418cf8b48091376aa53",
+  "frozen_backend_modified": false,
+  "pinned_patched_base_tree_sha256": "eac1656dc78634e6cebd8b50a7632ef2f48b1c7ab3170ab7405b889c5ef9c7e1",
+  "prefix": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix",
+  "purpose": "one private Release/O3 source-built Curl/BoringSSL DSO with diagnostics overlay for counters-only mechanism work; no client/census/timing",
+  "root": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02",
+  "schema": 1,
+  "status": "prepared_not_run",
+  "tools": {
+    "clang": {
+      "path": "/usr/bin/clang-21",
+      "sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+      "version": "Ubuntu clang version 21.1.8 (6ubuntu1)"
+    },
+    "clangxx": {
+      "path": "/usr/bin/clang++-21",
+      "sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+      "version": "Ubuntu clang version 21.1.8 (6ubuntu1)"
+    },
+    "cmake": {
+      "path": "/usr/bin/cmake",
+      "sha256": "6e1dccda39845415d68eabb934c598998949c99ec4668625d571aee1827b05c7",
+      "version": "cmake version 4.2.3"
+    },
+    "git": {
+      "path": "/usr/bin/git",
+      "sha256": "5516c9f362c29376ab9a499a33082f9f611941d8c75930c880e30ad109e39c9a",
+      "version": "git version 2.53.0"
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "sha256": "27c9f6d806aee15882b01c2c61848f7aa75caa14bc7b6f608ba422f9e46a7d49",
+      "version": "GNU Make 4.4.1"
+    },
+    "ninja": {
+      "path": "/usr/bin/ninja",
+      "sha256": "91e9548850cda2799facfdaa7abe33f9e978832f85e98212255708a7bbe437f2",
+      "version": "1.13.2"
+    },
+    "python": {
+      "path": "/usr/bin/python3.14",
+      "sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "version": "Python 3.14.4"
+    }
+  },
+  "upstream_commit": "6e8f87760a4dd96771e96fc9d55440dcd8845243",
+  "work": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/work",
+  "workspace": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/workspace",
+  "workspace_files_sha256": {
+    "LICENSE": "a591a39cf7f45d7e665ddd55fc7d64baa85874b3da101b1faffaf21ea9799cbd",
+    "backend/lock.json": "536fa765c9709225101ef5d06d7d964e0a71b2cd616e311d1f2a1ac8b1755de6",
+    "backend/patches/cmake-isolate-dependencies.patch": "d3fbdee5a50fce517c0af254630bafc79c1b3d70c984bc58abd18f9b4531801c",
+    "backend/patches/curl-browser-controls.patch": "00232264394234559d0857174d37ff33b9922d619729da19e0fe0370d1e5787e",
+    "backend/patches/curl-ws-canonical-length.patch": "03f086396347a042f1f37fa59027ada769dfdab883fe1c0453341ff1df4236e6",
+    "backend/patches/curl-ws-owned-chunks.patch": "0b8fc954f8f009b60b94b3735a76d0aa7122fd049e7ec989f1c94bccd2e12b61",
+    "backend/patches/curl-ws-owned-receive-diagnostics.patch": "2dec87802c8e0fe708fbe35f76952f01ede74d5e80d16418cf8b48091376aa53",
+    "scripts/build_backend.py": "9d2496ea117bd24f34eb6b9bfda10223ad8ef1a82489e4b9e70846f2af43c9d4"
+  }
+}

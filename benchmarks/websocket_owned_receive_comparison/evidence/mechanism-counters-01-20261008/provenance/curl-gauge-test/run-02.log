@@ -1,0 +1,32 @@
+prefix=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix
+dso=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0
+dso_sha256_before=e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9
+websockets_header=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/include/curl/websockets.h
+websockets_header_sha256=a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad
+gauge_client_source_sha256=3e3891be2f53f45c6e73d9200fc8a2b9e3f038369c3cc265f80c4c2085610807
+compiler=/usr/bin/x86_64-linux-gnu-gcc-15
+compiler_sha256_before=b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88
+compiler_include_library_and_loader_overrides=cleared
+ld_library_path=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib
+scope=loopback WSS correctness only; no timing or performance claims
+temporary self-signed localhost certificate and private key are deleted at exit
+compile=/usr/bin/x86_64-linux-gnu-gcc-15 -std=c11 -O0 -g -Wall -Wextra -Werror -I/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/include /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-gauge-test-01/gauge_client.c /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0 -Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib -ldl -o /tmp/curl-owned-gauge-z0wqutft/gauge_client
+compiler_version_exit=0
+compiler_version_begin
+x86_64-linux-gnu-gcc-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+compiler_version_end
+compile_exit=0
+client=/tmp/curl-owned-gauge-z0wqutft/gauge_client wss://127.0.0.1:46793/owned-gauge /tmp/curl-owned-gauge-z0wqutft/peer-cert.pem /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0
+client_exit=0
+client_output_begin
+{"status":"pass","mapped_dso":"/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0","held_payload_pieces":2,"queue_reference_drops":1,"tagged_chunk_allocations":1,"payload_pin_gauges_returned_to_baseline":true,"gauges":{"before_connection":{"chunks_live":0,"chunks_live_request_bytes":0,"pins_live":0,"payloads_live":0},"after_easy_cleanup":{"chunks_live":1,"chunks_live_request_bytes":131120,"pins_live":2,"payloads_live":2},"after_all_releases":{"chunks_live":0,"chunks_live_request_bytes":0,"pins_live":0,"payloads_live":0}},"performance_claims":false}
+client_output_end
+dso_sha256_after=e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9
+dso_unchanged=True
+compiler_sha256_after=b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88
+compiler_unchanged=True
+temporary_certificate_sha256=6e64ac5e29ca0bd07eeba97d498daf6e892a9bb88516152169083d25c38aa8d5
+status=pass

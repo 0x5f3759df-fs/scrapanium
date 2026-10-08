@@ -1,0 +1,369 @@
+{
+  "baseline": [
+    {
+      "archive_path": "snapshots/baseline/benchmarks/websocket_mechanism_diag.c",
+      "bytes": 5694,
+      "sha256": "715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb",
+      "source_relative_path": "benchmarks/websocket_mechanism_diag.c"
+    },
+    {
+      "archive_path": "snapshots/baseline/benchmarks/websocket_mechanism_roundtrip.bend",
+      "bytes": 4218,
+      "sha256": "ebbdf875c23dea3cce5793344aaea054e2f0f7a5250c826c2d52e68ceb878e14",
+      "source_relative_path": "benchmarks/websocket_mechanism_roundtrip.bend"
+    },
+    {
+      "archive_path": "snapshots/baseline/benchmarks/websocket_mechanism_stream.bend",
+      "bytes": 4492,
+      "sha256": "054036afea68d590cf7aea2b5459a9be5d6cca90c19ef7ed4bf1e7763caa0a5e",
+      "source_relative_path": "benchmarks/websocket_mechanism_stream.bend"
+    },
+    {
+      "archive_path": "snapshots/baseline/native/bend_bridge.c",
+      "bytes": 32676,
+      "sha256": "30002e4142c77629ad32e0f3e4b58dfc46ed6c9d59592edc65b73beae4ff9ca5",
+      "source_relative_path": "native/bend_bridge.c"
+    },
+    {
+      "archive_path": "snapshots/baseline/native/scrapanium.h",
+      "bytes": 8771,
+      "sha256": "03613253fe4cd0331de8f846d7a5f36ab10263656e3c36aaf23ad6bc8713734a",
+      "source_relative_path": "native/scrapanium.h"
+    },
+    {
+      "archive_path": "snapshots/baseline/native/websocket.inc.c",
+      "bytes": 21924,
+      "sha256": "c48119f4c6f40e4ff9747bd678c9d2486538a2943c0b37629d3aaca1a7d77dbd",
+      "source_relative_path": "native/websocket.inc.c"
+    }
+  ],
+  "curl_license": {
+    "archive_path": "backend-overlay/COPYING",
+    "bytes": 1088,
+    "sha256": "82f2f4427d6545ee5aaac4f0b80428da6cc8ba41c2cf5da3a03680ec327b9681",
+    "source_relative_path": "COPYING"
+  },
+  "curl_overlay": [
+    {
+      "archive_path": "backend-overlay/source/include/curl/websockets.h",
+      "bytes": 4908,
+      "sha256": "a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad",
+      "source_relative_path": "include/curl/websockets.h"
+    },
+    {
+      "archive_path": "backend-overlay/source/lib/bufq.c",
+      "bytes": 21021,
+      "sha256": "596a94189776caf7c2f1f701c5da097245d456c051f32ba89ba6233f69802c96",
+      "source_relative_path": "lib/bufq.c"
+    },
+    {
+      "archive_path": "backend-overlay/source/lib/bufq.h",
+      "bytes": 10772,
+      "sha256": "1c7c9d6380876c6e782188b15ea109d1c25d74ee65ab9e95150fcac83ec2bd81",
+      "source_relative_path": "lib/bufq.h"
+    },
+    {
+      "archive_path": "backend-overlay/source/lib/vtls/openssl.c",
+      "bytes": 192346,
+      "sha256": "78388f7a65ed847386b19c7e616eaa03af6b0ba3102681ba65a8b7738f514e66",
+      "source_relative_path": "lib/vtls/openssl.c"
+    },
+    {
+      "archive_path": "backend-overlay/source/lib/ws.c",
+      "bytes": 86318,
+      "sha256": "3c5dcc7fa6f775730c04b0cf0009a368fcb79dc0d7f59f45ba30fe433aa7f4d9",
+      "source_relative_path": "lib/ws.c"
+    },
+    {
+      "archive_path": "backend-overlay/source/lib/ws_diag.h",
+      "bytes": 3999,
+      "sha256": "0d10f2ec2de952694625f54442eccd64c8de72810f433914a016d54b13a9e82e",
+      "source_relative_path": "lib/ws_diag.h"
+    }
+  ],
+  "extra_patch": {
+    "archive_path": "backend-overlay/curl-ws-owned-receive-diagnostics.patch",
+    "bytes": 22657,
+    "sha256": "2dec87802c8e0fe708fbe35f76952f01ede74d5e80d16418cf8b48091376aa53"
+  },
+  "owned": [
+    {
+      "archive_path": "snapshots/owned/backend/patches/curl-ws-canonical-length.patch",
+      "bytes": 717,
+      "sha256": "03f086396347a042f1f37fa59027ada769dfdab883fe1c0453341ff1df4236e6",
+      "source_relative_path": "backend/patches/curl-ws-canonical-length.patch"
+    },
+    {
+      "archive_path": "snapshots/owned/backend/patches/curl-ws-owned-chunks.patch",
+      "bytes": 20850,
+      "sha256": "0b8fc954f8f009b60b94b3735a76d0aa7122fd049e7ec989f1c94bccd2e12b61",
+      "source_relative_path": "backend/patches/curl-ws-owned-chunks.patch"
+    },
+    {
+      "archive_path": "snapshots/owned/benchmarks/websocket_mechanism_diag.c",
+      "bytes": 5694,
+      "sha256": "715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb",
+      "source_relative_path": "benchmarks/websocket_mechanism_diag.c"
+    },
+    {
+      "archive_path": "snapshots/owned/benchmarks/websocket_mechanism_roundtrip.bend",
+      "bytes": 4218,
+      "sha256": "ebbdf875c23dea3cce5793344aaea054e2f0f7a5250c826c2d52e68ceb878e14",
+      "source_relative_path": "benchmarks/websocket_mechanism_roundtrip.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/benchmarks/websocket_mechanism_stream.bend",
+      "bytes": 4492,
+      "sha256": "054036afea68d590cf7aea2b5459a9be5d6cca90c19ef7ed4bf1e7763caa0a5e",
+      "source_relative_path": "benchmarks/websocket_mechanism_stream.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/native/bend_bridge.c",
+      "bytes": 38980,
+      "sha256": "3961ef37668d42f190bb296fc8625b999caea4a4a7dfb2b056e76f5fc91e46eb",
+      "source_relative_path": "native/bend_bridge.c"
+    },
+    {
+      "archive_path": "snapshots/owned/native/bend_websocket.inc.c",
+      "bytes": 7048,
+      "sha256": "3b638276b8aeb387ee7cd46515d0b38ef1cf167fcadec3e2586b28465dbdc7dc",
+      "source_relative_path": "native/bend_websocket.inc.c"
+    },
+    {
+      "archive_path": "snapshots/owned/native/scrapanium.c",
+      "bytes": 24766,
+      "sha256": "3ac3592b11d74d52ab460fc11d263a61ea92a92baacd04d3ab142c1370643b25",
+      "source_relative_path": "native/scrapanium.c"
+    },
+    {
+      "archive_path": "snapshots/owned/native/scrapanium.h",
+      "bytes": 9233,
+      "sha256": "d01d7334733a1a129333a7a8bdb03ce500bcd409955ba1c676902b38d614d2c9",
+      "source_relative_path": "native/scrapanium.h"
+    },
+    {
+      "archive_path": "snapshots/owned/native/websocket.inc.c",
+      "bytes": 35024,
+      "sha256": "5c6b6cdeb9e780a971f348298bfba3ea7ee09857de7f245f9c8f3b51162993c2",
+      "source_relative_path": "native/websocket.inc.c"
+    },
+    {
+      "archive_path": "snapshots/owned/native/ws_async.h",
+      "bytes": 815,
+      "sha256": "23140e4918b21fb1bf4457a704ba7d11fed4bbcb7a90fa465121ffbfe5a6c676",
+      "source_relative_path": "native/ws_async.h"
+    },
+    {
+      "archive_path": "snapshots/owned/scripts/build.py",
+      "bytes": 2354,
+      "sha256": "9bc8883f5e44cad028a1046687884a966563c1431ab3a64d1cb909489b4b0ef6",
+      "source_relative_path": "scripts/build.py"
+    },
+    {
+      "archive_path": "snapshots/owned/scripts/build_backend.py",
+      "bytes": 8906,
+      "sha256": "a7d67e8ea6e123f350cae13c247b03199401e35bf826d94c827f819cc9ea9194",
+      "source_relative_path": "scripts/build_backend.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/backend_bufq_pin_asan.c",
+      "bytes": 4927,
+      "sha256": "c901f92e1890b885a954a03a0ebbfac8078b97688b12b9599f1881a0abfce25e",
+      "source_relative_path": "tests/backend_bufq_pin_asan.c"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/bytes_text_edges.bend",
+      "bytes": 1225,
+      "sha256": "c382e0d26525086038bacf070d1e645cc03becf81961bb19a7f1e9e8ed3cf245",
+      "source_relative_path": "tests/bytes_text_edges.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/flatten_oom_malloc_wrap.c",
+      "bytes": 1289,
+      "sha256": "7be1e7197464bd33ebffd5cb14a36efd0c549e6cbc2a3f3dd2c23f5ff483fad7",
+      "source_relative_path": "tests/flatten_oom_malloc_wrap.c"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/lab.py",
+      "bytes": 10807,
+      "sha256": "166d1ef5c42d740d32c2aa45c6fd34d3afe877f4f4f9a6df7625ba519627c22e",
+      "source_relative_path": "tests/lab.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/owned_backend_checks.py",
+      "bytes": 10367,
+      "sha256": "8834c4757623ad549812d23412d440a929e3c3ef0e1d808613005605ad365f42",
+      "source_relative_path": "tests/owned_backend_checks.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/owned_bytes_checks.py",
+      "bytes": 1855,
+      "sha256": "1f7e05b9c34709a12d168e605df3d919335d6c081110f5a575ba42a0416b77b9",
+      "source_relative_path": "tests/owned_bytes_checks.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/owned_flatten_oom_checks.py",
+      "bytes": 6037,
+      "sha256": "497ffe709d4657334c64b0dc53fc058786ac91746b0f6120c6795e4c648d971b",
+      "source_relative_path": "tests/owned_flatten_oom_checks.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/owned_segment_text_checks.py",
+      "bytes": 3808,
+      "sha256": "65c19ff314a94ec62a320d7c08a55c502a8a4743f4c103ce3f1170fdb4ba432b",
+      "source_relative_path": "tests/owned_segment_text_checks.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/test_websocket.py",
+      "bytes": 12059,
+      "sha256": "d24a144431d11e5ffbe3f1cb248406ceeba84507c8a369e83ad8ef8237227359",
+      "source_relative_path": "tests/test_websocket.py"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_length_boundaries.bend",
+      "bytes": 2515,
+      "sha256": "78cb1de694c0b821792da1c54facc7b484ea3cf22766c6084c6690ee58a9bbcb",
+      "source_relative_path": "tests/websocket_length_boundaries.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_noncanonical.bend",
+      "bytes": 1007,
+      "sha256": "2c06d7ac755c00e1ac1053b49593b6d6df96963cfbd8407950e5d766c4ff3783",
+      "source_relative_path": "tests/websocket_noncanonical.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_cancel.bend",
+      "bytes": 1427,
+      "sha256": "c5f5004455abf2739568e19412fe8b211aa036b2233e105f8cd1ffcd8f9b6a47",
+      "source_relative_path": "tests/websocket_owned_cancel.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_empty.bend",
+      "bytes": 2281,
+      "sha256": "23bb2cae35b61c12cda84e3a430607c1de86a703d32be0d7e185ca21aed9ae03",
+      "source_relative_path": "tests/websocket_owned_empty.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_equal.bend",
+      "bytes": 3658,
+      "sha256": "ab7b0aa2d2bdb0d7d2de7d91dac5189eeb403e997eec12695343391f1498bd2e",
+      "source_relative_path": "tests/websocket_owned_equal.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_flatten_oom.bend",
+      "bytes": 1698,
+      "sha256": "8e2a29faf899acb272f6bb52a24f2b7473bc844f2a6d34c2499e5fa8f1940db5",
+      "source_relative_path": "tests/websocket_owned_flatten_oom.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_release.c",
+      "bytes": 3633,
+      "sha256": "48180f1aaa0f7e3193eec1e521138b072e03b70d3c42c3b5120c4167e13d8482",
+      "source_relative_path": "tests/websocket_owned_release.c"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_request.bend",
+      "bytes": 2486,
+      "sha256": "ca31c59c02a716df929385ee067c1d208b7922b446fb2440ac9c6de2c1f5983a",
+      "source_relative_path": "tests/websocket_owned_request.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_request_oom.bend",
+      "bytes": 2309,
+      "sha256": "fd012fd869b883d5d12cd35e40a6c436f52843b54922261e5f01876feb4fea8f",
+      "source_relative_path": "tests/websocket_owned_request_oom.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_segments.bend",
+      "bytes": 3555,
+      "sha256": "a31b47165adf5b12e847e5f76fa27d36e7790ac6547d7e1608765ceb152802a6",
+      "source_relative_path": "tests/websocket_owned_segments.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_send.bend",
+      "bytes": 2855,
+      "sha256": "8b67328b4d7ae39f0fe2519272f69e234f448858be32c93dfdb3d31587058084",
+      "source_relative_path": "tests/websocket_owned_send.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/websocket_owned_text_edges.bend",
+      "bytes": 1485,
+      "sha256": "c07642cbcd26907d6fae3e1705c07a8e03c50a6ecd018fbf47e6ac0591c61fa8",
+      "source_relative_path": "tests/websocket_owned_text_edges.bend"
+    },
+    {
+      "archive_path": "snapshots/owned/tests/ws_lab.py",
+      "bytes": 11303,
+      "sha256": "9aa1634679d9cf62c297998bdd42ae8eed720de1ed496be32d83c7d8fdc9a20e",
+      "source_relative_path": "tests/ws_lab.py"
+    }
+  ],
+  "shared": [
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket.bend",
+      "bytes": 3868,
+      "sha256": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "source_relative_path": "benchmarks/websocket.bend"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket_stream.bend",
+      "bytes": 4142,
+      "sha256": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "source_relative_path": "benchmarks/websocket_stream.bend"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket.py",
+      "bytes": 15233,
+      "sha256": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+      "source_relative_path": "benchmarks/websocket.py"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket_streaming.py",
+      "bytes": 15204,
+      "sha256": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+      "source_relative_path": "benchmarks/websocket_streaming.py"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket_server.go",
+      "bytes": 3432,
+      "sha256": "76be75a93bc51b243c6c9be7360b08e8e9f15757ce1358ae60ec78457f0d0d3b",
+      "source_relative_path": "benchmarks/websocket_server.go"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket_stream_server.go",
+      "bytes": 4706,
+      "sha256": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+      "source_relative_path": "benchmarks/websocket_stream_server.go"
+    },
+    {
+      "archive_path": "snapshots/shared/benchmarks/websocket_clock.c",
+      "bytes": 486,
+      "sha256": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+      "source_relative_path": "benchmarks/websocket_clock.c"
+    },
+    {
+      "archive_path": "snapshots/shared/native/bend_websocket.inc.c",
+      "bytes": 6776,
+      "sha256": "0081eca4ca7303c3073c928502d7361816fc93c168a84c4ddf4f20c8b551c55b",
+      "source_relative_path": "native/bend_websocket.inc.c"
+    },
+    {
+      "archive_path": "snapshots/shared/scripts/build.py",
+      "bytes": 2346,
+      "sha256": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+      "source_relative_path": "scripts/build.py"
+    },
+    {
+      "archive_path": "snapshots/shared/tests/lab.py",
+      "bytes": 10754,
+      "sha256": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+      "source_relative_path": "tests/lab.py"
+    },
+    {
+      "archive_path": "snapshots/shared/tests/ws_lab.py",
+      "bytes": 6813,
+      "sha256": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c",
+      "source_relative_path": "tests/ws_lab.py"
+    }
+  ]
+}

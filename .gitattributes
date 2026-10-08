@@ -30,3 +30,12 @@ benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/cand
 # Preserve CRLF endings in these copied source snapshots.
 benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/candidate-source/tests/bytes_text_edges.bend whitespace=cr-at-eol
 benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/candidate-source/tests/websocket_owned_equal.bend whitespace=cr-at-eol
+# Preserve the exact bytes of the counters-only experiment archive.
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/** -text
+# Preserve whitespace and line endings in copied mechanism evidence inputs.
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/backend-overlay/curl-ws-owned-receive-diagnostics.patch whitespace=-blank-at-eol
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/snapshots/owned/backend/patches/curl-ws-canonical-length.patch whitespace=-blank-at-eol
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/snapshots/owned/backend/patches/curl-ws-owned-chunks.patch whitespace=-blank-at-eol
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/snapshots/owned/tests/bytes_text_edges.bend whitespace=cr-at-eol
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/snapshots/owned/tests/websocket_owned_equal.bend whitespace=cr-at-eol
+benchmarks/websocket_owned_receive_comparison/evidence/mechanism-counters-01-20261008/audit/selftest-result.txt whitespace=-blank-at-eof

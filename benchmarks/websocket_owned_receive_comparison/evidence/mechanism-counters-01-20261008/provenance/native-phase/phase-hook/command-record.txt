@@ -1,0 +1,28 @@
+Phase-hook linked probe command record (retrospective provenance record)
+
+The following exact commands are the generation and link invocations used for the preserved positive probe. The build logs and exit-code files were captured at execution time; this text record was added afterward to consolidate argv and tool provenance.
+
+Working directory:
+/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/phase-hook-probe-20261008-01
+
+Generation command:
+BEND=/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27
+BUN=/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun
+"$BUN" "$BEND/bend2/main.ts" "$PWD/phase_hook_probe.bend" -o "$PWD/phase_hook_probe.generated.c"
+
+Link command:
+CC=/usr/lib/llvm-21/bin/clang
+BASE=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/baseline
+PREFIX=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix
+"$CC" "$PWD/phase_hook_probe.generated.c" "$BASE/native/scrapanium.c" -std=c11 -O3 -g -I"$PREFIX/include" -I"$BASE/native" -lpthread -lm -ldl -L"$PREFIX/lib" -Wl,-rpath,"$PREFIX/lib" -lcurl-impersonate -o "$PWD/phase_hook_probe"
+
+Recorded generation exit: 0 (generate-exit-code.txt); output log generate.log (Bend prints the expected warning that unsafe/foreign definitions require the 2.0.36 checker, but exits zero under the pinned 2.0.27 compiler).
+Recorded Clang/link exit: 0 (clang-link-exit-code.txt); output log clang-link.log is empty.
+Recorded runtime exit: 0 (run-exit-code.txt); runtime output empty because the hook writes only JSONL counters.
+Compiler: Ubuntu clang 21.1.8 (6ubuntu1); executable SHA-256 412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932.
+Bun executable SHA-256 45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675.
+Output binary SHA-256 258f40b500b6dde89463b3b6010ea387b073457511cb47d79e1a2f2b689960d0.
+Generated source SHA-256 ba42eba7882ff491556a13d85ceea96467071b2ac6ba12f3e2e885012629e275.
+Diagnostic C imported into generated source SHA-256 715ac66b7fb0c26dd1db5c833d9682addb045281566486b62263db880ca3e7eb.
+
+runtime-link-map.txt is ldd's prospective dependency-resolution output, not a captured /proc mapping. runtime-validation-04.json validates that the resolved symlink targets the expected diagnostic DSO SHA. Actual in-process DSO mapping was captured and verified by the separate curl-gauge-test-01 run-02.

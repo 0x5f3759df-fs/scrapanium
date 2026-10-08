@@ -1,0 +1,11 @@
+All terms check, but 9 defs rely on unsafe or foreign code:
+- WsBenchDiag.mark
+- WsBenchDiag.checked_mark
+- check_message
+- receive_done
+- send_done
+- repeat
+- release
+- timed
+- main
+bend 2.0.36 is available: run bend update

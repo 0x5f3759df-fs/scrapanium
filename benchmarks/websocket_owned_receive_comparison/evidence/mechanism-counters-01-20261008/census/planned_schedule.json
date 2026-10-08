@@ -1,0 +1,167 @@
+{
+  "attempts": [
+    {
+      "attempt_index": 0,
+      "bytes": 30,
+      "cell": "stream-30b-flush1",
+      "connections": 1,
+      "count": 65536,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 1,
+      "bytes": 30,
+      "cell": "stream-30b-flush1",
+      "connections": 1,
+      "count": 65536,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 2,
+      "bytes": 1024,
+      "cell": "stream-1024b-flush1",
+      "connections": 1,
+      "count": 16384,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 3,
+      "bytes": 1024,
+      "cell": "stream-1024b-flush1",
+      "connections": 1,
+      "count": 16384,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 4,
+      "bytes": 65536,
+      "cell": "stream-65536b-flush1",
+      "connections": 1,
+      "count": 1024,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 5,
+      "bytes": 65536,
+      "cell": "stream-65536b-flush1",
+      "connections": 1,
+      "count": 1024,
+      "kind": "stream",
+      "peer_flush_frames": 1,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 6,
+      "bytes": 30,
+      "cell": "stream-30b-flush64",
+      "connections": 1,
+      "count": 65536,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 7,
+      "bytes": 30,
+      "cell": "stream-30b-flush64",
+      "connections": 1,
+      "count": 65536,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 8,
+      "bytes": 1024,
+      "cell": "stream-1024b-flush64",
+      "connections": 1,
+      "count": 16384,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 9,
+      "bytes": 1024,
+      "cell": "stream-1024b-flush64",
+      "connections": 1,
+      "count": 16384,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 10,
+      "bytes": 65536,
+      "cell": "stream-65536b-flush64",
+      "connections": 1,
+      "count": 1024,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 11,
+      "bytes": 65536,
+      "cell": "stream-65536b-flush64",
+      "connections": 1,
+      "count": 1024,
+      "kind": "stream",
+      "peer_flush_frames": 64,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 12,
+      "bytes": 30,
+      "cell": "go-30b-c1",
+      "connections": 1,
+      "count": 5000,
+      "kind": "roundtrip",
+      "peer_flush_frames": null,
+      "variant": "baseline"
+    },
+    {
+      "attempt_index": 13,
+      "bytes": 30,
+      "cell": "go-30b-c1",
+      "connections": 1,
+      "count": 5000,
+      "kind": "roundtrip",
+      "peer_flush_frames": null,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 14,
+      "bytes": 65536,
+      "cell": "go-65536b-c1",
+      "connections": 1,
+      "count": 300,
+      "kind": "roundtrip",
+      "peer_flush_frames": null,
+      "variant": "owned"
+    },
+    {
+      "attempt_index": 15,
+      "bytes": 65536,
+      "cell": "go-65536b-c1",
+      "connections": 1,
+      "count": 300,
+      "kind": "roundtrip",
+      "peer_flush_frames": null,
+      "variant": "baseline"
+    }
+  ],
+  "planned_attempts": 16,
+  "schema": 1,
+  "status": "fixed_before_execution"
+}

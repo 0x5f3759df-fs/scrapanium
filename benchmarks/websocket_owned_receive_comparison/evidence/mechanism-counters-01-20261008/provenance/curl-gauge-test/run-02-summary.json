@@ -1,0 +1,23 @@
+{
+  "acceptance_claims": false,
+  "client_exit": 0,
+  "compiler": "/usr/bin/x86_64-linux-gnu-gcc-15",
+  "compiler_sha256_after": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88",
+  "compiler_sha256_before": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88",
+  "compiler_unchanged_after_run": true,
+  "dso": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix/lib/libcurl-impersonate.so.4.8.0",
+  "dso_sha256": "e48e14edacc7d8ed0abab6f5f77e5d9cebca1a87c0153ce7e939b407252e9ab9",
+  "dso_unchanged_after_run": true,
+  "gauge_client_source_sha256": "3e3891be2f53f45c6e73d9200fc8a2b9e3f038369c3cc265f80c4c2085610807",
+  "peer_combined_response_and_frame_write_completed": true,
+  "peer_error": null,
+  "performance_claims": false,
+  "prefix": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/curl-diagnostic-build-01/prefix",
+  "requested_frames": [
+    53,
+    79
+  ],
+  "status": "pass",
+  "temporary_certificate_sha256": "6e64ac5e29ca0bd07eeba97d498daf6e892a9bb88516152169083d25c38aa8d5",
+  "websockets_header_sha256": "a639a52c5c81b3873beef2469e16aa71aaf9f13b271756c2a81147ae50adbbad"
+}

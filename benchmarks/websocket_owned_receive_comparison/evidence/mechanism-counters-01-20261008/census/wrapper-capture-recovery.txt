@@ -1,0 +1,23 @@
+Retrospective recovery note for census-fixed16-20261008-01
+Created after the single released census invocation. This is not a contemporaneous terminal file capture.
+No retry was run.
+
+cwd=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02
+runner argv:
+/usr/bin/python3.14 run_mechanism_counters.py --mode execute-fixed-16 --pins source-pins.json --pins-sha256 edcb4bfa2ba7239144d72d8d709081f44640cd4e68773b852f53acb7dcd0f0bf --output /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01
+
+Dispatched wrapper command (literal command string passed to exec_command):
+wsl.exe bash -lc 'set -o pipefail; cd /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02 || exit 97; out=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01; log=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01-terminal.log; cmdfile=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01-command.txt; test ! -e "$out" && test ! -e "$log" && test ! -e "$cmdfile" || exit 97; printf "%s\n" "cwd=/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02" "argv=/usr/bin/python3.14 run_mechanism_counters.py --mode execute-fixed-16 --pins source-pins.json --pins-sha256 edcb4bfa2ba7239144d72d8d709081f44640cd4e68773b852f53acb7dcd0f0bf --output /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01" > "$cmdfile"; /usr/bin/python3.14 run_mechanism_counters.py --mode execute-fixed-16 --pins source-pins.json --pins-sha256 edcb4bfa2ba7239144d72d8d709081f44640cd4e68773b852f53acb7dcd0f0bf --output /home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01 2>&1 | tee "$log"; runner_rc=${PIPESTATUS[0]}; printf "runner_exit_code=%s\n" "$runner_rc" | tee -a "$log"; exit "$runner_rc"'
+
+Tool output chunks recovered from exec session 72477:
+1) First poll:
+bash: line 1: : No such file or directory
+'': No such file or directory (os error 2)
+
+2) Terminal poll:
+{"acceptance_claims": false, "attempts_started": true, "builds_started": false, "output": "/home/baidu/scrapanium-experiments/wss-owned-mechanism-20261008/artifacts/owned-mechanism-02/census-fixed16-20261008-01", "performance_claims": false, "status": "complete", "status_sha256": "86f9be18e6954bb039baa4a0dfe6b2e18fe3db9404be16d6f8d472633b20d34c"}
+'': runner_exit_code=
+No such file or directory (os error 2)
+bash: line 1: exit: : numeric argument required
+
+The exec wrapper returned outer exit code 1. It did not provide a separately captured runner exit code. The JSON output and saved status report status=complete, but are not represented here as an independently captured process exit code. The intended command/log sidecars were absent; this note preserves the wrapper failure and recovered tool output without modifying the census artifacts.
