@@ -1,0 +1,5 @@
+Audit date: 2026-10-08
+Working directory: /home/baidu/scrapanium-experiments/owned-receive-evidence-20261008/worktree/benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008
+Repository-root equivalent: cd benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008
+Command: python3.14 audit/verify_saved_run.py --self-test
+Purpose: offline verification of copied immutable records and rejection checks on temporary copies; no campaign, client, peer, or build is invoked.

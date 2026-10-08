@@ -1,0 +1,31 @@
+{
+  "acceptance_claims": false,
+  "all_correctness_checks_passed": true,
+  "performance_claims": false,
+  "reduced_counts": {
+    "roundtrip_each": 20,
+    "stream_each": 32
+  },
+  "roundtrip_workloads": [
+    "original-python-30b-c1",
+    "go-30b-c1",
+    "go-1024b-c1",
+    "go-65536b-c1",
+    "go-30b-c4",
+    "go-1024b-c4",
+    "go-65536b-c4"
+  ],
+  "runs_per_variant": 1,
+  "schema": 1,
+  "smoke_only": true,
+  "status": "correctness_smoke_complete",
+  "stream_workloads": [
+    "stream-30b-flush1",
+    "stream-1024b-flush1",
+    "stream-65536b-flush1",
+    "stream-30b-flush64",
+    "stream-1024b-flush64",
+    "stream-65536b-flush64"
+  ],
+  "successful_attempts": 45
+}

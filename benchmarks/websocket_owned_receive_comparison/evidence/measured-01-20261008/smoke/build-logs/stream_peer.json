@@ -1,0 +1,15 @@
+{
+  "name": "stream_peer",
+  "command": [
+    "/usr/lib/go-1.26/bin/go",
+    "build",
+    "-trimpath",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/stream_peer",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket_stream_server.go"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

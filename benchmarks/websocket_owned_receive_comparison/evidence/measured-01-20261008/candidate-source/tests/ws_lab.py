@@ -1,0 +1,197 @@
+"""Independent RFC 6455 loopback peer. Captures exact masked client frames."""
+import base64
+import hashlib
+import http.server
+import socket
+import struct
+import threading
+import time
+
+
+def frame(kind, data=b"", final=True):
+    n = len(data)
+    length = bytes([n]) if n < 126 else b"\x7e" + struct.pack("!H", n) if n < 65536 else b"\x7f" + struct.pack("!Q", n)
+    return bytes([(128 if final else 0) | kind]) + length + data
+
+
+def read_frame(stream):
+    def read(n):
+        data = stream.read(n)
+        if len(data) != n: raise EOFError()
+        return data
+    a, b = read(2)
+    assert b & 128, "client frames must be masked"
+    n = b & 127
+    if n == 126: n = struct.unpack("!H", read(2))[0]
+    elif n == 127: n = struct.unpack("!Q", read(8))[0]
+    assert n <= 16 * 1024 * 1024, "test peer input limit"
+    mask, payload = read(4), read(n)
+    return a & 15, bytes(v ^ mask[i % 4] for i, v in enumerate(payload)), bool(a & 128)
+
+
+class Handler(http.server.BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+    def log_message(self, *_): pass
+    def do_GET(self):
+        self.server.handshakes.append(list(self.headers.items()))
+        if self.path == "/reject":
+            self.send_response(403); self.send_header("Content-Length", "0"); self.end_headers(); return
+        if self.path == "/redirect":
+            self.send_response(302); self.send_header("Location", "/echo"); self.send_header("Content-Length", "0"); self.end_headers(); return
+        if self.path == "/stall-upgrade": time.sleep(1)
+        key = self.headers.get("Sec-WebSocket-Key", "")
+        assert len(base64.b64decode(key)) == 16
+        accept = base64.b64encode(hashlib.sha1((key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").encode()).digest()).decode()
+        self.send_response(101); self.send_header("Connection", "Upgrade"); self.send_header("Upgrade", "websocket")
+        if self.path != "/missing-accept": self.send_header("Sec-WebSocket-Accept", "bad" if self.path == "/bad-accept" else accept)
+        if self.path == "/duplicate-accept": self.send_header("Sec-WebSocket-Accept", accept)
+        if self.path == "/extensions": self.send_header("Sec-WebSocket-Extensions", "permessage-deflate")
+        if self.path == "/unsolicited-protocol": self.send_header("Sec-WebSocket-Protocol", "unknown")
+        if self.headers.get("Sec-WebSocket-Protocol"): self.send_header("Sec-WebSocket-Protocol", "chat")
+        self.end_headers(); self.close_connection = True
+        self.connection.settimeout(4)
+        self.connection.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        try:
+            if self.path == "/fragments":
+                self.wfile.write(frame(1, b"hello \xf0\x9f", False) + frame(9, b"heartbeat") + frame(0, b"\x8c\x8d", True))
+            elif self.path == "/owned-empty":
+                self.wfile.write(frame(2, b""))
+                self.wfile.flush()
+            elif self.path == "/noncanonical16":
+                # Length 5 must use the inline 7-bit encoding, not marker 126.
+                self.wfile.write(b"\x82\x7e\x00\x05hello")
+                self.wfile.flush()
+                return
+            elif self.path == "/noncanonical64":
+                # Length 126 must use marker 126, not the 64-bit marker 127.
+                self.wfile.write(b"\x82\x7f" + struct.pack("!Q", 126) + b"x" * 126)
+                self.wfile.flush()
+                return
+            elif self.path in ("/noncanonical16-125", "/canonical126-segmented",
+                                "/noncanonical64-65535", "/canonical65536-segmented",
+                                "/highbit-length"):
+                if self.path in ("/noncanonical16-125", "/canonical126-segmented"):
+                    size = 125 if self.path == "/noncanonical16-125" else 126
+                    header = b"\x82\x7e" + struct.pack("!H", size)
+                elif self.path in ("/noncanonical64-65535", "/canonical65536-segmented"):
+                    size = 65535 if self.path == "/noncanonical64-65535" else 65536
+                    header = b"\x82\x7f" + struct.pack("!Q", size)
+                else:
+                    size = 0
+                    header = b"\x82\x7f\x80\x00\x00\x00\x00\x00\x00\x00"
+                for byte in header:
+                    self.wfile.write(bytes([byte]))
+                    self.wfile.flush()
+                    time.sleep(.001)
+                if size:
+                    payload = bytes((i * 29 + 17) & 255 for i in range(size))
+                    self.wfile.write(payload)
+                    self.wfile.flush()
+                return
+            elif self.path == "/owned-cancel":
+                payload = bytes((i * 13 + 7) & 255 for i in range(300000))
+                self.wfile.write(frame(2, payload, False) + frame(9, b"cancel-ready"))
+                self.wfile.flush()
+                kind, data, final = read_frame(self.rfile)
+                self.server.frames.append((kind, data, final))
+                if kind != 10 or data != b"cancel-ready":
+                    return
+                time.sleep(1)
+            elif self.path == "/owned-send":
+                payload = bytes((i * 37 + 11) & 255 for i in range(300000))
+                cuts = [0, 1, 16380, 16384, 65536, 131072, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2:
+                        self.wfile.write(frame(9, bytes([20 + i, 0, 255])))
+            elif self.path == "/owned-segments":
+                payload = bytes((i * 37 + 11) & 255 for i in range(300000))
+                cuts = [0, 1, 16380, 16384, 65536, 131072, 196613, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2:
+                        self.wfile.write(frame(9, bytes([i, 0, 255])))
+                text = "Segmented 🌍é".encode()
+                globe = text.index("🌍".encode())
+                text_cuts = [0, globe + 2, len(text) - 1, len(text)]
+                for i, (left, right) in enumerate(zip(text_cuts, text_cuts[1:])):
+                    self.wfile.write(frame(1 if i == 0 else 0, text[left:right], i == len(text_cuts) - 2))
+                    if i != len(text_cuts) - 2:
+                        self.wfile.write(frame(9, bytes([10 + i, 0, 255])))
+            elif self.path == "/owned-equality":
+                payload = bytes((i * 37 + 11) & 255 for i in range(131073))
+                cut_sets = [
+                    [0, 1, 16383, 32768, 65536, 98305, len(payload)],
+                    [0, 100, 20000, 32770, 70000, 100001, len(payload)],
+                ]
+                for cuts in cut_sets:
+                    for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                        self.wfile.write(frame(2 if i == 0 else 0, payload[left:right],
+                                               i == len(cuts) - 2))
+                        if i != len(cuts) - 2:
+                            self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path == "/large": self.wfile.write(frame(2, bytes(range(256)) * 4096))
+            elif self.path == "/fragment-limit": self.wfile.write(frame(2, b"a" * 60, False) + frame(0, b"b" * 60))
+            elif self.path == "/close": self.wfile.write(frame(8, b"\x03\xe8bye"))
+            elif self.path == "/bad-utf8": self.wfile.write(frame(1, b"\xc0\x80"))
+            elif self.path == "/bad-close": self.wfile.write(frame(8, b"\x03\xed"))
+            elif self.path == "/truncated": self.wfile.write(frame(2, b"abcdefgh")[:-3]); return
+            elif self.path == "/flood-ping":
+                for _ in range(100): self.wfile.write(frame(9, b"tick")); time.sleep(.01)
+                return
+            elif self.path == "/slow-send": time.sleep(.25)
+            elif self.path == "/stall-read": time.sleep(1)
+            elif self.path == "/fragmented-binary":
+                payload = bytes(range(256)) * 257
+                cuts = [0, 1, 125, 126, 127, 16384, 65535, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path in ("/fragmented-large-binary", "/fragmented-large-text"):
+                text = self.path.endswith("-text")
+                payload = ("a🌍\0é" * 65537).encode() if text else bytes(range(256)) * 2305
+                # Cross the bounded reservation and geometric-growth thresholds,
+                # including UTF-8 code points split across continuation frames.
+                cuts = [0, 1, 3, 127, 16383, 262141, 262145, 393221, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame((1 if text else 2) if i == 0 else 0,
+                                           payload[left:right], i == len(cuts) - 2))
+                    if i != len(cuts) - 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path == "/fragmented-tail-growth":
+                # After 40000 + 5000 bytes, the geometric capacity leaves room
+                # for a direct read, but the final frame requires a new reserve.
+                payload = bytes(range(256)) * 768 + b"\0"
+                cuts = [0, 40000, 45000, len(payload)]
+                for i, (left, right) in enumerate(zip(cuts, cuts[1:])):
+                    self.wfile.write(frame(2 if i == 0 else 0, payload[left:right], i == 2))
+                    if i != 2: self.wfile.write(frame(9, bytes([i, 0, 255])))
+            elif self.path == "/bytewise-frame":
+                for byte in frame(2, b"\x00\xff\x80\xc0boundary\x00"):
+                    self.wfile.write(bytes([byte])); self.wfile.flush(); time.sleep(.001)
+            elif self.path == "/slow-fragments":
+                for i in range(30):
+                    self.wfile.write(frame(2 if i == 0 else 0, bytes([i]), False)); self.wfile.flush(); time.sleep(.02)
+            while True:
+                kind, data, final = read_frame(self.rfile)
+                self.server.frames.append((kind, data, final))
+                if kind == 8:
+                    self.wfile.write(frame(8, data)); return
+                if kind == 9: self.wfile.write(frame(10, data))
+                elif kind in (1, 2): self.wfile.write(frame(kind, data))
+        except (OSError, EOFError): pass
+
+
+class Server(http.server.ThreadingHTTPServer):
+    daemon_threads = True
+    request_queue_size = 128
+    def handle_error(self, *_): pass
+
+
+def start_ws(context=None):
+    server = Server(("127.0.0.1", 0), Handler)
+    server.handshakes, server.frames = [], []
+    if context:
+        context.set_alpn_protocols(["http/1.1"])
+        server.socket = context.wrap_socket(server.socket, server_side=True)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    return server, ("wss" if context else "ws") + f"://127.0.0.1:{server.server_port}"

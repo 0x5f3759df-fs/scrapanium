@@ -1,0 +1,25 @@
+{
+  "name": "candidate-roundtrip-link",
+  "command": [
+    "/usr/lib/llvm-21/bin/clang",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/timing-20261008-03/build/candidate-roundtrip.generated.c",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native/scrapanium.c",
+    "-std=c11",
+    "-O3",
+    "-g",
+    "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+    "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native",
+    "-lpthread",
+    "-lm",
+    "-ldl",
+    "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+    "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+    "-lcurl-impersonate",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/timing-20261008-03/build/candidate-roundtrip"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

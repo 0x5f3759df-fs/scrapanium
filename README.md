@@ -78,6 +78,8 @@ The parser and cap trial remain experimental and unadopted. The cap trial passed
   </picture>
 </p>
 
+A separate owned-segment receive prototype remains experimental and unadopted: it failed all six stream non-regression guards, passed only two of seven round-trip guards, and neither 64 KiB stream met the 2x target. [Results and evidence](benchmarks/websocket_owned_receive_comparison/evidence/measured-01-20261008/README.md).
+
 ## Make your first request
 
 After [installing the prerequisites and bootstrapping](docs/GETTING_STARTED.md), save this as `hello.bend` in the repository root:

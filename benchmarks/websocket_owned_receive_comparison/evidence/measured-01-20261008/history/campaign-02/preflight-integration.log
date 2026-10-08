@@ -1,0 +1,6 @@
+test_preflight_only_runs_pinned_clang_newline_check_before_any_build (test_owned_campaign.CampaignPlanTests.test_preflight_only_runs_pinned_clang_newline_check_before_any_build) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.350s
+
+OK

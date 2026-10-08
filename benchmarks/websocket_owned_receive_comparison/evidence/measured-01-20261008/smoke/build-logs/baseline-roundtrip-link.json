@@ -1,0 +1,25 @@
+{
+  "name": "baseline-roundtrip-link",
+  "command": [
+    "/usr/lib/llvm-21/bin/clang",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-roundtrip.generated.c",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native/scrapanium.c",
+    "-std=c11",
+    "-O3",
+    "-g",
+    "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+    "-I/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native",
+    "-lpthread",
+    "-lm",
+    "-ldl",
+    "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+    "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+    "-lcurl-impersonate",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-roundtrip"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

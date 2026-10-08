@@ -1,0 +1,53 @@
+Segmented Bytes.text UTF-8 oracle (2026-10-08)
+
+Reference source: /home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/comp.ts
+Reference lines: 5566-5615 (io_str WHATWG replacement/reconsume decoder)
+Reference SHA-256: 10afb08dd55a52bfbb88fdf84534cebdc000bdf7820c69cee1d6bb3fcfaf7d7b
+
+Exact input fragments:
+  [00 e2] [40 a1 f0] [9f ed] [a0 80 f4] [90 80 80 7c e2 82]
+Concatenated wire bytes: 00e240a1f09feda080f49080807ce282
+
+Invocation: Python 3, run this transcription of the pinned io_str byte loop:
+
+fragments = [bytes.fromhex(x) for x in (
+    "00e2", "40a1f0", "9fed", "a080f4", "9080807ce282")]
+data = b"".join(fragments)
+points = []
+c = need = 0
+lo, hi = 0x80, 0xBF
+i, n = 0, len(data)
+while i < n or need > 0:
+    b = data[i] if i < n else 0x100
+    if need > 0 and (b < lo or b > hi):
+        need, c = 0, 0xFFFD
+        i -= 1  # reprocess the breaking byte
+    elif need > 0:
+        lo, hi = 0x80, 0xBF
+        c = (c << 6) | (b & 0x3F)
+        need -= 1
+        if need > 0:
+            i += 1
+            continue
+    elif b < 0x80:
+        c = b
+    elif b < 0xC2 or b > 0xF4:
+        c = 0xFFFD
+    else:
+        need = 1 if b < 0xE0 else 2 if b < 0xF0 else 3
+        lo = 0xA0 if b == 0xE0 else 0x90 if b == 0xF0 else 0x80
+        hi = 0x9F if b == 0xED else 0x8F if b == 0xF4 else 0xBF
+        c = b & (0x3F >> need)
+        i += 1
+        continue
+    points.append(c)
+    i += 1
+
+Output:
+  bytes = 00e240a1f09feda080f49080807ce282
+  scalars = [0, 65533, 64, 65533, 65533, 65533, 65533, 65533, 65533, 65533, 65533, 65533, 124, 65533]
+  numeric serialization = 0 65533 64 65533 65533 65533 65533 65533 65533 65533 65533 65533 124 65533 + trailing space
+
+The focused WSS regression checks this numeric scalar serialization against Bytes.text output at --threads 1 and 4.
+Test files: tests/owned_segment_text_checks.py; tests/websocket_owned_text_edges.bend
+Final test log: /home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-segment-text-edges-final-20261008.log

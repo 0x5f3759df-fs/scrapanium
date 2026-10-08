@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-01/smoke-preflight-version-diagnostic-20261008-01.py", line 15, in <module>
+    raise RuntimeError("Clang version differs from frozen source pins")
+RuntimeError: Clang version differs from frozen source pins
+check=runner raw equality
+expected_repr= 'Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin'
+actual_repr= 'Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n'
+expected_sha256= 5568cf477d4748dac7b20aa6bce58b1f4548a413a50658e125c591ae37483a48
+actual_sha256= 77467400b91c4cebb6c3e29d8a611af518a2f4078c22baf276b0a1373e996bf5

@@ -1,0 +1,1 @@
+wsl.exe --cd /home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03 --exec bash -lc "set -o pipefail; /usr/bin/python3.14 -m unittest -v test_owned_campaign 2>&1 | tee /home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/unit-suite-campaign03-20261008-01.log"\n

@@ -1,0 +1,111 @@
+{
+  "attempts_started": false,
+  "baseline_helper_imports": {
+    "cache_prefix": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache",
+    "helpers": {
+      "build": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/scripts/build.cpython-314.pyc",
+        "cache_sha256": "4ef3058c2b02752cceb663bcd181a5a727f3981a0034e7c2cfe25201ed4b0a4d",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/scripts/build.py",
+        "source_sha256": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1"
+      },
+      "lab": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/lab.cpython-314.pyc",
+        "cache_sha256": "1fc7cb7d67d2f56c827a9bb64da69e52284508031d62a5fa8f6329dbc8c31045",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/lab.py",
+        "source_sha256": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69"
+      },
+      "websocket": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket.cpython-314.pyc",
+        "cache_sha256": "29a35609271432ebd613ccdc76035ccb30065ff160b7de6e6ebe95005a54e6df",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket.py",
+        "source_sha256": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75"
+      },
+      "websocket_streaming": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_streaming.cpython-314.pyc",
+        "cache_sha256": "6e4d47d7c9c867742ab9e4f9a09b11c992df921655bbbb6c3743bc5092c0303c",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_streaming.py",
+        "source_sha256": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8"
+      },
+      "ws_lab": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/ws_lab.cpython-314.pyc",
+        "cache_sha256": "bb6ca97eb20c6f387f56d4cd46ba5e8e5c941454f18f78fadf36b462d6759648",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/ws_lab.py",
+        "source_sha256": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c"
+      }
+    }
+  },
+  "builds_started": false,
+  "clang_version_check": {
+    "comparison_value": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "raw_output": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n",
+    "raw_output_sha256": "77467400b91c4cebb6c3e29d8a611af518a2f4078c22baf276b0a1373e996bf5"
+  },
+  "command": [
+    "/usr/bin/python3.14",
+    "run_owned_comparison.py",
+    "--baseline",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+    "--candidate",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+    "--curl-cffi-checkout",
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "--bend-source",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "--bun",
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "--curl-prefix",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01",
+    "--cc",
+    "/usr/lib/llvm-21/bin/clang",
+    "--preflight-only",
+    "--seed",
+    "20261008",
+    "--output",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01"
+  ],
+  "created_utc": "2026-10-08T10:49:36.930048+00:00",
+  "finished_utc": "2026-10-08T10:49:41.566977+00:00",
+  "inputs": {
+    "baseline": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+    "bend_source": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+    "bun": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "candidate": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+    "curl_cffi_checkout": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "curl_prefix": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01",
+    "source_pins": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/source-pins.json",
+    "source_pins_sha256": "5f891e15575c3390e71f9e84ced837697ee46453570858d74afdfffc80f557f7"
+  },
+  "options": {
+    "cc": "/usr/lib/llvm-21/bin/clang",
+    "preflight_only": true,
+    "runs": 0,
+    "seed": 20261008,
+    "smoke": false
+  },
+  "performance_claims": false,
+  "preflight_only": true,
+  "python_cache_prefix": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/preflight-campaign03-20261008-01/python-bytecode-cache",
+  "python_cache_was_empty_before_helpers": true,
+  "schema": 1,
+  "selected_environment": {
+    "BEND_SOURCE": "",
+    "BUN": "",
+    "CC": "",
+    "GOAMD64": "",
+    "GOARCH": "",
+    "GOFLAGS": "",
+    "GOOS": "",
+    "GOROOT": "",
+    "GOTOOLCHAIN": "",
+    "GOWORK": "",
+    "LD_AUDIT": "",
+    "LD_LIBRARY_PATH": "",
+    "LD_PRELOAD": "",
+    "PYTHONNOUSERSITE": "",
+    "PYTHONPATH": "",
+    "PYTHONPYCACHEPREFIX": "",
+    "SCRAPANIUM_CURL_DIR": ""
+  },
+  "status": "preflight_complete"
+}

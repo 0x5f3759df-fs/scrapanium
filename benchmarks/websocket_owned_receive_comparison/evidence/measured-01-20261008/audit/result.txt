@@ -1,0 +1,15 @@
+Final saved-data audit result
+Verifier SHA-256: 0f538af17701b0119e29f8042945ea31d18d603a8189e07bc0aee0de0532f3b1
+Command: python3.14 audit/verify_saved_run.py --self-test
+Exit status: 0
+
+Exact stdout:
+PASS checksum_files=102 candidate_source_snapshots=32
+PASS correctness_smoke_attempts=45 performance_claims=false
+PASS timing_attempts=474 paired_ratio_series=39 bootstrap_resamples=10000
+PASS gates=stream 0/6 round_trip 2/7 large_64KiB 0/2
+PASS self_test=missing_row_integrity_and_semantics rejected
+PASS self_test=reordered_schedule rejected
+PASS self_test=missing_and_modified_source_snapshots rejected
+
+The self-test verifies a temporary missing-row copy against the frozen attempt hash and directly through the timing count check; it also verifies that reordered JSONL fails the deterministic schedule check. Separate temporary copies with a missing source snapshot and an altered source snapshot fail the pinned source path map and SHA-256 checks. No archived evidence was mutated.

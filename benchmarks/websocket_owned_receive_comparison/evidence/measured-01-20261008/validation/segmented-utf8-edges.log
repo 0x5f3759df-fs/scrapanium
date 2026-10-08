@@ -1,0 +1,7 @@
+cwd: /home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree
+command: /home/baidu/scrapanium-experiments/scrapanium-wss-recv-cold-20260924/.deps/venv-matched/bin/python -m pytest -p no:cacheprovider -q tests/owned_segment_text_checks.py
+env: BEND_SOURCE, BUN, SCRAPANIUM_CURL_DIR, CC, PYTHONDONTWRITEBYTECODE set to pinned values
+exit: 0
+
+..                                                                       [100%]
+2 passed in 11.18s

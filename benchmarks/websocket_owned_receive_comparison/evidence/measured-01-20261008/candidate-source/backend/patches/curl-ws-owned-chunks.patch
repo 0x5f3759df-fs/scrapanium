@@ -1,0 +1,646 @@
+diff --git a/include/curl/websockets.h b/include/curl/websockets.h
+index bf93715abf102f38c17c450ac16de5faece5d305..cf8a0335348a602bbc304ecec61762398a7b7ff4 100644
+--- a/include/curl/websockets.h
++++ b/include/curl/websockets.h
+@@ -56,6 +56,25 @@ CURL_EXTERN CURLcode curl_ws_recv(CURL *curl, void *buffer, size_t buflen,
+                                   size_t *recv,
+                                   const struct curl_ws_frame **metap);
+ 
++/* Experimental owned-payload receive API. A returned payload owns an
++ * immutable reference to the decoded plaintext queue chunk and survives
++ * subsequent receives and easy-handle cleanup until explicitly released.
++ * max_allocation bounds the cURL-side bytes retained by one payload; an
++ * allocation failure or insufficient bound returns CURLE_OUT_OF_MEMORY
++ * without consuming that payload, so callers can fall back to curl_ws_recv. */
++#define CURLWS_OWNED_CHUNKS_API 1
++struct curl_ws_payload;
++CURL_EXTERN CURLcode curl_ws_recv_owned(CURL *curl, size_t max_allocation,
++                                        struct curl_ws_payload **payload,
++                                        const struct curl_ws_frame **metap);
++CURL_EXTERN size_t curl_ws_recv_owned_reservation(CURL *curl);
++CURL_EXTERN const unsigned char *curl_ws_payload_data(
++  const struct curl_ws_payload *payload);
++CURL_EXTERN size_t curl_ws_payload_size(const struct curl_ws_payload *payload);
++CURL_EXTERN size_t curl_ws_payload_allocation_size(
++  const struct curl_ws_payload *payload);
++CURL_EXTERN void curl_ws_payload_free(struct curl_ws_payload *payload);
++
+ /* flags for curl_ws_send() */
+ #define CURLWS_PONG       (1 << 6)
+ 
+diff --git a/lib/bufq.c b/lib/bufq.c
+index 750d86888f381586bfabd8ef60d9900ac120a190..7b42349749560a3885df5c8d7a4984b9bfa493e5 100644
+--- a/lib/bufq.c
++++ b/lib/bufq.c
+@@ -25,6 +25,40 @@
+ 
+ #include "bufq.h"
+ 
++struct bufq_pin {
++  struct buf_chunk *owner;
++  const uint8_t *data;
++  size_t len;
++};
++
++static void chunk_ref_init(struct buf_chunk *chunk)
++{
++  atomic_init(&chunk->refs, 1);
++}
++
++static bool chunk_ref_acquire(struct buf_chunk *chunk)
++{
++  unsigned int refs = atomic_load_explicit(&chunk->refs, memory_order_relaxed);
++  while(refs && refs < UINT_MAX) {
++    if(atomic_compare_exchange_weak_explicit(&chunk->refs, &refs, refs + 1,
++                                             memory_order_acquire,
++                                             memory_order_relaxed))
++      return TRUE;
++  }
++  return FALSE;
++}
++
++static bool chunk_ref_shared(const struct buf_chunk *chunk)
++{
++  return atomic_load_explicit(&chunk->refs, memory_order_acquire) > 1;
++}
++
++static void chunk_ref_release(struct buf_chunk *chunk)
++{
++  if(atomic_fetch_sub_explicit(&chunk->refs, 1, memory_order_acq_rel) == 1)
++    curlx_free(chunk);
++}
++
+ static bool chunk_is_empty(const struct buf_chunk *chunk)
+ {
+   return chunk->r_offset >= chunk->w_offset;
+@@ -139,7 +173,7 @@ static void chunk_list_free(struct buf_chunk **anchor)
+   while(*anchor) {
+     chunk = *anchor;
+     *anchor = chunk->next;
+-    curlx_free(chunk);
++    chunk_ref_release(chunk);
+   }
+ }
+ 
+@@ -179,6 +213,7 @@ static CURLcode bufcp_take(struct bufc_pool *pool,
+     return CURLE_OUT_OF_MEMORY;
+   }
+   chunk->dlen = pool->chunk_size;
++  chunk_ref_init(chunk);
+   *pchunk = chunk;
+   return CURLE_OK;
+ }
+@@ -187,7 +222,7 @@ static void bufcp_put(struct bufc_pool *pool,
+                       struct buf_chunk *chunk)
+ {
+   if(pool->spare_count >= pool->spare_max) {
+-    curlx_free(chunk);
++    chunk_ref_release(chunk);
+   }
+   else {
+     chunk_reset(chunk);
+@@ -246,8 +281,14 @@ void Curl_bufq_reset(struct bufq *q)
+   while(q->head) {
+     chunk = q->head;
+     q->head = chunk->next;
+-    chunk->next = q->spare;
+-    q->spare = chunk;
++    if(q->pins_enabled && chunk_ref_shared(chunk)) {
++      chunk_ref_release(chunk);
++      --q->chunk_count;
++    }
++    else {
++      chunk->next = q->spare;
++      q->spare = chunk;
++    }
+   }
+   q->tail = NULL;
+ }
+@@ -310,6 +351,7 @@ static struct buf_chunk *get_spare(struct bufq *q)
+     if(!chunk)
+       return NULL;
+     chunk->dlen = q->chunk_size;
++    chunk_ref_init(chunk);
+     ++q->chunk_count;
+     return chunk;
+   }
+@@ -324,7 +366,11 @@ static void prune_head(struct bufq *q)
+     q->head = chunk->next;
+     if(q->tail == chunk)
+       q->tail = q->head;
+-    if(q->pool) {
++    if(q->pins_enabled && chunk_ref_shared(chunk)) {
++      chunk_ref_release(chunk);
++      --q->chunk_count;
++    }
++    else if(q->pool) {
+       bufcp_put(q->pool, chunk);
+       --q->chunk_count;
+     }
+@@ -333,7 +379,7 @@ static void prune_head(struct bufq *q)
+       /* SOFT_LIMIT allowed us more than max. free spares until
+        * we are at max again. Or free them if we are configured
+        * to not use spares. */
+-      curlx_free(chunk);
++      chunk_ref_release(chunk);
+       --q->chunk_count;
+     }
+     else {
+@@ -469,6 +515,70 @@ void Curl_bufq_skip(struct bufq *q, size_t amount)
+   }
+ }
+ 
++bool Curl_bufq_enable_pins(struct bufq *q)
++{
++  if(!q || q->head || q->tail)
++    return FALSE;
++  q->pins_enabled = TRUE;
++  return TRUE;
++}
++
++CURLcode Curl_bufq_pin_head(struct bufq *q, size_t len,
++                            struct bufq_pin **ppin)
++{
++  const uint8_t *data;
++  size_t available;
++  struct bufq_pin *pin;
++  if(ppin)
++    *ppin = NULL;
++  if(!q || !ppin || !q->pins_enabled || !len ||
++     !Curl_bufq_peek(q, &data, &available) || len > available)
++    return CURLE_BAD_FUNCTION_ARGUMENT;
++  pin = curlx_calloc(1, sizeof(*pin));
++  if(!pin)
++    return CURLE_OUT_OF_MEMORY;
++  if(!chunk_ref_acquire(q->head)) {
++    curlx_free(pin);
++    return CURLE_OUT_OF_MEMORY;
++  }
++  pin->owner = q->head;
++  pin->data = data;
++  pin->len = len;
++  *ppin = pin;
++  return CURLE_OK;
++}
++
++const uint8_t *Curl_bufq_pin_data(const struct bufq_pin *pin)
++{
++  return pin ? pin->data : NULL;
++}
++
++size_t Curl_bufq_pin_len(const struct bufq_pin *pin)
++{
++  return pin ? pin->len : 0;
++}
++
++size_t Curl_bufq_pin_allocated(const struct bufq_pin *pin)
++{
++  return pin ? sizeof(*pin->owner) + pin->owner->dlen + sizeof(*pin) : 0;
++}
++
++size_t Curl_bufq_pin_reservation(const struct bufq *q)
++{
++  if(!q || q->chunk_size > SIZE_MAX - sizeof(struct buf_chunk) -
++                              sizeof(struct bufq_pin))
++    return 0;
++  return sizeof(struct buf_chunk) + q->chunk_size + sizeof(struct bufq_pin);
++}
++
++void Curl_bufq_pin_release(struct bufq_pin *pin)
++{
++  if(pin) {
++    chunk_ref_release(pin->owner);
++    curlx_free(pin);
++  }
++}
++
+ CURLcode Curl_bufq_pass(struct bufq *q, Curl_bufq_writer *writer,
+                         void *writer_ctx, size_t *pwritten)
+ {
+diff --git a/lib/bufq.h b/lib/bufq.h
+index c53749d84e3653dd0cb500d6b97c775a5d3e2df8..781efa7911eb294b802a085bcfbdfa15d658eba0 100644
+--- a/lib/bufq.h
++++ b/lib/bufq.h
+@@ -24,6 +24,7 @@
+  *
+  ***************************************************************************/
+ #include "curl_setup.h"
++#include <stdatomic.h>
+ 
+ /**
+  * A chunk of bytes for reading and writing.
+@@ -35,6 +36,7 @@ struct buf_chunk {
+   size_t dlen;             /* the amount of allocated x.data[] */
+   size_t r_offset;         /* first unread bytes */
+   size_t w_offset;         /* one after last written byte */
++  atomic_uint refs;        /* queue/pool owner plus immutable pins */
+   union {
+     uint8_t data[1];       /* the buffer for `dlen` bytes */
+     void *dummy;           /* alignment */
+@@ -97,6 +99,7 @@ struct bufq {
+   size_t max_chunks;            /* max `head` chunks to use */
+   size_t chunk_size;            /* size of chunks to manage */
+   int opts;                     /* options for handling queue, see below */
++  bool pins_enabled;            /* experimental immutable head pins */
+ };
+ 
+ /**
+@@ -201,6 +204,18 @@ bool Curl_bufq_peek_at(struct bufq *q, size_t offset,
+  */
+ void Curl_bufq_skip(struct bufq *q, size_t amount);
+ 
++/* Experimental: retain immutable bytes from the current head chunk. Enable
++ * before the first write. A pin remains valid after queue/pool destruction. */
++struct bufq_pin;
++bool Curl_bufq_enable_pins(struct bufq *q);
++CURLcode Curl_bufq_pin_head(struct bufq *q, size_t len,
++                            struct bufq_pin **ppin);
++const uint8_t *Curl_bufq_pin_data(const struct bufq_pin *pin);
++size_t Curl_bufq_pin_len(const struct bufq_pin *pin);
++size_t Curl_bufq_pin_allocated(const struct bufq_pin *pin);
++size_t Curl_bufq_pin_reservation(const struct bufq *q);
++void Curl_bufq_pin_release(struct bufq_pin *pin);
++
+ typedef CURLcode Curl_bufq_writer(void *writer_ctx,
+                                   const uint8_t *buf, size_t len,
+                                   size_t *pwritten);
+diff --git a/lib/libcurl.def b/lib/libcurl.def
+index 24695366c375bc4886116cbf9f222fc79af0572f..d69676e259ab4d23242ca38e727282fa9d945656 100644
+--- a/lib/libcurl.def
++++ b/lib/libcurl.def
+@@ -98,5 +98,11 @@ curl_version
+ curl_version_info
+ curl_ws_meta
+ curl_ws_recv
++curl_ws_recv_owned
++curl_ws_recv_owned_reservation
++curl_ws_payload_data
++curl_ws_payload_size
++curl_ws_payload_allocation_size
++curl_ws_payload_free
+ curl_ws_send
+ curl_ws_start_frame
+diff --git a/lib/ws.c b/lib/ws.c
+index a7d399ab80d591b1d25cc329c781dbe5f32a816a..aed6c351eb4178aa1958db00ebf967c03001a832 100644
+--- a/lib/ws.c
++++ b/lib/ws.c
+@@ -731,7 +731,8 @@ static CURLcode ws_dec_pass_payload(struct ws_decoder *dec,
+                                     struct Curl_easy *data,
+                                     struct bufq *inraw,
+                                     ws_write_payload *write_cb,
+-                                    void *write_ctx)
++                                    void *write_ctx,
++                                    bool one_chunk)
+ {
+   const uint8_t *inbuf;
+   size_t inlen;
+@@ -755,6 +756,8 @@ static CURLcode ws_dec_pass_payload(struct ws_decoder *dec,
+                                 0, SIZE_MAX);
+     CURL_TRC_WS(data, "passed %zu bytes payload, %zu remain",
+                 nwritten, remain);
++    if(one_chunk && nwritten)
++      return remain ? CURLE_AGAIN : CURLE_OK;
+   }
+ 
+   return remain ? CURLE_AGAIN : CURLE_OK;
+@@ -764,7 +767,8 @@ static CURLcode ws_dec_pass(struct ws_decoder *dec,
+                             struct Curl_easy *data,
+                             struct bufq *inraw,
+                             ws_write_payload *write_cb,
+-                            void *write_ctx)
++                            void *write_ctx,
++                            bool one_chunk)
+ {
+   CURLcode result;
+ 
+@@ -802,7 +806,8 @@ static CURLcode ws_dec_pass(struct ws_decoder *dec,
+     }
+     FALLTHROUGH();
+   case WS_DEC_PAYLOAD:
+-    result = ws_dec_pass_payload(dec, data, inraw, write_cb, write_ctx);
++    result = ws_dec_pass_payload(dec, data, inraw, write_cb, write_ctx,
++                                 one_chunk);
+     ws_dec_info(dec, data, "passing");
+     if(result)
+       return result;
+@@ -990,7 +995,7 @@ static CURLcode ws_cw_write(struct Curl_easy *data,
+     pass_ctx.next_writer = writer->next;
+     pass_ctx.cw_type = type;
+     result = ws_dec_pass(&ws->dec, data, &ctx->buf,
+-                         ws_cw_dec_next, &pass_ctx);
++                         ws_cw_dec_next, &pass_ctx, FALSE);
+     if(result == CURLE_AGAIN) {
+       /* insufficient amount of data, keep it for later.
+        * we pretend to have written all since we have a copy */
+@@ -1050,7 +1055,7 @@ static CURLcode ws_cw_flush(struct Curl_easy *data,
+       pass_ctx.next_writer = writer->next;
+       pass_ctx.cw_type = CLIENTWRITE_BODY;
+       result = ws_dec_pass(&ws->dec, data, &ctx->buf,
+-                           ws_cw_dec_next, &pass_ctx);
++                           ws_cw_dec_next, &pass_ctx, FALSE);
+       if(result == CURLE_AGAIN) {
+         /* insufficient amount of data, keep it for later.
+          * we pretend to have written all since we have a copy */
+@@ -1737,6 +1742,10 @@ CURLcode Curl_ws_accept(struct Curl_easy *data,
+     CURL_TRC_WS(data, "WS, using chunk size %zu", chunk_size);
+     Curl_bufq_init2(&ws->recvbuf, chunk_size, WS_CHUNK_COUNT,
+                     BUFQ_OPT_SOFT_LIMIT);
++    if(!Curl_bufq_enable_pins(&ws->recvbuf)) {
++      curlx_free(ws);
++      return CURLE_FAILED_INIT;
++    }
+     Curl_bufq_init2(&ws->sendbuf, chunk_size, WS_CHUNK_COUNT,
+                     BUFQ_OPT_SOFT_LIMIT);
+     ws_dec_init(&ws->dec);
+@@ -1846,6 +1855,13 @@ out:
+   return result;
+ }
+ 
++struct curl_ws_payload {
++  struct bufq_pin *pin;
++  const uint8_t *data;
++  size_t len;
++  size_t allocation_size;
++};
++
+ struct ws_collect {
+   struct Curl_easy *data;
+   struct websocket *ws;
+@@ -1856,6 +1872,10 @@ struct ws_collect {
+   int frame_flags;
+   curl_off_t payload_offset;
+   curl_off_t payload_len;
++  struct bufq *queue;
++  struct curl_ws_payload **owned_payload;
++  size_t max_owned_allocation;
++  bool owned;
+   bool written;
+ };
+ 
+@@ -1897,6 +1917,41 @@ static CURLcode ws_client_collect(const uint8_t *buf, size_t buflen,
+       return result;
+     *pnwritten = buflen;
+   }
++  else if(ctx->owned && buflen) {
++    struct bufq_pin *pin = NULL;
++    struct curl_ws_payload *payload;
++    size_t allocation_size;
++
++    result = Curl_bufq_pin_head(ctx->queue, buflen, &pin);
++    if(result)
++      return result;
++    if(Curl_bufq_pin_data(pin) != buf || Curl_bufq_pin_len(pin) != buflen) {
++      Curl_bufq_pin_release(pin);
++      return CURLE_FAILED_INIT;
++    }
++    if(Curl_bufq_pin_allocated(pin) > SIZE_MAX - sizeof(*payload)) {
++      Curl_bufq_pin_release(pin);
++      return CURLE_OUT_OF_MEMORY;
++    }
++    allocation_size = Curl_bufq_pin_allocated(pin) + sizeof(*payload);
++    if(allocation_size > ctx->max_owned_allocation) {
++      Curl_bufq_pin_release(pin);
++      return CURLE_OUT_OF_MEMORY;
++    }
++    payload = curlx_calloc(1, sizeof(*payload));
++    if(!payload) {
++      Curl_bufq_pin_release(pin);
++      return CURLE_OUT_OF_MEMORY;
++    }
++    payload->pin = pin;
++    payload->data = buf;
++    payload->len = buflen;
++    payload->allocation_size = allocation_size;
++    *ctx->owned_payload = payload;
++    ctx->written = TRUE;
++    ctx->bufidx += buflen;
++    *pnwritten = buflen;
++  }
+   else {
+     size_t write_len;
+ 
+@@ -1990,7 +2045,7 @@ CURLcode curl_ws_recv(CURL *curl, void *buffer,
+       }
+ 
+       result = ws_dec_pass(&ws->dec, data, &ws->recvbuf,
+-                           ws_client_collect, &ctx);
++                           ws_client_collect, &ctx, FALSE);
+       if(result == CURLE_AGAIN) {
+         if(!ctx.written) {
+           ws_dec_info(&ws->dec, data, "need more input");
+@@ -2031,6 +2086,166 @@ out:
+   CURL_EAPI_LEAVE(&guard);
+   return result;
+ }
++CURLcode curl_ws_recv_owned(CURL *curl, size_t max_allocation,
++                            struct curl_ws_payload **payload,
++                            const struct curl_ws_frame **metap)
++{
++  struct Curl_eapi_guard guard;
++  CURLcode result = CURLE_OK;
++
++  if(!payload || !metap)
++    return CURLE_BAD_FUNCTION_ARGUMENT;
++  *payload = NULL;
++  *metap = NULL;
++  if(CURL_EAPI_ENTER(&guard, curl, ws_recv, &result)) {
++    struct Curl_easy *data = curl;
++    struct connectdata *conn;
++    struct websocket *ws;
++    struct ws_collect ctx;
++
++    conn = data->conn;
++    if(!conn) {
++      /* Unhappy hack with lifetimes of transfers and connection */
++      if(!data->set.connect_only) {
++        failf(data, "[WS] CONNECT_ONLY is required");
++        result = CURLE_UNSUPPORTED_PROTOCOL;
++        goto out;
++      }
++
++      Curl_getconnectinfo(data, &conn);
++      if(!conn) {
++        failf(data, "[WS] connection not found");
++        result = CURLE_BAD_FUNCTION_ARGUMENT;
++        goto out;
++      }
++    }
++    ws = Curl_conn_meta_get(conn, CURL_META_PROTO_WS_CONN);
++    if(!ws) {
++      failf(data, "[WS] connection is not setup for websocket");
++      result = CURLE_BAD_FUNCTION_ARGUMENT;
++      goto out;
++    }
++
++    memset(&ctx, 0, sizeof(ctx));
++    ctx.data = data;
++    ctx.ws = ws;
++    ctx.owned = TRUE;
++    ctx.queue = &ws->recvbuf;
++    ctx.owned_payload = payload;
++    ctx.max_owned_allocation = max_allocation;
++
++    while(1) {
++      /* receive more when our buffer is empty */
++      if(Curl_bufq_is_empty(&ws->recvbuf)) {
++        size_t n;
++        result = Curl_bufq_slurp(&ws->recvbuf, nw_in_recv, data, &n);
++        if(result)
++          goto out;
++        else if(n == 0) {
++          /* connection closed */
++          infof(data, "[WS] connection expectedly closed?");
++          result = CURLE_GOT_NOTHING;
++          goto out;
++        }
++        CURL_TRC_WS(data, "curl_ws_recv, added %zu bytes from network",
++                    Curl_bufq_len(&ws->recvbuf));
++      }
++
++      result = ws_dec_pass(&ws->dec, data, &ws->recvbuf,
++                           ws_client_collect, &ctx, TRUE);
++      if(result == CURLE_AGAIN) {
++        if(!ctx.written) {
++          ws_dec_info(&ws->dec, data, "need more input");
++          continue;  /* nothing written, try more input */
++        }
++        break;
++      }
++      else if(result) {
++        goto out;
++      }
++      else if(ctx.written) {
++        /* The decoded frame is passed back to our caller.
++         * There are frames like PING were we auto-respond to and
++         * that we do not return. For these `ctx.written` is not set. */
++        break;
++      }
++    }
++
++    /* update frame information to be passed back */
++    update_meta(ws, ctx.frame_age, ctx.frame_flags, ctx.payload_offset,
++                ctx.payload_len, ctx.bufidx);
++    *metap = &ws->recvframe;
++    CURL_TRC_WS(data, "curl_ws_recv_owned -> %zu bytes (frame at %"
++                FMT_OFF_T ", %" FMT_OFF_T " left)",
++                ws->recvframe.len, ws->recvframe.offset,
++                ws->recvframe.bytesleft);
++    /* all's well, try to send any pending control. we do not know
++     * when the application will call `curl_ws_send()` again. */
++    if(!data->set.ws_raw_mode && ws->pending.type) {
++      CURLcode r2 = ws_enc_add_pending(data, ws);
++      if(!r2)
++        (void)ws_flush(data, ws, Curl_api_is_in_callback(data));
++    }
++    result = CURLE_OK;
++  }
++out:
++  if(result && *payload) {
++    curl_ws_payload_free(*payload);
++    *payload = NULL;
++  }
++  CURL_EAPI_LEAVE(&guard);
++  return result;
++}
++
++
++size_t curl_ws_recv_owned_reservation(CURL *curl)
++{
++  struct Curl_eapi_guard guard;
++  CURLcode result = CURLE_OK;
++  size_t reservation = 0;
++  if(CURL_EAPI_ENTER(&guard, curl, ws_recv, &result)) {
++    struct Curl_easy *data = curl;
++    struct connectdata *conn = data->conn;
++    struct websocket *ws;
++    if(!conn && data->set.connect_only)
++      Curl_getconnectinfo(data, &conn);
++    if(conn) {
++      ws = Curl_conn_meta_get(conn, CURL_META_PROTO_WS_CONN);
++      if(ws) {
++        reservation = Curl_bufq_pin_reservation(&ws->recvbuf);
++        if(reservation && reservation <= SIZE_MAX - sizeof(struct curl_ws_payload))
++          reservation += sizeof(struct curl_ws_payload);
++        else
++          reservation = 0;
++      }
++    }
++  }
++  CURL_EAPI_LEAVE(&guard);
++  return reservation;
++}
++
++const unsigned char *curl_ws_payload_data(const struct curl_ws_payload *payload)
++{
++  return payload ? payload->data : NULL;
++}
++
++size_t curl_ws_payload_size(const struct curl_ws_payload *payload)
++{
++  return payload ? payload->len : 0;
++}
++
++size_t curl_ws_payload_allocation_size(const struct curl_ws_payload *payload)
++{
++  return payload ? payload->allocation_size : 0;
++}
++
++void curl_ws_payload_free(struct curl_ws_payload *payload)
++{
++  if(payload) {
++    Curl_bufq_pin_release(payload->pin);
++    curlx_free(payload);
++  }
++}
+ 
+ static CURLcode ws_flush(struct Curl_easy *data, struct websocket *ws,
+                          bool blocking)
+@@ -2374,6 +2589,48 @@ CURLcode curl_ws_recv(CURL *curl, void *buffer, size_t buflen,
+   return CURLE_NOT_BUILT_IN;
+ }
+ 
++CURLcode curl_ws_recv_owned(CURL *curl, size_t max_allocation,
++                            struct curl_ws_payload **payload,
++                            const struct curl_ws_frame **metap)
++{
++  (void)curl;
++  (void)max_allocation;
++  if(payload)
++    *payload = NULL;
++  if(metap)
++    *metap = NULL;
++  return CURLE_NOT_BUILT_IN;
++}
++
++size_t curl_ws_recv_owned_reservation(CURL *curl)
++{
++  (void)curl;
++  return 0;
++}
++
++const unsigned char *curl_ws_payload_data(const struct curl_ws_payload *payload)
++{
++  (void)payload;
++  return NULL;
++}
++
++size_t curl_ws_payload_size(const struct curl_ws_payload *payload)
++{
++  (void)payload;
++  return 0;
++}
++
++size_t curl_ws_payload_allocation_size(const struct curl_ws_payload *payload)
++{
++  (void)payload;
++  return 0;
++}
++
++void curl_ws_payload_free(struct curl_ws_payload *payload)
++{
++  (void)payload;
++}
++
+ CURLcode curl_ws_send(CURL *curl, const void *buffer,
+                       size_t buflen, size_t *sent,
+                       curl_off_t fragsize,

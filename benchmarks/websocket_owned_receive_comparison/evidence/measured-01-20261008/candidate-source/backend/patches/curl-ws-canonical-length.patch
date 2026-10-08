@@ -1,0 +1,23 @@
+--- a/lib/ws.c
++++ b/lib/ws.c
+@@ -706,8 +706,20 @@
+       failf(data, "[WS] unexpected frame header length");
+       return CURLE_RECV_ERROR;
+     }
+ 
++    /* RFC 6455 requires the shortest encoding for each payload length. */
++    if(dec->head_total == 4 && dec->payload_len < 126) {
++      failf(data, "[WS] non-canonical 16-bit frame length");
++      ws_dec_reset(dec);
++      return CURLE_RECV_ERROR;
++    }
++    if(dec->head_total == 10 && dec->payload_len <= 65535) {
++      failf(data, "[WS] non-canonical 64-bit frame length");
++      ws_dec_reset(dec);
++      return CURLE_RECV_ERROR;
++    }
++
+     dec->frame_age = 0;
+     dec->payload_offset = 0;
+     ws_dec_info(dec, data, "head");
+     return CURLE_OK;

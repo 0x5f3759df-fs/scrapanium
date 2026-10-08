@@ -1,0 +1,568 @@
+{
+  "backend": {
+    "manifest_sha256": "e5fe238c5d4782cb47beaae811d26e5649b27823cbfa145ca7b715f788dbde4f",
+    "owned_api_symbols": [
+      "curl_ws_recv_owned",
+      "curl_ws_recv_owned_reservation",
+      "curl_ws_payload_data",
+      "curl_ws_payload_size",
+      "curl_ws_payload_allocation_size",
+      "curl_ws_payload_free"
+    ],
+    "path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib/libcurl-impersonate.so.4.8.0",
+    "sha256": "2a0be84b6dc33d023b2b748163bc49a32352502e189d23012defcdb29167a439",
+    "tls_backend": "BoringSSL"
+  },
+  "backend_rule": "every client PID must map this exact DSO path and SHA-256",
+  "baseline": {
+    "branch": "codex/wss-receive-evidence-20261005",
+    "head": "7b52d7f1cbbfe4c21b1abf1ad71e8e3061c47c17",
+    "path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+    "source_sha256": {
+      "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+      "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+      "benchmarks/websocket_python.py": "bb7a5f3ed1f80f60c6280f30fd6aad52101cd67082e7b41d9b7c79ec96ee37dc",
+      "benchmarks/websocket_server.go": "76be75a93bc51b243c6c9be7360b08e8e9f15757ce1358ae60ec78457f0d0d3b",
+      "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+      "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+      "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+      "dependencies.json": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+      "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+      "native/bend_bridge.c": "20abe5bb14e5e0cc1bf12d7a2f718bafb2e34d9959cc495501b3d16bf395ca7a",
+      "native/bend_websocket.inc.c": "0081eca4ca7303c3073c928502d7361816fc93c168a84c4ddf4f20c8b551c55b",
+      "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+      "native/scrapanium.c": "d6dbad0e7671596b1c918f0c7f66936e396ecd3cc7da95e2786ac089796675ae",
+      "native/scrapanium.h": "b479f540ee1317d76e8c1997809eefe96f4716087c45168def28d886b8fe5705",
+      "native/websocket.inc.c": "0bc6766607ecfad0594d4a2df85b8247da678f4ab1cc0c9fca09504307082fb5",
+      "native/ws_async.h": "46991fe2f35a994b878fdcf439834e0078397852d116d82dfe094f57a6bfb2bc",
+      "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+      "scrapanium.bend": "fc2e7286cf5a9313fa9dcf116f39711740abd30fac8748630db50cb3a2d6ca5a",
+      "scripts/build.py": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1",
+      "tests/lab.py": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69",
+      "tests/ws_lab.py": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c"
+    },
+    "status": "",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "baseline_helper_imports": {
+    "cache_prefix": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache",
+    "helpers": {
+      "build": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/scripts/build.cpython-314.pyc",
+        "cache_sha256": "4ef3058c2b02752cceb663bcd181a5a727f3981a0034e7c2cfe25201ed4b0a4d",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/scripts/build.py",
+        "source_sha256": "a555ebb9b8f627ec5f7426ce4e598d18c73198d10fec733e6792ea163e0868a1"
+      },
+      "lab": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/lab.cpython-314.pyc",
+        "cache_sha256": "1fc7cb7d67d2f56c827a9bb64da69e52284508031d62a5fa8f6329dbc8c31045",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/lab.py",
+        "source_sha256": "7e3e818be9540e3eb0f0fe146d3e33951045105d4f3d4d6dd6560a749b512e69"
+      },
+      "websocket": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket.cpython-314.pyc",
+        "cache_sha256": "29a35609271432ebd613ccdc76035ccb30065ff160b7de6e6ebe95005a54e6df",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket.py",
+        "source_sha256": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75"
+      },
+      "websocket_streaming": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_streaming.cpython-314.pyc",
+        "cache_sha256": "6e4d47d7c9c867742ab9e4f9a09b11c992df921655bbbb6c3743bc5092c0303c",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_streaming.py",
+        "source_sha256": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8"
+      },
+      "ws_lab": {
+        "cache_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/ws_lab.cpython-314.pyc",
+        "cache_sha256": "bb6ca97eb20c6f387f56d4cd46ba5e8e5c941454f18f78fadf36b462d6759648",
+        "source_path": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/tests/ws_lab.py",
+        "source_sha256": "70f99852e4c45c330d9992c254c20f7b980df1bc659539e26621115aee63bc7c"
+      }
+    }
+  },
+  "benchmark_helper_root": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+  "bend": {
+    "bun": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "bun_sha256": "45598a2814020c231575487a560e47d397d6902355d7e08171a2e56221a6d675",
+    "bun_version": "1.3.11",
+    "cc": "/usr/lib/llvm-21/bin/clang",
+    "cc_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n",
+    "commit": "63bee70b55a71024d6bdcb49a745111bc54b114e",
+    "path": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27"
+  },
+  "binary_sha256": {
+    "baseline_roundtrip": "217d792188d48246ee5aac60bac7f858fe939490b031e7997e6d481d3ae1ddcf",
+    "baseline_stream": "897c206f18b774d95356716faebbe05df26cb9c514260ddf4feb1461769d9080",
+    "candidate_roundtrip": "66fe0396a057b181d5351b17e71e25c177a255614e7f1cc845bb601f7570538e",
+    "candidate_stream": "ceddbff0d4c3e52a32227f883596eeea1436c789c121e83a5c3a0e142aaed07e",
+    "roundtrip_peer": "b9ee426815f89c393b05ffd6320ec092348a55476b9731772282cd2183151ab0",
+    "stream_peer": "5c45c533052cba51324cb8d622f877a9a6a13653ff4fc039f22560c707f90bf5"
+  },
+  "build_artifacts": [
+    {
+      "command": [
+        "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket_stream.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-stream.generated.c"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/baseline-stream-generate.json",
+      "log_sha256": "b79bd9fdb2f01d9a3b1e51af3de17523e0336d500d0adc58621d239a65a75741",
+      "name": "baseline-stream-generate",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/llvm-21/bin/clang",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-stream.generated.c",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native/scrapanium.c",
+        "-std=c11",
+        "-O3",
+        "-g",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+        "-I/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native",
+        "-lpthread",
+        "-lm",
+        "-ldl",
+        "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-lcurl-impersonate",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-stream"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/baseline-stream-link.json",
+      "log_sha256": "0218e4c2edbbfb9ad414d3639b7ce6cefa5b83577e4949516aacf2590ec11087",
+      "name": "baseline-stream-link",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/benchmarks/websocket.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-roundtrip.generated.c"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/baseline-roundtrip-generate.json",
+      "log_sha256": "28c4e41181ee087ccbee0495ccb99f29eaa7fb44d5cb90c86b9b831b2e3ce2ee",
+      "name": "baseline-roundtrip-generate",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/llvm-21/bin/clang",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-roundtrip.generated.c",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native/scrapanium.c",
+        "-std=c11",
+        "-O3",
+        "-g",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+        "-I/home/baidu/scrapanium-experiments/bend2-027-compat/worktree/native",
+        "-lpthread",
+        "-lm",
+        "-ldl",
+        "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-lcurl-impersonate",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/baseline-roundtrip"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/bend2-027-compat/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/baseline-roundtrip-link.json",
+      "log_sha256": "4de93916be0b5bfa9750c06324b3b5dfa7f06d04ab641a7bf161dc74aeff8a52",
+      "name": "baseline-roundtrip-link",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket_stream.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-stream.generated.c"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/candidate-stream-generate.json",
+      "log_sha256": "02b25c2ef34ceb79df1b2ebd3ac70bcc95d55658bc64c3046ae35817ab10478d",
+      "name": "candidate-stream-generate",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/llvm-21/bin/clang",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-stream.generated.c",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native/scrapanium.c",
+        "-std=c11",
+        "-O3",
+        "-g",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native",
+        "-lpthread",
+        "-lm",
+        "-ldl",
+        "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-lcurl-impersonate",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-stream"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/candidate-stream-link.json",
+      "log_sha256": "97cdc107c084cbc437ae836929b8121047b4fb77f8ef71017851f9628a6df407",
+      "name": "candidate-stream-link",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+        "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket.bend",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-roundtrip.generated.c"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/candidate-roundtrip-generate.json",
+      "log_sha256": "ccbf901cb96ad3a15947c3ee9581d71bcdf1f2fc3f10a18ceb523d270e76a70f",
+      "name": "candidate-roundtrip-generate",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/llvm-21/bin/clang",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-roundtrip.generated.c",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native/scrapanium.c",
+        "-std=c11",
+        "-O3",
+        "-g",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include",
+        "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/native",
+        "-lpthread",
+        "-lm",
+        "-ldl",
+        "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+        "-lcurl-impersonate",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/candidate-roundtrip"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/candidate-roundtrip-link.json",
+      "log_sha256": "3b85b56c892bc83e22dc3535066132e2beb4ca22813e8d8f049d06a05bb18314",
+      "name": "candidate-roundtrip-link",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/go-1.26/bin/go",
+        "build",
+        "-trimpath",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/stream_peer",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket_stream_server.go"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/stream_peer.json",
+      "log_sha256": "a498bdba1d4f1be09a760ed5f09dd63e13415748dbdc1f5daa5d43f6bb49cc6b",
+      "name": "stream_peer",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/lib/go-1.26/bin/go",
+        "build",
+        "-trimpath",
+        "-o",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/roundtrip_peer",
+        "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket_server.go"
+      ],
+      "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+      "log_path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build-logs/roundtrip_peer.json",
+      "log_sha256": "0d16c5e519bb83e403aa750a531066ad6589a7d5e236af25b6f1bb1ce525cef2",
+      "name": "roundtrip_peer",
+      "returncode": 0
+    }
+  ],
+  "candidate": {
+    "branch": "codex/wss-owned-segments-20261007",
+    "head": "7b52d7f1cbbfe4c21b1abf1ad71e8e3061c47c17",
+    "path": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+    "source_sha256": {
+      "benchmarks/websocket.bend": "2fc0583816e6cadbd6aeac0ede45a8e851c07b96c84fc0b816cfcac8b2c98463",
+      "benchmarks/websocket.py": "dd691ce87b913c013143f6acfd19245b4fd23014b779024473a1cf87a5f50b75",
+      "benchmarks/websocket_clock.c": "911f2c7ace4b424f6d8159416baa0cc95376079f932ad72095c66f83334b720a",
+      "benchmarks/websocket_python.py": "bb7a5f3ed1f80f60c6280f30fd6aad52101cd67082e7b41d9b7c79ec96ee37dc",
+      "benchmarks/websocket_server.go": "76be75a93bc51b243c6c9be7360b08e8e9f15757ce1358ae60ec78457f0d0d3b",
+      "benchmarks/websocket_stream.bend": "59fdacabbf6f0c1e63dee685e7e2f093eb51f0afc8b934810e341602d56b2a22",
+      "benchmarks/websocket_stream_python.py": "dc781966f5f3a06e35b4ce5530bdfc078a179ab3d462b45dc91b9d442e6b697f",
+      "benchmarks/websocket_stream_server.go": "de2e36600caff6409e01b61791924d91b12a8e4aaf7c6788a780b279ccb10b2a",
+      "benchmarks/websocket_streaming.py": "61297032e5c620409d8d6fbc54a73043a717b961d738745b97b1ca29ab85e6d8",
+      "dependencies.json": "a8e4134a63f0fa60fcd78d63fd9c500cfa0f42c0e6aa0ad4d444096d59d5b56e",
+      "http.bend": "fe33e033c278242cabff84d0d7ea3b2f172350c18b49060980b80a64a2c278e0",
+      "native/bend_bridge.c": "4faeb7fd3d18b797d6f2166f3e6a0084cea279a7c3720d7edb8b3399ca42701f",
+      "native/bend_websocket.inc.c": "3b638276b8aeb387ee7cd46515d0b38ef1cf167fcadec3e2586b28465dbdc7dc",
+      "native/profiles.inc.c": "8679e5843027f01e1b2ae4f1f86d52cdc3ed9216c26a5a8ca3c929c0972f2909",
+      "native/scrapanium.c": "3ac3592b11d74d52ab460fc11d263a61ea92a92baacd04d3ab142c1370643b25",
+      "native/scrapanium.h": "06aa6767681632cca31d2be8d0beb02ce8c9e6b2088e25ead37361c3c21d99f4",
+      "native/websocket.inc.c": "96e51b251075cb0765eb4ed1b5e3b9e71c4763ac296c157778dcaefc4b58712f",
+      "native/ws_async.h": "23140e4918b21fb1bf4457a704ba7d11fed4bbcb7a90fa465121ffbfe5a6c676",
+      "native/ws_handshake.inc.c": "ee3eadd1c8580d95b9ac3828510cb9805cc200db5e07141460817f17915a499a",
+      "scrapanium.bend": "fc2e7286cf5a9313fa9dcf116f39711740abd30fac8748630db50cb3a2d6ca5a",
+      "scripts/build.py": "9bc8883f5e44cad028a1046687884a966563c1431ab3a64d1cb909489b4b0ef6",
+      "tests/lab.py": "166d1ef5c42d740d32c2aa45c6fd34d3afe877f4f4f9a6df7625ba519627c22e",
+      "tests/ws_lab.py": "9aa1634679d9cf62c297998bdd42ae8eed720de1ed496be32d83c7d8fdc9a20e"
+    },
+    "status": "M native/bend_bridge.c\n M native/bend_websocket.inc.c\n M native/scrapanium.c\n M native/scrapanium.h\n M native/websocket.inc.c\n M native/ws_async.h\n M scripts/build.py\n M scripts/build_backend.py\n M tests/lab.py\n M tests/test_websocket.py\n M tests/ws_lab.py\n?? backend/patches/curl-ws-canonical-length.patch\n?? backend/patches/curl-ws-owned-chunks.patch\n?? tests/backend_bufq_pin_asan.c\n?? tests/bytes_text_edges.bend\n?? tests/flatten_oom_malloc_wrap.c\n?? tests/owned_backend_checks.py\n?? tests/owned_bytes_checks.py\n?? tests/owned_flatten_oom_checks.py\n?? tests/owned_segment_text_checks.py\n?? tests/websocket_length_boundaries.bend\n?? tests/websocket_noncanonical.bend\n?? tests/websocket_owned_cancel.bend\n?? tests/websocket_owned_empty.bend\n?? tests/websocket_owned_equal.bend\n?? tests/websocket_owned_flatten_oom.bend\n?? tests/websocket_owned_release.c\n?? tests/websocket_owned_request.bend\n?? tests/websocket_owned_request_oom.bend\n?? tests/websocket_owned_segments.bend\n?? tests/websocket_owned_send.bend\n?? tests/websocket_owned_text_edges.bend",
+    "tracked_diff_sha256": "6a7a232327e9f58f6c5ebd1e58ec522f462b8a34e7a308eb33b955ee2525e0d1"
+  },
+  "common_bend_native_build_recipe": {
+    "c_flags": [
+      "-std=c11",
+      "-O3",
+      "-g"
+    ],
+    "clang": "/usr/lib/llvm-21/bin/clang",
+    "include_flags": [
+      "-I/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/include"
+    ],
+    "link_flags": [
+      "-lpthread",
+      "-lm",
+      "-ldl",
+      "-L/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+      "-Wl,-rpath,/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+      "-lcurl-impersonate"
+    ],
+    "native_include_by_root": true
+  },
+  "comparison_scope": "clean production source 7b52 baseline and owned-segment candidate use the same optional source-built cURL/BoringSSL DSO; matched curl_cffi uses that exact DSO too. This measures same-backend uplift. It is not a comparison against the stock user installation.",
+  "compiler_version_check": {
+    "comparison_value": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "raw_output": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin\n",
+    "raw_output_sha256": "77467400b91c4cebb6c3e29d8a611af518a2f4078c22baf276b0a1373e996bf5"
+  },
+  "copy_boundary": "owned receive removes the libcurl buffer-queue-to-Scrapanium message copy when the private API is present. BoringSSL SSL_read into libcurl remains copied; this prototype does not claim transport-level zero-copy.",
+  "created_utc": "2026-10-08T10:52:49.717865+00:00",
+  "curl_cffi": {
+    "commit": "8cd226f24a06f81d66c42fbdb2a7c49305b1b7b7",
+    "installed_binding": {
+      "executable": "/usr/bin/python3.14",
+      "executable_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "files": {
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/__init__.py": "e9827081dfedf066ee1e4da6a9eecf58daa69185538e15fd802571cd323261d7",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/_wrapper.abi3.so": "e6d70a3df1bbd2017b80ea403f7fb4aca9735444ca50f0ad90c8a448f774bf46",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/curl.py": "8ef9aa2e129803d3f448b084b51f31a2193bdadbc4f62ca438e53b12724419c1",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi/requests/websockets.py": "be7273ff68ac23f94d7c096b89237de4ba26d9a06a63cb280d8bd6f153c5cc60"
+      },
+      "module_root": "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005/curl_cffi",
+      "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+      "sys_path": [
+        "",
+        "/home/baidu/scrapanium-experiments/wss-raw-recv-probe-20260924/worktree/build/local-site-packages-matched-20261005",
+        "/usr/lib/python314.zip",
+        "/usr/lib/python3.14",
+        "/usr/lib/python3.14/lib-dynload",
+        "/usr/local/lib/python3.14/dist-packages",
+        "/usr/lib/python3/dist-packages"
+      ],
+      "version": "0.16.4b1"
+    },
+    "path": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/curl_cffi",
+    "version": "0.16.4b1"
+  },
+  "curl_cffi_kind_check": "CurlWsFlag.BINARY bit in aggregate kind flags; complete payload equality and ordered sequence are checked",
+  "environment": {
+    "clang_builtin_header_tree_sha256": "4523d97c98766d7a7eee5a09071a8e7c3b6df561e0182b58f2c144135a9f14e0",
+    "compiler_path": "/usr/lib/llvm-21/bin/clang",
+    "compiler_sha256": "412bbe8c60571a1eb06f48fde89635033621caeb01a9b4ee76d46711bae8e932",
+    "cpu": {
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "logical_count": 12,
+      "model": "13th Gen Intel(R) Core(TM) i5-13420H"
+    },
+    "curl_header_tree_sha256": "e4e38d23b2b188c1007caaad2b2231e8fa4dbbd1d0c3d05795e59053ae3b0c07",
+    "go": "go version go1.26.0 linux/amd64",
+    "go_build_environment": {
+      "CGO_ENABLED": "0",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOCACHE": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/build/go-cache",
+      "GOFLAGS": "",
+      "GOOS": "linux",
+      "GOPROXY": "off",
+      "GOROOT": "/usr/lib/go-1.26",
+      "GOSUMDB": "off",
+      "GOTOOLCHAIN": "local",
+      "GOWORK": "off"
+    },
+    "go_compiler_tools_sha256": {
+      "asm": "5b3b7640cb629cd21d5aa86298fc9cc6264e1d6c596569279c6da54f1e5fd35d",
+      "compile": "f26faa1ea1a55df3dc59a57b005d087df12c06e19fd4d07593374370d1f580a9",
+      "link": "5d44d73d05766cd257c673bf85ea80509a9eff636049b9f1ccb53da288dc4f9d"
+    },
+    "go_path": "/usr/lib/go-1.26/bin/go",
+    "go_sha256": "170f0aeacbfecf200f42cfa837034239860b50dc8f62f664258b887a1f0776d1",
+    "inherited_runtime_paths": {
+      "BEND_SOURCE": "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27",
+      "BUN": "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+      "CC": "/usr/lib/llvm-21/bin/clang",
+      "LD_LIBRARY_PATH": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01/lib",
+      "LD_LIBRARY_PATH_inherited": "",
+      "PYTHONPATH": "",
+      "SCRAPANIUM_CURL_DIR": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/backend-prefix-01"
+    },
+    "matched_site_nonpyc_tree_sha256": "fc13af29fec2cfa6d71553beda33a65f30e53b1e3916eb6d908ad41a665a1b22",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "python_cache_prefix": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03/python-bytecode-cache",
+    "python_cache_was_fresh_at_start": true,
+    "python_executable": "/usr/bin/python3.14",
+    "python_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "source_pins_sha256": "5f891e15575c3390e71f9e84ced837697ee46453570858d74afdfffc80f557f7"
+  },
+  "generated_c_sha256": {
+    "baseline_roundtrip": "0dc6aa27c81709d08d3af121444941703d90d49ceb28b039c8089972defa4f52",
+    "baseline_stream": "32bc29693f218e6ce2ba5ba4f9c834959fbc428fcfc01fa02165715e2bc3ceef",
+    "candidate_roundtrip": "2beda2066dc55f248587ca88ef884d319ae883820b139c341cddf228ec9861ab",
+    "candidate_stream": "9ca5005120d50ce5f7d83ea89e573aa8a01902e7bcace374e9844220af6c6d22"
+  },
+  "limitations": [
+    "loopback WSL/Linux only; no WAN inference",
+    "optional backend only: the stock installed DSO does not expose owned receive and still accepts noncanonical 16/64-bit WebSocket lengths; no stock-default parser fix is claimed",
+    "custom backend uses BoringSSL; the SSL_read-to-libcurl-buffer copy remains",
+    "round-trip rows are a regression check, not a broad WebSocket superiority claim",
+    "all original workload counts, checkers and generated corpora are preserved",
+    "a failed checker, peer observation or DSO check aborts the run; errors remain in attempts.jsonl"
+  ],
+  "mode": "correctness_smoke_only",
+  "output_directory": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/smoke-20261008-03",
+  "owned_api_scope": "candidate uses the ordinary public S.Ws.receive/S.Bytes operations. Streaming checks compare complete bytes without flattening; round-trip reuses each received message in S.Ws.send, so required flatten-on-send remains inside the timed loop.",
+  "plan_sha256": "6f24c457250c58ed54920946019d4e13e4bcc93320e820ab363616160463f3da",
+  "randomization": "smoke uses a seeded order with reduced correctness-only counts",
+  "runner_sha256": "ff84f2b390c2dbb85a516610ccbd44f30aa4b8c5347acc845053c416248dc0fe",
+  "runs_per_workload_variant": 1,
+  "schema": 1,
+  "seed": 20261008,
+  "smoke_reduced_counts": {
+    "roundtrip_each": 20,
+    "stream_each": 32
+  },
+  "smoke_rule": "smoke mode records reduced-count correctness only and omits all timing fields",
+  "stream_timing": null,
+  "targets": null,
+  "tls_rule": "Go peers require TLS version 772 and cipher 4865; the Python round-trip peer records negotiated version/cipher per connection and requires one stable identity across baseline/candidate/curl_cffi",
+  "workloads": {
+    "roundtrip": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 20,
+        "name": "original-python-30b-c1",
+        "peer": "python"
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 20,
+        "name": "go-30b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 20,
+        "name": "go-1024b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 20,
+        "name": "go-65536b-c1",
+        "peer": "go"
+      },
+      {
+        "bytes": 30,
+        "connections": 4,
+        "count": 20,
+        "name": "go-30b-c4",
+        "peer": "go"
+      },
+      {
+        "bytes": 1024,
+        "connections": 4,
+        "count": 20,
+        "name": "go-1024b-c4",
+        "peer": "go"
+      },
+      {
+        "bytes": 65536,
+        "connections": 4,
+        "count": 20,
+        "name": "go-65536b-c4",
+        "peer": "go"
+      }
+    ],
+    "stream": [
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush1",
+        "peer_flush_frames": 1
+      },
+      {
+        "bytes": 30,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-30b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 1024,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-1024b-flush64",
+        "peer_flush_frames": 64
+      },
+      {
+        "bytes": 65536,
+        "connections": 1,
+        "count": 32,
+        "name": "stream-65536b-flush64",
+        "peer_flush_frames": 64
+      }
+    ]
+  }
+}

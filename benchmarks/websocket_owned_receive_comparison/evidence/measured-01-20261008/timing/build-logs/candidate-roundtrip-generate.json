@@ -1,0 +1,14 @@
+{
+  "name": "candidate-roundtrip-generate",
+  "command": [
+    "/mnt/c/Users/Baidu/Projetos/scrapanium/.deps/bun/node_modules/@oven/bun-linux-x64-baseline/bin/bun",
+    "/home/baidu/scrapanium-experiments/bend2-027-compat/compiler-2.0.27/bend2/main.ts",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree/benchmarks/websocket.bend",
+    "-o",
+    "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/artifacts/owned-campaign-03/timing-20261008-03/build/candidate-roundtrip.generated.c"
+  ],
+  "cwd": "/home/baidu/scrapanium-experiments/wss-owned-segments-20261007/worktree",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "All terms check, but 7 defs rely on unsafe or foreign code:\n- check_message\n- receive_done\n- send_done\n- repeat\n- release\n- timed\n- main\nbend 2.0.36 is available: run bend update\n"
+}
